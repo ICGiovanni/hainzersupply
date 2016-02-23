@@ -1,24 +1,28 @@
 <?php
 /*
 CREATE TABLE IF NOT EXISTS `login` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `profile` tinyint(4) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `login`
+-- Volcado de datos para la tabla `login`
 --
-INSERT INTO `login` (`id`, `email`, `password`) VALUES
-(1, 'admin@admin.com', 'EpMJUgvj/IwIJjkizXsqVYGEz+h/Gxi09iOx42Ltiq8=');
+
+INSERT INTO `login` (`id`, `firstName`, `lastName`, `profile`, `email`, `password`) VALUES
+(1, '', '', 0, 'admin@admin.com', 'LbO9DUk9nylTjTS2I3v5uWM7vPwlzl/yDTY4E7MDVbY=');
 password:wicked
 */
 class user_login{
 
     private $db;
 
-    function __construct($host,$dbname,$user,$pass){
+    function __construct($host = 'db614036781.db.1and1.com', $dbname='db614036781', $user='dbo614036781',$pass='Desarrollo2016*'){
         $this->dbhost = $host;
         $this->dbname = $dbname;
         $this->dbuser = $user;
@@ -48,6 +52,27 @@ class user_login{
 		return(!empty($result))?true:false;
     }
 
+	function sign_up($firstName, $lastName, $profile, $email, $password){
+        $this->connect();
+        $sql = "INSERT INTO `login` (firstName, lastName, profile, email, password) VALUES (:firstName, :lastName, :profile, :email, :password)";
+
+        $statement = $this->db->prepare($sql);
+
+        $password = base64_encode($this->encrypt($password,md5($email.$password)));
+
+		$statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
+        $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+		$statement->bindParam(':profile', $profile, PDO::PARAM_STR);
+		$statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+
+        $statement->execute();
+		die("success insert ");
+        //$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+		return(!empty($result))?true:false;
+    }
+	
     function logout($email,$password){
         unset($_SESSION['logged_in']);
         session_destroy();
