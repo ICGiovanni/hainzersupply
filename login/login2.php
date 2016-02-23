@@ -8,13 +8,10 @@ if (isset($_POST['submit'])) {
 	} else {
 	
 		// Define $email and $password
-		$email=$_POST['email'];
-		$password=$_POST['password'];
-		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
-
 		// To protect MySQL injection for Security purpose
-		$email = stripslashes($email);
-		$password = stripslashes($password);
+		$email=stripslashes($_POST['email']);
+		$password=stripslashes($_POST['password']);
+		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 
 		//$connection = mysql_connect("localhost", "root", "");
 		require_once('class/user_login.php');
