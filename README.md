@@ -1,2 +1,0 @@
-# hainzersupply
-Control de Inventarios
