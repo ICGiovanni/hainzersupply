@@ -7,3 +7,4 @@
  */
 
 echo "test auto pull server";
+echo "test auto pull server 2";
