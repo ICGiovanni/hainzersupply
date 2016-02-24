@@ -10,3 +10,5 @@ echo "test auto pull server";
 echo "test auto pull server 2";
 echo "test auto pull server 3";
 echo "test auto pull server 4";
+echo "test auto pull server 5";
+echo "test auto pull server 6";
