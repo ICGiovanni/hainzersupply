@@ -1,29 +1,98 @@
 <?php
 require_once('PhpExcel/Classes/PHPExcel.php');
-$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-$objReader->setReadDataOnly(true);
+date_default_timezone_set("America/Mexico_City");
 
-$objPHPExcel=$objReader->load("inventario.xlsx");
-$objWorksheet=$objPHPExcel->getActiveSheet();
+$dirBase="tmp";
+$output=[];
+$ext=explode('.',$_FILES['fileUpload']['name']);
+$ext=$ext[count($ext)-1];
 
-$highestRow=$objWorksheet->getHighestRow(); 
-$highestColumn=$objWorksheet->getHighestColumn(); 
 
-$highestColumnIndex=PHPExcel_Cell::columnIndexFromString($highestColumn);
-
-echo '<table border="1" align="center">';
-for($row=1;$row<=4;++$row)
+if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
 {
-	echo '<tr>';
-	for($col=0;$col<=10; ++$col)
+	$output=['error'=>'No se pudo leer el archivo.'];
+}
+else if($ext!='xls' && $ext!='xlsx')
+{
+	$output=['error'=>'La extensión del Archivo no es valida('.$ext.').'];
+}
+else
+{
+	$nameFile=date('YmdHis').'.'.$ext;
+	
+	move_uploaded_file($_FILES['fileUpload']['tmp_name'],$dirBase.'/'.$nameFile);
+	
+	$objReader = PHPExcel_IOFactory::createReader('Excel2007');
+	$objReader->setReadDataOnly(true);
+
+	$objPHPExcel=$objReader->load($dirBase.'/'.$nameFile);
+	$objWorksheet=$objPHPExcel->getActiveSheet();
+
+	$highestRow=$objWorksheet->getHighestRow(); 
+	$highestColumn=$objWorksheet->getHighestColumn(); 
+
+	$highestColumnIndex=PHPExcel_Cell::columnIndexFromString($highestColumn);
+	
+	$result='<table class="table">';
+	$result.='<thead>';
+	
+	for($row=1;$row<=1;++$row)
 	{
-		if($objWorksheet->getCellByColumnAndRow($col, $row)->getValue()!='')
+		$result.='<tr>';
+		for($col=0;$col<=10; ++$col)
 		{
-			echo '<td>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getValue().'</td>';
+			$result.='<th>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getValue().'</th>';
+		}
+		$result.='</tr>';
+	}
+	$result.='</thead>';
+	
+	
+	$result.='<tbody>';
+	
+	for($row=2;$row<=$highestRow;++$row)
+	{
+		$rowA='';
+		for($col=0;$col<=10; ++$col)
+		{
+			if($objWorksheet->getCellByColumnAndRow($col, $row)->getValue())
+			{
+				$rowA.='<th>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getValue().'</th>';
+			}
+		}
+		
+		if($rowA)
+		{
+			$result.='<tr>'.$rowA.'</tr>';
 		}
 	}
-	echo '</tr>';
-}
-echo '</table>';
+	$result.='</tbody>';
+	
+	
+	
+	$result.='</table>';
+	
+	$output=['result'=>$result];
+	
+/*
+	resul '<table class="table" align="center">';
+	for($row=1;$row<=4;++$row)
+	{
+		echo '<tr>';
+		for($col=0;$col<=10; ++$col)
+		{
+			if($objWorksheet->getCellByColumnAndRow($col, $row)->getValue()!='')
+			{
+				echo '<td>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getValue().'</td>';
+			}
+		}
+		echo '</tr>';
+	}
+echo '</table>';*/
 
+	unlink($dirBase.'/'.$nameFile);
+	
+	
+}
+echo json_encode($output);
 ?>

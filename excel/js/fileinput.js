@@ -2653,8 +2653,7 @@
         cancelClass: 'btn btn-default',
         uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
         uploadClass: 'btn btn-default',
-        //uploadUrl: 'prueba.php',
-		uploadUrl: null,
+		uploadUrl: '',
         uploadAsync: true,
         uploadExtraData: {},
         minImageWidth: null,
@@ -2686,14 +2685,14 @@
         elErrorContainer: null,
         errorCloseButton: '<span class="close kv-error-close">&times;</span>',
         slugCallback: null,
-        dropZoneEnabled: true,
+        dropZoneEnabled: false,
         dropZoneTitleClass: 'file-drop-zone-title',
         fileActionSettings: {},
         otherActionButtons: '',
         textEncoding: 'UTF-8',
         ajaxSettings: {},
         ajaxDeleteSettings: {},
-        showAjaxErrorDetails: true
+        showAjaxErrorDetails: false
     };
 
     $.fn.fileinputLocales.en = {
