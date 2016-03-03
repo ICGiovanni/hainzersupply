@@ -1,6 +1,6 @@
 <?php
 require_once('PhpExcel/Classes/PHPExcel.php');
-date_default_timezone_set("America/Mexico_City");
+require_once('models/class.Inventory.php');
 
 $dirBase="tmp";
 $output=[];
@@ -32,32 +32,79 @@ else
 	$highestColumn=$objWorksheet->getHighestColumn(); 
 
 	$highestColumnIndex=PHPExcel_Cell::columnIndexFromString($highestColumn);
-	
+	/*
 	$result='<table class="table">';
 	$result.='<thead>';
 	
-	for($row=1;$row<=1;++$row)
+	for($row=11;$row<=11;++$row)
 	{
 		$result.='<tr>';
 		for($col=0;$col<=10; ++$col)
 		{
-			$result.='<th>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getValue().'</th>';
+			$result.='<th>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getCalculatedValue().'</th>';
 		}
 		$result.='</tr>';
 	}
-	$result.='</thead>';
+	$result.='</thead>';*/
 	
+	$result='<table class="table">';
+	$result.='<thead>';
+	$result.='<tr>';
+	$result.='<th>'.'SKU'.'</th>';
+	$result.='<th>'.'PRODUCTO'.'</th>';
+	$result.='<th>'.'STOCK'.'</th>';
+	$result.='<th>'.'PRECIO'.'</th>';
+	$result.='<th>'.'STATUS'.'</th>';
+	$result.='</tr>';
 	
 	$result.='<tbody>';
 	
-	for($row=2;$row<=$highestRow;++$row)
+	$inventory=new Inventory();
+	
+	for($row=12;$row<=$highestRow;++$row)
 	{
+		
+		$sku=$objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue();
+		$product=$objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue();
+		$stock=$objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue();
+		$price=round($objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue(),2);
+		
+		
+		if($sku!='')
+		{	
+			$ID='';
+			$ID=$inventory->getSku($sku);
+			
+			$result.='<tr>';
+			$result.='<th>'.$sku.'</th>';
+			$result.='<th>'.$product.'</th>';
+			$result.='<th>'.$stock.'</th>';
+			$result.='<th>$'.$price.'</th>';
+			
+			if(!$ID)
+			{
+				$inventory->InsertProduct($sku,$product,$stock,$price);
+				$result.='<th>'.'Nuevo Producto'.'</th>';
+				//echo "Nuevo";
+			}
+			else
+			{
+				$inventory->UpdateStock($ID,$stock);
+				$result.='<th>'.'Existe'.'</th>';
+				//echo "Existe";
+			}
+			
+			$result.='</tr>';
+			//die();
+		}
+		
+		/*
 		$rowA='';
 		for($col=0;$col<=10; ++$col)
 		{
-			if($objWorksheet->getCellByColumnAndRow($col, $row)->getValue())
+			if($objWorksheet->getCellByColumnAndRow($col, $row)->getCalculatedValue())
 			{
-				$rowA.='<th>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getValue().'</th>';
+				$rowA.='<th>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getCalculatedValue().'</th>';
 			}
 		}
 		
@@ -65,6 +112,7 @@ else
 		{
 			$result.='<tr>'.$rowA.'</tr>';
 		}
+		*/
 	}
 	$result.='</tbody>';
 	
