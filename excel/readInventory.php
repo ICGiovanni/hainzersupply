@@ -24,8 +24,6 @@ else
 	
 	$upload->UploadFile($_FILES['fileUpload']['tmp_name'],$dirBase.'/'.$nameFile);
 	
-	//move_uploaded_file($_FILES['fileUpload']['tmp_name'],);
-	
 	$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 	$objReader->setReadDataOnly(true);
 
