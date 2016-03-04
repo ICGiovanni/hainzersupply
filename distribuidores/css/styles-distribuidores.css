@@ -1,7 +1,6 @@
 
 body{
     padding: 15px;
-    min-width: 975px;
 }
 
 .form-signin {
@@ -10,10 +9,14 @@ body{
 }
 
 .form-signin input{
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 .spaceOption{
     margin-left: 20px
+}
+
+.formRegistro{
+    width: 50%;
 }
