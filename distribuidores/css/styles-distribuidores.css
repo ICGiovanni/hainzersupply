@@ -1,0 +1,19 @@
+
+body{
+    padding: 15px;
+    min-width: 975px;
+}
+
+.form-signin {
+    padding: 5px;
+    margin: 0 auto;
+}
+
+.form-signin input{
+    margin-bottom: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.spaceOption{
+    margin-left: 20px
+}
