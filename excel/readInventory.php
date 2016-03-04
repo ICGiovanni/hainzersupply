@@ -1,11 +1,13 @@
 <?php
 require_once('PhpExcel/Classes/PHPExcel.php');
 require_once('models/class.Inventory.php');
+require_once('models/class.Upload.php');
 
 $dirBase="tmp";
 $output=[];
 $ext=explode('.',$_FILES['fileUpload']['name']);
 $ext=$ext[count($ext)-1];
+$upload=new Upload();
 
 
 if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
@@ -20,7 +22,9 @@ else
 {
 	$nameFile=date('YmdHis').'.'.$ext;
 	
-	move_uploaded_file($_FILES['fileUpload']['tmp_name'],$dirBase.'/'.$nameFile);
+	$upload->UploadFile($_FILES['fileUpload']['tmp_name'],$dirBase.'/'.$nameFile);
+	
+	//move_uploaded_file($_FILES['fileUpload']['tmp_name'],);
 	
 	$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 	$objReader->setReadDataOnly(true);
