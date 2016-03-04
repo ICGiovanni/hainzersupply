@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Inventario</title>
+  <title>Imagenes</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
@@ -15,16 +15,25 @@
 <body>
 
 <div class="container">
-	<h1>Subir Inventario</h1>
+	<h1>Subir Imagenes</h1>
 	<form enctype="multipart/form-data">
-	<input id="fileUpload" name="fileUpload" class="file" type="file" data-min-file-count="1" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-	<!--<input id="file-3" type="file" multiple=false>-->
+	<input id="fileUpload" name="fileUpload" type="file" multiple=true class="file-loading">
 	</form>
 	<div id="result" style="padding-top:10px;">	
 	</div>
 </div>
 
 <script>
+
+$("#fileUpload").fileinput({
+    language: 'es',
+	showCaption: true,
+	browseClass: "btn btn-primary btn-lg",
+	dropZoneEnabled:true,
+	uploadUrl: "upload.php", // server upload action
+    uploadAsync: true,
+    maxFileCount: 5
+});
 
 $("#fileUpload").fileinput(
 {
@@ -48,7 +57,7 @@ $('#fileUpload').on('fileuploaded', function(event, data, previewId, index)
     console.log(response);
 	$('#fileUpload').fileinput('clear');
 	$('#fileUpload').fileinput('unlock');
-	$('#result').html(response['result']);
+	$('#result').append(response['result']);
 });
 
 </script>
