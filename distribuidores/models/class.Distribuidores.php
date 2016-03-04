@@ -14,8 +14,8 @@ class Distribuidores{
 
     public function getLastIdDistribuidor(){
 
-        $sql="SELECT MAX(id_distribuidor)
-				FROM distribuidores limit 1";
+        $sql="SELECT MAX(idDistribuidor)
+				FROM inv_distribuidores limit 1";
 
         $statement=$this->connect->prepare($sql);
 
