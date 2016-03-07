@@ -38,10 +38,78 @@ class Inventory
 		}
 	}
 	
-	public function InsertProduct($sku,$product,$stock,$price)
+	public function GetCategory($category)
+	{
+		$sql='';
+		$statement='';
+		
+		$sql="SELECT wt.term_id
+				FROM wp_terms wt
+				WHERE name='$category'";
+		
+		$statement=$this->connect->prepare($sql);
+		
+		$statement->bindParam(':category',$category,PDO::PARAM_STR);
+		
+		$statement->execute();
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		if(isset($result[0]['term_id']))
+		{
+			return $result[0]['term_id'];
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function InsertCategory($category)
 	{
 		$general=new General();
 		
+		$sql="SELECT MAX(term_id)+1 AS term_id
+				FROM wp_terms";
+				
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		$categoryId=$result[0]['term_id'];
+		
+		$sql = "INSERT INTO wp_terms VALUES(:categoryId,:category,:categoryUrl,0)";
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':categoryId',$categoryId,PDO::PARAM_STR);
+		$statement->bindParam(':category',$category,PDO::PARAM_STR);
+		$statement->bindParam(':categoryUrl',$general->NameToURL($category),PDO::PARAM_STR);
+		$statement->execute();
+		
+		$sql = "INSERT INTO wp_term_taxonomy VALUES(:categoryId,:categoryId,'product_cat','',0,0)";
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':categoryId',$categoryId,PDO::PARAM_STR);
+		$statement->execute();
+		
+		return $categoryId;
+	}
+	
+	public function InsertCategoryProduct($productId,$categoryId)
+	{
+		$sql = "INSERT INTO wp_term_relationships VALUES(:productId,:categoryId,0)";
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':productId',$productId,PDO::PARAM_STR);
+		$statement->bindParam(':categoryId',$categoryId,PDO::PARAM_STR);
+		$statement->execute();
+		
+		$sql="UPDATE wp_term_taxonomy SET count=count+1 WHERE term_taxonomy_id=:categoryId";
+		
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':categoryId',$categoryId,PDO::PARAM_STR);
+		$statement->execute();
+	}
+	
+	public function InsertProduct($sku,$product,$description,$descriptionShort,$categories,$stock,$price)
+	{
+		$general=new General();
+				
 		$sql="SELECT MAX(ID)+1 AS ID
 				FROM wp_posts";
 				
@@ -54,8 +122,8 @@ class Inventory
 		$postDate=date('Y-m-d H:i:s');
 		$postDateGMT=$postDate;
 		
-		$postContent='<div style="text-align: justify;"><strong>'.$product.'</strong></div>';
-		$postExcert=$postContent;
+		$postContent=$description;
+		$postExcert=$descriptionShort;
 		
 		$postTitle=$product;
 		$postStatus='publish';
@@ -114,6 +182,24 @@ class Inventory
 		$statement->bindParam(':commentCount',$commentCount,PDO::PARAM_STR);
 		
 		$statement->execute();
+		
+		$ct=explode(",",$categories);
+		
+		foreach($ct as $c)
+		{
+			$categoryId=$this->GetCategory($c);
+			
+			if($categoryId)
+			{
+				$this->InsertCategoryProduct($ID,$categoryId);
+			}
+			else
+			{
+				$categoryId=$this->InsertCategory($c);
+				$this->InsertCategoryProduct($ID,$categoryId);
+			}
+			
+		}
 		
 		//_backorders
 		$backorders='no';
@@ -232,7 +318,7 @@ class Inventory
 	
 	public function UpdateStock($ID,$stock)
 	{
-		$sql="UPDATE wp_postmeta SET meta_value=$stock WHERE post_id=$ID AND meta_key='_stock'";
+		$sql="UPDATE wp_postmeta SET meta_value=:stock WHERE post_id=:ID AND meta_key='_stock'";
 		
 		$statement=$this->connect->prepare($sql);
 		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);

@@ -54,6 +54,9 @@ else
 	$result.='<tr>';
 	$result.='<th>'.'SKU'.'</th>';
 	$result.='<th>'.'PRODUCTO'.'</th>';
+	$result.='<th>'.'DESCRIPCION'.'</th>';
+	$result.='<th>'.'DESCRIPCION CORTA'.'</th>';
+	$result.='<th>'.'CATEGORIAS'.'</th>';
 	$result.='<th>'.'STOCK'.'</th>';
 	$result.='<th>'.'PRECIO'.'</th>';
 	$result.='<th>'.'STATUS'.'</th>';
@@ -63,13 +66,16 @@ else
 	
 	$inventory=new Inventory();
 	
-	for($row=12;$row<=$highestRow;++$row)
+	for($row=2;$row<=$highestRow;++$row)
 	{
 		
 		$sku=$objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue();
 		$product=$objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue();
+		$description=$objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue();
+		$descriptionShort=$objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue();
+		$categories=$objWorksheet->getCellByColumnAndRow(4,$row)->getCalculatedValue();
 		$stock=$objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue();
-		$price=round($objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue(),2);
+		$price=round($objWorksheet->getCellByColumnAndRow(7,$row)->getCalculatedValue(),2);
 		
 		
 		if($sku!='')
@@ -80,24 +86,24 @@ else
 			$result.='<tr>';
 			$result.='<th>'.$sku.'</th>';
 			$result.='<th>'.$product.'</th>';
+			$result.='<th>'.$description.'</th>';
+			$result.='<th>'.$descriptionShort.'</th>';
+			$result.='<th>'.$categories.'</th>';
 			$result.='<th>'.$stock.'</th>';
 			$result.='<th>$'.$price.'</th>';
 			
 			if(!$ID)
 			{
-				$inventory->InsertProduct($sku,$product,$stock,$price);
+				$inventory->InsertProduct($sku,$product,$description,$descriptionShort,$categories,$stock,$price);
 				$result.='<th>'.'Nuevo Producto'.'</th>';
-				//echo "Nuevo";
 			}
 			else
 			{
 				$inventory->UpdateStock($ID,$stock);
 				$result.='<th>'.'Existe'.'</th>';
-				//echo "Existe";
 			}
 			
 			$result.='</tr>';
-			//die();
 		}
 		
 		/*
