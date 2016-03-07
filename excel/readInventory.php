@@ -75,7 +75,7 @@ else
 		$descriptionShort=$objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue();
 		$categories=$objWorksheet->getCellByColumnAndRow(4,$row)->getCalculatedValue();
 		$stock=$objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue();
-		$price=round($objWorksheet->getCellByColumnAndRow(7,$row)->getCalculatedValue(),2);
+		$price=round($objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue(),2);
 		
 		
 		if($sku!='')
