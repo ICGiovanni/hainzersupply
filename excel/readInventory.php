@@ -57,9 +57,15 @@ else
 	$result.='<th>'.'DESCRIPCION'.'</th>';
 	$result.='<th>'.'DESCRIPCION CORTA'.'</th>';
 	$result.='<th>'.'CATEGORIAS'.'</th>';
+	$result.='<th>'.'MARCA'.'</th>';
+	$result.='<th>'.'COLOR'.'</th>';
+	$result.='<th>'.'TALLA'.'</th>';
+	$result.='<th>'.'SKU PADRE'.'</th>';
 	$result.='<th>'.'STOCK'.'</th>';
 	$result.='<th>'.'PRECIO'.'</th>';
 	$result.='<th>'.'STATUS'.'</th>';
+	$result.='<th>'.'PREFIJO'.'</th>';
+	
 	$result.='</tr>';
 	
 	$result.='<tbody>';
@@ -74,14 +80,26 @@ else
 		$description=$objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue();
 		$descriptionShort=$objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue();
 		$categories=$objWorksheet->getCellByColumnAndRow(4,$row)->getCalculatedValue();
-		$stock=$objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue();
-		$price=round($objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue(),2);
+		$trademark=$objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue();
+		$color=$objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue();
+		$size=$objWorksheet->getCellByColumnAndRow(7,$row)->getCalculatedValue();
+		$skuSenior=$objWorksheet->getCellByColumnAndRow(8,$row)->getCalculatedValue();
+		$stock=$objWorksheet->getCellByColumnAndRow(9,$row)->getCalculatedValue();
+		$price=round($objWorksheet->getCellByColumnAndRow(10,$row)->getCalculatedValue(),2);
 		
 		
-		if($sku!='')
+		if($sku!="")
 		{	
-			$ID='';
-			$ID=$inventory->getSku($sku);
+			$ID="";
+			$ID=$inventory->getSku($sku,$product);
+			
+			if(!$price)
+			{
+				$price=0;
+			}
+					
+			$prefix=$inventory->getPrefix($sku,$trademark,$product);
+			
 			
 			$result.='<tr>';
 			$result.='<th>'.$sku.'</th>';
@@ -89,8 +107,13 @@ else
 			$result.='<th>'.$description.'</th>';
 			$result.='<th>'.$descriptionShort.'</th>';
 			$result.='<th>'.$categories.'</th>';
+			$result.='<th>'.$trademark.'</th>';
+			$result.='<th>'.$color.'</th>';
+			$result.='<th>'.$size.'</th>';
+			$result.='<th>'.$skuSenior.'</th>';
 			$result.='<th>'.$stock.'</th>';
 			$result.='<th>$'.$price.'</th>';
+			
 			
 			if(!$ID)
 			{
@@ -102,6 +125,8 @@ else
 				$inventory->UpdateStock($ID,$stock);
 				$result.='<th>'.'Existe'.'</th>';
 			}
+			
+			$result.='<th>'.$prefix.'</th>';
 			
 			$result.='</tr>';
 		}

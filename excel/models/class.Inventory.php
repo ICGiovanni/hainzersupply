@@ -335,6 +335,31 @@ class Inventory
 		$statement->bindParam(':metaValue',$metaValue,PDO::PARAM_STR);
 		$statement->execute();
 	}
+	
+	public function getPrefix($sku,$trademark,$product)
+	{
+		$general=new General();
+		
+		$prefix="";
+		$s=explode("-",$sku);
+		
+		$trademark=$general->NameToURL($trademark);
+		$product=$general->NameToURL($product);
+		
+		if(isset($s[0]))
+		{
+			$prefix.=$s[0];
+		}
+		
+		if(isset($s[1]))
+		{
+			$prefix.='-'.$s[1];
+		}
+		
+		$prefix.='-'.$trademark.'-'.$product;
+		
+		return $prefix;
+	}
 }
 
 ?>
