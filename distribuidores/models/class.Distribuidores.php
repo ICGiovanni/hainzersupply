@@ -1,5 +1,5 @@
 <?php
-require('../../excel/models/class.Connection.php');
+require('../excel/models/class.Connection.php');
 
 class Distribuidores{
 
@@ -14,7 +14,7 @@ class Distribuidores{
 
     public function getLastIdDistribuidor(){
 
-        $sql="SELECT MAX(idDistribuidor)
+        $sql="SELECT MAX(idDistribuidor) idDistribuidor
 				FROM inv_distribuidores limit 1";
 
         $statement=$this->connect->prepare($sql);
@@ -22,14 +22,21 @@ class Distribuidores{
         $statement->execute();
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
+        return $result[0]['idDistribuidor']+1;
 
     }
 
+    public function getNiveles(){
+        $sql="SELECT * FROM inv_niveles";
+
+        $statement=$this->connect->prepare($sql);
+
+        $statement->execute();
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
 }
-
-$insDist = new Distribuidores();
-
-print_r($insDist->getLastIdDistribuidor());
 
 ?>

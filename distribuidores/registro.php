@@ -1,5 +1,10 @@
-<html>
+<?php
+    include_once 'models/class.Distribuidores.php';
 
+    $instDistribuidores=new Distribuidores();
+
+?>
+<html>
 <head>
     <title>Registro Distribuidores </title>
     <meta charset="UTF-8">
@@ -30,7 +35,7 @@
                     </div>
                     <div id="collapse1" class="panel-collapse collapse in">
 
-                        <?php include_once 'templates/informacion-distribuidor.html'?>
+                        <?php include_once 'templates/informacion-distribuidor.php' ?>
                     </div>
                 </div>
 
@@ -42,7 +47,7 @@
                     </div>
                     <div id="collapse2" class="panel-collapse collapse">
 
-                        <?php include_once 'templates/direccion-facturacion.html'?>
+                        <?php include_once 'templates/direccion-facturacion.php' ?>
 
                     </div>
                 </div>
@@ -55,7 +60,7 @@
                     </div>
                     <div id="collapse3" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <?php include_once 'templates/direccion-envio.html'?>
+                            <?php include_once 'templates/direccion-envio.php' ?>
                         </div>
                     </div>
                 </div>
@@ -71,5 +76,11 @@
     </div>
 
 </body>
+<script>
 
+    $(function() {
+        $('#collapse2, #collapse3').collapse("show");
+    });
+
+</script>
 </html>

@@ -1,24 +1,6 @@
 <div class="panel-body">
 
     <div class="row">
-        <div class="col-md-5">
-            <label for="idDistribuidor" class="sr-only">ID de distribuidor: </label>
-            <input type="text" id="idDistribuidor" name="idDistribuidor" class="form-control" placeholder="ID de distribuidor">
-        </div>
-
-        <div class="col-md-5">
-
-            <select class="form-control"  id="nivelDistribuidor" name="nivelDistribuidor">
-                <option value="0">Seleccione un nivel de usuario</option>
-                <option value="1">Nivel A</option>
-                <option value="2">Nivel B</option>
-                <option value="3">Nivel C</option>
-            </select>
-        </div>
-
-    </div>
-
-    <div class="row">
         <div class="col-md-12">
             <label for="nombreDistribuidor" class="sr-only">Nombre del distribuidor: </label>
             <input type="text" id="nombreDistribuidor" name="nombreDistribuidor" class="form-control" placeholder="Nombre del distribuidor">
@@ -44,7 +26,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-5">
 
             <label for="emailDistribuidor" class="sr-only">Correo electronico: </label>
             <div class="input-group">
@@ -52,6 +34,18 @@
                 <input type="text" id="emailDistribuidor" name="emailDistribuidor" class="form-control" placeholder="Correo electronico:">
             </div>
 
+        </div>
+
+        <div class="col-md-5">
+            <label for="nivelDistribuidor" class="sr-only">Nivel: </label>
+            <select class="form-control"  id="nivelDistribuidor" name="nivelDistribuidor">
+                <option value="0">Seleccione un nivel de distribuidor</option>
+                <?php
+                    foreach($instDistribuidores->getNiveles() as $nivel){
+                        echo "<option value='".$nivel['idNivel']."'>".$nivel['descripcion']."</option>";
+                    }
+                ?>
+            </select>
         </div>
     </div>
 
