@@ -69,7 +69,7 @@ class user_login{
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
         $statement->execute();
-		die("success insert ");
+		die("login_id=".$this->db->lastInsertId());
         
 		return(!empty($result))?true:false;
     }
@@ -97,8 +97,8 @@ class user_login{
 		if(!empty($password)){
 			$sql_pwd = "
 			password = :password,";
-			$password = base64_encode($this->encrypt($password,md5($email.$password)));
-			$statement->bindParam(':password', $password, PDO::PARAM_STR);
+			
+			
 		}
 		$sql = "UPDATE login SET
 			firstName = :firstName,
@@ -110,9 +110,13 @@ class user_login{
 			modify_timestamp = '".$timeStamp."'
 			WHERE
 				login_id = :login_id";
-				
+			
 		$statement = $this->db->prepare($sql);
-
+		
+		if(!empty($password)){	
+			$password = base64_encode($this->encrypt($password,md5($email.$password)));
+			$statement->bindParam(':password', $password, PDO::PARAM_STR);			
+		}
 		$statement->bindParam(':login_id', $loginId, PDO::PARAM_STR);
 		$statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
         $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
@@ -170,8 +174,9 @@ class user_login{
 		return(!empty($assoc_result))?$assoc_result:false;
 	}
 	
-	function selectProfiles(){
-		$selectProfiles = '<select id="profile" name="profile" class="form-control"><option >--Select Profile--</option>';
+	function selectProfiles($idSelect='profile'){
+		
+		$selectProfiles = '<select id="'.$idSelect.'" name="'.$idSelect.'" class="form-control"><option >--Select Profile--</option>';
 		
 		$options_profile = '';
 		$opt_profiles_value = array();

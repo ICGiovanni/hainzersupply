@@ -20,7 +20,7 @@ include_once('login2.php'); // Includes Login Script
 	
 	<input id="email" name="email" placeholder="Email address" type="text" class="form-control" autofocus><br>
 
-	<input id="password" name="password" placeholder="Password" type="password" class="form-control"><br>
+	<input id="password" name="password" placeholder="Password" type="password" class="form-control" autocomplete="new-password"><br>
 	<input name="submit" type="submit" value="Sign in" class="btn btn-lg btn-primary btn-block"><br>
 	<span><?php echo $error; ?></span>
 </form>
