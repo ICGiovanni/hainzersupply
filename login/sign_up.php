@@ -11,6 +11,9 @@ $login = new user_login();
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<?php include '../menu.php'?>
+
 <div class="container">
 <div class="card card-container">
 <h2 align="center">Sing Up</h2>

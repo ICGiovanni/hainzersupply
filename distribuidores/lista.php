@@ -16,6 +16,7 @@
 </head>
 
 <body>
+<?php include_once('../menu.php')?>
 <div class="container">
     <h3 class="form-signin-heading">Listado de distribuidores</h3>
 

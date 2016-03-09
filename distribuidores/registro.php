@@ -21,6 +21,7 @@
 </head>
 
 <body>
+    <?php include_once('../menu.php')?>
     <div class="container formRegistro">
         <h3 class="form-signin-heading">Registro de distribuidor</h3>
         <form class="form-signin" method='post' action="">

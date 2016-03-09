@@ -63,6 +63,7 @@ while(list(,$data_user)=each($data_users)){
 		
 	</head>
 <body>
+<?php include '../menu.php'?>
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-lg-12">
