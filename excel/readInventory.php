@@ -130,7 +130,7 @@ else
 				}
 				else
 				{
-					$IDParent=$inventory->getSku($skuSenior)
+					$IDParent=$inventory->getSku($skuSenior);
 					
 					if($IDParent)
 					{
