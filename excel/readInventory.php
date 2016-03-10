@@ -97,7 +97,7 @@ else
 		if($sku!="")
 		{	
 			$ID="";
-			$ID=$inventory->getSku($sku,$product);
+			$ID=$inventory->getSku($sku);
 			
 			if(!$price)
 			{
@@ -123,8 +123,24 @@ else
 			
 			if(!$ID)
 			{
-				$inventory->InsertProduct($sku,$product,$description,$descriptionShort,$categories,$stock,$price);
-				$result.='<th>'.'Nuevo Producto'.'</th>';
+				if(!$skuSenior)
+				{
+					$inventory->InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price);
+					$result.='<th>'.'Nuevo Producto'.'</th>';
+				}
+				else
+				{
+					$IDParent=$inventory->getSku($skuSenior)
+					
+					if($IDParent)
+					{
+						$result.='<th>'.'Producto Hijo'.'</th>';
+					}
+					else
+					{
+						$result.='<th>'.'No existe Producto Padre'.'</th>';
+					}
+				}
 			}
 			else
 			{

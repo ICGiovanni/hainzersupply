@@ -106,10 +106,22 @@ class Inventory
 		$statement->execute();
 	}
 	
-	public function InsertProduct($sku,$product,$description,$descriptionShort,$categories,$stock,$price)
+	public function GetDataProduct($ID)
 	{
-		$general=new General();
+		$sql="SELECT *
+				FROM wp_posts
+				WHERE ID=':ID'";
 				
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
+		$statement->execute();
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);		
+		
+		return $result;
+	}
+	
+	public function GetID()
+	{
 		$sql="SELECT MAX(ID)+1 AS ID
 				FROM wp_posts";
 				
@@ -118,14 +130,110 @@ class Inventory
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		$ID=$result[0]['ID'];
 		
+		return $ID;
+	}
+	
+	public function GetNextChildren($IDParent)
+	{
+		$sql="SELECT COUNT(*)+1 AS ID
+				FROM wp_posts
+				WHERE post_parent=':ID'
+				AND post_type='product_variation'";
+				
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':ID',$IDParent,PDO::PARAM_STR);
+		$statement->execute();
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);		
+		
+	}
+	
+	public function InsertProductVariable($sku,$IDParent,$product,$stock,$price)
+	{
+		$general=new General();
+				
+		$ID=$this->GetID();
+		
+		$dataParent=$this->GetDataProduct($IDParent);
+		
+		$IDVariation=$this->GetNextChildren($IDParent);
+		
+		
 		$postAuthor=2;
 		$postDate=date('Y-m-d H:i:s');
 		$postDateGMT=$postDate;
+		$postContent='';
+		$postTitle="Variación #".$IDParent." de ".$dataParent[0]['post_title'];
+		$postExcert='';
+		$postStatus='publish';
+		$commentStatus='closed';
+		$pingStatus='closed';
+		$postPassword='';
+		$postName='product-'.$IDParent.'-variation-'.$IDVariation;
+		$toPing='';
+		$pinged='';
+		$postModified=$postDate;
+		$postModifiedGMT=$postDate;
+		$postContentFiltered='';
+		$postParent=0;
 		
+		
+		$sql="SELECT option_value
+				FROM wp_options
+				WHERE option_name='siteurl'";
+		$statement=$this->connect->prepare($sql);		
+		$statement->execute();
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		$guid=$result[0]['option_value'].'/index.php/product_variation/'.$postName;
+		
+		$menuOrder=0;
+		$postType='product_variation';
+		$postMimeType='';
+		$commentCount=0;
+	
+		
+		$sql = "INSERT INTO wp_posts VALUES(:ID,:postAuthor,:postDate,:postDateGMT,:postContent,:postTitle,:postExcert,:postStatus,:commentStatus,:pingStatus,:postPassword,:postName,:toPing,:pinged,:postModified,:postModifiedGMT,:postContentFiltered,:postParent,:guid,:menuOrder,:postType,:postMimeType,:commentCount)";
+		
+		$statement=$this->connect->prepare($sql);
+		
+		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
+		$statement->bindParam(':postAuthor',$postAuthor,PDO::PARAM_STR);
+		$statement->bindParam(':postDate',$postDate,PDO::PARAM_STR);
+		$statement->bindParam(':postDateGMT',$postDateGMT,PDO::PARAM_STR);
+		$statement->bindParam(':postContent',$postContent,PDO::PARAM_STR);
+		$statement->bindParam(':postTitle',$postTitle,PDO::PARAM_STR);
+		$statement->bindParam(':postExcert',$postExcert,PDO::PARAM_STR);
+		$statement->bindParam(':postStatus',$postStatus,PDO::PARAM_STR);
+		$statement->bindParam(':commentStatus',$commentStatus,PDO::PARAM_STR);
+		$statement->bindParam(':pingStatus',$pingStatus,PDO::PARAM_STR);
+		$statement->bindParam(':postPassword',$postPassword,PDO::PARAM_STR);
+		$statement->bindParam(':postName',$postName,PDO::PARAM_STR);
+		$statement->bindParam(':toPing',$toPing,PDO::PARAM_STR);
+		$statement->bindParam(':pinged',$pinged,PDO::PARAM_STR);
+		$statement->bindParam(':postModified',$postModified,PDO::PARAM_STR);
+		$statement->bindParam(':postModifiedGMT',$postModifiedGMT,PDO::PARAM_STR);
+		$statement->bindParam(':postContentFiltered',$postContentFiltered,PDO::PARAM_STR);
+		$statement->bindParam(':postParent',$postParent,PDO::PARAM_STR);
+		$statement->bindParam(':guid',$guid,PDO::PARAM_STR);
+		$statement->bindParam(':menuOrder',$menuOrder,PDO::PARAM_STR);
+		$statement->bindParam(':postType',$postType,PDO::PARAM_STR);
+		$statement->bindParam(':postMimeType',$postMimeType,PDO::PARAM_STR);
+		$statement->bindParam(':commentCount',$commentCount,PDO::PARAM_STR);
+		
+		$statement->execute();
+	}
+	
+	public function InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price)
+	{
+		$general=new General();
+				
+		$ID=$this->GetID();
+		
+		$postAuthor=2;
+		$postDate=date('Y-m-d H:i:s');
+		$postDateGMT=$postDate;
 		$postContent=$description;
-		$postExcert=$descriptionShort;
-		
 		$postTitle=$product;
+		$postExcert=$descriptionShort;
 		$postStatus='publish';
 		$commentStatus='open';
 		$pingStatus='closed';
@@ -313,6 +421,8 @@ class Inventory
 		$wcProductDataOptions='a:1:{i:0;a:6:{s:11:"_bubble_new";s:0:"";s:12:"_bubble_text";s:0:"";s:17:"_custom_tab_title";s:0:"";s:11:"_custom_tab";s:0:"";s:14:"_product_video";s:0:"";s:19:"_product_video_size";s:0:"";}}';
 		$this->InsertPostMeta($ID,'wc_productdata_options',$wcProductDataOptions);
 		
+		$this->InsertProductTerms($ID,'4');
+		
 		return $ID;
 	}
 	
@@ -333,6 +443,15 @@ class Inventory
 		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
 		$statement->bindParam(':metaKey',$metaKey,PDO::PARAM_STR);
 		$statement->bindParam(':metaValue',$metaValue,PDO::PARAM_STR);
+		$statement->execute();
+	}
+	
+	public function InsertProductTerms($ID,$term)
+	{
+		$sql="INSERT INTO wp_term_relationships VALUES(:ID,:term,'0')";
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
+		$statement->bindParam(':term',$term,PDO::PARAM_STR);
 		$statement->execute();
 	}
 	
