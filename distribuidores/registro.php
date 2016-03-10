@@ -24,8 +24,8 @@
     <?php include_once('../menu.php')?>
     <div class="container formRegistro">
         <h3 class="form-signin-heading">Registro de distribuidor</h3>
-        <form class="form-signin" method='post' action="">
-
+        <form class="form-signin" method='post' action="controllers/Distribuidores.php">
+            <input type="hidden" name="accion" value="guardarDistribuidor">
             <div class="panel-group" id="accordion">
 
                 <div class="panel panel-default">
