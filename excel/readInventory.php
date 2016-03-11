@@ -134,6 +134,7 @@ else
 					
 					if($IDParent)
 					{
+						$inventory->InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color,$size);
 						$result.='<th>'.'Producto Hijo'.'</th>';
 					}
 					else

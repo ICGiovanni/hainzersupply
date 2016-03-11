@@ -136,12 +136,10 @@ class Inventory
 	
 	public function GetNextID($field,$table)
 	{
-		$sql="SELECT MAX(:field)+1 AS ID
-				FROM :table";
+		$sql="SELECT MAX($field)+1 AS ID
+				FROM $table";
 				
 		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':field',$field,PDO::PARAM_STR);
-		$statement->bindParam(':table',$table,PDO::PARAM_STR);
 		$statement->execute();
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		$ID=$result[0]['ID'];
@@ -164,27 +162,34 @@ class Inventory
 	
 	public function GetNextChildren($IDParent)
 	{
+		$product_variation='product_variation';
+		
 		$sql="SELECT COUNT(*)+1 AS ID
 				FROM wp_posts
 				WHERE post_parent=':ID'
-				AND post_type='product_variation'";
-				
+				AND post_type=':product_variation'";
+			
 		$statement=$this->connect->prepare($sql);
 		$statement->bindParam(':ID',$IDParent,PDO::PARAM_STR);
+		$statement->bindParam(':product_variation',$product_variation,PDO::PARAM_STR);
 		$statement->execute();
-        $result=$statement->fetchAll(PDO::FETCH_ASSOC);		
-		
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);	
+
+		return $result[0]['ID'];
 	}
 	
-	public function GetAttribute($attribute,$taxonomy)
+	public function GetAttribute($attribute,$taxonomy,$IDParent)
 	{
 		$sql="SELECT wt.term_id
 				FROM wp_woocommerce_termmeta wwt
 				INNER JOIN wp_terms wt ON wt.term_id=wwt.woocommerce_term_id
 				INNER JOIN wp_term_taxonomy wtt ON wtt.term_id=wt.term_id
-				WHERE wt.name=':attribute' AND taxonomy=':taxonomy'";
+				INNER JOIN wp_term_relationships wtr ON wtr.term_taxonomy_id=wt.term_id
+				WHERE wt.name='$attribute' AND taxonomy='$taxonomy'
+				AND wtr.object_id='$IDParent'";
 		
 		$statement=$this->connect->prepare($sql);
+		
 		$statement->bindParam(':attribute',$attribute,PDO::PARAM_STR);
 		$statement->bindParam(':taxonomy',$taxonomy,PDO::PARAM_STR);
 		$statement->execute();
@@ -200,8 +205,29 @@ class Inventory
 		}
 	}
 	
+	public function GetTermIdbyName($attribute)
+	{
+		$sql="SELECT term_id
+				FROM wp_terms
+				WHERE name=':attribute'";
+				
+		$statement=$this->connect->prepare($sql);
+		
+		$statement->bindParam(':attribute',$attribute,PDO::PARAM_STR);
+		$statement->execute();
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		if(isset($result[0]['term_id']))
+		{
+			return $result[0]['term_id'];
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
-	public function InsertAttribute($attribute,$type)
+	public function InsertAttribute($attribute,$type,$IDParent)
 	{
 		$general=new General();
 		
@@ -216,37 +242,48 @@ class Inventory
 			$taxonomy='pa_tallas';
 		}
 		
-		$termId=$this->GetNextID('term_id','wp_terms');
-		$attribute=ucwords(strtolower($attribute));
-		$slug=$general->NameToURL($attribute);
+		$termId=$this->GetTermIdbyName($attribute);
 		
-		$sql="INSERT INTO wp_terms VALUES(:termId,:attribute,:slug,0)";
+		if(!$termId)
+		{
+			$termId=$this->GetNextID('term_id','wp_terms');
+			$attribute=ucwords(strtolower($attribute));
+			$slug=$general->NameToURL($attribute);
+			
+			$sql="INSERT INTO wp_terms VALUES(:termId,:attribute,:slug,0)";
+			
+			$statement=$this->connect->prepare($sql);
+			$statement->bindParam(':termId',$termId,PDO::PARAM_STR);
+			$statement->bindParam(':attribute',$attribute,PDO::PARAM_STR);
+			$statement->bindParam(':slug',$slug,PDO::PARAM_STR);
+			$statement->execute();
+			
+			$sql = "INSERT INTO wp_term_taxonomy VALUES(:termTaxonomyId,:termId,:taxonomy,'',0,0)";
+			
+			$statement=$this->connect->prepare($sql);
+			$statement->bindParam(':termTaxonomyId',$termId,PDO::PARAM_STR);
+			$statement->bindParam(':termId',$termId,PDO::PARAM_STR);
+			$statement->bindParam(':taxonomy',$taxonomy,PDO::PARAM_STR);
+			$statement->execute();
+			
+			$metaId=$this->GetNextID('meta_id','wp_woocommerce_termmeta');
+			
+			$sql = "INSERT INTO wp_woocommerce_termmeta VALUES(:metaId,:termId,:meta_key,0)";
+			
+			$statement=$this->connect->prepare($sql);
+			$statement->bindParam(':metaId',$metaId,PDO::PARAM_STR);
+			$statement->bindParam(':termId',$termId,PDO::PARAM_STR);
+			$statement->bindParam(':meta_key',$meta_key,PDO::PARAM_STR);
+			$statement->execute();
+		}
+		
+		
+		$sql = "INSERT INTO wp_term_relationships VALUES(:objectID,:termId,0)";
 		
 		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':objectID',$IDParent,PDO::PARAM_STR);
 		$statement->bindParam(':termId',$termId,PDO::PARAM_STR);
-		$statement->bindParam(':attribute',$attribute,PDO::PARAM_STR);
-		$statement->bindParam(':slug',$slug,PDO::PARAM_STR);
 		$statement->execute();
-		
-		$sql = "INSERT INTO wp_term_taxonomy VALUES(:termTaxonomyId,:termId,:taxonomy,'',0,0)";
-		
-		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':termTaxonomyId',$termId,PDO::PARAM_STR);
-		$statement->bindParam(':termId',$termId,PDO::PARAM_STR);
-		$statement->bindParam(':taxonomy',$taxonomy,PDO::PARAM_STR);
-		$statement->execute();
-		
-		$metaId=$this->GetNextID('meta_id','wp_woocommerce_termmeta');
-		
-		$sql = "INSERT INTO wp_woocommerce_termmeta VALUES(:metaId,:termId,:meta_key,0)";
-		
-		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':metaId',$metaId,PDO::PARAM_STR);
-		$statement->bindParam(':termId',$termId,PDO::PARAM_STR);
-		$statement->bindParam(':meta_key',$meta_key,PDO::PARAM_STR);
-		$statement->execute();
-		
-		
 		
 	}
 	
@@ -277,7 +314,7 @@ class Inventory
 		$postModified=$postDate;
 		$postModifiedGMT=$postDate;
 		$postContentFiltered='';
-		$postParent=0;
+		$postParent=$IDParent;
 		
 		
 		
@@ -319,44 +356,28 @@ class Inventory
 		
 		$statement->execute();
 		
-		$termIdColor=$this->GetAttribute($color,'pa_colores');
+		$termIdColor=$this->GetAttribute($color,'pa_colores',$IDParent);
 		
 		if(!$termIdColor)
 		{
-			$termIdColor=$this->InsertAttribute($color,'Colores');
+			$termIdColor=$this->InsertAttribute($color,'Colores',$IDParent);
 		}
 		
-		$termIdSize=$this->GetAttribute($size,'pa_tallas');
+		$termIdSize=$this->GetAttribute($size,'pa_tallas',$IDParent);
 		
 		if(!$termIdSize)
 		{
-			$termIdSize=$this->InsertAttribute($size,'Tallas');
+			$termIdSize=$this->InsertAttribute($size,'Tallas',$IDParent);
 		}
 		
 		//_backorders
 		$backorders='no';
 		$this->InsertPostMeta($ID,'_backorders',$backorders);
 		
-		//_crosssell_ids
-		$crosssellIds='a:0:{}';
-		$this->InsertPostMeta($ID,'_crosssell_ids',$crosssellIds);
-		
 		//_downloadable
 		$downloadable='no';
 		$this->InsertPostMeta($ID,'_downloadable',$downloadable);
-		
-		//_edit_last
-		$this->InsertPostMeta($ID,'_edit_last',$postAuthor);
-		
-		//_edit_lock
-		//$editLock=time().':'.$postAuthor;
-		$editLock=strtotime("-1 hours").':'.$postAuthor;
-		$this->InsertPostMeta($ID,'_edit_lock',$editLock);
-		
-		//_featured
-		$featured='no';
-		$this->InsertPostMeta($ID,'_featured',$featured);
-		
+				
 		//_height
 		$height='';
 		$this->InsertPostMeta($ID,'_height',$height);
@@ -371,23 +392,7 @@ class Inventory
 		
 		//_price
 		$this->InsertPostMeta($ID,'_price',$price);
-		
-		//_product_attributes
-		$productAttributes='a:2:{s:10:"pa_colores";a:6:{s:4:"name";s:10:"pa_colores";s:5:"value";s:0:"";s:8:"position";s:1:"0";s:10:"is_visible";i:1;s:12:"is_variation";i:1;s:11:"is_taxonomy";i:1;}s:9:"pa_tallas";a:6:{s:4:"name";s:9:"pa_tallas";s:5:"value";s:0:"";s:8:"position";s:1:"1";s:10:"is_visible";i:1;s:12:"is_variation";i:1;s:11:"is_taxonomy";i:1;}}';
-		$this->InsertPostMeta($ID,'_product_attributes',$productAttributes);
-		
-		//_product_image_gallery
-		$productImageGallery='';
-		$this->InsertPostMeta($ID,'_product_image_gallery',$productImageGallery);
-		
-		//_product_version
-		$productVersion='2.5.2';
-		$this->InsertPostMeta($ID,'_product_version',$productVersion);
-		
-		//_purchase_note
-		$purchaseNote='';
-		$this->InsertPostMeta($ID,'_purchase_note',$purchaseNote);
-		
+				
 		//_regular_price
 		$this->InsertPostMeta($ID,'_regular_price',$price);
 		
@@ -406,10 +411,6 @@ class Inventory
 		//_sku
 		$this->InsertPostMeta($ID,'_sku',$sku);
 		
-		//_sold_individually
-		$soldIndividually='';
-		$this->InsertPostMeta($ID,'_sold_individually',$soldIndividually);
-		
 		//_stock
 		$this->InsertPostMeta($ID,'_stock',$stock);
 		
@@ -417,17 +418,17 @@ class Inventory
 		$stockStatus='instock';
 		$this->InsertPostMeta($ID,'_stock_status',$stockStatus);
 		
-		//_upsell_ids
-		$upsellIds='a:0:{}';
-		$this->InsertPostMeta($ID,'_upsell_ids',$upsellIds);
+		//_thumbnail_id
+		$thumbnailId='0';
+		$this->InsertPostMeta($ID,'_upsell_ids',$thumbnailId);
+		
+		//_variation_description
+		$variationDescription='0';
+		$this->InsertPostMeta($ID,'_upsell_ids',$variationDescription);
 		
 		//_virtual
 		$virtual='no';
 		$this->InsertPostMeta($ID,'_virtual',$virtual);
-		
-		//_visibility
-		$visibility='visible';
-		$this->InsertPostMeta($ID,'_visibility',$visibility);
 		
 		//_weight
 		$weight='';
@@ -437,14 +438,13 @@ class Inventory
 		$width='';
 		$this->InsertPostMeta($ID,'_width',$width);
 		
-		//total_sales
-		$totalSales=0;
-		$this->InsertPostMeta($ID,'total_sales',$totalSales);
+		//attribute_pa_colores
+		$slug=$general->NameToURL($color);
+		$this->InsertPostMeta($ID,'attribute_pa_colores',$slug);
 		
-		//wc_productdata_options
-		$wcProductDataOptions='a:1:{i:0;a:6:{s:11:"_bubble_new";s:0:"";s:12:"_bubble_text";s:0:"";s:17:"_custom_tab_title";s:0:"";s:11:"_custom_tab";s:0:"";s:14:"_product_video";s:0:"";s:19:"_product_video_size";s:0:"";}}';
-		$this->InsertPostMeta($ID,'wc_productdata_options',$wcProductDataOptions);
-		
+		//attribute_pa_colores
+		$slug=$general->NameToURL($size);
+		$this->InsertPostMeta($ID,'attribute_pa_tallas',$slug);
 	}
 	
 	public function InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price)
