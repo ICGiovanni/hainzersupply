@@ -127,7 +127,7 @@ else
 			{
 				if(!$skuSenior)
 				{
-					//$inventory->InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price);
+					$inventory->InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price);
 					$result.='<th>'.'Nuevo Producto'.'</th>';
 				}
 				else
@@ -136,7 +136,7 @@ else
 					
 					if($IDParent)
 					{
-						//$inventory->InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color,$size);
+						$inventory->InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color,$size);
 						$result.='<th>'.'Producto Hijo'.'</th>';
 					}
 					else
