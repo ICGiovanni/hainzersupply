@@ -15,8 +15,8 @@ if (isset($_POST['submit'])) {
 
 		//$connection = mysql_connect("localhost", "root", "");
 		require_once('class/user_login.php');
-		//$login = new user_login('localhost','test', 'app_user', '');
-		$login = new user_login('db614036781.db.1and1.com','db614036781', 'dbo614036781', 'Desarrollo2016*');
+		$login = new user_login('localhost','hainzers_control', 'hainzers_admin', 'kFJUsNO7WQ7V4waM');
+		//$login = new user_login('db614036781.db.1and1.com','db614036781', 'dbo614036781', 'Desarrollo2016*');
 		$login_status = $login->auth($email,$password);
 		 
 		 if($login_status==true){

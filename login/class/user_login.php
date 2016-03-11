@@ -1,6 +1,6 @@
 <?php
 /*
-CREATE TABLE IF NOT EXISTS `login` (
+CREATE TABLE IF NOT EXISTS `inv_login` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(100) NOT NULL,
   `lastName` varchar(100) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 -- Volcado de datos para la tabla `login`
 --
 
-INSERT INTO `login` (`id`, `firstName`, `lastName`, `profile`, `email`, `password`) VALUES
+INSERT INTO `inv_login` (`id`, `firstName`, `lastName`, `profile`, `email`, `password`) VALUES
 (1, '', '', 0, 'admin@admin.com', 'LbO9DUk9nylTjTS2I3v5uWM7vPwlzl/yDTY4E7MDVbY=');
 password:wicked
 */
@@ -22,7 +22,7 @@ class user_login{
 
     private $db;
 
-    function __construct($host = 'db614036781.db.1and1.com', $dbname='db614036781', $user='dbo614036781',$pass='Desarrollo2016*'){
+    function __construct($host = 'localhost', $dbname='hainzers_control', $user='hainzers_admin',$pass='kFJUsNO7WQ7V4waM'){
         $this->dbhost = $host;
         $this->dbname = $dbname;
         $this->dbuser = $user;
@@ -37,7 +37,7 @@ class user_login{
     }
     function auth($email,$password){
         $this->connect();
-        $sql = "SELECT 1 FROM `login` WHERE email = :email AND password = :password";
+        $sql = "SELECT 1 FROM `inv_login` WHERE email = :email AND password = :password";
 
         $statement = $this->db->prepare($sql);
 
@@ -56,7 +56,7 @@ class user_login{
         $this->connect();
 		$timeStamp = time();
 		$createDate = date("Y-m-d",$timeStamp);
-        $sql = "INSERT INTO `login` (firstName, lastName, profile_id, email, password, created_date, created_timestamp, modify_date, modify_timestamp, status_id) VALUES (:firstName, :lastName, :profile, :email, :password, '".$createDate."', '".$timeStamp."', '".$createDate."', '".$timeStamp."', '2')";
+        $sql = "INSERT INTO `inv_login` (firstName, lastName, profile_id, email, password, created_date, created_timestamp, modify_date, modify_timestamp, status_id) VALUES (:firstName, :lastName, :profile, :email, :password, '".$createDate."', '".$timeStamp."', '".$createDate."', '".$timeStamp."', '2')";
 
         $statement = $this->db->prepare($sql);
 
@@ -76,9 +76,9 @@ class user_login{
 	
 	function users_list(){
 		$this->connect();
-		$sql = "SELECT login_id, firstName, lastName, email, status_name, profile_name, login.profile_id, created_date, login.status_id  FROM `login`
-				INNER JOIN status on login.status_id = status.status_id
-				INNER JOIN profile on login.profile_id = profile.profile_id";
+		$sql = "SELECT login_id, firstName, lastName, email, status_name, profile_name, inv_login.profile_id, created_date, inv_login.status_id  FROM `inv_login`
+				INNER JOIN inv_status on inv_login.status_id = inv_status.status_id
+				INNER JOIN inv_profile on inv_login.profile_id = inv_profile.profile_id";
 		
 		$statement = $this->db->prepare($sql);
 
@@ -100,7 +100,7 @@ class user_login{
 			
 			
 		}
-		$sql = "UPDATE login SET
+		$sql = "UPDATE inv_login SET
 			firstName = :firstName,
 			lastName = :lastName,
 			profile_id = :profile,$sql_pwd
@@ -131,7 +131,7 @@ class user_login{
 	
 	function user_delete($loginId){
 		$this->connect();
-		$sql = "DELETE FROM login WHERE login_id = :login_id LIMIT 1;";
+		$sql = "DELETE FROM inv_login WHERE login_id = :login_id LIMIT 1;";
 		$statement = $this->db->prepare($sql);
 		
 		$statement->bindParam(':login_id', $loginId, PDO::PARAM_STR);
@@ -142,7 +142,7 @@ class user_login{
 	
 	function getProfiles(){
 		$this->connect();
-		$sql = "SELECT profile_id, profile_name FROM profile;";
+		$sql = "SELECT profile_id, profile_name FROM inv_profile;";
 
 		$statement = $this->db->prepare($sql);
 
@@ -159,7 +159,7 @@ class user_login{
 	
 	function getStatus(){
 		$this->connect();
-		$sql = "SELECT status_id, status_name FROM status;";
+		$sql = "SELECT status_id, status_name FROM inv_status;";
 
 		$statement = $this->db->prepare($sql);
 

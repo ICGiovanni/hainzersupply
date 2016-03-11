@@ -1,3 +1,13 @@
+<?php
+
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $proyecto = 'hainzersupply';
+    include_once ($path."/".$proyecto."/models/distribuidores/class.Distribuidores.php");
+    $instDistribuidores=new Distribuidores();
+
+    $listaDistribuidores = $instDistribuidores->listaDistribuidores();
+?>
+
 <html>
 
 <head>
@@ -23,33 +33,32 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id Distribuidor</th>
+                <th>Id</th>
                 <th>Nombre Distribuidor</th>
                 <th>Representante</th>
                 <th>Telefono</th>
+                <th>Celular</th>
                 <th>Correo</th>
                 <th></th>
                 <th></th>
             </tr>
-            <tr>
-                <td>123</td>
-                <td>Distribuidor Reconocido S.A de C.V</td>
-                <td>Juan Garcia Lopez</td>
-                <td>1234567890</td>
-                <td>correo@dominio.com</td>
-                <td><button type="button" class="btn btn-info">+ Info</button></td>
-                <td><button type="button" class="btn btn-danger">Borrar</button></td>
-            </tr>
-            <tr>
-                <td>1234</td>
-                <td>Distribuidor S.C</td>
-                <td>Hector Diaz Salazar</td>
-                <td>1234567890</td>
-                <td>correo2@dominio.com</td>
-                <td><button type="button" class="btn btn-info">+ Info</button></td>
-                <td><button type="button" class="btn btn-danger">Borrar</button></td>
-            </tr>
         </thead>
+        <tbody>
+            <?php
+                foreach($listaDistribuidores as $distribuidor){
+                    echo "<tr>";
+                        echo "<td>".$distribuidor['idDistribuidor']."</td>";
+                        echo "<td>".$distribuidor['nombre']."</td>";
+                        echo "<td>".$distribuidor['representante']."</td>";
+                        echo "<td>".$distribuidor['telefono']."</td>";
+                        echo "<td>".$distribuidor['celular']."</td>";
+                        echo "<td>".$distribuidor['correoElectronico']."</td>";
+                        echo "<td><button type='button' class='btn btn-info'>+ Info</button></td>";
+                        echo "<td><button type='button' class='btn btn-danger'>Desactivar</button></td>";
+                    echo "</tr>";
+                }
+            ?>
+        </tbody>
     </table>
 </div>
 

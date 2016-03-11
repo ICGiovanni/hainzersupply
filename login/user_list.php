@@ -23,7 +23,7 @@ while(list(,$data_user)=each($data_users)){
 	
 	$tbody.='					<tr id="user_row_'.$data_user['login_id'].'">
                                     <td>
-                                        <img id="img_profile_'.$data_user['login_id'].'" src="/login/img/profile_'.$data_user['profile_id'].'.jpg" alt="">
+                                        <img id="img_profile_'.$data_user['login_id'].'" src="img/profile_'.$data_user['profile_id'].'.jpg" alt="">
                                         <a id="full_name_'.$data_user['login_id'].'" href="#" class="user-link">'.$data_user['firstName'].' '.$data_user['lastName'].'</a>
                                         <span id="profile_name_'.$data_user['login_id'].'" class="user-subhead" >'.$data_user['profile_name'].'</span>
                                     </td>
@@ -76,6 +76,10 @@ while(list(,$data_user)=each($data_users)){
 </style>
 	</head>
 <body>
+
+<?php
+	include ('../menu.php');
+?>
 <div class="container bootstrap snippet">
 	<div>
 		
@@ -261,7 +265,7 @@ while(list(,$data_user)=each($data_users)){
 					$("#myModal").modal('hide'); 
 					$("#button_save_changes").removeClass().addClass("btn btn-primary");
 					$("#span_save_changes").removeClass();
-					$("#img_profile_"+login_id).attr("src","/login/img/profile_"+profile+".jpg");
+					$("#img_profile_"+login_id).attr("src","img/profile_"+profile+".jpg");
 					$("#full_name_"+login_id).html(firstName+" "+lastName);
 					$("#profile_name_"+login_id).html(profileName);
 					$("#status_name_"+login_id).html(statusName);

@@ -1,5 +1,7 @@
 <?php
 include_once('session.php');
+
+header("location: user_list.php");
 ?>
 <!DOCTYPE html>
 <html>

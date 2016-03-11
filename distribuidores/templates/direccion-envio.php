@@ -46,15 +46,15 @@
 
     <div class="row">
         <div class="col-md-12">
-            <label for="estadoFacturacion" class="sr-only">Estado: </label>
-            <input type="text" id="estadoFacturacion" name="estadoFacturacion" class="form-control" placeholder="Estado">
+            <label for="estadoEnvio" class="sr-only">Estado: </label>
+            <input type="text" id="estadoEnvio" name="estadoEnvio" class="form-control" placeholder="Estado">
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <label for="paisFacturacion" class="sr-only">País: </label>
-            <input type="text" id="paisFacturacion" name="paisFacturacion" class="form-control" placeholder="País">
+            <label for="paisEnvio" class="sr-only">País: </label>
+            <input type="text" id="paisEnvio" name="paisEnvio" class="form-control" placeholder="País">
         </div>
     </div>
 </div>

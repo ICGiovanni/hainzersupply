@@ -11,8 +11,8 @@ $(function() {
             $("#cpEnvio").val($("#cpFacturacion").val());
             $("#coloniaEnvio").val($("#coloniaFacturacion").val());
             $("#delegacionEnvio").val($("#delegacionFacturacion").val());
-            $("#estadoFacturacion").val($("#estadoFacturacion").val());
-            $("#paisFacturacion").val($("#paisFacturacion").val());
+            $("#estadoEnvio").val($("#estadoFacturacion").val());
+            $("#paisEnvio").val($("#paisFacturacion").val());
         }
         else{
             $("#calleEnvio").val('');
@@ -21,8 +21,8 @@ $(function() {
             $("#cpEnvio").val('');
             $("#coloniaEnvio").val('');
             $("#delegacionEnvio").val('');
-            $("#estadoFacturacion").val('');
-            $("#paisFacturacion").val('');
+            $("#estadoEnvio").val('');
+            $("#paisEnvio").val('');
         }
 
     });

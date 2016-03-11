@@ -1,4 +1,8 @@
-<?php $ruta = 'http://hainzersupply.com/new_site/control/';?>
+<?php
+//$ruta = 'http://hainzersupply.com/new_site/control/';
+$ruta = 'http://localhost/hainzersupply/';
+
+?>
 
     <script src="distribuidores/js/jquery.min.js"></script>
     <script src="distribuidores/js/bootstrap.min.js"></script>
@@ -7,7 +11,7 @@
     <link rel="stylesheet" href="distribuidores/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="distribuidores/css/styles-distribuidores.css">
 
-<div class="container" style="margin-bottom:50px">
+<div class="container" style="margin-bottom:50px; padding-left: 20%">
     <ul class="nav navbar-nav navbar navbar-default navbar-fixed-top">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -31,11 +35,11 @@
 
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                Invetarios <span class="caret"></span>
+                Inventarios <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
                 <li><a href="<?php echo $ruta?>excel">importar</a></li>
-                <li><a href="<?php echo $ruta?>excel/images.html">subir imagenes</a></li>
+                <li><a href="<?php echo $ruta?>excel/images.php">subir imagenes</a></li>
             </ul>
         </li>
 

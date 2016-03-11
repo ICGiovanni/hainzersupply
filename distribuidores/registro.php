@@ -1,6 +1,8 @@
 <?php
-    include_once 'models/class.Distribuidores.php';
 
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $proyecto = 'hainzersupply';
+    include_once ($path."/".$proyecto."/models/distribuidores/class.Distribuidores.php");
     $instDistribuidores=new Distribuidores();
 
 ?>
@@ -24,7 +26,7 @@
     <?php include_once('../menu.php')?>
     <div class="container formRegistro">
         <h3 class="form-signin-heading">Registro de distribuidor</h3>
-        <form class="form-signin" method='post' action="controllers/Distribuidores.php">
+        <form class="form-signin" method='post' action="controllers/controllerDistribuidores.php">
             <input type="hidden" name="accion" value="guardarDistribuidor">
             <div class="panel-group" id="accordion">
 
