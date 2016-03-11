@@ -84,6 +84,18 @@ class Inventory
 		}
 	}
 	
+	public function GetNextTerm()
+	{
+		$sql="SELECT MAX(term_id)+1 AS term_id
+				FROM wp_terms";
+				
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $result[0]['term_id'];
+	}
+	
 	public function InsertCategory($category)
 	{
 		$general=new General();

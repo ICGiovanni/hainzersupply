@@ -75,7 +75,6 @@ else
 	
 	for($row=2;$row<=$highestRow;++$row)
 	{
-		
 		$sku=$objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue();
 		$product=$objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue();
 		$description=$objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue();
@@ -89,11 +88,11 @@ else
 		$size=$objWorksheet->getCellByColumnAndRow(10,$row)->getCalculatedValue();
 		$skuSenior=$objWorksheet->getCellByColumnAndRow(11,$row)->getCalculatedValue();
 		$stock=$objWorksheet->getCellByColumnAndRow(12,$row)->getCalculatedValue();
-		$locate=$objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue();
-		$priceA=round($objWorksheet->getCellByColumnAndRow(14,$row)->getCalculatedValue(),2);
-		$priceB=round($objWorksheet->getCellByColumnAndRow(15,$row)->getCalculatedValue(),2);
-		$priceC=round($objWorksheet->getCellByColumnAndRow(16,$row)->getCalculatedValue(),2);
-		$price=round($objWorksheet->getCellByColumnAndRow(17,$row)->getCalculatedValue(),2);
+		$locate=$objWorksheet->getCellByColumnAndRow(14,$row)->getCalculatedValue();
+		$priceA=round($objWorksheet->getCellByColumnAndRow(15,$row)->getOldCalculatedValue(),2);
+		$priceB=round($objWorksheet->getCellByColumnAndRow(16,$row)->getOldCalculatedValue(),2);
+		$priceC=round($objWorksheet->getCellByColumnAndRow(17,$row)->getOldCalculatedValue(),2);
+		$price=round($objWorksheet->getCellByColumnAndRow(18,$row)->getOldCalculatedValue(),2);
 		
 		
 		if($sku!="")
@@ -128,7 +127,7 @@ else
 			{
 				if(!$skuSenior)
 				{
-					$inventory->InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price);
+					//$inventory->InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price);
 					$result.='<th>'.'Nuevo Producto'.'</th>';
 				}
 				else
@@ -137,7 +136,7 @@ else
 					
 					if($IDParent)
 					{
-						$inventory->InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color,$size);
+						//$inventory->InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color,$size);
 						$result.='<th>'.'Producto Hijo'.'</th>';
 					}
 					else
