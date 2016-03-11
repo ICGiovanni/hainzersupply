@@ -58,6 +58,7 @@ else
 	$result.='<th>'.'DESCRIPCION CORTA'.'</th>';
 	$result.='<th>'.'CATEGORIAS'.'</th>';
 	$result.='<th>'.'MARCA'.'</th>';
+	$result.='<th>'.'GENERO'.'</th>';
 	$result.='<th>'.'COLOR'.'</th>';
 	$result.='<th>'.'TALLA'.'</th>';
 	$result.='<th>'.'SKU PADRE'.'</th>';
@@ -83,15 +84,16 @@ else
 		$categories=$objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue();
 		$type=$objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue();
 		$line=$objWorksheet->getCellByColumnAndRow(7,$row)->getCalculatedValue();
-		$color=$objWorksheet->getCellByColumnAndRow(8,$row)->getCalculatedValue();
-		$size=$objWorksheet->getCellByColumnAndRow(9,$row)->getCalculatedValue();
-		$skuSenior=$objWorksheet->getCellByColumnAndRow(10,$row)->getCalculatedValue();
-		$stock=$objWorksheet->getCellByColumnAndRow(11,$row)->getCalculatedValue();
-		$locate=$objWorksheet->getCellByColumnAndRow(12,$row)->getCalculatedValue();
-		$priceA=round($objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue(),2);
-		$priceB=round($objWorksheet->getCellByColumnAndRow(14,$row)->getCalculatedValue(),2);
-		$priceC=round($objWorksheet->getCellByColumnAndRow(15,$row)->getCalculatedValue(),2);
-		$price=round($objWorksheet->getCellByColumnAndRow(16,$row)->getCalculatedValue(),2);
+		$gender=$objWorksheet->getCellByColumnAndRow(8,$row)->getCalculatedValue();
+		$color=$objWorksheet->getCellByColumnAndRow(9,$row)->getCalculatedValue();
+		$size=$objWorksheet->getCellByColumnAndRow(10,$row)->getCalculatedValue();
+		$skuSenior=$objWorksheet->getCellByColumnAndRow(11,$row)->getCalculatedValue();
+		$stock=$objWorksheet->getCellByColumnAndRow(12,$row)->getCalculatedValue();
+		$locate=$objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue();
+		$priceA=round($objWorksheet->getCellByColumnAndRow(14,$row)->getCalculatedValue(),2);
+		$priceB=round($objWorksheet->getCellByColumnAndRow(15,$row)->getCalculatedValue(),2);
+		$priceC=round($objWorksheet->getCellByColumnAndRow(16,$row)->getCalculatedValue(),2);
+		$price=round($objWorksheet->getCellByColumnAndRow(17,$row)->getCalculatedValue(),2);
 		
 		
 		if($sku!="")
@@ -114,6 +116,7 @@ else
 			$result.='<th>'.$descriptionShort.'</th>';
 			$result.='<th>'.$categories.'</th>';
 			$result.='<th>'.$trademark.'</th>';
+			$result.='<th>'.$gender.'</th>';
 			$result.='<th>'.$color.'</th>';
 			$result.='<th>'.$size.'</th>';
 			$result.='<th>'.$skuSenior.'</th>';
