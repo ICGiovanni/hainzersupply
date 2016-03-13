@@ -6,12 +6,26 @@
 	
 	<title>Hainzer Supply Orders</title>
 	
+<<<<<<< HEAD
+	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+	 <link href="//cdn.virtuosoft.eu/virtuosoft.eu/resources/prettify/prettify.css" rel="stylesheet" type="text/css" media="all">
+	<link href="http://www.virtuosoft.eu/code/bootstrap-touchspin/bootstrap-touchspin/v3.0.1/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" media="all">
+	
+	<link href="css/simple-sidebar.css" rel="stylesheet">
+	<style type="text/css" class="init">
+		body{ padding:0px 10px;}
+		.td_price{width:120px; margin:auto;}
+		
+		
+=======
 	
 	
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
 	<style type="text/css" class="init">
 		body{ padding:0px 50px;}
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 	</style>
 	
 	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.0.min.js">
@@ -20,14 +34,82 @@
 	</script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js">
 	</script>
+<<<<<<< HEAD
+	<script src="//cdn.virtuosoft.eu/virtuosoft.eu/resources/prettify/prettify.js"></script>
+	<script src="http://www.virtuosoft.eu/code/bootstrap-touchspin/bootstrap-touchspin/v3.0.1/jquery.bootstrap-touchspin.js"></script>
+	<script type="text/javascript" class="init">
+$(document).ready(function() {
+	$('#example').DataTable({
+        "lengthMenu": [[50, -1], [50, "All"]]
+    });
+	
+	
+=======
 	<script type="text/javascript" class="init">
 $(document).ready(function() {
 	$('#example').DataTable();
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 } );
 
 	</script>
 </head>
 <body>
+<<<<<<< HEAD
+
+
+<div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+		
+            <ul class="sidebar-nav">			
+                <li class="sidebar-brand"  style="font-size:13px; color:#999">				                    
+        <h3 style="color:orange;"><span class="glyphicon glyphicon-shopping-cart"></span> Order Detail</h3>
+		<table class="table" >
+			<tr>
+				<td>Productos<br> s/promoción</td>
+				<td align="right">$<span id="span_prod_s_prom">   0 </span></td>
+			</tr>
+			<tr>
+				<td>Descuento</td>
+				<td align="right">$<span id="span_desc">  0 </span></td>
+			</tr>
+			<tr>
+				<td>Productos<br> s/promoción c/descuento</td>
+				<td align="right">$<span id="span_prod_s_prom_c_desc">  0 </span></td>
+			</tr>
+			<tr>
+				<td>Productos<br> c/promoción</td>
+				<td align="right">$<span id="span_prod_c_prom">  0 </span></td>
+			</tr>
+			<tr>
+				<td>Total Pedido</td>
+				<td align="right">$<span id="span_total_ped">  0 </span></td>
+			</tr>
+			<tr>
+				<td>IVA</td>
+				<td align="right">$<span id="span_iva">  0 </span></td>
+			</tr>
+			<tr>
+				<td><b>Total final</b></td>
+				<td align="right"><b>$<span id="span_total_final">  0 </span></b></td>
+			</tr>
+		</table>                    
+                </li>
+                
+            </ul>
+        </div>
+		<!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+				<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply Orders <a style="float:right;" href="#menu-toggle" class="btn btn-sm btn-warning" id="menu-toggle"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Order Detail</a></h3> 
+
+				
+				
+=======
 <table>
 	<tr><td>Productos s/promoción</td><td><span>  $ 94,286.31 
 </span></td></tr>
@@ -48,6 +130,7 @@ $(document).ready(function() {
 	<div >
 				<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply Orders</h3>
 
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 				<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
@@ -56,6 +139,10 @@ $(document).ready(function() {
 							<th>Color</th>
 							<th>Size</th>
 							<th>Stock</th>
+<<<<<<< HEAD
+							<th>Quantity</th>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<th>Price</th>
 							<th>Order</th>
 						</tr>
@@ -67,6 +154,10 @@ $(document).ready(function() {
 							<th>Color</th>
 							<th>Size</th>
 							<th>Stock</th>
+<<<<<<< HEAD
+							<th>Quantity</th>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<th>Price</th>
 							<th>Order</th>
 						</tr>
@@ -78,15 +169,27 @@ $(document).ready(function() {
 							<td>Edinburgh</td>
 							<td>61</td>
 							<td>25</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
 							<td>$320,800</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span> <span class="glyphicon glyphicon-tags"></span></td>
 						</tr>
+					
+=======
+							<td>$320,800</td>
+							<td><span class="glyphicon glyphicon-shopping-cart"></span> <span class="glyphicon glyphicon-tags"></span></td>
+						</tr>
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 						<tr>
 							<td>Garrett Winters</td>
 							<td>Accountant</td>
 							<td>Tokyo</td>
 							<td>63</td>
 							<td>25</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo4" type="text" value="" name="demo4"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$170,750</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span> <span class="glyphicon glyphicon-tags"></span></td>
 						</tr>
@@ -96,6 +199,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>66</td>
 							<td>12</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo5" type="text" value="" name="demo5"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$86,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span> <span class="glyphicon glyphicon-tags"></span></td>
 						</tr>
@@ -105,15 +212,27 @@ $(document).ready(function() {
 							<td>Edinburgh</td>
 							<td>22</td>
 							<td>29</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
 							<td>$433,060</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
+							
+=======
+							<td>$433,060</td>
+							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
+						</tr>
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 						<tr>
 							<td>Airi Satou</td>
 							<td>Accountant</td>
 							<td>Tokyo</td>
 							<td>33</td>
 							<td>28</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$162,700</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span> <span class="glyphicon glyphicon-tags"></td>
 						</tr>
@@ -123,6 +242,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>61</td>
 							<td>02</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$372,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span> <span class="glyphicon glyphicon-tags"></span></td>
 						</tr>
@@ -132,6 +255,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>59</td>
 							<td>06</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$137,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -140,7 +267,12 @@ $(document).ready(function() {
 							<td>Integration Specialist</td>
 							<td>Tokyo</td>
 							<td>55</td>
+<<<<<<< HEAD
+							<td>14</td>
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
 							<td>2010/10/14</td>
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$327,900</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -150,6 +282,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>39</td>
 							<td>15</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$205,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -158,7 +294,12 @@ $(document).ready(function() {
 							<td>Software Engineer</td>
 							<td>Edinburgh</td>
 							<td>23</td>
+<<<<<<< HEAD
+							<td>13</td>
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
 							<td>2008/12/13</td>
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$103,600</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -168,6 +309,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>30</td>
 							<td>19</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$90,560</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -177,6 +322,10 @@ $(document).ready(function() {
 							<td>Edinburgh</td>
 							<td>22</td>
 							<td>03</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$342,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -186,6 +335,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>36</td>
 							<td>16</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$470,600</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -195,6 +348,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>43</td>
 							<td>18</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$313,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -204,6 +361,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>19</td>
 							<td>17</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$385,750</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -213,6 +374,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>66</td>
 							<td>27</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$198,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -222,6 +387,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>64</td>
 							<td>9</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$725,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -231,6 +400,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>59</td>
 							<td>10</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$237,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -240,6 +413,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>41</td>
 							<td>13</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$132,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -249,6 +426,10 @@ $(document).ready(function() {
 							<td>Edinburgh</td>
 							<td>35</td>
 							<td>26</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$217,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -258,6 +439,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>30</td>
 							<td>03</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$345,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -267,6 +452,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>40</td>
 							<td>25</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$675,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -276,6 +465,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>21</td>
 							<td>12</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$106,450</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -285,6 +478,10 @@ $(document).ready(function() {
 							<td>Sidney</td>
 							<td>23</td>
 							<td>20</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$85,600</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -294,6 +491,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>47</td>
 							<td>9</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$1,200,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -303,6 +504,10 @@ $(document).ready(function() {
 							<td>Edinburgh</td>
 							<td>42</td>
 							<td>22</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$92,575</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -312,6 +517,10 @@ $(document).ready(function() {
 							<td>Singapore</td>
 							<td>28</td>
 							<td>14</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$357,650</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -321,6 +530,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>28</td>
 							<td>07</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$206,850</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -330,6 +543,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>48</td>
 							<td>11</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$850,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -339,6 +556,10 @@ $(document).ready(function() {
 							<td>Tokyo</td>
 							<td>20</td>
 							<td>14</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$163,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -348,6 +569,10 @@ $(document).ready(function() {
 							<td>Sidney</td>
 							<td>37</td>
 							<td>2</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$95,400</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -357,6 +582,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>53</td>
 							<td>22</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$114,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -366,6 +595,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>27</td>
 							<td>7</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$145,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -375,6 +608,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>22</td>
 							<td>26</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$235,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -384,6 +621,10 @@ $(document).ready(function() {
 							<td>Edinburgh</td>
 							<td>46</td>
 							<td>9</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$324,050</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -393,6 +634,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>47</td>
 							<td>9</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$85,675</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -402,6 +647,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>51</td>
 							<td>16</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$164,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -411,6 +660,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>41</td>
 							<td>12</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$109,850</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -420,6 +673,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>62</td>
 							<td>14</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$452,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -429,6 +686,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>37</td>
 							<td>11</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$136,200</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -438,6 +699,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>65</td>
 							<td>26</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$645,750</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -447,6 +712,10 @@ $(document).ready(function() {
 							<td>Singapore</td>
 							<td>64</td>
 							<td>3</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$234,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -456,6 +725,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>38</td>
 							<td>3</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$163,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -465,6 +738,10 @@ $(document).ready(function() {
 							<td>Tokyo</td>
 							<td>37</td>
 							<td>19</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$139,575</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -474,6 +751,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>61</td>
 							<td>11</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$98,540</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -483,6 +764,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>47</td>
 							<td>7</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$87,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -492,6 +777,10 @@ $(document).ready(function() {
 							<td>Singapore</td>
 							<td>64</td>
 							<td>9</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$138,575</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -501,6 +790,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>63</td>
 							<td>4</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$125,250</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -510,6 +803,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>56</td>
 							<td>1</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$115,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -519,6 +816,10 @@ $(document).ready(function() {
 							<td>Edinburgh</td>
 							<td>43</td>
 							<td>1</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$75,650</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -528,6 +829,10 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>46</td>
 							<td>6</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$145,600</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -537,6 +842,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>47</td>
 							<td>21</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$356,250</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -546,6 +855,10 @@ $(document).ready(function() {
 							<td>London</td>
 							<td>21</td>
 							<td>27</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$103,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -555,6 +868,10 @@ $(document).ready(function() {
 							<td>San Francisco</td>
 							<td>30</td>
 							<td>14</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$86,500</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -564,6 +881,10 @@ $(document).ready(function() {
 							<td>Edinburgh</td>
 							<td>51</td>
 							<td>13</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$183,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -573,6 +894,10 @@ $(document).ready(function() {
 							<td>Singapore</td>
 							<td>29</td>
 							<td>27</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$183,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
@@ -582,11 +907,49 @@ $(document).ready(function() {
 							<td>New York</td>
 							<td>27</td>
 							<td>25</td>
+<<<<<<< HEAD
+							<td><div class="td_price"><input id="demo3" type="text" value="" name="demo3"></div></td>
+=======
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 							<td>$112,000</td>
 							<td><span class="glyphicon glyphicon-shopping-cart"></span></td>
 						</tr>
 					</tbody>
 				</table>
+<<<<<<< HEAD
+		
+</div>
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+	 $("input[name='demo3']").TouchSpin({
+				initval: 1,
+                min: 1,
+                max: 999,
+              
+            });
+			$("input[name='demo4']").TouchSpin({
+				initval: 1,
+                min: 1,
+                max: 100,
+              
+            });
+			$("input[name='demo5']").TouchSpin({
+				initval: 1,
+                min: 1,
+                max: 100,
+              
+            });
+	
+    </script>
+=======
 		</div>
 </body>
+>>>>>>> 0c78e805d02f457264573d1da288f2379e963b07
 </html>
