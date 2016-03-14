@@ -41,7 +41,7 @@ while(list(,$product)=each($productos)){
 	
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
-	 <link href="//cdn.virtuosoft.eu/virtuosoft.eu/resources/prettify/prettify.css" rel="stylesheet" type="text/css" media="all">
+	<link href="//cdn.virtuosoft.eu/virtuosoft.eu/resources/prettify/prettify.css" rel="stylesheet" type="text/css" media="all">
 	<link href="http://www.virtuosoft.eu/code/bootstrap-touchspin/bootstrap-touchspin/v3.0.1/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" media="all">
 	
 	<link href="css/simple-sidebar.css" rel="stylesheet">
@@ -276,12 +276,7 @@ $(document).ready(function() {
 	
 	/////////////////////////
 	
-	$("input[name='demo5']").TouchSpin({
-				initval: 1,
-                min: 1,
-                max: 100,
-              
-            });
+	$("input[name='demo5']").TouchSpin({initval: 1,min: 1,max: 100,});
 
     </script>
 
