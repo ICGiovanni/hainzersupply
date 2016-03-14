@@ -289,14 +289,38 @@ class Inventory
 			$statement->execute();
 		}
 		
-		
-		$sql = "INSERT INTO wp_term_relationships VALUES(:objectID,:termId,0)";
+		if(!$this->GetTermRelationship($IDParent,$termId))
+		{
+			$sql = "INSERT INTO wp_term_relationships VALUES($IDParent,$termId,0)";
+			
+			$statement=$this->connect->prepare($sql);
+			$statement->bindParam(':objectID',$IDParent,PDO::PARAM_STR);
+			$statement->bindParam(':termId',$termId,PDO::PARAM_STR);
+			$statement->execute();
+		}		
+	}
+	
+	public function GetTermRelationship($ID,$termId)
+	{
+		$sql="SELECT term_taxonomy_id
+				FROM wp_term_relationships
+				WHERE object_id='$ID' AND term_taxonomy_id='$termId'";
 		
 		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':objectID',$IDParent,PDO::PARAM_STR);
+		
+		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
 		$statement->bindParam(':termId',$termId,PDO::PARAM_STR);
 		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		
+		if(isset($result[0]['term_taxonomy_id']))
+		{
+			return $result[0]['term_taxonomy_id'];
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public function InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color,$size,$trademark,$typeProduct,$lineProduct,$genderProduct)
@@ -502,6 +526,10 @@ class Inventory
 		$postMimeType='';
 		$commentCount=0;
 	
+		if(!$postContent)
+		{
+			$postContent="Descripcion Producto";
+		}
 		
 		$sql = "INSERT INTO wp_posts VALUES(:ID,:postAuthor,:postDate,:postDateGMT,:postContent,:postTitle,:postExcert,:postStatus,:commentStatus,:pingStatus,:postPassword,:postName,:toPing,:pinged,:postModified,:postModifiedGMT,:postContentFiltered,:postParent,:guid,:menuOrder,:postType,:postMimeType,:commentCount)";
 		
