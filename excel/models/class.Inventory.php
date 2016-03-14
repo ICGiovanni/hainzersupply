@@ -530,10 +530,6 @@ class Inventory
 		{
 			$postContent="Descripcion Producto";
 		}
-		else
-		{
-			echo "Content: ".$postContent."\n";
-		}
 		
 		$sql = "INSERT INTO wp_posts VALUES(:ID,:postAuthor,:postDate,:postDateGMT,:postContent,:postTitle,:postExcert,:postStatus,:commentStatus,:pingStatus,:postPassword,:postName,:toPing,:pinged,:postModified,:postModifiedGMT,:postContentFiltered,:postParent,:guid,:menuOrder,:postType,:postMimeType,:commentCount)";
 		
