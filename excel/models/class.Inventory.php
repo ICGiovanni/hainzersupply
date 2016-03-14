@@ -459,16 +459,16 @@ class Inventory
 		$this->InsertPostMeta($ID,'attribute_pa_tallas',$slug);
 		
 		//_trademark
-		$this->InsertPostMeta($ID,'_trademark',$trademark);
+		$this->InsertPostMeta($ID,'_trademark',ucwords(strtolower($trademark)));
 		
 		//type_product
-		$this->InsertPostMeta($ID,'type_product',$typeProduct);
+		$this->InsertPostMeta($ID,'type_product',ucwords(strtolower($typeProduct)));
 		
 		//line_product
-		$this->InsertPostMeta($ID,'line_product',$lineProduct);
+		$this->InsertPostMeta($ID,'line_product',ucwords(strtolower($lineProduct)));
 		
 		//gender_product
-		$this->InsertPostMeta($ID,'gender_product',$genderProduct);
+		$this->InsertPostMeta($ID,'gender_product',ucwords(strtolower($genderProduct)));
 	}
 	
 	public function InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price,$trademark,$typeProduct,$lineProduct,$genderProduct)
@@ -660,16 +660,16 @@ class Inventory
 		$this->InsertPostMeta($ID,'total_sales',$totalSales);
 		
 		//_trademark
-		$this->InsertPostMeta($ID,'_trademark',$trademark);
+		$this->InsertPostMeta($ID,'_trademark',ucwords(strtolower($trademark)));
 		
 		//type_product
-		$this->InsertPostMeta($ID,'type_product',$typeProduct);
+		$this->InsertPostMeta($ID,'type_product',ucwords(strtolower($typeProduct)));
 		
 		//line_product
-		$this->InsertPostMeta($ID,'line_product',$lineProduct);
+		$this->InsertPostMeta($ID,'line_product',ucwords(strtolower($lineProduct)));
 		
 		//gender_product
-		$this->InsertPostMeta($ID,'gender_product',$genderProduct);
+		$this->InsertPostMeta($ID,'gender_product',ucwords(strtolower($genderProduct)));
 		
 		//wc_productdata_options
 		$wcProductDataOptions='a:1:{i:0;a:6:{s:11:"_bubble_new";s:0:"";s:12:"_bubble_text";s:0:"";s:17:"_custom_tab_title";s:0:"";s:11:"_custom_tab";s:0:"";s:14:"_product_video";s:0:"";s:19:"_product_video_size";s:0:"";}}';
