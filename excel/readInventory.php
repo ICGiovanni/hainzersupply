@@ -103,8 +103,17 @@ else
 			{
 				$price=0;
 			}
+			
+			if($skuSenior)
+			{
+				$skuPrefix=$skuSenior;
+			}
+			else
+			{
+				$skuPrefix=$sku;
+			}
 					
-			$prefix=$inventory->getPrefix($sku,$trademark,$product);
+			$prefix=$inventory->getPrefix($skuPrefix,$color,$trademark,$product);
 			
 			
 			$result.='<tr>';

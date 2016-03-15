@@ -744,24 +744,24 @@ class Inventory
 		$statement->execute();
 	}
 	
-	public function getPrefix($sku,$trademark,$product)
+	public function getPrefix($sku,$color,$trademark,$product)
 	{
 		$general=new General();
 		
 		$prefix="";
-		$s=explode("-",$sku);
+		
+		$color=strtoupper(substr($color,0,1));
 		
 		$trademark=$general->NameToURL($trademark);
 		$product=$general->NameToURL($product);
 		
-		if(isset($s[0]))
+		if($color)
 		{
-			$prefix.=$s[0];
+			$prefix.=$sku.'-'.$color;
 		}
-		
-		if(isset($s[1]))
+		else
 		{
-			$prefix.='-'.$s[1];
+			$prefix.=$sku;
 		}
 		
 		$prefix.='-'.$trademark.'-'.$product;
