@@ -1,7 +1,7 @@
 <?php
-$path = $_SERVER['DOCUMENT_ROOT'];
-$proyecto = 'hainzersupply';
-include_once ($path."/".$proyecto."/models/connection/class.Connection.php");
+include '../config.php';
+
+include_once ($pathProy."models/connection/class.Connection.php");
 
 class Distribuidores{
 
@@ -108,6 +108,17 @@ class Distribuidores{
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
+    }
+
+    public function getInfoDistribuidor($idDistribuidor){
+        $sql = "select * from inv_distribuidores WHERE idDistribuidor =".$idDistribuidor;
+
+        $statement=$this->connect->prepare($sql);
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result[0];
     }
 
 }

@@ -1,8 +1,7 @@
-<?php
+<?php include '../config.php';
+    //archivo con las rutas especificas del proyecto
 
-    $path = $_SERVER['DOCUMENT_ROOT'];
-    $proyecto = 'hainzersupply';
-    include_once ($path."/".$proyecto."/models/distribuidores/class.Distribuidores.php");
+    include_once ($pathProy."models/distribuidores/class.Distribuidores.php");
     $instDistribuidores=new Distribuidores();
 
 ?>

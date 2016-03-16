@@ -1,11 +1,11 @@
 <?php
+include '../../config.php';
 
 if($_POST){
     extract($_POST);
 
-    $path = $_SERVER['DOCUMENT_ROOT'];
-    $proyecto = 'hainzersupply';
-    include_once ($path."/".$proyecto."/models/distribuidores/class.Distribuidores.php");
+
+    include_once ($pathProy."models/distribuidores/class.Distribuidores.php");
 
     $instDistribuidores = new Distribuidores();
 

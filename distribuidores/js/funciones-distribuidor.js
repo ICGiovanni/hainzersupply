@@ -27,5 +27,15 @@ $(function() {
 
     });
 
+    $(".btn-info-dist").click(function(){
+        var idDistribuidor = $(this).attr('idform');
+        $("#idDistribuidor").val(idDistribuidor);
+        $("#infoDistribuidor").submit();
+    });
+
+    $(".btn-del-dist").click(function(){
+        //$(this).parent().parent().remove();
+    });
+
 });
 

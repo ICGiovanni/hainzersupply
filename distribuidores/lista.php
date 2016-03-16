@@ -1,8 +1,7 @@
 <?php
+    include '../config.php';
 
-    $path = $_SERVER['DOCUMENT_ROOT'];
-    $proyecto = 'hainzersupply';
-    include_once ($path."/".$proyecto."/models/distribuidores/class.Distribuidores.php");
+    include_once ($pathProy."/models/distribuidores/class.Distribuidores.php");
     $instDistribuidores=new Distribuidores();
 
     $listaDistribuidores = $instDistribuidores->listaDistribuidores();
@@ -44,6 +43,10 @@
             </tr>
         </thead>
         <tbody>
+            <form id="infoDistribuidor" action="detalle.php" method="post">
+                <input type="hidden" name="idDistribuidor" id="idDistribuidor" value="" />
+                <input type="submit" name="enviar" value="" style="display: none" />
+            </form>
             <?php
                 foreach($listaDistribuidores as $distribuidor){
                     echo "<tr>";
@@ -53,8 +56,8 @@
                         echo "<td>".$distribuidor['telefono']."</td>";
                         echo "<td>".$distribuidor['celular']."</td>";
                         echo "<td>".$distribuidor['correoElectronico']."</td>";
-                        echo "<td><button type='button' class='btn btn-info'>+ Info</button></td>";
-                        echo "<td><button type='button' class='btn btn-danger'>Desactivar</button></td>";
+                        echo "<td><button type='button' class='btn btn-info btn-info-dist' idform='".$distribuidor['idDistribuidor']."'>+ Info</button></td>";
+                        echo "<td><button type='button' class='btn btn-danger btn-del-dist' idform='".$distribuidor['idDistribuidor']."'>Desactivar</button></td>";
                     echo "</tr>";
                 }
             ?>

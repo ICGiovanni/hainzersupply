@@ -1,15 +1,9 @@
-<?php
-//$ruta = 'http://hainzersupply.com/new_site/control/';
-$ruta = 'http://localhost/hainzersupply/';
+<script src="<?php echo $path.$proyecto?>/distribuidores/js/jquery.min.js"></script>
+<script src="<?php echo $path.$proyecto?>/distribuidores/js/bootstrap.min.js"></script>
 
-?>
-
-    <script src="distribuidores/js/jquery.min.js"></script>
-    <script src="distribuidores/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="distribuidores/css/bootstrap.min.css">
-    <link rel="stylesheet" href="distribuidores/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="distribuidores/css/styles-distribuidores.css">
+<link rel="stylesheet" href="<?php echo $path.$proyecto?>/distribuidores/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo $path.$proyecto?>/distribuidores/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="<?php echo $path.$proyecto?>/distribuidores/css/styles-distribuidores.css">
 
 <div class="container" style="margin-bottom:50px; padding-left: 20%">
     <ul class="nav navbar-nav navbar navbar-default navbar-fixed-top">
@@ -54,5 +48,3 @@ $ruta = 'http://localhost/hainzersupply/';
         </li>
     </ul>
 </div>
-
-
