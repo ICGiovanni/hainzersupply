@@ -1,0 +1,28 @@
+{  
+  "rows": [
+    {
+        "id": 0,
+		"sku": "497084-PL-CH",
+        "name": "CLICK RELEASE SHIELD LT GOLD IRIDIUM",
+		"brand": "MARCA AAA",
+		"color": "MORADO",
+		"size": "CH",
+		"stock": "20",
+        "price": "$673",		
+		"type_price": "discount",
+		"quantity": ""
+    },
+    {
+        "id": 1,
+		"sku": "497084-PL-MD",
+        "name": "CLICK RELEASE SHIELDDRK SILVER IRIDIUM",
+		"brand": "MARCA AAA",
+		"color": "MORADO",
+		"size": "M",
+		"stock": "12",
+        "price": "$673",		
+		"type_price": "normal",
+		"quantity": ""
+    }
+	]
+}
