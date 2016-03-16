@@ -189,6 +189,14 @@ else
 	
 	$result.='</table>';
 	
+	$html='<html><head><head><body>';
+	$html.=$result;
+	$html.='</body></html>';
+	
+	$file=fopen("result.html", "w");
+	fwrite($file,$html);
+	fclose($file);
+	
 	$output=['result'=>$result];
 	
 /*
