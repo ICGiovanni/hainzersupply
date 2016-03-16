@@ -3,7 +3,7 @@ require_once('models/class.Upload.php');
 
 $upload=new Upload();
 
-$dirBase="images-upload";
+$dirBase="upload/inventory";
 $output=[];
 
 
@@ -13,6 +13,8 @@ if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
 }
 else
 {
+	mkdir($dirBase,0775,true);
+	
 	$nameFile=$_FILES['fileUpload']['name'];
 	$route=$dirBase.'/'.$nameFile;
 	$upload->UploadFile($_FILES['fileUpload']['tmp_name'],$route);

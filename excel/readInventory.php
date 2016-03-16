@@ -75,20 +75,20 @@ else
 	
 	for($row=2;$row<=$highestRow;++$row)
 	{
-		$sku=$objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue();
-		$product=$objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue();
-		$description=$objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue();
-		$descriptionShort=$objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue();
-		$trademark=$objWorksheet->getCellByColumnAndRow(4,$row)->getCalculatedValue();
-		$categories=$objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue();
-		$type=$objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue();
-		$line=$objWorksheet->getCellByColumnAndRow(7,$row)->getCalculatedValue();
-		$gender=$objWorksheet->getCellByColumnAndRow(8,$row)->getCalculatedValue();
-		$color=$objWorksheet->getCellByColumnAndRow(9,$row)->getCalculatedValue();
-		$size=$objWorksheet->getCellByColumnAndRow(10,$row)->getCalculatedValue();
-		$skuSenior=$objWorksheet->getCellByColumnAndRow(11,$row)->getCalculatedValue();
+		$sku=trim($objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue());
+		$product=trim($objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue());
+		$description=trim($objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue());
+		$descriptionShort=trim($objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue());
+		$trademark=trim($objWorksheet->getCellByColumnAndRow(4,$row)->getCalculatedValue());
+		$categories=trim($objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue());
+		$type=trim($objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue());
+		$line=trim($objWorksheet->getCellByColumnAndRow(7,$row)->getCalculatedValue());
+		$gender=trim($objWorksheet->getCellByColumnAndRow(8,$row)->getCalculatedValue());
+		$color=trim($objWorksheet->getCellByColumnAndRow(9,$row)->getCalculatedValue());
+		$size=trim($objWorksheet->getCellByColumnAndRow(10,$row)->getCalculatedValue());
+		$skuSenior=trim($objWorksheet->getCellByColumnAndRow(11,$row)->getCalculatedValue());
 		$stock=$objWorksheet->getCellByColumnAndRow(12,$row)->getCalculatedValue();
-		$locate=$objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue();
+		$locate=trim($objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue());
 		$priceA=round($objWorksheet->getCellByColumnAndRow(15,$row)->getOldCalculatedValue(),2);
 		$priceB=round($objWorksheet->getCellByColumnAndRow(16,$row)->getOldCalculatedValue(),2);
 		$priceC=round($objWorksheet->getCellByColumnAndRow(17,$row)->getOldCalculatedValue(),2);
@@ -107,13 +107,15 @@ else
 			if($skuSenior)
 			{
 				$skuPrefix=$skuSenior;
+				$parent=1;
 			}
 			else
 			{
 				$skuPrefix=$sku;
+				$parent=0;
 			}
 					
-			$prefix=$inventory->getPrefix($skuPrefix,$color,$trademark,$product);
+			$prefix=$inventory->getPrefix($skuPrefix,$color,$trademark,$product,$parent);
 			
 			
 			$result.='<tr>';

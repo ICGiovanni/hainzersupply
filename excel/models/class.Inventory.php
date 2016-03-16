@@ -495,6 +495,67 @@ class Inventory
 		$this->InsertPostMeta($ID,'gender_product',ucwords(strtolower($genderProduct)));
 	}
 	
+	public function InsertImage($image,$route)
+	{
+		$general=new General();
+	
+		$ID=$this->GetID();
+		
+		$postAuthor=2;
+		$postDate=date('Y-m-d H:i:s');
+		$postDateGMT=$postDate;
+		$postContent='';
+		$postTitle=$image;
+		$postExcert='';
+		$postStatus='inherit';
+		$commentStatus='open';
+		$pingStatus='closed';
+		$postPassword='';
+		$postName=$general->NameToURL($postTitle);
+		$toPing='';
+		$pinged='';
+		$postModified=$postDate;
+		$postModifiedGMT=$postDate;
+		$postContentFiltered='';
+		$postParent=0;
+		$guid=$this->getHosts().'/wp-content/'.$route;
+		
+		$menuOrder=0;
+		$postType='attachment';
+		$postMimeType='image/jpeg';
+		$commentCount=0;
+		
+		$sql = "INSERT INTO wp_posts VALUES(:ID,:postAuthor,:postDate,:postDateGMT,:postContent,:postTitle,:postExcert,:postStatus,:commentStatus,:pingStatus,:postPassword,:postName,:toPing,:pinged,:postModified,:postModifiedGMT,:postContentFiltered,:postParent,:guid,:menuOrder,:postType,:postMimeType,:commentCount)";
+		
+		$statement=$this->connect->prepare($sql);
+		
+		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
+		$statement->bindParam(':postAuthor',$postAuthor,PDO::PARAM_STR);
+		$statement->bindParam(':postDate',$postDate,PDO::PARAM_STR);
+		$statement->bindParam(':postDateGMT',$postDateGMT,PDO::PARAM_STR);
+		$statement->bindParam(':postContent',$postContent,PDO::PARAM_STR);
+		$statement->bindParam(':postTitle',$postTitle,PDO::PARAM_STR);
+		$statement->bindParam(':postExcert',$postExcert,PDO::PARAM_STR);
+		$statement->bindParam(':postStatus',$postStatus,PDO::PARAM_STR);
+		$statement->bindParam(':commentStatus',$commentStatus,PDO::PARAM_STR);
+		$statement->bindParam(':pingStatus',$pingStatus,PDO::PARAM_STR);
+		$statement->bindParam(':postPassword',$postPassword,PDO::PARAM_STR);
+		$statement->bindParam(':postName',$postName,PDO::PARAM_STR);
+		$statement->bindParam(':toPing',$toPing,PDO::PARAM_STR);
+		$statement->bindParam(':pinged',$pinged,PDO::PARAM_STR);
+		$statement->bindParam(':postModified',$postModified,PDO::PARAM_STR);
+		$statement->bindParam(':postModifiedGMT',$postModifiedGMT,PDO::PARAM_STR);
+		$statement->bindParam(':postContentFiltered',$postContentFiltered,PDO::PARAM_STR);
+		$statement->bindParam(':postParent',$postParent,PDO::PARAM_STR);
+		$statement->bindParam(':guid',$guid,PDO::PARAM_STR);
+		$statement->bindParam(':menuOrder',$menuOrder,PDO::PARAM_STR);
+		$statement->bindParam(':postType',$postType,PDO::PARAM_STR);
+		$statement->bindParam(':postMimeType',$postMimeType,PDO::PARAM_STR);
+		$statement->bindParam(':commentCount',$commentCount,PDO::PARAM_STR);
+		
+		$statement->execute();
+	}
+	
 	public function InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price,$trademark,$typeProduct,$lineProduct,$genderProduct)
 	{
 		$general=new General();
@@ -744,27 +805,42 @@ class Inventory
 		$statement->execute();
 	}
 	
-	public function getPrefix($sku,$color,$trademark,$product)
+	public function getPrefix($sku,$color,$trademark,$product,$parent)
 	{
 		$general=new General();
 		
 		$prefix="";
 		
-		$color=strtoupper(substr($color,0,1));
-		
 		$trademark=$general->NameToURL($trademark);
 		$product=$general->NameToURL($product);
 		
+		if($parent)
+		{	
+			$p=explode('-',$product);
+			
+			for($i=0;$i<count($p)-1;$i++)
+			{
+				if($i==0)
+				{
+					$product=$p[$i];
+				}
+				else
+				{
+					$product.='-'.$p[$i];
+				}
+			}
+		}
+		
 		if($color)
 		{
-			$prefix.=$sku.'-'.$color;
+			$prefix.=$sku.'_'.$color;
 		}
 		else
 		{
 			$prefix.=$sku;
 		}
 		
-		$prefix.='-'.$trademark.'-'.$product;
+		$prefix.='_'.$trademark.'_'.$product;
 		
 		return $prefix;
 	}
