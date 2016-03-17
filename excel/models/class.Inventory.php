@@ -146,6 +146,22 @@ class Inventory
 		return $result;
 	}
 	
+	public function GetChildrensbyColor($ID,$color)
+	{
+		$sql="SELECT ID
+				FROM wp_posts wp
+				INNER JOIN wp_postmeta wpm ON wpm.post_id=wp.ID
+				WHERE post_parent='$ID'
+				AND meta_key='attribute_pa_colores'
+				AND meta_value='$color'";
+		
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		return $result;
+	}
+	
 	public function GetNextID($field,$table)
 	{
 		$sql="SELECT MAX($field)+1 AS ID
@@ -547,7 +563,16 @@ class Inventory
 		$n=explode('.',$image);
 		$nameImage=$n[0];
 		$s=explode('_',$nameImage);
+		$color="";
 		$skuParent=$s[0];
+		
+		if(count($s)==4)
+		{
+			
+			$color=$s[1];
+		}
+		
+		
 		$IDParent=$this->getSku($skuParent);
 		
 		if($IDParent)
@@ -609,24 +634,56 @@ class Inventory
 			//_wp_attached_file
 			$this->InsertPostMeta($ID,'_wp_attached_file',$route);
 			
-			if($this->getThumbnail($IDParent))
+			if(!$color)
 			{
-				$gallery=$this->getGallery($IDParent);
-				
-				if($gallery)
+				if($this->getThumbnail($IDParent))
 				{
-					$gallery.=','.$ID;
+					$gallery=$this->getGallery($IDParent);
+					
+					if($gallery)
+					{
+						$gallery.=','.$ID;
+					}
+					else
+					{
+						$gallery=$ID;
+					}
+					
+					$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
 				}
 				else
 				{
-					$gallery=$ID;
+					$this->InsertPostMeta($IDParent,'_thumbnail_id',$ID);
 				}
-				
-				$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
 			}
 			else
 			{
-				$this->InsertPostMeta($IDParent,'_thumbnail_id',$ID);
+				$result=$this->GetChildrensbyColor($IDParent,$color);
+				
+				foreach($result as $r)
+				{
+					$IDChildren=$r['ID'];
+					
+					if($this->getThumbnail($IDChildren))
+					{
+						$gallery=$this->getGallery($IDParent);
+							
+						if($gallery)
+						{
+							$gallery.=','.$ID;
+						}
+						else
+						{
+							$gallery=$ID;
+						}
+							
+						$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
+					}
+					else 
+					{
+						$this->InsertPostMeta($IDChildren,'_thumbnail_id',$ID);
+					}
+				}
 			}
 			
 			return "Imagen Insertada ".$skuParent;
