@@ -121,6 +121,32 @@ class Distribuidores{
         return $result[0];
     }
 
+    public function getFacturacionDistribuidor($idDistribuidor){
+        $sql = "select * from inv_distribuidor_factura idf
+                inner join inv_direcciones id on idf.idDireccion = id.idDireccion
+                where idDistribuidor =".$idDistribuidor;
+
+        $statement=$this->connect->prepare($sql);
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function getEnvioDistribuidor($idDistribuidor){
+        $sql = "select * from inv_distribuidor_envio ide
+                inner join inv_direcciones ind on ide.idDireccion = ind.idDireccion
+                where idDistribuidor=".$idDistribuidor;
+
+        $statement=$this->connect->prepare($sql);
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
 }
 
 ?>
