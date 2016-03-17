@@ -300,19 +300,63 @@ class Inventory
 		}		
 	}
 	
+	public function getThumbnail($ID)
+	{
+		$sql="SELECT post_id
+				FROM wp_postmeta wpm
+				WHERE wpm.post_id='$ID'
+				AND wpm.meta_key='_thumbnail_id'";
+		
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		if(isset($result[0]['post_id']))
+		{
+			return $result[0]['post_id'];
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function getGallery($ID)
+	{
+		$sql="SELECT meta_value
+				FROM wp_postmeta wpm
+				WHERE wpm.post_id='$ID'
+				AND meta_key='_product_image_gallery'";
+	
+		$statement=$this->connect->prepare($sql);
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		if(isset($result[0]['meta_value']))
+		{
+			return $result[0]['meta_value'];
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
 	public function GetTermRelationship($ID,$termId)
 	{
 		$sql="SELECT term_taxonomy_id
 				FROM wp_term_relationships
 				WHERE object_id='$ID' AND term_taxonomy_id='$termId'";
-		
+	
 		$statement=$this->connect->prepare($sql);
-		
+	
 		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
 		$statement->bindParam(':termId',$termId,PDO::PARAM_STR);
 		$statement->execute();
 		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
-		
+	
 		if(isset($result[0]['term_taxonomy_id']))
 		{
 			return $result[0]['term_taxonomy_id'];
@@ -500,60 +544,98 @@ class Inventory
 		$general=new General();
 	
 		$ID=$this->GetID();
+		$n=explode('.',$image);
+		$nameImage=$n[0];
+		$s=explode('_',$nameImage);
+		$skuParent=$s[0];
+		$IDParent=$this->getSku($skuParent);
 		
-		$postAuthor=2;
-		$postDate=date('Y-m-d H:i:s');
-		$postDateGMT=$postDate;
-		$postContent='';
-		$postTitle=$image;
-		$postExcert='';
-		$postStatus='inherit';
-		$commentStatus='open';
-		$pingStatus='closed';
-		$postPassword='';
-		$postName=$general->NameToURL($postTitle);
-		$toPing='';
-		$pinged='';
-		$postModified=$postDate;
-		$postModifiedGMT=$postDate;
-		$postContentFiltered='';
-		$postParent=0;
-		$guid=$this->getHosts().'/wp-content/'.$route;
+		if($IDParent)
+		{
+			$postAuthor=2;
+			$postDate=date('Y-m-d H:i:s');
+			$postDateGMT=$postDate;
+			$postContent='';
+			$postTitle=$image;
+			$postExcert='';
+			$postStatus='inherit';
+			$commentStatus='open';
+			$pingStatus='closed';
+			$postPassword='';
+			$postName=$general->NameToURL($nameImage);
+			$toPing='';
+			$pinged='';
+			$postModified=$postDate;
+			$postModifiedGMT=$postDate;
+			$postContentFiltered='';
+			$postParent=0;
+			$guid=$this->getHosts().'/wp-content/uploads/'.$route;
 		
-		$menuOrder=0;
-		$postType='attachment';
-		$postMimeType='image/jpeg';
-		$commentCount=0;
-		
-		$sql = "INSERT INTO wp_posts VALUES(:ID,:postAuthor,:postDate,:postDateGMT,:postContent,:postTitle,:postExcert,:postStatus,:commentStatus,:pingStatus,:postPassword,:postName,:toPing,:pinged,:postModified,:postModifiedGMT,:postContentFiltered,:postParent,:guid,:menuOrder,:postType,:postMimeType,:commentCount)";
-		
-		$statement=$this->connect->prepare($sql);
-		
-		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
-		$statement->bindParam(':postAuthor',$postAuthor,PDO::PARAM_STR);
-		$statement->bindParam(':postDate',$postDate,PDO::PARAM_STR);
-		$statement->bindParam(':postDateGMT',$postDateGMT,PDO::PARAM_STR);
-		$statement->bindParam(':postContent',$postContent,PDO::PARAM_STR);
-		$statement->bindParam(':postTitle',$postTitle,PDO::PARAM_STR);
-		$statement->bindParam(':postExcert',$postExcert,PDO::PARAM_STR);
-		$statement->bindParam(':postStatus',$postStatus,PDO::PARAM_STR);
-		$statement->bindParam(':commentStatus',$commentStatus,PDO::PARAM_STR);
-		$statement->bindParam(':pingStatus',$pingStatus,PDO::PARAM_STR);
-		$statement->bindParam(':postPassword',$postPassword,PDO::PARAM_STR);
-		$statement->bindParam(':postName',$postName,PDO::PARAM_STR);
-		$statement->bindParam(':toPing',$toPing,PDO::PARAM_STR);
-		$statement->bindParam(':pinged',$pinged,PDO::PARAM_STR);
-		$statement->bindParam(':postModified',$postModified,PDO::PARAM_STR);
-		$statement->bindParam(':postModifiedGMT',$postModifiedGMT,PDO::PARAM_STR);
-		$statement->bindParam(':postContentFiltered',$postContentFiltered,PDO::PARAM_STR);
-		$statement->bindParam(':postParent',$postParent,PDO::PARAM_STR);
-		$statement->bindParam(':guid',$guid,PDO::PARAM_STR);
-		$statement->bindParam(':menuOrder',$menuOrder,PDO::PARAM_STR);
-		$statement->bindParam(':postType',$postType,PDO::PARAM_STR);
-		$statement->bindParam(':postMimeType',$postMimeType,PDO::PARAM_STR);
-		$statement->bindParam(':commentCount',$commentCount,PDO::PARAM_STR);
-		
-		$statement->execute();
+			$menuOrder=0;
+			$postType='attachment';
+			$postMimeType='image/jpeg';
+			$commentCount=0;
+			
+			$sql = "INSERT INTO wp_posts VALUES(:ID,:postAuthor,:postDate,:postDateGMT,:postContent,:postTitle,:postExcert,:postStatus,:commentStatus,:pingStatus,:postPassword,:postName,:toPing,:pinged,:postModified,:postModifiedGMT,:postContentFiltered,:postParent,:guid,:menuOrder,:postType,:postMimeType,:commentCount)";
+			
+			$statement=$this->connect->prepare($sql);
+			
+			$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
+			$statement->bindParam(':postAuthor',$postAuthor,PDO::PARAM_STR);
+			$statement->bindParam(':postDate',$postDate,PDO::PARAM_STR);
+			$statement->bindParam(':postDateGMT',$postDateGMT,PDO::PARAM_STR);
+			$statement->bindParam(':postContent',$postContent,PDO::PARAM_STR);
+			$statement->bindParam(':postTitle',$postTitle,PDO::PARAM_STR);
+			$statement->bindParam(':postExcert',$postExcert,PDO::PARAM_STR);
+			$statement->bindParam(':postStatus',$postStatus,PDO::PARAM_STR);
+			$statement->bindParam(':commentStatus',$commentStatus,PDO::PARAM_STR);
+			$statement->bindParam(':pingStatus',$pingStatus,PDO::PARAM_STR);
+			$statement->bindParam(':postPassword',$postPassword,PDO::PARAM_STR);
+			$statement->bindParam(':postName',$postName,PDO::PARAM_STR);
+			$statement->bindParam(':toPing',$toPing,PDO::PARAM_STR);
+			$statement->bindParam(':pinged',$pinged,PDO::PARAM_STR);
+			$statement->bindParam(':postModified',$postModified,PDO::PARAM_STR);
+			$statement->bindParam(':postModifiedGMT',$postModifiedGMT,PDO::PARAM_STR);
+			$statement->bindParam(':postContentFiltered',$postContentFiltered,PDO::PARAM_STR);
+			$statement->bindParam(':postParent',$postParent,PDO::PARAM_STR);
+			$statement->bindParam(':guid',$guid,PDO::PARAM_STR);
+			$statement->bindParam(':menuOrder',$menuOrder,PDO::PARAM_STR);
+			$statement->bindParam(':postType',$postType,PDO::PARAM_STR);
+			$statement->bindParam(':postMimeType',$postMimeType,PDO::PARAM_STR);
+			$statement->bindParam(':commentCount',$commentCount,PDO::PARAM_STR);
+			
+			$statement->execute();
+			
+			//_wp_attached_file
+			$this->InsertPostMeta($ID,'_wp_attached_file',$route);
+			
+			if($this->getThumbnail($IDParent))
+			{
+				$gallery=$this->getGallery($IDParent);
+				
+				if($gallery)
+				{
+					$gallery.=','.$ID;
+				}
+				else
+				{
+					$gallery=$ID;
+				}
+				
+				$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
+			}
+			else
+			{
+				$this->InsertPostMeta($IDParent,'_thumbnail_id',$ID);
+			}
+			
+			return "Imagen Insertada ".$skuParent;
+			
+		}
+		else
+		{
+			return "No existe SKU Padre";
+		}
 	}
 	
 	public function InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price,$trademark,$typeProduct,$lineProduct,$genderProduct)
@@ -789,6 +871,17 @@ class Inventory
 	public function InsertPostMeta($ID,$metaKey,$metaValue)
 	{
 		$sql="INSERT INTO wp_postmeta VALUES('',:ID,:metaKey,:metaValue)";
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
+		$statement->bindParam(':metaKey',$metaKey,PDO::PARAM_STR);
+		$statement->bindParam(':metaValue',$metaValue,PDO::PARAM_STR);
+		$statement->execute();
+	}
+	
+	public function UpdatePostMeta($ID,$metaKey,$metaValue)
+	{
+		$sql="UPDATE wp_postmeta SET meta_value=:metaValue
+				WHERE post_id=:ID AND meta_key=:metaKey";
 		$statement=$this->connect->prepare($sql);
 		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
 		$statement->bindParam(':metaKey',$metaKey,PDO::PARAM_STR);

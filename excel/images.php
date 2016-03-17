@@ -38,7 +38,7 @@ $("#fileUpload").fileinput({
     maxFileCount: 5
 });
 
-$("#fileUpload").fileinput(
+/*$("#fileUpload").fileinput(
 {
 	language: 'es',
 	showCaption: true,
@@ -46,7 +46,7 @@ $("#fileUpload").fileinput(
 	fileType: "xls,xlsx",
 	uploadUrl: 'readInventory.php',
 	allowedFileExtensions:['xls', 'xlsx']
-});
+});*/
 
 $('#fileUpload').on('change', function(event)
 {

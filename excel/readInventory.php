@@ -34,21 +34,7 @@ else
 	$highestColumn=$objWorksheet->getHighestColumn(); 
 
 	$highestColumnIndex=PHPExcel_Cell::columnIndexFromString($highestColumn);
-	/*
-	$result='<table class="table">';
-	$result.='<thead>';
-	
-	for($row=11;$row<=11;++$row)
-	{
-		$result.='<tr>';
-		for($col=0;$col<=10; ++$col)
-		{
-			$result.='<th>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getCalculatedValue().'</th>';
-		}
-		$result.='</tr>';
-	}
-	$result.='</thead>';*/
-	
+		
 	$result='<table class="table">';
 	$result.='<thead>';
 	$result.='<tr>';
@@ -167,21 +153,6 @@ else
 			$result.='</tr>';
 		}
 		
-		/*
-		$rowA='';
-		for($col=0;$col<=10; ++$col)
-		{
-			if($objWorksheet->getCellByColumnAndRow($col, $row)->getCalculatedValue())
-			{
-				$rowA.='<th>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getCalculatedValue().'</th>';
-			}
-		}
-		
-		if($rowA)
-		{
-			$result.='<tr>'.$rowA.'</tr>';
-		}
-		*/
 	}
 	$result.='</tbody>';
 	
@@ -198,26 +169,9 @@ else
 	fclose($file);
 	
 	$output=['result'=>$result];
-	
-/*
-	resul '<table class="table" align="center">';
-	for($row=1;$row<=4;++$row)
-	{
-		echo '<tr>';
-		for($col=0;$col<=10; ++$col)
-		{
-			if($objWorksheet->getCellByColumnAndRow($col, $row)->getValue()!='')
-			{
-				echo '<td>'.$objWorksheet->getCellByColumnAndRow($col, $row)->getValue().'</td>';
-			}
-		}
-		echo '</tr>';
-	}
-echo '</table>';*/
 
 	unlink($dirBase.'/'.$nameFile);
-	
-	
+
 }
 echo json_encode($output);
 ?>
