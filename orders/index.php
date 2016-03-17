@@ -1,5 +1,5 @@
 ﻿<?php
-require_once('models/class.Orders.php');
+include_once('models/class.Orders.php');
 $order = New Order();
 
 $productos = $order->getProducts();
@@ -56,6 +56,7 @@ while(list(,$product)=each($productos)){
 	
 	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.0.min.js">
 	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js">
 	</script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js">
@@ -65,8 +66,7 @@ while(list(,$product)=each($productos)){
 	<script type="text/javascript" class="init">
 $(document).ready(function() {
 	$('#example').DataTable({
-        "lengthMenu": [[50, -1], [50, "All"]],
-		select: true
+        "lengthMenu": [[-1], ["All"]]
     });
 	
 	
@@ -85,22 +85,22 @@ $(document).ready(function() {
 		
 		<ul class="sidebar-nav">			
                 <li class="sidebar-brand"  style="font-size:13px; color:#999">				                    
-        <h3 style="color:orange;"><span class="glyphicon glyphicon-eye-open"></span> Detalle Solicitud</h3>
+        <h2 style="color:#337AB7; margin-left:8px;"><span class="glyphicon glyphicon-eye-open"></span> Detalle</h2>
 		<table class="table table-sm" >
 			<tr>
-				<td>Productos<br> s/promoción</td>
-				<td align="right">$<span id="span_prod_s_prom">0.00</span></td>
+				<td>Productos s/promoción</td>
+				<td align="right"><span id="span_prod_s_prom"  style="color:#DF0404">$0.00</span></td>
 			</tr>
 			<tr>
-				<td>Ud esta ahorrando <br><span id="span_desc_info" style="color:#fff">15% hasta $20mil</span> <br> <b style="color:#fff;">Nivel de ahorro: </b></td>
-				<td align="right">$<span id="span_desc">0.00</span></td>
+				<td>Ud esta ahorrando <br><b>Nivel de ahorro: </b> <img id="img_save_level" src="img/low.png" width="40" /> <span id="span_save_level" style="color:#DF0404">LOW</span><br> <span id="span_desc_info" style="color:#fff; font-size:15px;">15% de descuento hasta $20mil</span>  </td>
+				<td align="right"><span id="span_desc"  style="color:#DF0404">$0.00</span></td>
 			</tr>
 			<tr>
-				<td>Productos<br> s/promoción c/descuento</td>
-				<td align="right">$<span id="span_prod_s_prom_c_desc">0.00</span></td>
+				<td>Productos s/promoción<br>con descuento aplicado</td>
+				<td align="right">$<span id="span_prod_s_prom_c_desc" >0.00</span></td>
 			</tr>
 			<tr>
-				<td>Productos<br> c/promoción</td>
+				<td>Productos<br> c/Remate</td>
 				<td align="right">$<span id="span_prod_c_prom">0.00</span></td>
 			</tr>
 			<tr>
@@ -121,12 +121,12 @@ $(document).ready(function() {
 				<td colspan="2" >
 				
 				<div align="right"><br>
-				<button type="button" class="btn btn-primary btn-sm" onclick="insertOrder();" >
-						<span class="glyphicon glyphicon-send" aria-hidden="true"></span> Enviar Solicitud
+				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" onclick="insertOrder();" >
+						<span class="glyphicon glyphicon-send" aria-hidden="true"></span> Enviar solicitud de compra
 				</button>
 				</div>
-				<div align="center" style="margin-right:25px;">
-					<br>ICONOGRAFIA
+				<div align="left" style="margin-right:25px;">
+					<br><br><br><br><b>ICONOGRAFIA</b><br>
 					<br> <span class="glyphicon glyphicon-shopping-cart" ></span> Agregar al carrito
 					<br> <span class="glyphicon glyphicon-pencil"></span> Editar Compra
 					<br> <span class="glyphicon glyphicon-tags"></span> Producto con Remate
@@ -146,7 +146,7 @@ $(document).ready(function() {
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-				<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply Solicitud de Compra <a style="float:right;" href="#menu-toggle" class="btn btn-sm btn-warning" id="menu-toggle"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Detalle de solicitud</a></h3> 
+				<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply Solicitud de Compra <button style="float:right;" onclick="changeStyleSpanDetailOrder();" class="btn btn-sm btn-primary" id="menu-toggle"><span id="span_btn_detail_order" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Detalle de solicitud</button></h3> 
 				
 				<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
@@ -173,20 +173,44 @@ $(document).ready(function() {
                 </div>
             </div>
         </div>
+		
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Procesando Solicitud de Compra...</h4>
+      </div>
+      <div class="modal-body" >
+			Su solicitud ha sido procesada		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+		<span id="span_delete_user"></span>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 <script>
+
 	var init_items = '{ "rows" : [] }';
 	var items_ordered = JSON.parse(init_items);;
 	
-	
+	var factor_discount = 0.15;
+	var factor_discount_description = '15% de descuento hasta $20mil';
+	var img_save_level = 'low.png';
+	var span_save_level = 'LOW';
+	var span_save_level_color = '#DF0404';
 
 	var productos_s_promocion = Number(0).toFixed(2);
-	var descuento = Number(0).toFixed(2);
+	var discount = Number(0).toFixed(2);
 	var productos_s_promocion_c_descuento = Number(0).toFixed(2);
 	var productos_c_promocion = Number(0).toFixed(2);
 	var total_pedido = Number(0).toFixed(2);
 	var iva = Number(0).toFixed(2);
 	var total_final = Number(0).toFixed(2);
+	
 
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
@@ -224,8 +248,7 @@ $(document).ready(function() {
 		add_price = Number(add_price) * Number(quantity);
 		add_price = add_price.toFixed(2);
 		
-		items_ordered.rows.push({"sku":id_prod});
-		
+		items_ordered.rows.push({"sku":id_prod, "quantity":quantity, "price":add_price});		
 		
 		if(type_price=='discount'){
 			
@@ -237,15 +260,26 @@ $(document).ready(function() {
 			productos_s_promocion = Number(productos_s_promocion) + Number(add_price);
 			productos_s_promocion = productos_s_promocion.toFixed(2);
 			
-			factor_discount = 0.15;
-			factor_discount_description = '15% hasta $20mil';
+			if( Number(productos_s_promocion) <= 20000 ){
+				factor_discount = 0.15;
+				factor_discount_description = '15% de descuento hasta $20mil';
+				img_save_level = 'low.png';
+				span_save_level = 'LOW';
+				span_save_level_color = '#DF0404';
+			}
 			if( Number(productos_s_promocion) > 20000 ){
 				factor_discount = 0.3;
-				factor_discount_description = '30% hasta $199mil';
+				factor_discount_description = '30% de descuento hasta $199mil';
+				img_save_level = 'medium.png';
+				span_save_level = 'MEDIUM';
+				span_save_level_color = '#EA8C00';
 			}
 			if( Number(productos_s_promocion) > 200000 ){
 				factor_discount = 0.35;
-				factor_discount_description = '35% apartir de $200mil';
+				factor_discount_description = '35% de descuento apartir de $200mil';
+				img_save_level = 'high.png';
+				span_save_level = 'HIGH';
+				span_save_level_color = '#26BC01';
 			}
 			
 			discount = Number(productos_s_promocion) * Number(factor_discount);
@@ -265,8 +299,10 @@ $(document).ready(function() {
 		total_final = Number(total_pedido) + Number(iva);
 		total_final = total_final.toFixed(2);
 		
-		$("#span_prod_s_prom").html(productos_s_promocion);
-		$("#span_desc").html(discount);
+		$("#span_prod_s_prom").html("$"+productos_s_promocion);
+		$("#span_desc").html("$"+discount);
+		$("#span_prod_s_prom").css("color",span_save_level_color);
+		$("#span_desc").css("color",span_save_level_color);
 		$("#span_prod_s_prom_c_desc").html(productos_s_promocion_c_descuento);
 		$("#span_prod_c_prom").html(productos_c_promocion);
 		$("#span_total_ped").html(total_pedido);
@@ -280,9 +316,22 @@ $(document).ready(function() {
 		$("#dv_quantity_info_"+id_prod).html(quantity+" ordered");
 		$("#span_desc_info").html(factor_discount_description);
 		
+		$("#img_save_level").attr("src","img/"+img_save_level);
+		$("#span_save_level").html(span_save_level);
+		$("#span_save_level").css("color",span_save_level_color);
+		
 		$(this).unbind("click");
 		$(this).click(editProductOrder);
 	}	
+	
+	function findId(idToLookFor) {
+		var itemsArray = items_ordered.rows;
+		for (var i = 0; i < itemsArray.length; i++) {
+			if (itemsArray[i].sku == idToLookFor) {
+				return(i);
+			}
+		}
+	}
 	
 	function editProductOrder(){
 		id_prod = $(this).attr("id");
@@ -294,8 +343,11 @@ $(document).ready(function() {
 		quantity = $("#quantity_"+id_prod).val();
 		
 		add_price = Number(add_price) * Number(quantity);
-		add_price = add_price.toFixed(2);
-				
+		add_price = add_price.toFixed(2);		
+		
+		rowIdJson = findId(id_prod);
+		items_ordered.rows.splice(rowIdJson,1);
+		
 		if(type_price=='discount'){			
 			
 			productos_c_promocion = Number(productos_c_promocion) - Number(add_price);
@@ -306,15 +358,26 @@ $(document).ready(function() {
 			productos_s_promocion = Number(productos_s_promocion) - Number(add_price);
 			productos_s_promocion = productos_s_promocion.toFixed(2);
 			
-			factor_discount = 0.15;
-			factor_discount_description = '15% hasta $20mil';
+			if( Number(productos_s_promocion) <= 20000 ){
+				factor_discount = 0.15;
+				factor_discount_description = '15% de descuento hasta $20mil';
+				img_save_level = 'low.png';
+				span_save_level = 'LOW';
+				span_save_level_color = '#DF0404';
+			}
 			if( Number(productos_s_promocion) > 20000 ){
 				factor_discount = 0.3;
-				factor_discount_description = '30% hasta $199mil';
+				factor_discount_description = '30% de descuento hasta $199mil';
+				img_save_level = 'medium.png';
+				span_save_level = 'MEDIUM';
+				span_save_level_color = '#EA8C00';
 			}
 			if( Number(productos_s_promocion) > 200000 ){
 				factor_discount = 0.35;
-				factor_discount_description = '35% apartir de $200mil';
+				factor_discount_description = '35% de descuento apartir de $200mil';
+				img_save_level = 'high.png';
+				span_save_level = 'HIGH';
+				span_save_level_color = '#26BC01';
 			}
 			
 			discount = Number(productos_s_promocion) * Number(factor_discount) ;
@@ -325,7 +388,7 @@ $(document).ready(function() {
 			
 		}
 		
-		total_pedido = Number(productos_s_promocion) + Number(productos_s_promocion_c_descuento) + Number(productos_c_promocion);
+		total_pedido = Number(productos_s_promocion_c_descuento) + Number(productos_c_promocion);
 		total_pedido = total_pedido.toFixed(2);
 		
 		iva = (Number(total_pedido)*0.16);
@@ -334,8 +397,10 @@ $(document).ready(function() {
 		total_final = Number(total_pedido) + Number(iva);
 		total_final = total_final.toFixed(2);
 
-		$("#span_prod_s_prom").html(productos_s_promocion);
-		$("#span_desc").html(discount);
+		$("#span_prod_s_prom").html("$"+productos_s_promocion);
+		$("#span_desc").html("$"+discount);
+		$("#span_prod_s_prom").css("color",span_save_level_color);
+		$("#span_desc").css("color",span_save_level_color);
 		$("#span_prod_s_prom_c_desc").html(productos_s_promocion_c_descuento);
 		$("#span_prod_c_prom").html(productos_c_promocion);
 		$("#span_total_ped").html(total_pedido);
@@ -349,6 +414,10 @@ $(document).ready(function() {
 		$("#dv_quantity_info_"+id_prod).html("");
 		$("#span_desc_info").html(factor_discount_description);
 		
+		$("#img_save_level").attr("src","img/"+img_save_level);
+		$("#span_save_level").html(span_save_level);
+		$("#span_save_level").css("color",span_save_level_color);
+		
 		
 		$(this).unbind("click");
 		$(this).click(addProductOrder);
@@ -361,16 +430,13 @@ $(document).ready(function() {
 	function insertOrder(){
 		
 	inv_orden_compra_productos = JSON.stringify(items_ordered);
-	alert(inv_orden_compra_productos);
-	
-	return;
-	inv_orden_compra_productos = ''; 
-	inv_orden_compra_suma_precio_lista = 0; 
-	inv_orden_compra_factor_descuento = 0;
-	inv_orden_compra_suma_promociones = 0;
-	inv_orden_compra_subtotal = 0;
-	inv_orden_compra_iva = 0;
-	inv_orden_compra_total = 0;
+	inv_orden_compra_suma_precio_lista = productos_s_promocion;
+	inv_orden_compra_factor_descuento = factor_discount;
+	inv_orden_compra_suma_precio_lista_descuento_aplicado = productos_s_promocion_c_descuento;
+	inv_orden_compra_suma_promociones = productos_c_promocion;
+	inv_orden_compra_subtotal = total_pedido;
+	inv_orden_compra_iva = iva;
+	inv_orden_compra_total = total_final;
 	
 	$.ajax({
     		type: "POST",
@@ -379,27 +445,30 @@ $(document).ready(function() {
 					inv_orden_compra_productos: inv_orden_compra_productos, 
 					inv_orden_compra_suma_precio_lista: inv_orden_compra_suma_precio_lista, 
 					inv_orden_compra_factor_descuento: inv_orden_compra_factor_descuento,
+					inv_orden_compra_suma_precio_lista_descuento_aplicado: inv_orden_compra_suma_precio_lista_descuento_aplicado,
 					inv_orden_compra_suma_promociones: inv_orden_compra_suma_promociones, 
 					inv_orden_compra_subtotal: inv_orden_compra_subtotal, 
 					inv_orden_compra_iva: inv_orden_compra_iva, 
 					inv_orden_compra_total:inv_orden_compra_total
 			},
         	success: function(msg){
-					$("#myModal").modal('hide'); 
-					$("#button_save_changes").removeClass().addClass("btn btn-primary");
-					$("#span_save_changes").removeClass();
-					$("#img_profile_"+login_id).attr("src","/login/img/profile_"+profile+".jpg");
-					$("#full_name_"+login_id).html(firstName+" "+lastName);
-					$("#profile_name_"+login_id).html(profileName);
-					$("#status_name_"+login_id).html(statusName);
-					$("#status_name_"+login_id).removeClass().addClass("label label-"+CssStatus);
+				
+				
+					/*$("#myModal").modal('hide'); */
 					
-					$("#user_mail_"+login_id).html(email);
 			}
 		
       	});
 	}
 
+	function changeStyleSpanDetailOrder(){
+		currentClass = $("#span_btn_detail_order").attr("class");
+		if(currentClass == 'glyphicon glyphicon-eye-close'){
+			$("#span_btn_detail_order").removeClass().addClass("glyphicon glyphicon-eye-open");
+		} else {
+			$("#span_btn_detail_order").removeClass().addClass("glyphicon glyphicon-eye-close");
+		}
+	}
 	
 	<?=$initiate_quantitys?>
 
