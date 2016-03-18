@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="checkbox col-md-12">
-            <label>
+            <label id="mismaDireccion">
                 <input type="checkbox" id="copiarDireccion"> Misma dirección de facturación
             </label>
         </div>

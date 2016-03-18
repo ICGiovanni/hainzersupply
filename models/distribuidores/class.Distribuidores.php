@@ -1,7 +1,7 @@
 <?php
 include '../config.php';
 
-include_once ($pathProy."models/connection/class.Connection.php");
+include_once ($pathProy."/models/connection/class.Connection.php");
 
 class Distribuidores{
 
@@ -111,7 +111,8 @@ class Distribuidores{
     }
 
     public function getInfoDistribuidor($idDistribuidor){
-        $sql = "select * from inv_distribuidores WHERE idDistribuidor =".$idDistribuidor;
+        $sql = "SELECT * FROM inv_distribuidores as ind
+                inner join inv_niveles as inn on ind.idNivel = inn.idNivel WHERE ind.idDistribuidor =".$idDistribuidor;
 
         $statement=$this->connect->prepare($sql);
 
@@ -145,6 +146,74 @@ class Distribuidores{
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
+    }
+
+    public function actualizarDireccion($info){
+
+        $sql = "UPDATE inv_direcciones SET
+			calle = :calle,
+			numExt = :numExt,
+			numInt = :numInt,
+			codigoPostal = :codigoPostal,
+			colonia = :colonia,
+			delegacion = :delegacion,
+			estado = :estado,
+			pais = :pais
+			WHERE
+				idDireccion = ".$info['idDireccion'];
+
+        $statement = $this->connect->prepare($sql);
+
+        $statement->bindParam(':calle', $info['calle'], PDO::PARAM_STR);
+        $statement->bindParam(':numExt', $info['numExt'], PDO::PARAM_STR);
+        $statement->bindParam(':numInt', $info['numInt'], PDO::PARAM_STR);
+        $statement->bindParam(':codigoPostal', $info['codigoPostal'], PDO::PARAM_STR);
+        $statement->bindParam(':colonia', $info['colonia'], PDO::PARAM_STR);
+        $statement->bindParam(':delegacion', $info['delegacion'], PDO::PARAM_STR);
+        $statement->bindParam(':estado', $info['estado'], PDO::PARAM_STR);
+        $statement->bindParam(':pais', $info['pais'], PDO::PARAM_STR);
+
+
+        $statement->execute();
+    }
+
+    public function actualizarFacturacion($info){
+        $sql = "UPDATE inv_distribuidor_factura SET
+			rfc = :rfc,
+			razonSocial = :razonSocial
+			WHERE
+				idDistribuidorFactura = ".$info['idDistribuidorFactura'];
+
+        $statement = $this->connect->prepare($sql);
+
+        $statement->bindParam(':rfc', $info['rfc'], PDO::PARAM_STR);
+        $statement->bindParam(':razonSocial', $info['razonSocial'], PDO::PARAM_STR);
+
+        $statement->execute();
+    }
+
+    public function actualizarDistribuidor($info){
+        $sql = "UPDATE inv_distribuidores SET
+                    nombre = :nombre,
+                    representante = :representante,
+                    telefono = :telefono,
+                    celular = :celular,
+                    correoElectronico = :correoElectronico,
+                    idNivel = :idNivel
+                WHERE
+                    idDistribuidor= ".$info['idDistribuidor'];
+
+        $statement = $this->connect->prepare($sql);
+
+        $statement->bindParam(':nombre', $info['nombre'], PDO::PARAM_STR);
+        $statement->bindParam(':representante', $info['representante'], PDO::PARAM_STR);
+        $statement->bindParam(':telefono', $info['telefono'], PDO::PARAM_STR);
+        $statement->bindParam(':celular', $info['celular'], PDO::PARAM_STR);
+        $statement->bindParam(':correoElectronico', $info['correoElectronico'], PDO::PARAM_STR);
+        $statement->bindParam(':idNivel', $info['idNivel'], PDO::PARAM_INT);
+
+        $statement->execute();
+
     }
 
 }
