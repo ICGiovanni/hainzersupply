@@ -946,6 +946,15 @@ class Inventory
 		$statement->execute();
 	}
 	
+	public function UpdateProduct($ID,$stock,$locate,$price)
+	{
+		//Stock
+		$this->UpdatePostMeta($ID,'_stock',$stock);
+		
+		//Price
+		$this->UpdatePostMeta($ID,'_price',$price);
+	}
+	
 	public function InsertProductTerms($ID,$term)
 	{
 		$sql="INSERT INTO wp_term_relationships VALUES(:ID,:term,'0')";
