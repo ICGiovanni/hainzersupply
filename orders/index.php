@@ -146,7 +146,7 @@ $(document).ready(function() {
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-				<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply Solicitud de Compra <button style="float:right;" onclick="changeStyleSpanDetailOrder();" class="btn btn-sm btn-primary" id="menu-toggle"><span id="span_btn_detail_order" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Detalle de solicitud</button></h3> 
+				<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply - Nueva Solicitud de Compra <button style="float:right;" onclick="changeStyleSpanDetailOrder();" class="btn btn-sm btn-primary" id="menu-toggle"><span id="span_btn_detail_order" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Detalle de solicitud</button></h3> 
 				
 				<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
@@ -181,7 +181,7 @@ $(document).ready(function() {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Procesando Solicitud de Compra...</h4>
       </div>
-      <div class="modal-body" >
+      <div class="modal-body" id="dv_body_modal">
 			Su solicitud ha sido procesada		
       </div>
       <div class="modal-footer">
@@ -428,37 +428,46 @@ $(document).ready(function() {
 	/////////////////////////
 	
 	function insertOrder(){
-		
-	inv_orden_compra_productos = JSON.stringify(items_ordered);
-	inv_orden_compra_suma_precio_lista = productos_s_promocion;
-	inv_orden_compra_factor_descuento = factor_discount;
-	inv_orden_compra_suma_precio_lista_descuento_aplicado = productos_s_promocion_c_descuento;
-	inv_orden_compra_suma_promociones = productos_c_promocion;
-	inv_orden_compra_subtotal = total_pedido;
-	inv_orden_compra_iva = iva;
-	inv_orden_compra_total = total_final;
 	
-	$.ajax({
-    		type: "POST",
-			url: "ajax/create_order.php",
-			data: {
-					inv_orden_compra_productos: inv_orden_compra_productos, 
-					inv_orden_compra_suma_precio_lista: inv_orden_compra_suma_precio_lista, 
-					inv_orden_compra_factor_descuento: inv_orden_compra_factor_descuento,
-					inv_orden_compra_suma_precio_lista_descuento_aplicado: inv_orden_compra_suma_precio_lista_descuento_aplicado,
-					inv_orden_compra_suma_promociones: inv_orden_compra_suma_promociones, 
-					inv_orden_compra_subtotal: inv_orden_compra_subtotal, 
-					inv_orden_compra_iva: inv_orden_compra_iva, 
-					inv_orden_compra_total:inv_orden_compra_total
-			},
-        	success: function(msg){
-				
-				
-					/*$("#myModal").modal('hide'); */
-					
-			}
+		if(items_ordered.rows.length > 0){
 		
-      	});
+			inv_orden_compra_productos = JSON.stringify(items_ordered);
+			inv_orden_compra_suma_precio_lista = productos_s_promocion;
+			inv_orden_compra_factor_descuento = factor_discount;
+			inv_orden_compra_suma_precio_lista_descuento_aplicado = productos_s_promocion_c_descuento;
+			inv_orden_compra_suma_promociones = productos_c_promocion;
+			inv_orden_compra_subtotal = total_pedido;
+			inv_orden_compra_iva = iva;
+			inv_orden_compra_total = total_final;
+			
+			
+			msjModal = "<span class=\"glyphicon glyphicon-hourglass\" style=\"color:orange\"></span> Procesando... "; 
+			$("#dv_body_modal").html(msjModal);
+			
+			$.ajax({
+					type: "POST",
+					url: "ajax/create_order.php",
+					data: {
+							inv_orden_compra_productos: inv_orden_compra_productos, 
+							inv_orden_compra_suma_precio_lista: inv_orden_compra_suma_precio_lista, 
+							inv_orden_compra_factor_descuento: inv_orden_compra_factor_descuento,
+							inv_orden_compra_suma_precio_lista_descuento_aplicado: inv_orden_compra_suma_precio_lista_descuento_aplicado,
+							inv_orden_compra_suma_promociones: inv_orden_compra_suma_promociones, 
+							inv_orden_compra_subtotal: inv_orden_compra_subtotal, 
+							inv_orden_compra_iva: inv_orden_compra_iva, 
+							inv_orden_compra_total:inv_orden_compra_total
+					},
+					success: function(msg){
+							/*$("#myModal").modal('hide'); */
+							msjModal = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span> Solicitud de compra ha sido procesada exitosamente. "; 
+							$("#dv_body_modal").html(msjModal);
+					}
+				
+				});
+		} else { 
+			msjModal = "<span class=\"glyphicon glyphicon-remove\" style=\"color:red\"></span> <span style=\"color:red\">Solicitud NO procesada,</span> debe existir al menos 1 producto "; 
+			$("#dv_body_modal").html(msjModal);
+		}
 	}
 
 	function changeStyleSpanDetailOrder(){
