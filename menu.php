@@ -11,7 +11,6 @@
 
 <?php
     if(!stristr($_SERVER['PHP_SELF'],'excel')) {
-        echo "no hay excel";
 ?>
         <script src="<?php echo $raizProy?>distribuidores/js/jquery.min.js"></script>
         <script src="<?php echo $raizProy ?>distribuidores/js/bootstrap.min.js"></script>
