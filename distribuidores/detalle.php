@@ -180,7 +180,7 @@ else{
                 </div>
                 <div class="modal-body form-signin">
                     <form name="form-envio" id="form-envio" action="controllers/controllerDistribuidores.php" method="post">
-                        <input type="hidden" id="accion" name="accion" value="" />
+                        <input type="hidden" id="accion-envio" name="accion" value="" />
                         <input type="hidden" name="idDistribuidor" value="<?php echo $idDistribuidor?>" />
                         <input type="hidden" id="idDireccion" name="idDireccion" value="" />
 
@@ -207,7 +207,7 @@ else{
                 </div>
                 <div class="modal-body form-signin">
                     <form name="envio-facturacion" id="envio-facturacion" action="controllers/controllerDistribuidores.php" method="post">
-                        <input type="hidden" id="accion" name="accion" value="" />
+                        <input type="hidden" id="accion-facturacion" name="accion" value="" />
                         <input type="hidden" name="idDistribuidor" value="<?php echo $idDistribuidor?>" />
                         <input type="hidden" id="idDistribuidorFactura" name="idDistribuidorFactura" value="" />
                         <input type="hidden" id="idDireccionFactura" name="idDireccionFactura" value="" />
@@ -235,7 +235,7 @@ else{
                 </div>
                 <div class="modal-body form-signin">
                     <form name="form-contacto" id="form-contacto" action="controllers/controllerDistribuidores.php" method="post">
-                        <input type="hidden" id="accion" name="accion" value="editarDistribuidor" />
+                        <input type="hidden" id="accion-distribuidor" name="accion" value="editarDistribuidor" />
                         <input type="hidden" name="idDistribuidor" value="<?php echo $idDistribuidor?>" />
 
                         <?php include_once 'templates/informacion-distribuidor.php';?>

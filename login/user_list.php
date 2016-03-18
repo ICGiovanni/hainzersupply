@@ -54,7 +54,7 @@ while(list(,$data_user)=each($data_users)){
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>		
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
 		
 		<link rel="stylesheet" type="text/css" href="css/user_list.css">
 		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
@@ -164,7 +164,7 @@ while(list(,$data_user)=each($data_users)){
         <h4 class="modal-title" id="myModalLabel">Delete User</h4>
       </div>
       <div class="modal-body" >
-			Are you sure to delete account: <span style="color:#blue;" id="email_delete"></span>
+			Are you sure to delete account: <span style="color:#0e90d2;" id="email_delete"></span>
 			<input id="login_id_delete" name="login_id_delete" type="hidden" type="text" value="" >			
       </div>
       <div class="modal-footer">

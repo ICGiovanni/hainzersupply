@@ -52,7 +52,7 @@ $(function() {
         $("#estadoFacturacion").val($("#factura_"+idFactura+" .estado").html());
         $("#paisFacturacion").val($("#factura_"+idFactura+" .pais").html());
 
-        $("#accion").val('actualizarFacturacion');
+        $("#accion-facturacion").val('actualizarFacturacion');
         $("#idDistribuidorFactura").val(idFactura);
         $("#idDireccionFactura").val(idDireccion);
         $("#AccionFacturacion").html("Actualizar");
@@ -71,7 +71,7 @@ $(function() {
         $("#estadoFacturacion").val('');
         $("#paisFacturacion").val('');
 
-        $("#accion").val('agregarFacturacion');
+        $("#accion-facturacion").val('agregarFacturacion');
         $("#idDistribuidorFactura").val('');
         $("#idDireccionFactura").val('');
         $("#AccionFacturacion").html("Guardar");
@@ -89,7 +89,7 @@ $(function() {
         $("#estadoEnvio").val('');
         $("#paisEnvio").val('');
 
-        $("#accion").val('agregarDirEnvio');
+        $("#accion-envio").val('agregarDirEnvio');
         $("#idDireccion").val('');
         $("#AccionEnvio").html("Guardar");
     });
@@ -106,7 +106,7 @@ $(function() {
         $("#estadoEnvio").val($("#envio_"+idDireccion+" .estado").html());
         $("#paisEnvio").val($("#envio_"+idDireccion+" .pais").html());
 
-        $("#accion").val('editarDirEnvio');
+        $("#accion-envio").val('editarDirEnvio');
         $("#idDireccion").val(idDireccion);
         $("#AccionEnvio").html("Actualizar");
 

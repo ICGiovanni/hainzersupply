@@ -1,5 +1,12 @@
 <?php
-include '../config.php';
+$exist = is_file('../config.php');
+if($exist){
+    include '../config.php';
+}
+else{
+    include '../../config.php';
+}
+
 
 include_once ($pathProy."/models/connection/class.Connection.php");
 

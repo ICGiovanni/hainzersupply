@@ -1,12 +1,27 @@
 <?php
-    include 'config.php';
-?>
-<script src="<?php echo $raizProy?>distribuidores/js/jquery.min.js"></script>
-<script src="<?php echo $raizProy?>/distribuidores/js/bootstrap.min.js"></script>
+    $exist = is_file('config.php');
+    if($exist){
+        include 'config.php';
+    }
+    else{
+        include '../config.php';
+    }
 
-<link rel="stylesheet" href="<?php echo $raizProy?>/distribuidores/css/bootstrap.min.css">
-<link rel="stylesheet" href="<?php echo $raizProy?>/distribuidores/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="<?php echo $raizProy?>/distribuidores/css/styles-distribuidores.css">
+?>
+
+<?php
+    if(!stristr($_SERVER['PHP_SELF'],'excel')) {
+        echo "no hay excel";
+?>
+        <script src="<?php echo $raizProy?>distribuidores/js/jquery.min.js"></script>
+        <script src="<?php echo $raizProy ?>distribuidores/js/bootstrap.min.js"></script>
+<?php
+    }
+?>
+
+<link rel="stylesheet" href="<?php echo $raizProy?>distribuidores/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo $raizProy?>distribuidores/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="<?php echo $raizProy?>distribuidores/css/styles-distribuidores.css">
 
 <div class="container" style="margin-bottom:50px; padding-left: 20%">
     <ul class="nav navbar-nav navbar-default navbar-static-top-">
