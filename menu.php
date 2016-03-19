@@ -10,7 +10,7 @@
 ?>
 
 <?php
-    if(!stristr($_SERVER['PHP_SELF'],'excel')) {
+    if(!stristr($_SERVER['PHP_SELF'],'excel') && !stristr($_SERVER['PHP_SELF'],'orders')) {
 ?>
         <script src="<?php echo $raizProy?>distribuidores/js/jquery.min.js"></script>
         <script src="<?php echo $raizProy ?>distribuidores/js/bootstrap.min.js"></script>
@@ -59,8 +59,8 @@
                 Pedidos <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="<?php echo $ruta?>orders">nuevo</a></li>
-                <li><a href="#">...</a></li>
+                <li><a href="<?php echo $ruta?>orders/index.php">nuevo</a></li>
+                <li><a href="<?php echo $ruta?>orders/order_list.php">Lista</a></li>
             </ul>
         </li>
     </ul>
