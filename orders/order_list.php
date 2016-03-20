@@ -7,16 +7,34 @@ $ordersDistribuidor = $order->getOrders($idDistribuidor);
 //print_r($ordersDistribuidor);
 $tr_orders = '';
 while(list($indice,$orden)=each($ordersDistribuidor)){
+	
+	$products = json_decode($orden["inv_orden_compra_productos"]);
+	
+	$numProducts = count($products->rows);
+	
+	if($orden["inv_orden_compra_status_id"] == 1){
+		$td_status = '<a data-toggle="modal" style="cursor:pointer;" data-target="#myModal" onclick="checkOrder(this);" data-custom-01="'.trim(str_replace('"',"'",$orden["inv_orden_compra_productos"])).'">
+						<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> '.$orden["inv_orden_compra_status_desc"].'
+				</a>';
+	}
+	elseif($orden["inv_orden_compra_status_id"] == 2){
+		$td_status = '<span class="glyphicon glyphicon-ok-circle" style="color:green" aria-hidden="true"></span> '.$orden["inv_orden_compra_status_desc"];
+	}
+	elseif($orden["inv_orden_compra_status_id"] == 3){
+		$td_status = '<span class="glyphicon glyphicon-ban-circle" style="color:red" aria-hidden="true"></span> '.$orden["inv_orden_compra_status_desc"];
+	}
+		
+	
 	$tr_orders.= '<tr data-title="bootstrap table">
-		<td  class="td-class-1" data-title="bootstrap table">'.$orden["inv_orden_compra_status_desc"].'</td>
-		<td>'.$orden["inv_orden_compra_productos"].'</td>
-		<td>'.$orden["inv_orden_compra_suma_precio_lista"].'</td>
-		<td>'.$orden["inv_orden_compra_factor_descuento"].'</td>
-		<td>'.$orden["inv_orden_compra_suma_promociones"].'</td>
-		<td>'.$orden["inv_orden_compra_subtotal"].'</td>
-		<td>'.$orden["inv_orden_compra_iva"].'</td>
-		<td>'.$orden["inv_orden_compra_total"].'</td>
-		<td>'.$orden["inv_orden_compra_created_date"].'</td>
+		<td  class="td-class-1" data-title="bootstrap table">'.$td_status.'</td>
+		<td>'.$numProducts.' Productos</td>
+		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_precio_lista"],2).'</p></td>
+		<td><p class="text-center">'.$orden["inv_orden_compra_factor_descuento"].'</p></td>
+		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_promociones"],2).'</p></td>
+		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_subtotal"],2).'</p></td>
+		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_iva"],2).'</p></td>
+		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_total"],2).'</p></td>
+		<td><p class="text-center">'.$orden["inv_orden_compra_created_date"].'</p></td>
 	</tr>
 	';	
 }
@@ -36,10 +54,14 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
  
 	<style type="text/css" class="init">
 		body{ padding:0px 10px;}
+		.table td, .table th {
+   text-align: center;   
+}
 	</style>
 
 </head>
 <body>
+<?php include '../menu.php'?>
 <div class="container">
 <h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply - Lista de Solicitudes de Compra </h3> 
    
@@ -49,19 +71,69 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
         <tr>
             <th>Status</th>
             <th>Productos</th>
-            <th>Suma Precios de Lista</th>
-            <th>Factor de<br> Descuento</th>
-			<th>Suma de <br>Remates</th>
-			<th>Subtotal</th>
-			<th>IVA</th>
-			<th>Total Final</th>
-			<th>Fecha de Solicitud</th>
+            <th><p class="text-center">Suma Precios<br> de Lista</p></th>
+            <th><p class="text-center">Factor de<br> Descuento</p></th>
+			<th><p class="text-center">Suma de <br>Remates</p></th>
+			<th><p class="text-center">Subtotal</p></th>
+			<th><p class="text-center">IVA</p></th>
+			<th><p class="text-center">Total Final</p></th>
+			<th><p class="text-center">Fecha de Solicitud</p></th>
         </tr>
         </thead>
         <tbody>
 			<?=$tr_orders?>        
         </tbody>
     </table>
+	
 </div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detalle de productos</h4>
+      </div>
+      <div class="modal-body" id="dv_body_modal">
+				
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar sin cambios</button>
+		<button id="button_create_user" type="button" class="btn btn-danger" onclick="changeOrderStatus();">Guardar nuevo status</button>
+		<span id="span_delete_user"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function checkOrder(elem){
+	jsonProducts = $(elem).attr("data-custom-01");
+	jsonProducts = jsonProducts.replace(/'/g,'"');	
+	
+	var jsonObj = $.parseJSON( jsonProducts );
+	var inDiv = '<table class="table"> <tr> <th>Sku</th> <th>Cantidad</th> <th>Precio</th> </tr>';
+	for (var i = 0; i < jsonObj.rows.length; i++) {
+		var object = jsonObj.rows[i];		
+		// If property names are known beforehand, you can also just do e.g.
+		// alert(object.sku + ',' + object.quantity + ',' + object.price);
+		 
+		 inDiv+='<tr> <td>' + object.sku + '</td><td>' + object.quantity + '</td><td>' + object.price + '</td></tr>'; 
+	}
+	inDiv+='</table><div style="width:300px;"><b>Cambiar status de la solicitud de compra:</b><br> <?=$order->selectOrderStatus()?></div>';
+	
+	$("#dv_body_modal").html(inDiv);
+}
+
+function changeOrderStatus(){
+	newStatus = $("#orderStatus").val();
+	if(newStatus == 1){
+		alert("El status de la orden no ha sido cambiada, seleccione un nuevo status.");
+	}
+	//newStatusName=$("#orderStatus option:selected" ).text();
+}
+
+</script>
 </body>
 </html>

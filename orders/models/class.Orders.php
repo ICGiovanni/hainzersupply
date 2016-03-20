@@ -13,9 +13,116 @@ class Order {
 	
 	public function getProducts(){
 		
-		$sql="SELECT (SELECT meta_value FROM wp_postmeta wpm WHERE meta_key='_sku' AND post_id=wp.ID) AS Sku, wp.post_title AS Name, 'ROJO' AS Color, 'M' AS Size, IF((SELECT ROUND(meta_value) FROM wp_postmeta wpm WHERE meta_key='_stock' AND post_id=wp.ID)!=0,((SELECT ROUND(meta_value) FROM wp_postmeta wpm WHERE meta_key='_stock' AND post_id=wp.ID)),15) AS Stock, (SELECT ROUND(meta_value) FROM wp_postmeta wpm WHERE meta_key='_price' AND post_id=wp.ID) AS Price, 'Descuento,Custom' AS Category FROM wp_posts wp
+		$sql="SELECT wp.ID,(SELECT meta_value
+FROM wp_postmeta wpm
+WHERE meta_key='_sku' AND post_id=wp.ID
+LIMIT 0,1) AS Sku,wp.post_title AS Name,
+IF((SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='attribute_pa_colores'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)!='',
+(SELECT name
+FROM wp_terms
+WHERE slug=(SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='attribute_pa_colores'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)
+LIMIT 0,1),'') AS Color,
+IF((SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='attribute_pa_tallas'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)!='',
+(SELECT name
+FROM wp_terms
+WHERE slug=(SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='attribute_pa_tallas'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)
+LIMIT 0,1),'') AS Size,
+IF((SELECT ROUND(meta_value)
+FROM wp_postmeta wpm
+WHERE meta_key='_stock' AND post_id=wp.ID
+LIMIT 0,1)!=0,
+((SELECT ROUND(meta_value)
+FROM wp_postmeta wpm
+WHERE meta_key='_stock' AND post_id=wp.ID
+LIMIT 0,1)),15) AS Stock,
+(SELECT ROUND(meta_value)
+FROM wp_postmeta wpm
+WHERE meta_key='_price' AND post_id=wp.ID
+LIMIT 0,1) AS Price,
+IF(post_parent=0,
+(SELECT GROUP_CONCAT(name SEPARATOR ',')
+FROM wp_term_relationships wtr
+INNER JOIN wp_term_taxonomy wtt ON wtt.term_id=wtr.term_taxonomy_id
+INNER JOIN wp_terms wt ON wt.term_id=wtt.term_id
+WHERE object_id=wp.ID
+AND wtt.taxonomy='product_cat'),
+(SELECT GROUP_CONCAT(name SEPARATOR ',')
+FROM wp_term_relationships wtr
+INNER JOIN wp_term_taxonomy wtt ON wtt.term_id=wtr.term_taxonomy_id
+INNER JOIN wp_terms wt ON wt.term_id=wtt.term_id
+WHERE object_id=wp.post_parent
+AND wtt.taxonomy='product_cat')) AS Category,
+IF((SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='_trademark'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)!='',(SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='_trademark'
+AND wpm.post_id=wp.ID
+LIMIT 0,1),'') AS Trademark,
+IF((SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='type_product'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)!='',(SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='type_product'
+AND wpm.post_id=wp.ID
+LIMIT 0,1),'') AS Type,
+IF((SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='line_product'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)!='',(SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='line_product'
+AND wpm.post_id=wp.ID
+LIMIT 0,1),'') AS Line,
+IF((SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='gender_product'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)!='',(SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='gender_product'
+AND wpm.post_id=wp.ID
+LIMIT 0,1),'') AS Gender,
+IF((SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='gender_product'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)!='',(SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='gender_product'
+AND wpm.post_id=wp.ID
+LIMIT 0,1),'') AS Gender
+FROM wp_posts wp
 WHERE post_type IN('product_variation','product')
-AND (SELECT ROUND(meta_value) FROM wp_postmeta wpm WHERE meta_key='_price' AND post_id=wp.ID)!=0";
+AND (SELECT ROUND(meta_value)
+FROM wp_postmeta wpm
+WHERE meta_key='_price' AND post_id=wp.ID
+LIMIT 0,1)!=0
+AND (SELECT meta_value
+FROM wp_postmeta wpm
+WHERE meta_key='_sku' AND post_id=wp.ID
+LIMIT 0,1)!='';";
 
 		$statement=$this->connect->prepare($sql);
 		$statement->execute();
@@ -92,6 +199,40 @@ AND (SELECT ROUND(meta_value) FROM wp_postmeta wpm WHERE meta_key='_price' AND p
 		
 		return $result;
 		
+	}
+	
+	public function selectOrderStatus($idSelect='orderStatus', $idSelected='1'){
+		
+		$select = '<select id="'.$idSelect.'" name="'.$idSelect.'" class="form-control"><option >--Select Profile--</option>';
+		
+		$options = '';		
+		$opt_value = $this->getOrdersStatus();
+		
+		while(list($id, $name) = each($opt_value) ){
+			$selected = '';
+			if($id == $idSelected) $selected=' selected';
+			$options.='<option value="'.$id.'"'.$selected.'>'.$name.'</option>';
+		}
+		
+		$select.=$options.'</select>';
+		return $select;
+	}
+	
+	public function getOrdersStatus(){
+		
+		$sql = "SELECT inv_orden_compra_status_id, inv_orden_compra_status_desc FROM inv_orden_compra_status;";
+
+		$statement = $this->connect->prepare($sql);
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		$assoc_result = array();
+		while(list(,$data)=each($result)){
+			$assoc_result[$data['inv_orden_compra_status_id']]=$data['inv_orden_compra_status_desc'];
+		}
+		
+		return(!empty($assoc_result))?$assoc_result:false;
 	}
 }
 ?>
