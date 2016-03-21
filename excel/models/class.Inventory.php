@@ -398,7 +398,7 @@ class Inventory
 		$postDate=date('Y-m-d H:i:s');
 		$postDateGMT=$postDate;
 		$postContent='';
-		$postTitle=$product;
+		$postTitle=$descriptionShort;
 		$postExcert='';
 		$postStatus='publish';
 		$commentStatus='closed';
@@ -486,6 +486,7 @@ class Inventory
 		$manageStock='yes';
 		$this->InsertPostMeta($ID,'_manage_stock',$manageStock);
 		
+		$price=$price+($price*0.16);
 		//_price
 		$this->InsertPostMeta($ID,'_price',$price);
 				
@@ -705,8 +706,8 @@ class Inventory
 		$postDate=date('Y-m-d H:i:s');
 		$postDateGMT=$postDate;
 		$postContent=$description;
-		$postTitle=$product;
-		$postExcert=$descriptionShort;
+		$postTitle=$descriptionShort;
+		$postExcert=$product;
 		$postStatus='publish';
 		$commentStatus='open';
 		$pingStatus='closed';
@@ -778,6 +779,8 @@ class Inventory
 			}
 			
 		}
+
+		$price=$price+($price*0.16);
 		
 		//_backorders
 		$backorders='no';
@@ -944,6 +947,46 @@ class Inventory
 		$statement->bindParam(':metaKey',$metaKey,PDO::PARAM_STR);
 		$statement->bindParam(':metaValue',$metaValue,PDO::PARAM_STR);
 		$statement->execute();
+	}
+	
+	public function UpdateStockbySku($sku,$rest)
+	{
+		$ID=$this->getSku($sku);
+		
+		$sql="UPDATE wp_postmeta SET meta_value=meta_value-:rest
+				WHERE meta_key='_stock'
+				AND post_id=:ID";
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
+		$statement->bindParam(':rest',$rest,PDO::PARAM_STR);
+		$statement->execute();
+	}
+	
+	public function GetStockbySku($sku)
+	{
+		$sql="SELECT meta_value
+				FROM wp_postmeta
+				WHERE meta_key='_stock'
+				AND post_id=(SELECT post_id
+				FROM wp_postmeta
+				WHERE meta_key='_sku' AND meta_value=:sku)";
+		
+		$statement=$this->connect->prepare($sql);
+		
+		$statement->bindParam(':sku',$sku,PDO::PARAM_STR);
+		
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		
+		if(isset($result[0]['meta_value']))
+		{
+			return $result[0]['meta_value'];
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public function UpdateProduct($ID,$stock,$locate,$price)

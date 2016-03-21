@@ -9,7 +9,7 @@ $ext=explode('.',$_FILES['fileUpload']['name']);
 $ext=$ext[count($ext)-1];
 $upload=new Upload();
 $inventory=new Inventory();
-
+$result="";
 
 if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
 {
@@ -36,21 +36,20 @@ else
 
 	$highestColumnIndex=PHPExcel_Cell::columnIndexFromString($highestColumn);
 	
-	if($highestColumn=='S')
+	if($highestColumn=='R')
 	{	
 		$result='<table class="table">';
 		$result.='<thead>';
 		$result.='<tr>';
+		$result.='<th>'.'SKU PADRE'.'</th>';
 		$result.='<th>'.'SKU'.'</th>';
 		$result.='<th>'.'PRODUCTO'.'</th>';
-		$result.='<th>'.'DESCRIPCION'.'</th>';
 		$result.='<th>'.'DESCRIPCION CORTA'.'</th>';
 		$result.='<th>'.'CATEGORIAS'.'</th>';
 		$result.='<th>'.'MARCA'.'</th>';
 		$result.='<th>'.'GENERO'.'</th>';
 		$result.='<th>'.'COLOR'.'</th>';
 		$result.='<th>'.'TALLA'.'</th>';
-		$result.='<th>'.'SKU PADRE'.'</th>';
 		$result.='<th>'.'STOCK'.'</th>';
 		$result.='<th>'.'PRECIO'.'</th>';
 		$result.='<th>'.'STATUS'.'</th>';
@@ -64,33 +63,29 @@ else
 		
 		for($row=2;$row<=$highestRow;++$row)
 		{
-			$sku=trim($objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue());
-			$product=trim($objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue());
-			$description=trim($objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue());
-			$descriptionShort=trim($objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue());
-			$trademark=trim($objWorksheet->getCellByColumnAndRow(4,$row)->getCalculatedValue());
-			$categories=trim($objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue());
-			$type=trim($objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue());
-			$line=trim($objWorksheet->getCellByColumnAndRow(7,$row)->getCalculatedValue());
-			$gender=trim($objWorksheet->getCellByColumnAndRow(8,$row)->getCalculatedValue());
-			$color=trim($objWorksheet->getCellByColumnAndRow(9,$row)->getCalculatedValue());
-			$size=trim($objWorksheet->getCellByColumnAndRow(10,$row)->getCalculatedValue());
-			$skuSenior=trim($objWorksheet->getCellByColumnAndRow(11,$row)->getCalculatedValue());
+			$skuSenior=trim($objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue());
+			$sku=trim($objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue());
+			$product=trim($objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue());
+			$description=trim($objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue());
+			$descriptionShort=trim($objWorksheet->getCellByColumnAndRow(4,$row)->getCalculatedValue());
+			$trademark=trim($objWorksheet->getCellByColumnAndRow(5,$row)->getCalculatedValue());
+			$categories=trim($objWorksheet->getCellByColumnAndRow(6,$row)->getCalculatedValue());
+			$type=trim($objWorksheet->getCellByColumnAndRow(7,$row)->getCalculatedValue());
+			$line=trim($objWorksheet->getCellByColumnAndRow(8,$row)->getCalculatedValue());
+			$gender=trim($objWorksheet->getCellByColumnAndRow(9,$row)->getCalculatedValue());
+			$color=trim($objWorksheet->getCellByColumnAndRow(10,$row)->getCalculatedValue());
+			$size=trim($objWorksheet->getCellByColumnAndRow(11,$row)->getCalculatedValue());
 			$stock=$objWorksheet->getCellByColumnAndRow(12,$row)->getCalculatedValue();
-			$locate=trim($objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue());
-			$priceA=round($objWorksheet->getCellByColumnAndRow(15,$row)->getOldCalculatedValue(),2);
-			$priceB=round($objWorksheet->getCellByColumnAndRow(16,$row)->getOldCalculatedValue(),2);
-			$priceC=round($objWorksheet->getCellByColumnAndRow(17,$row)->getOldCalculatedValue(),2);
-			$price=round($objWorksheet->getCellByColumnAndRow(18,$row)->getOldCalculatedValue(),2);
+			$priceWIVA=$objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue();
 			
 			if($sku!="")
 			{	
 				$ID="";
 				$ID=$inventory->getSku($sku);
 				
-				if(!$price)
+				if(!$priceWIVA)
 				{
-					$price=0;
+					$priceWIVA=0;
 				}
 				
 				if($skuSenior)
@@ -108,25 +103,24 @@ else
 				
 				
 				$result.='<tr>';
+				$result.='<th>'.$skuSenior.'</th>';
 				$result.='<th>'.$sku.'</th>';
 				$result.='<th>'.$product.'</th>';
-				$result.='<th>'.$description.'</th>';
 				$result.='<th>'.$descriptionShort.'</th>';
 				$result.='<th>'.$categories.'</th>';
 				$result.='<th>'.$trademark.'</th>';
 				$result.='<th>'.$gender.'</th>';
 				$result.='<th>'.$color.'</th>';
 				$result.='<th>'.$size.'</th>';
-				$result.='<th>'.$skuSenior.'</th>';
 				$result.='<th>'.$stock.'</th>';
-				$result.='<th>$'.$price.'</th>';
+				$result.='<th>$'.($priceWIVA+($priceWIVA*0.16)).'</th>';
 				
 				
 				if(!$ID)
 				{
 					if(!$skuSenior)
 					{
-						$inventory->InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price,$trademark,$type,$line,$gender);
+						$inventory->InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$priceWIVA,$trademark,$type,$line,$gender);
 						$result.='<th>'.'Nuevo Producto'.'</th>';
 					}
 					else
@@ -136,7 +130,7 @@ else
 						if($IDParent)
 						{
 							
-							$inventory->InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color,$size,$trademark,$type,$line,$gender);
+							$inventory->InsertProductVariable($sku,$IDParent,$product,$stock,$priceWIVA,$color,$size,$trademark,$type,$line,$gender);
 							$result.='<th>'.'Producto Hijo'.'</th>';
 						}
 						else
@@ -147,7 +141,7 @@ else
 				}
 				else
 				{
-					$inventory->UpdateStock($ID,$stock);
+					//$inventory->UpdateStock($ID,$stock);
 					$result.='<th>'.'Existe'.'</th>';
 				}
 				
