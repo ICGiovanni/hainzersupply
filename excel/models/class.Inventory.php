@@ -989,12 +989,13 @@ class Inventory
 		}
 	}
 	
-	public function UpdateProduct($ID,$stock,$locate,$price)
+	public function UpdateProduct($ID,$stock,$price)
 	{
 		//Stock
 		$this->UpdatePostMeta($ID,'_stock',$stock);
 		
 		//Price
+		$price=$price+($price*0.16);
 		$this->UpdatePostMeta($ID,'_price',$price);
 	}
 	
