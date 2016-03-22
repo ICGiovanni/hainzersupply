@@ -77,6 +77,7 @@ else
 			$size=trim($objWorksheet->getCellByColumnAndRow(11,$row)->getCalculatedValue());
 			$stock=$objWorksheet->getCellByColumnAndRow(12,$row)->getCalculatedValue();
 			$priceWIVA=round($objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue(),2);
+			$priceWIVA=round($priceWIVA+($priceWIVA*0.16),2);
 			
 			if($sku!="")
 			{	
@@ -113,7 +114,7 @@ else
 				$result.='<th>'.$color.'</th>';
 				$result.='<th>'.$size.'</th>';
 				$result.='<th>'.$stock.'</th>';
-				$result.='<th>$'.($priceWIVA+($priceWIVA*0.16)).'</th>';
+				$result.='<th>$'.$priceWIVA.'</th>';
 				
 				
 				if(!$ID)
@@ -130,7 +131,7 @@ else
 						if($IDParent)
 						{
 							
-							$inventory->InsertProductVariable($sku,$IDParent,$product,$stock,$priceWIVA,$color,$size,$trademark,$type,$line,$gender);
+							$inventory->InsertProductVariable($sku,$IDParent,$descriptionShort,$stock,$priceWIVA,$color,$size,$trademark,$type,$line,$gender);
 							$result.='<th>'.'Producto Hijo'.'</th>';
 						}
 						else

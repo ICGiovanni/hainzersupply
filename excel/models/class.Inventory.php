@@ -1,5 +1,6 @@
 <?php
 require_once('class.Connection.php');
+//require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
 require_once('class.General.php');
 
 class Inventory
@@ -398,7 +399,7 @@ class Inventory
 		$postDate=date('Y-m-d H:i:s');
 		$postDateGMT=$postDate;
 		$postContent='';
-		$postTitle=$descriptionShort;
+		$postTitle=$product;
 		$postExcert='';
 		$postStatus='publish';
 		$commentStatus='closed';
@@ -486,7 +487,6 @@ class Inventory
 		$manageStock='yes';
 		$this->InsertPostMeta($ID,'_manage_stock',$manageStock);
 		
-		$price=$price+($price*0.16);
 		//_price
 		$this->InsertPostMeta($ID,'_price',$price);
 				
@@ -779,9 +779,7 @@ class Inventory
 			}
 			
 		}
-
-		$price=$price+($price*0.16);
-		
+				
 		//_backorders
 		$backorders='no';
 		$this->InsertPostMeta($ID,'_backorders',$backorders);
@@ -1036,7 +1034,7 @@ class Inventory
 		
 		if($color)
 		{
-			$prefix.=$sku.'_'.$color;
+			$prefix.=$sku.'_'.$general->CleanName($color);
 		}
 		else
 		{
