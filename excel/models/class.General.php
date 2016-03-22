@@ -28,8 +28,8 @@ class General
 		$nom_archivo = str_replace($arr_busca, $arr_susti, $nombre);
 		
 		return preg_replace('/[^A-Za-z0-9\_\.\-]/', '',$nom_archivo);*/
-		$arr_busca = array('/');
-		$arr_susti = array('&');
+		$arr_busca = array('/',' ');
+		$arr_susti = array('&','-');
 		
 		$nom_archivo=str_replace($arr_busca, $arr_susti, $nombre);
 		

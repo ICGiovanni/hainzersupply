@@ -38,7 +38,8 @@ else
 	
 	if($highestColumn=='R')
 	{	
-		$result='<table class="table">';
+		$result1='<table class="table">';
+		$result2='<table class="table" border=1>';
 		$result.='<thead>';
 		$result.='<tr>';
 		$result.='<th>'.'SKU PADRE'.'</th>';
@@ -158,8 +159,8 @@ else
 		
 		$result.='</table>';
 		
-		$html='<html><head><link rel="stylesheet" href="css/bootstrap.css"><head><body>';
-		$html.=$result;
+		$html='<html><head><head><body>';
+		$html.=$result2.$result;
 		$html.='</body></html>';
 		
 		$file=fopen("result.html", "w");
@@ -208,7 +209,7 @@ else
 		}
 	}
 	
-	$output=['result'=>$result];
+	$output=['result'=>$result1.$result];
 
 	unlink($dirBase.'/'.$nameFile);
 
