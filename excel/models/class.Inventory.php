@@ -1,6 +1,6 @@
 <?php
-require_once('class.Connection.php');
-//require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
+//require_once('class.Connection.php');
+require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
 require_once('class.General.php');
 
 class Inventory
