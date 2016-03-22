@@ -1,0 +1,15 @@
+jsonProducts = $(elem).attr("data-custom-01");
+	jsonProducts = jsonProducts.replace(/'/g,'"');	
+	
+	var jsonObj = $.parseJSON( jsonProducts );
+	var inDiv = '<table class="table"> <tr> <th>Sku</th> <th>Cantidad</th> <th>Precio</th> </tr>';
+	for (var i = 0; i < jsonObj.rows.length; i++) {
+		var object = jsonObj.rows[i];		
+		// If property names are known beforehand, you can also just do e.g.
+		// alert(object.sku + ',' + object.quantity + ',' + object.price);
+		 
+		 inDiv+='<tr> <td>' + object.sku + '</td><td>' + object.quantity + '</td><td>' + object.price + '</td></tr>'; 
+	}
+	inDiv+='</table><div style="width:300px;"><b>Cambiar status de la solicitud de compra:</b><br> <?=$order->selectOrderStatus()?></div>';
+	
+	$("#dv_body_modal").html(inDiv);

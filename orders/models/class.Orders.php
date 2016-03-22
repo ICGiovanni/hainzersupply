@@ -178,6 +178,7 @@ LIMIT 0,1)!='';";
 	
 	public function getOrders($idDistribuidor){
 		$sql="SELECT 
+			inv_orden_compra_id,
 			inv_orden_compra_status_id,
 			inv_orden_compra_status_desc,
 			inv_orden_compra_productos,
@@ -190,7 +191,7 @@ LIMIT 0,1)!='';";
 			inv_orden_compra_created_date
 		FROM inv_orden_compra 
 		INNER JOIN inv_orden_compra_status USING(inv_orden_compra_status_id)
-		WHERE idDistribuidor = :idDistribuidor";
+		WHERE idDistribuidor = :idDistribuidor ORDER BY inv_orden_compra_id DESC";
 
 		$statement=$this->connect->prepare($sql);
 		$statement->bindParam(':idDistribuidor', $idDistribuidor, PDO::PARAM_STR);
@@ -234,6 +235,40 @@ LIMIT 0,1)!='';";
 		
 		return(!empty($assoc_result))?$assoc_result:false;
 	}
+	
+	public function changeOrderStatus($idOrder, $newStatusId, $jsonProducts){
+
+		$products = json_decode($jsonProducts);
+		$sinStock = '';
+		if($newStatusId == 2){
+			while(list($num, $item) = each($products->rows)){
+				//echo "actualizar ".$item->sku." en stock menos ".$item->quantity."<br>";
+				if(1){
+					
+				} else {
+					$sinStock.="- ".$item->sku."<br>";
+				}
+					
+			}
+		}
+		
+		if(!empty($sinStock)){
+			die("Productos Faltantes:<br>".$sinStock);
+		}
+		
+		/////
+		$sql = "UPDATE inv_orden_compra SET
+			inv_orden_compra_status_id = :inv_orden_compra_status_id
+			WHERE
+				inv_orden_compra_id = :inv_orden_compra_id";
+			
+		$statement = $this->connect->prepare($sql);
+
+		$statement->bindParam(':inv_orden_compra_status_id', $newStatusId, PDO::PARAM_STR);
+		$statement->bindParam(':inv_orden_compra_id', $idOrder, PDO::PARAM_STR); 
+
+        $statement->execute();
+		die("success update");		
+	}
 }
 ?>
-
