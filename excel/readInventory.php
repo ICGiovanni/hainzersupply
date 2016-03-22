@@ -158,7 +158,7 @@ else
 		
 		$result.='</table>';
 		
-		$html='<html><head><head><body>';
+		$html='<html><head><link rel="stylesheet" href="css/bootstrap.css"><head><body>';
 		$html.=$result;
 		$html.='</body></html>';
 		

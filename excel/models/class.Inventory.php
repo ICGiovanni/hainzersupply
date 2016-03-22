@@ -394,6 +394,7 @@ class Inventory
 		
 		$IDVariation=$this->GetNextChildren($IDParent);
 		
+		$color=$general->CleanName($color);
 		
 		$postAuthor=2;
 		$postDate=date('Y-m-d H:i:s');
