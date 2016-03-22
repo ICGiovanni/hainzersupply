@@ -1,13 +1,5 @@
 <?php
-$exist = is_file('../config.php');
-if($exist){
-    include '../config.php';
-}
-else{
-    include '../../config.php';
-}
-
-
+include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 include_once ($pathProy."/models/connection/class.Connection.php");
 
 class Distribuidores{
@@ -107,7 +99,8 @@ class Distribuidores{
 
     public function listaDistribuidores(){
 
-        $sql = "select * from inv_distribuidores";
+        $sql = "select * from inv_distribuidores ind
+                inner join inv_niveles inn on ind.idNivel = inn.idNivel";
 
         $statement=$this->connect->prepare($sql);
 

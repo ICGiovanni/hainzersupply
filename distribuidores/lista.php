@@ -1,5 +1,5 @@
 <?php
-    include '../config.php';
+    include_once($_SERVER['REDIRECT_PATH_CONFIG'].'config.php');
 
     include_once ($pathProy."/models/distribuidores/class.Distribuidores.php");
     $instDistribuidores=new Distribuidores();
@@ -10,7 +10,7 @@
 <html>
 
 <head>
-    <title>Listado Distribuidores </title>
+    <title>Listado Distribuidores <?php echo $raizProy?></title>
     <meta charset="UTF-8">
 
     <script src="<?php echo $raizProy?>distribuidores/js/jquery.min.js"></script>
@@ -19,7 +19,7 @@
 </head>
 
 <body>
-<?php include_once('../menu.php')?>
+<?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'menu.php')?>
 <div class="container">
     <h3 class="form-signin-heading">Listado de distribuidores</h3>
 
@@ -32,6 +32,7 @@
                 <th>Telefono</th>
                 <th>Celular</th>
                 <th>Correo</th>
+                <th>Nivel</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -50,6 +51,7 @@
                         echo "<td>".$distribuidor['telefono']."</td>";
                         echo "<td>".$distribuidor['celular']."</td>";
                         echo "<td>".$distribuidor['correoElectronico']."</td>";
+                        echo "<td>".$distribuidor['descripcion']."</td>";
                         echo "<td><button type='button' class='btn btn-info btn-info-dist' idform='".$distribuidor['idDistribuidor']."'>+ Info</button></td>";
                         echo "<td><button type='button' class='btn btn-danger btn-del-dist' idform='".$distribuidor['idDistribuidor']."'>Desactivar</button></td>";
                     echo "</tr>";

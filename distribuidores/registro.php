@@ -1,6 +1,5 @@
-<?php include '../config.php';
-    //archivo con las rutas especificas del proyecto
-
+<?php
+    include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
     include_once ($pathProy."/models/distribuidores/class.Distribuidores.php");
     $instDistribuidores=new Distribuidores();
 
@@ -16,7 +15,7 @@
 </head>
 
 <body>
-    <?php include_once('../menu.php')?>
+    <?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'menu.php')?>
     <div class="container formRegistro">
         <h3 class="form-signin-heading">Registro de distribuidor</h3>
         <form class="form-signin" method='post' action="controllers/controllerDistribuidores.php">

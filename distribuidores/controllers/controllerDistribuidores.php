@@ -1,10 +1,9 @@
 <?php
-include '../../config.php';
+include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 
 if($_POST){
     extract($_POST);
 
-    print_r($_POST);
     include_once ($pathProy."/models/distribuidores/class.Distribuidores.php");
 
     $instDistribuidores = new Distribuidores();

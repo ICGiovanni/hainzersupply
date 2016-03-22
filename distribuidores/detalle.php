@@ -1,8 +1,9 @@
 <?php session_start();
-include '../config.php';
 
+include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 include_once ($pathProy."/models/distribuidores/class.Distribuidores.php");
 $instDistribuidores=new Distribuidores();
+
 if($_POST){
     extract($_POST);
 }
@@ -45,7 +46,7 @@ else{
 
 </head>
 <body>
-    <?php include_once('../menu.php')?>
+    <?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'menu.php')?>
 
     <div class="container">
         <div class="row">
