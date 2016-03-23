@@ -1,5 +1,5 @@
 <?php
-require_once('/kunden/homepages/32/d613844801/htdocs/hainzersupply/models/connection/class.Connection.php');
+require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
 
 
 class Order {
@@ -176,8 +176,16 @@ LIMIT 0,1)!='';";
 		die("order_id=".$this->connect->lastInsertId());
 	}
 	
-	public function getOrders($idDistribuidor){
+	public function getOrders($idDistribuidor = 0){
+		
+		$sql_by_distributor = '';
+		if($idDistribuidor > 0){
+			$sql_by_distributor = 'idDistribuidor = :idDistribuidor AND';
+		}
+		
 		$sql="SELECT 
+			idDistribuidor,
+			nombre,
 			inv_orden_compra_id,
 			inv_orden_compra_status_id,
 			inv_orden_compra_status_desc,
@@ -191,10 +199,13 @@ LIMIT 0,1)!='';";
 			inv_orden_compra_created_date
 		FROM inv_orden_compra 
 		INNER JOIN inv_orden_compra_status USING(inv_orden_compra_status_id)
-		WHERE idDistribuidor = :idDistribuidor ORDER BY inv_orden_compra_id DESC";
+		INNER JOIN inv_distribuidores USING (idDistribuidor)
+		WHERE ".$sql_by_distributor." (inv_orden_compra_status_id = 1 OR inv_orden_compra_created_date >= DATE_SUB(curdate(), INTERVAL 2 WEEK) )ORDER BY inv_orden_compra_id DESC";
 
 		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':idDistribuidor', $idDistribuidor, PDO::PARAM_STR);
+		if($idDistribuidor > 0){
+			$statement->bindParam(':idDistribuidor', $idDistribuidor, PDO::PARAM_STR);
+		}
 		$statement->execute();
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		
@@ -241,19 +252,28 @@ LIMIT 0,1)!='';";
 		$products = json_decode($jsonProducts);
 		$sinStock = '';
 		if($newStatusId == 2){
+			//die($_SERVER['REDIRECT_PATH_CONFIG'].'excel/models/class.Inventory.php');
+			require_once($_SERVER['REDIRECT_PATH_CONFIG'].'excel/models/class.Inventory.php');
+
+			$inventory=new Inventory();
+			$general=new General();
+
 			while(list($num, $item) = each($products->rows)){
 				//echo "actualizar ".$item->sku." en stock menos ".$item->quantity."<br>";
-				if(1){
-					
+				$now = intval($inventory->GetStockbySku($item->sku));
+				
+				if($now >= $item->quantity){
+					//echo "actualiza ";
+					$inventory->UpdateStockbySku($item->sku,$item->quantity);
 				} else {
-					$sinStock.="- ".$item->sku."<br>";
+					$sinStock.="-sku= ".$item->sku.", items en stock=".$now.", items solicitados=".$item->quantity." <br>";
 				}
 					
 			}
 		}
 		
 		if(!empty($sinStock)){
-			die("Productos Faltantes:<br>".$sinStock);
+			die($sinStock);
 		}
 		
 		/////

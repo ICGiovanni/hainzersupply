@@ -1,5 +1,6 @@
 <?php 
-if(isset($_POST)){
+
+if(!empty($_POST)){
 	
 	$idOrder = $_POST["idOrder"];
 	$newStatusId = $_POST["newStatusId"];

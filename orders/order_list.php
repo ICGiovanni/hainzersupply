@@ -25,12 +25,13 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 	}
 		
 	
-	$tr_orders.= '<tr data-title="bootstrap table">
+	$tr_orders.= '<tr>
 		<td id="td_status_order_'.$orden["inv_orden_compra_id"].'">'.$td_status.'</td>
+		<td>'.$orden["nombre"].'</td>
 		<td>'.$numProducts.' Productos</td>
-		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_precio_lista"],2).'</p></td>
+	<!--	<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_precio_lista"],2).'</p></td> -->
 		<td><p class="text-center">'.$orden["inv_orden_compra_factor_descuento"].'</p></td>
-		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_promociones"],2).'</p></td>
+	<!--	<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_promociones"],2).'</p></td> -->
 		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_subtotal"],2).'</p></td>
 		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_iva"],2).'</p></td>
 		<td><p class="text-right"><b>$ '.number_format($orden["inv_orden_compra_total"],2).'</b></p></td>
@@ -43,6 +44,7 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 <html>
 <head>
     <title>Lista de Solicitudes de Compra - Hainzer Supply</title>
+	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://issues.wenzhixin.net.cn/bootstrap-table/assets/bootstrap-table/src/bootstrap-table.css">
   
@@ -63,28 +65,28 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 <body>
 <?php include '../menu.php'?>
 <div class="container">
-<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply - Lista de Solicitudes de Compra </h3> 
-   
+<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply - Lista de Solicitudes de Compra </h3>    
    
     <table data-toggle="table">
         <thead>
         <tr>
-            <th>Status</th>
+			<th>Status</th>
+			<th>Distribuidor</th>
             <th>Productos</th>
-            <th><p class="text-center">Suma Precios<br> de Lista</p></th>
+           <!-- <th><p class="text-center">Suma Precios<br> de Lista</p></th>-->
             <th><p class="text-center">Factor de<br> Descuento</p></th>
-			<th><p class="text-center">Suma de <br>Remates</p></th>
+			<!-- <th><p class="text-center">Suma de <br>Remates</p></th> -->
 			<th><p class="text-center">Subtotal</p></th>
 			<th><p class="text-center">IVA</p></th>
 			<th><p class="text-center">Total Final</p></th>
-			<th><p class="text-center">Fecha de Solicitud</p></th>
+			<th><p class="text-center">Fecha de <br>Solicitud</p></th>
         </tr>
         </thead>
         <tbody>
 			<?=$tr_orders?>        
         </tbody>
     </table>
-	
+	<h5 class="page_title"> Se listaran siempre solicitudes en status "Por revisar".<br> Se listaran solicitudes "Cancelada" y "Compra Realizada" no mayores a 2 semanas. </h5> 
 </div>
 
 
