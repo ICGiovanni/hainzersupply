@@ -15,13 +15,13 @@ if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
 }
 else
 {
-	if(!file_exists($_SERVER["UPLOAD_FILE"].'uploads/'.$dirBase))
+	if(!file_exists($_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase))
 	{
-		mkdir($_SERVER["UPLOAD_FILE"].'uploads/'.$dirBase,0775,true);
+		mkdir($_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase,0775,true);
 	}
 	
 	$nameFile=$_FILES['fileUpload']['name'];
-	$route=$_SERVER["UPLOAD_FILE"].'uploads/'.$dirBase.'/'.$nameFile;
+	$route=$_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase.'/'.$nameFile;
 	$upload->UploadFile($_FILES['fileUpload']['tmp_name'],$route);
 	
 	$r=$inventory->InsertImage($nameFile,$dirBase.'/'.$nameFile);
