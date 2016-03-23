@@ -4,7 +4,7 @@ date_default_timezone_set("America/Mexico_City");
 class Connection
 {
 	public $db;
-	
+
 	//function __construct($host='127.0.0.1', $dbname='xsmarket_hainzersupply', $user='xsmarket_hainzer',$pass='frIgVCSibswZ9BnZ')
 	function __construct($host='db614233235.db.1and1.com', $dbname='db614233235', $user='dbo614233235',$pass='BDG_2016')
 	{

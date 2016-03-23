@@ -1,5 +1,5 @@
 <?php
-require_once('/kunden/homepages/32/d613844801/htdocs/hainzersupply/models/connection/class.Connection.php');
+require_once($_SERVER['REDIRECT_PATH_CONFIG'].'models/connection/class.Connection.php');
 
 
 class Order {
