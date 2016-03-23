@@ -12,7 +12,7 @@ $login = new user_login();
 </head>
 <body>
 <?php
-	include_once($_SERVER['REDIRECT_PATH_CONFIG'].'menu.php');
+	include ('../menu.php');
 ?>
 <div class="container">
 <div class="card card-container">
