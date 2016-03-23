@@ -20,9 +20,8 @@ while(list(,$product)=each($productos)){
 	$rows.='<tr id="row_prod_'.$product["Sku"].'">
 							<td>'.$product["Sku"].'</td>
 							<td>'.$product["Name"].'</td>
-							<td></td>
-							<td>'.$product["Color"].'</td>
-							
+							<td>'.$product["Trademark"].'</td>
+							<td>'.$product["Color"].'</td>							
 							<td>'.$product["Size"].'</td>
 							<td>'.$product["Stock"].'</td>
 
