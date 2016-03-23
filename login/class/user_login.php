@@ -70,7 +70,6 @@ class user_login{
 
         $statement->execute();
 		die("login_id=".$this->db->lastInsertId());
-		return(!empty($result))?true:false;
     }
 	
 	function users_list(){
