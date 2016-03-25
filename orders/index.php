@@ -21,7 +21,8 @@ while(list(,$product)=each($productos)){
 							<td>'.$product["Sku"].'</td>
 							<td>'.$product["Name"].'</td>
 							<td>'.$product["Trademark"].'</td>
-							<td>'.$product["Color"].'</td>							
+							<td>'.$product["Color"].'</td>
+							
 							<td>'.$product["Size"].'</td>
 							<td>'.$product["Stock"].'</td>
 
@@ -151,16 +152,16 @@ $(document).ready(function() {
 					<thead>
 						<tr>
 							<th>SKU</th>
-							<th>Name</th>
-							<th>Brand</th>
+							<th>Nombre</th>
+							<th>Marca</th>
 							<th>Color</th>
-							<th>Size</th>
-							<th>Stock</th>
+							<th>Talla</th>
+							<th>Existencia</th>
 
-							<th>Price</th>
+							<th>Precio</th>
 
-							<th>Quantity</th>
-							<th>Order</th>
+							<th>Cantidad</th>
+							<th>Acción</th>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -168,10 +169,10 @@ $(document).ready(function() {
 					</tbody>
 				</table>
 		
+				</div>
+			</div>
+		</div>
 </div>
-                </div>
-            </div>
-        </div>
 		
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -184,7 +185,7 @@ $(document).ready(function() {
 			Su solicitud ha sido procesada		
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redirectList();" >Aceptar</button>
 		<span id="span_delete_user"></span>
       </div>
     </div>
@@ -421,15 +422,15 @@ $(document).ready(function() {
 		$(this).unbind("click");
 		$(this).click(addProductOrder);
 	}
-	
+
 	$(".glyphicon-shopping-cart").click(addProductOrder);
-	
+
 	/////////////////////////
-	
+
 	function insertOrder(){
-	
+
 		if(items_ordered.rows.length > 0){
-		
+
 			inv_orden_compra_productos = JSON.stringify(items_ordered);
 			inv_orden_compra_suma_precio_lista = productos_s_promocion;
 			inv_orden_compra_factor_descuento = factor_discount;
@@ -438,8 +439,8 @@ $(document).ready(function() {
 			inv_orden_compra_subtotal = total_pedido;
 			inv_orden_compra_iva = iva;
 			inv_orden_compra_total = total_final;
-			
-			
+
+
 			msjModal = "<span class=\"glyphicon glyphicon-hourglass\" style=\"color:orange\"></span> Procesando... "; 
 			$("#dv_body_modal").html(msjModal);
 			
@@ -461,7 +462,6 @@ $(document).ready(function() {
 							msjModal = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span> Solicitud de compra ha sido procesada exitosamente. "; 
 							$("#dv_body_modal").html(msjModal);
 					}
-				
 				});
 		} else { 
 			msjModal = "<span class=\"glyphicon glyphicon-remove\" style=\"color:red\"></span> <span style=\"color:red\">Solicitud NO procesada,</span> debe existir al menos 1 producto "; 
@@ -477,10 +477,13 @@ $(document).ready(function() {
 			$("#span_btn_detail_order").removeClass().addClass("glyphicon glyphicon-eye-close");
 		}
 	}
-	
+
+	function redirectList(){
+		window.location="order_list.php";
+	}
+
 	<?=$initiate_quantitys?>
 
     </script>
 
 </html>
-

@@ -1,5 +1,5 @@
 <?php
-require_once('/kunden/homepages/32/d613844801/htdocs/hainzersupply/models/connection/class.Connection.php');
+require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
 
 
 class Order {
@@ -103,15 +103,6 @@ LIMIT 0,1)!='',(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='gender_product'
 AND wpm.post_id=wp.ID
-LIMIT 0,1),'') AS Gender,
-IF((SELECT meta_value
-FROM wp_postmeta wpm
-WHERE wpm.meta_key='gender_product'
-AND wpm.post_id=wp.ID
-LIMIT 0,1)!='',(SELECT meta_value
-FROM wp_postmeta wpm
-WHERE wpm.meta_key='gender_product'
-AND wpm.post_id=wp.ID
 LIMIT 0,1),'') AS Gender
 FROM wp_posts wp
 WHERE post_type IN('product_variation','product')
@@ -122,7 +113,11 @@ LIMIT 0,1)!=0
 AND (SELECT meta_value
 FROM wp_postmeta wpm
 WHERE meta_key='_sku' AND post_id=wp.ID
-LIMIT 0,1)!='';";
+LIMIT 0,1)!=''
+AND (SELECT ROUND(meta_value)
+FROM wp_postmeta wpm
+WHERE meta_key='_stock' AND post_id=wp.ID
+LIMIT 0,1)!=0;";
 
 		$statement=$this->connect->prepare($sql);
 		$statement->execute();
@@ -176,8 +171,17 @@ LIMIT 0,1)!='';";
 		die("order_id=".$this->connect->lastInsertId());
 	}
 	
-	public function getOrders($idDistribuidor){
+	public function getOrders($idDistribuidor = 0){
+		
+		$sql_by_distributor = '';
+		if($idDistribuidor > 0){
+			$sql_by_distributor = 'idDistribuidor = :idDistribuidor AND';
+		}
+		
 		$sql="SELECT 
+			idDistribuidor,
+			nombre,
+			inv_orden_compra_id,
 			inv_orden_compra_status_id,
 			inv_orden_compra_status_desc,
 			inv_orden_compra_productos,
@@ -190,16 +194,96 @@ LIMIT 0,1)!='';";
 			inv_orden_compra_created_date
 		FROM inv_orden_compra 
 		INNER JOIN inv_orden_compra_status USING(inv_orden_compra_status_id)
-		WHERE idDistribuidor = :idDistribuidor";
+		INNER JOIN inv_distribuidores USING (idDistribuidor)
+		WHERE ".$sql_by_distributor." (inv_orden_compra_status_id = 1 OR inv_orden_compra_created_date >= DATE_SUB(curdate(), INTERVAL 2 WEEK) )ORDER BY inv_orden_compra_id DESC";
 
 		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':idDistribuidor', $idDistribuidor, PDO::PARAM_STR);
+		if($idDistribuidor > 0){
+			$statement->bindParam(':idDistribuidor', $idDistribuidor, PDO::PARAM_STR);
+		}
 		$statement->execute();
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		
 		return $result;
 		
 	}
+	
+	public function selectOrderStatus($idSelect='orderStatus', $idSelected='1'){
+		
+		$select = '<select id="'.$idSelect.'" name="'.$idSelect.'" class="form-control"><option >--Select Profile--</option>';
+		
+		$options = '';		
+		$opt_value = $this->getOrdersStatus();
+		
+		while(list($id, $name) = each($opt_value) ){
+			$selected = '';
+			if($id == $idSelected) $selected=' selected';
+			$options.='<option value="'.$id.'"'.$selected.'>'.$name.'</option>';
+		}
+		
+		$select.=$options.'</select>';
+		return $select;
+	}
+	
+	public function getOrdersStatus(){
+		
+		$sql = "SELECT inv_orden_compra_status_id, inv_orden_compra_status_desc FROM inv_orden_compra_status;";
+
+		$statement = $this->connect->prepare($sql);
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		$assoc_result = array();
+		while(list(,$data)=each($result)){
+			$assoc_result[$data['inv_orden_compra_status_id']]=$data['inv_orden_compra_status_desc'];
+		}
+		
+		return(!empty($assoc_result))?$assoc_result:false;
+	}
+	
+	public function changeOrderStatus($idOrder, $newStatusId, $jsonProducts){
+
+		$products = json_decode($jsonProducts);
+		$sinStock = '';
+		if($newStatusId == 2){
+			//die($_SERVER['REDIRECT_PATH_CONFIG'].'excel/models/class.Inventory.php');
+			require_once($_SERVER['REDIRECT_PATH_CONFIG'].'excel/models/class.Inventory.php');
+
+			$inventory=new Inventory();
+			$general=new General();
+
+			while(list($num, $item) = each($products->rows)){
+				//echo "actualizar ".$item->sku." en stock menos ".$item->quantity."<br>";
+				$now = intval($inventory->GetStockbySku($item->sku));
+				
+				if($now >= $item->quantity){
+					//echo "actualiza ";
+					$inventory->UpdateStockbySku($item->sku,$item->quantity);
+				} else {
+					$sinStock.="-sku= ".$item->sku.", items en stock=".$now.", items solicitados=".$item->quantity." <br>";
+				}
+					
+			}
+		}
+		
+		if(!empty($sinStock)){
+			die($sinStock);
+		}
+		
+		/////
+		$sql = "UPDATE inv_orden_compra SET
+			inv_orden_compra_status_id = :inv_orden_compra_status_id
+			WHERE
+				inv_orden_compra_id = :inv_orden_compra_id";
+			
+		$statement = $this->connect->prepare($sql);
+
+		$statement->bindParam(':inv_orden_compra_status_id', $newStatusId, PDO::PARAM_STR);
+		$statement->bindParam(':inv_orden_compra_id', $idOrder, PDO::PARAM_STR); 
+
+        $statement->execute();
+		die("success update");		
+	}
 }
 ?>
-
