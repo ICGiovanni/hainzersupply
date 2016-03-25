@@ -17,7 +17,7 @@ if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
 }
 else if($ext!='xls' && $ext!='xlsx')
 {
-	$output=['error'=>'La extensiÃ³n del Archivo no es valida('.$ext.').'];
+	$output=['error'=>'La extensión del Archivo no es valida('.$ext.').'];
 }
 else
 {
@@ -129,7 +129,7 @@ else
 					{
 						$IDParent=$inventory->getSku($skuSenior);
 						
-						if($IDParent)
+						if($IDParent && $color && $size)
 						{
 							
 							$inventory->InsertProductVariable($sku,$IDParent,$descriptionShort,$stock,$priceWIVA,$color,$size,$trademark,$type,$line,$gender);
@@ -137,7 +137,18 @@ else
 						}
 						else
 						{
-							$result.='<th>'.'No existe Producto Padre'.'</th>';
+							if(!$IDParent)
+							{
+								$result.='<th>'.'No existe Producto Padre'.'</th>';
+							}
+							else if(!$color)
+							{
+								$result.='<th>'.'No existe Color'.'</th>';
+							}
+							else if(!$size)
+							{
+								$result.='<th>'.'No existe Talla'.'</th>';
+							}
 						}
 					}
 				}

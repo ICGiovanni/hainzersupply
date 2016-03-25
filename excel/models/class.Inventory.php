@@ -60,13 +60,14 @@ class Inventory
 	}
 	
 	public function GetCategory($category)
-	{
-		$sql='';
-		$statement='';
+	{		
+		$general=new General();
+		
+		$category=trim($category);
 		
 		$sql="SELECT wt.term_id
 				FROM wp_terms wt
-				WHERE name='$category'";
+				WHERE name=:category";
 		
 		$statement=$this->connect->prepare($sql);
 		
@@ -81,6 +82,7 @@ class Inventory
 		}
 		else
 		{
+			//die($category." ".mb_detect_encoding($category));
 			return false;
 		}
 	}
@@ -106,7 +108,7 @@ class Inventory
 		$sql = "INSERT INTO wp_terms VALUES(:categoryId,:category,:categoryUrl,0)";
 		$statement=$this->connect->prepare($sql);
 		$statement->bindParam(':categoryId',$categoryId,PDO::PARAM_STR);
-		$statement->bindParam(':category',$category,PDO::PARAM_STR);
+		$statement->bindParam(':category',mb_convert_case($category, MB_CASE_TITLE, "UTF-8"),PDO::PARAM_STR);
 		$statement->bindParam(':categoryUrl',$general->NameToURL($category),PDO::PARAM_STR);
 		$statement->execute();
 		
@@ -214,13 +216,14 @@ class Inventory
 				INNER JOIN wp_terms wt ON wt.term_id=wwt.woocommerce_term_id
 				INNER JOIN wp_term_taxonomy wtt ON wtt.term_id=wt.term_id
 				INNER JOIN wp_term_relationships wtr ON wtr.term_taxonomy_id=wt.term_id
-				WHERE wt.name='$attribute' AND taxonomy='$taxonomy'
-				AND wtr.object_id='$IDParent'";
+				WHERE wt.name=:attribute AND taxonomy=:taxonomy
+				AND wtr.object_id=:IDParent";
 		
 		$statement=$this->connect->prepare($sql);
 		
 		$statement->bindParam(':attribute',$attribute,PDO::PARAM_STR);
 		$statement->bindParam(':taxonomy',$taxonomy,PDO::PARAM_STR);
+		$statement->bindParam(':IDParent',$IDParent,PDO::PARAM_STR);
 		$statement->execute();
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		
@@ -238,7 +241,7 @@ class Inventory
 	{
 		$sql="SELECT term_id
 				FROM wp_terms
-				WHERE name='$attribute'";
+				WHERE name=:attribute";
 				
 		$statement=$this->connect->prepare($sql);
 		
@@ -276,7 +279,7 @@ class Inventory
 		if(!$termId)
 		{
 			$termId=$this->GetNextID('term_id','wp_terms');
-			$attribute=ucwords(strtolower($attribute));
+			$attribute=mb_convert_case($attribute, MB_CASE_TITLE, "UTF-8");
 			$slug=$general->NameToURL($attribute);
 			
 			$sql="INSERT INTO wp_terms VALUES(:termId,:attribute,:slug,0)";
@@ -384,7 +387,7 @@ class Inventory
 		}
 	}
 	
-	public function InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color,$size,$trademark,$typeProduct,$lineProduct,$genderProduct)
+	public function InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color1,$size,$trademark,$typeProduct,$lineProduct,$genderProduct)
 	{
 		$general=new General();
 				
@@ -394,7 +397,7 @@ class Inventory
 		
 		$IDVariation=$this->GetNextChildren($IDParent);
 		
-		$color=$general->CleanName($color);
+		$color=$general->ReplaceSlash($color1);
 		
 		$postAuthor=2;
 		$postDate=date('Y-m-d H:i:s');
