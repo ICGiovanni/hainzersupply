@@ -4,6 +4,7 @@ require_once('models/class.Inventory.php');
 
 $upload=new Upload();
 $inventory=new Inventory();
+$general=new General();
 
 $dirBase="inventory";
 $output=[];
@@ -20,11 +21,13 @@ else
 		mkdir($_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase,0775,true);
 	}
 	
-	$nameFile=$_FILES['fileUpload']['name'];
+	$nameFileO=$_FILES['fileUpload']['name'];
+	$n=explode('.',$_FILES['fileUpload']['name']);
+	$nameFile=$general->NameToURL($n[0]).".".$n[1];
 	$route=$_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase.'/'.$nameFile;
 	$upload->UploadFile($_FILES['fileUpload']['tmp_name'],$route);
 	
-	$r=$inventory->InsertImage($nameFile,$dirBase.'/'.$nameFile);
+	$r=$inventory->InsertImage($nameFileO,$dirBase.'/'.$nameFile);
 	
 	$result='<div class="alert alert-info">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

@@ -151,6 +151,9 @@ class Inventory
 	
 	public function GetChildrensbyColor($ID,$color)
 	{
+		$general=new General();
+		
+		$color=$general->NameToURL($color);
 		$sql="SELECT ID
 				FROM wp_posts wp
 				INNER JOIN wp_postmeta wpm ON wpm.post_id=wp.ID
