@@ -20,7 +20,7 @@
 <div class="container">
 	<h1>Subir Imagenes</h1>
 	<form enctype="multipart/form-data">
-	<input id="fileUpload" name="fileUpload" type="file" multiple=true class="file-loading">
+	<input id="fileU" name="fileUpload[]" type="file" multiple=true class="file-loading">
 	</form>
 	<div id="result" style="padding-top:10px;">	
 	</div>
@@ -28,13 +28,15 @@
 
 <script>
 
-$("#fileUpload").fileinput({
+$("#fileU").fileinput({
     language: 'es',
 	showCaption: true,
 	browseClass: "btn btn-primary btn-lg",
 	dropZoneEnabled:true,
-	uploadUrl: "upload.php", // server upload action
-    uploadAsync: true,
+	fileType: "jpg,jpge,png,bit",
+	uploadUrl: "upload.php",
+    uploadAsync: false,
+    minFileCount:1,
     maxFileCount: 5
 });
 
@@ -48,19 +50,19 @@ $("#fileUpload").fileinput({
 	allowedFileExtensions:['xls', 'xlsx']
 });*/
 
-$('#fileUpload').on('change', function(event)
+$('#fileU').on('change', function(event)
 {
     $('#result').html('');
 });
 
-$('#fileUpload').on('fileuploaded', function(event, data, previewId, index)
+$('#fileU').on('filebatchuploadsuccess', function(event, data, previewId, index)
 {
     var form = data.form, files = data.files, extra = data.extra,
         response = data.response, reader = data.reader;
     console.log(response);
-	$('#fileUpload').fileinput('clear');
-	$('#fileUpload').fileinput('unlock');
-	$('#result').append(response['result']);
+	$('#fileU').fileinput('clear');
+	$('#fileU').fileinput('unlock');
+	$('#result').append(response['result']);	
 });
 
 </script>
