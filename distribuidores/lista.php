@@ -1,4 +1,5 @@
 <?php
+    include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
     include_once($_SERVER['REDIRECT_PATH_CONFIG'].'config.php');
 
     include_once ($pathProy."/models/distribuidores/class.Distribuidores.php");

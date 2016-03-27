@@ -1,43 +1,21 @@
 <?php
-/*
-CREATE TABLE IF NOT EXISTS `inv_login` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(100) NOT NULL,
-  `lastName` varchar(100) NOT NULL,
-  `profile` tinyint(4) NOT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
---
--- Volcado de datos para la tabla `login`
---
+include_once $_SERVER['REDIRECT_PATH_CONFIG'].'models/connection/class.Connection.php';
 
-INSERT INTO `inv_login` (`id`, `firstName`, `lastName`, `profile`, `email`, `password`) VALUES
-(1, '', '', 0, 'admin@admin.com', 'LbO9DUk9nylTjTS2I3v5uWM7vPwlzl/yDTY4E7MDVbY=');
-password:wicked
-*/
 class user_login{
 
     private $db;
 
-    function __construct($host = 'localhost', $dbname='hainzers_control', $user='hainzers_admin',$pass='kFJUsNO7WQ7V4waM'){
-        $this->dbhost = $host;
-        $this->dbname = $dbname;
-        $this->dbuser = $user;
-        $this->dbpass = $pass;
+    function __construct(){
+
+        $c = new Connection();
+        $this->db = $c->db;
+
     }
 
-    private function connect(){
-        if (!$this->db instanceof PDO){
-            $this->db = new PDO('mysql:dbname='.$this->dbname.';host='.$this->dbhost, $this->dbuser, $this->dbpass);
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-    }
     function auth($email,$password){
-        $this->connect();
-        $sql = "SELECT 1 FROM `inv_login` WHERE email = :email AND password = :password";
+
+        $sql = "SELECT login_id, profile_id, email, firstName FROM `inv_login` WHERE email = :email AND password = :password";
 
         $statement = $this->db->prepare($sql);
 
@@ -48,12 +26,13 @@ class user_login{
 
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        
-		return(!empty($result))?true:false;
+
+
+		return(!empty($result))?$result[0]:false;
     }
 
 	function sign_up($firstName, $lastName, $profile, $email, $password){
-        $this->connect();
+
 		$timeStamp = time();
 		$createDate = date("Y-m-d",$timeStamp);
         $sql = "INSERT INTO `inv_login` (firstName, lastName, profile_id, email, password, created_date, created_timestamp, modify_date, modify_timestamp, status_id) VALUES (:firstName, :lastName, :profile, :email, :password, '".$createDate."', '".$timeStamp."', '".$createDate."', '".$timeStamp."', '2')";
@@ -70,10 +49,12 @@ class user_login{
 
         $statement->execute();
 		die("login_id=".$this->db->lastInsertId());
+        
+		return(!empty($result))?true:false;
     }
 	
 	function users_list(){
-		$this->connect();
+
 		$sql = "SELECT login_id, firstName, lastName, email, status_name, profile_name, inv_login.profile_id, created_date, inv_login.status_id  FROM `inv_login`
 				INNER JOIN inv_status on inv_login.status_id = inv_status.status_id
 				INNER JOIN inv_profile on inv_login.profile_id = inv_profile.profile_id";
@@ -87,7 +68,7 @@ class user_login{
 	}
 	
 	function user_update($loginId, $firstName, $lastName, $profile, $email, $password, $status){
-		$this->connect();
+
 		$timeStamp = time();
 		$modifyDate = date("Y-m-d",$timeStamp);
 		
@@ -128,8 +109,8 @@ class user_login{
 	}
 	
 	function user_delete($loginId){
-		$this->connect();
-		$sql = "DELETE FROM inv_login WHERE login_id = :login_id LIMIT 1;";
+
+		$sql = "DELETE FROM inv_login WHERE login_id = :login_id LIMIT 1";
 		$statement = $this->db->prepare($sql);
 		
 		$statement->bindParam(':login_id', $loginId, PDO::PARAM_STR);
@@ -139,8 +120,8 @@ class user_login{
 	}
 	
 	function getProfiles(){
-		$this->connect();
-		$sql = "SELECT profile_id, profile_name FROM inv_profile;";
+
+		$sql = "SELECT profile_id, profile_name FROM inv_profile";
 
 		$statement = $this->db->prepare($sql);
 
@@ -156,8 +137,8 @@ class user_login{
 	}
 	
 	function getStatus(){
-		$this->connect();
-		$sql = "SELECT status_id, status_name FROM inv_status;";
+
+		$sql = "SELECT status_id, status_name FROM inv_status";
 
 		$statement = $this->db->prepare($sql);
 
@@ -216,5 +197,37 @@ class user_login{
         return mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $value, MCRYPT_MODE_ECB, $iv);
     }
 
+    public function getUserDistribuidor($idUser){
+
+        $sql = "select ud.idDistribuidor, nombre, representante, idNivel from inv_user_distribuidor ud
+                inner join inv_distribuidores di on ud.idDistribuidor = di.idDistribuidor
+                where ud.login_id = ".$idUser;
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+        if(isset($result)){
+            return $result[0];
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public function pagesProfile($idProfile){
+        $sql = "SELECT page FROM inv_profile_pages
+                where profile_id=".$idProfile;
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 }
 ?>

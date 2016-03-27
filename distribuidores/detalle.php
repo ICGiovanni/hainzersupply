@@ -1,23 +1,24 @@
-<?php session_start();
+<?php
+    include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+    include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 
-include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
-include_once ($pathProy."/models/distribuidores/class.Distribuidores.php");
-$instDistribuidores=new Distribuidores();
+    include_once ($pathProy."/models/distribuidores/class.Distribuidores.php");
+    $instDistribuidores=new Distribuidores();
 
-if($_POST){
-    extract($_POST);
-}
-else if(isset($_GET['id'])){
-    $idDistribuidor = base64_decode($_GET['id']);
-}
-else{
-
-    if(isset($_SESSION['idDistribuidor'])){
-        $idDistribuidor = $_SESSION['idDistribuidor'];
-    }else{
-        header("location: registro.php");
+    if($_POST){
+        extract($_POST);
     }
-}
+    else if(isset($_GET['id'])){
+        $idDistribuidor = base64_decode($_GET['id']);
+    }
+    else{
+
+        if(isset($_SESSION['login_user']['idDistribuidor'])){
+            $idDistribuidor = $_SESSION['login_user']['idDistribuidor'];
+        }else{
+            header("location: registro.php");
+        }
+    }
 
 ?>
 

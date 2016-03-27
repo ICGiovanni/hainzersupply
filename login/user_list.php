@@ -1,8 +1,12 @@
 <?php
+include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
+
 require_once('class/user_login.php');
 $login = new user_login();
 $data_users = $login->users_list();
 $tbody='';
+
 while(list(,$data_user)=each($data_users)){
 	$css_status='';
 	
@@ -21,43 +25,42 @@ while(list(,$data_user)=each($data_users)){
 		break;
 	}
 	
-	$tbody.='					<tr id="user_row_'.$data_user['login_id'].'">
-                                    <td>
-                                        <img id="img_profile_'.$data_user['login_id'].'" src="img/profile_'.$data_user['profile_id'].'.jpg" alt="">
-                                        <a id="full_name_'.$data_user['login_id'].'" href="#" class="user-link">'.$data_user['firstName'].' '.$data_user['lastName'].'</a>
-                                        <span id="profile_name_'.$data_user['login_id'].'" class="user-subhead" >'.$data_user['profile_name'].'</span>
-                                    </td>
-                                    <td>'.str_replace('-','/',$data_user['created_date']).'</td>
-                                    <td class="text-center">
-                                        <span id="status_name_'.$data_user['login_id'].'" class="label label-'.$css_status.'">'.$data_user['status_name'].'</span>
-                                    </td>
-                                    <td>
-                                        <a id="user_mail_'.$data_user['login_id'].'" href="#">'.$data_user['email'].'</a>
-                                    </td>
-                                    <td style="width: 20%;">
-									
-									<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" onclick="javascript:loadDatauser(this);" data-custom_01="'.$data_user['login_id'].'" data-custom_02="'.$data_user['firstName'].'" data-custom_03="'.$data_user['lastName'].'" data-custom_04="'.$data_user['profile_id'].'" data-custom_05="'.$data_user['email'].'" data-custom_06="'.$data_user['status_id'].'">
-										<span class="glyphicon glyphicon-pencil" ></span>
-									</button>
-									&nbsp;&nbsp;
-									<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal_2" onclick="javascript:loadDatauser_2(this);" data-custom_01="'.$data_user['login_id'].'" data-custom_02="'.$data_user['firstName'].'" data-custom_03="'.$data_user['lastName'].'" data-custom_04="'.$data_user['profile_id'].'" data-custom_05="'.$data_user['email'].'" data-custom_06="'.$data_user['status_id'].'">
-										<span  class="glyphicon glyphicon-trash" ></span>
-									</button>
-                                    </td>
-                                </tr>';
+    $tbody.='	<tr id="user_row_'.$data_user['login_id'].'">
+                    <td>
+                        <img id="img_profile_'.$data_user['login_id'].'" src="/login/img/profile_'.$data_user['profile_id'].'.jpg" alt="">
+                        <a id="full_name_'.$data_user['login_id'].'" href="#" class="user-link">'.$data_user['firstName'].' '.$data_user['lastName'].'</a>
+                        <span id="profile_name_'.$data_user['login_id'].'" class="user-subhead" >'.$data_user['profile_name'].'</span>
+                    </td>
+                    <td>'.str_replace('-','/',$data_user['created_date']).'</td>
+                    <td class="text-center">
+                        <span id="status_name_'.$data_user['login_id'].'" class="label label-'.$css_status.'">'.$data_user['status_name'].'</span>
+                    </td>
+                    <td>
+                        <a id="user_mail_'.$data_user['login_id'].'" href="#">'.$data_user['email'].'</a>
+                    </td>
+                    <td style="width: 20%;">
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" onclick="javascript:loadDatauser(this);" data-custom_01="'.$data_user['login_id'].'" data-custom_02="'.$data_user['firstName'].'" data-custom_03="'.$data_user['lastName'].'" data-custom_04="'.$data_user['profile_id'].'" data-custom_05="'.$data_user['email'].'" data-custom_06="'.$data_user['status_id'].'">
+                        <span class="glyphicon glyphicon-pencil" ></span>
+                        </button>
+                        &nbsp;&nbsp;
+                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal_2" onclick="javascript:loadDatauser_2(this);" data-custom_01="'.$data_user['login_id'].'" data-custom_02="'.$data_user['firstName'].'" data-custom_03="'.$data_user['lastName'].'" data-custom_04="'.$data_user['profile_id'].'" data-custom_05="'.$data_user['email'].'" data-custom_06="'.$data_user['status_id'].'">
+                        <span  class="glyphicon glyphicon-trash" ></span>
+                        </button>
+                    </td>
+                </tr>';
 }
-?><!DOCTYPE html>
-<html>
-	<head>
-		<script src="js/jquery-1.10.2.min.js"></script>
+?>
+
+<script src="js/jquery-1.10.2.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>		
-		
-		<link rel="stylesheet" type="text/css" href="css/user_list.css">
-		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" type="text/css" href="css/user_list.css">
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
 <style>
 .glyphicon-refresh-animate {
     -animation: spin .9s infinite linear;
@@ -74,12 +77,8 @@ while(list(,$data_user)=each($data_users)){
     to { transform: scale(1) rotate(360deg);}
 }
 </style>
-	</head>
-<body>
 
-<?php
-	include ('../menu.php');
-?>
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'header.php';?>
 <div class="container bootstrap snippet">
 	<div>
 		
@@ -265,7 +264,7 @@ while(list(,$data_user)=each($data_users)){
 					$("#myModal").modal('hide'); 
 					$("#button_save_changes").removeClass().addClass("btn btn-primary");
 					$("#span_save_changes").removeClass();
-					$("#img_profile_"+login_id).attr("src","img/profile_"+profile+".jpg");
+					$("#img_profile_"+login_id).attr("src","/login/img/profile_"+profile+".jpg");
 					$("#full_name_"+login_id).html(firstName+" "+lastName);
 					$("#profile_name_"+login_id).html(profileName);
 					$("#status_name_"+login_id).html(statusName);
@@ -339,5 +338,3 @@ while(list(,$data_user)=each($data_users)){
 	}
 	
 </script>
-</body>
-</html>

@@ -125,12 +125,14 @@ body, html {
 }
 
 .forgot-password {
-    color: rgb(104, 145, 162);
+    color: #e70030;
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus{
-    color: rgb(12, 97, 33);
+    color: #e70030;
 }
+
+
     

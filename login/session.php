@@ -1,21 +1,32 @@
 <?php
-/*
-// Establishing Connection with Server by passing server_name, user_id and password as a parameter
-$connection = mysql_connect("localhost", "root", "");
-// Selecting Database
-$db = mysql_select_db("company", $connection);
-*/
-session_start();// Starting Session
-// Storing Session
-$user_check=$_SESSION['login_user'];
-// SQL Query To Fetch Complete Information Of User
-//$ses_sql=mysql_query("select username from login where username='$user_check'", $connection);
-//$row = mysql_fetch_assoc($ses_sql);
-$login_session =$_SESSION['login_user'];
-if(!isset($login_session)){
+    session_start();// Starting Session
 
-//mysql_close($connection); // Closing Connection
+    $login_session =$_SESSION['login_user'];
 
-header('Location: index.php'); // Redirecting To Home Page
-}
+    include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
+    include $_SERVER['REDIRECT_PATH_CONFIG'].'login/class/user_login.php';
+
+    if(!isset($login_session)){
+        header('Location: index.php'); // Redirecting To Home Page
+    }
+
+    else{
+        $inslogin = new user_login();
+        $pages = $inslogin->pagesProfile($login_session['profile_id']);
+
+        $inArrayPages = array();
+        foreach($pages as $page){
+            array_push($inArrayPages, $raizProy.$page['page']);
+        }
+
+        $pagina = $_SERVER['SCRIPT_NAME'];
+
+        if(!in_array($pagina, $inArrayPages)){
+            header('location: '.$raizProy.'login/profile.php');
+        }
+
+    }
+
+
+
 ?>

@@ -56,5 +56,11 @@
                 <li><a href="<?php echo $ruta?>orders/order_list.php">Lista</a></li>
             </ul>
         </li>
+
+        <li class="dropdown">
+            <a href="<?php echo $ruta?>login/logout.php" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                Salir
+            </a>
+        </li>
     </ul>
 </div>
