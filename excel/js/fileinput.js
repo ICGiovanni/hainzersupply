@@ -2047,7 +2047,7 @@
         },
         slugDefault: function (text) {
             //return isEmpty(text) ? '' : String(text).replace(/[\-\[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\|<>&"']/g, '-');
-			return isEmpty(text) ? '' : String(text).replace(/[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\|<>&"']/g, '-');
+			return isEmpty(text) ? '' : String(text).replace(/[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\|<>"']/g, '-');
         },
         readFiles: function (files) {
             this.reader = new FileReader();

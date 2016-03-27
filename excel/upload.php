@@ -4,34 +4,43 @@ require_once('models/class.Inventory.php');
 
 $upload=new Upload();
 $inventory=new Inventory();
-
+$general=new General();
+$images=count($_FILES['fileUpload']['name']);
 $dirBase="inventory";
 $output=[];
+$result="";
 
-
-if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
+for($i=0;$i<$images;$i++)
 {
-	$output=['error'=>'No se pudo leer el archivo.'];
-}
-else
-{
-	if(!file_exists($_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase))
+	$tmpName=$_FILES['fileUpload']['tmp_name'][$i];
+	$nameFileO=$_FILES['fileUpload']['name'][$i];
+	
+	if(!is_uploaded_file($tmpName))
 	{
-		mkdir($_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase,0775,true);
+		$output=['error'=>'No se pudo leer el archivo.'];
 	}
-	
-	$nameFile=$_FILES['fileUpload']['name'];
-	$route=$_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase.'/'.$nameFile;
-	$upload->UploadFile($_FILES['fileUpload']['tmp_name'],$route);
-	
-	$r=$inventory->InsertImage($nameFile,$dirBase.'/'.$nameFile);
-	
-	$result='<div class="alert alert-info">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>'.$r.' '.$nameFile.'</strong>
-			</div>';
-	
-	$output=['result'=>$result];
+	else
+	{
+		if(!file_exists($_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase))
+		{
+			mkdir($_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase,0775,true);
+		}
+		
+		
+		$n=explode('.',$nameFileO);
+		$nameFile=$general->NameToURL($n[0]).".".$n[1];
+		$route=$_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase.'/'.$nameFile;
+		$upload->UploadFile($tmpName,$route);
+		
+		$r=$inventory->InsertImage($nameFileO,$dirBase.'/'.$nameFile);
+		
+		$result.='<div class="alert alert-info">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	    <strong>'.$r.' '.$nameFile.'</strong>
+				</div>';
+		
+		$output=['result'=>$result];
+	}
 }
 
 

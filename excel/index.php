@@ -20,7 +20,6 @@
 	<h1>Subir Inventario</h1>
 	<form enctype="multipart/form-data">
 	<input id="fileUpload" name="fileUpload" class="file" type="file" data-min-file-count="1" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-	<!--<input id="file-3" type="file" multiple=false>-->
 	</form>
 	<div id="result" style="padding-top:10px;">	
 	</div>
