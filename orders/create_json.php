@@ -28,7 +28,8 @@ while(list($idNum,$product)=each($productos)){
 		"size": "'.$product["Size"].'",
 		"stock": "'.$product["Stock"].'",
         "price": "$'.number_format($product["Price"], 2, '.', '').'",
-		"type_price": "'.$flag_discount.'"
+		"type_price": "'.$flag_discount.'",
+		"image": "'.$product["Img"].'"
     }';
 }
 

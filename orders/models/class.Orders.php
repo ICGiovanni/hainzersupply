@@ -103,7 +103,19 @@ LIMIT 0,1)!='',(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='gender_product'
 AND wpm.post_id=wp.ID
-LIMIT 0,1),'') AS Gender
+LIMIT 0,1),'') AS Gender,
+IF((SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='_thumbnail_id'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)!=0,
+(SELECT guid
+FROM wp_posts
+WHERE ID=(SELECT meta_value
+FROM wp_postmeta wpm
+WHERE wpm.meta_key='_thumbnail_id'
+AND wpm.post_id=wp.ID
+LIMIT 0,1)),'') AS Img
 FROM wp_posts wp
 WHERE post_type IN('product_variation','product')
 AND (SELECT ROUND(meta_value)

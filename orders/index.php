@@ -216,24 +216,6 @@ $(document).ready(function() {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });	
-	 $("input[name='demo3']").TouchSpin({
-				initval: 1,
-                min: 1,
-                max: 999,
-              
-            });
-			$("input[name='demo4']").TouchSpin({
-				initval: 1,
-                min: 1,
-                max: 100,
-              
-            });
-			$("input[name='demo5']").TouchSpin({
-				initval: 1,
-                min: 1,
-                max: 100,
-              
-            });
 	
 	function addProductOrder(){
 		
@@ -322,7 +304,7 @@ $(document).ready(function() {
 		
 		$(this).unbind("click");
 		$(this).click(editProductOrder);
-	}	
+	}
 	
 	function findId(idToLookFor) {
 		var itemsArray = items_ordered.rows;
