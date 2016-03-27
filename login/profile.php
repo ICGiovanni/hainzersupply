@@ -18,14 +18,14 @@
         }
     }
 
-
+    //para el caso de root
     else if($login_session['profile_id']==3){
         header('location: '.$raizProy.'login/user_list.php');
     }
-    /*
-    else{
 
+    //para el caso de administrador
+    else if($login_session['profile_id']==1){
+        header('location: '.$raizProy.'excel/inventario.php');
     }
-    */
 
 ?>

@@ -36,7 +36,7 @@ while(list(,$data_user)=each($data_users)){
                         <span id="status_name_'.$data_user['login_id'].'" class="label label-'.$css_status.'">'.$data_user['status_name'].'</span>
                     </td>
                     <td>
-                        <a id="user_mail_'.$data_user['login_id'].'" href="#">'.$data_user['email'].'</a>
+                        <a id="user_mail_'.$data_user['login_id'].'" href="#" class="user-link-2">'.$data_user['email'].'</a>
                     </td>
                     <td style="width: 20%;">
                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" onclick="javascript:loadDatauser(this);" data-custom_01="'.$data_user['login_id'].'" data-custom_02="'.$data_user['firstName'].'" data-custom_03="'.$data_user['lastName'].'" data-custom_04="'.$data_user['profile_id'].'" data-custom_05="'.$data_user['email'].'" data-custom_06="'.$data_user['status_id'].'">
@@ -79,41 +79,32 @@ while(list(,$data_user)=each($data_users)){
 </style>
 
 <?php include $_SERVER['REDIRECT_PATH_CONFIG'].'header.php';?>
-<div class="container bootstrap snippet">
-	<div>
-		
-		<h3> <img src="img/logo.png" width="50" /> Hainzer Supply Control Access Accounts</h3>
-	</div>
-	
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="main-box no-header clearfix">
-                <div class="main-box-body clearfix">
-                    <div class="table-responsive">
-                        <table class="table user-list">
-                            <thead>
-                                <tr>
-                                <th><span>User</span></th>
-                                <th><span>Created</span></th>
-                                <th class="text-center"><span>Status</span></th>
-                                <th><span>Email</span></th>
-                                <th><div align="right">
-										<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal_3" >
-											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Account
-										</button>
-									</div>
-								</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?=$tbody?>
-                            </tbody>
-                        </table>
-                    </div>
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'menu.php';?>
+
+<div class="container" style="width: 75%">
+            <div class="main-box">
+                <div class="table-responsive">
+                    <table class="table user-list">
+                        <thead>
+                            <tr>
+                            <th><span>User</span></th>
+                            <th><span>Created</span></th>
+                            <th class="text-center"><span>Status</span></th>
+                            <th><span>Email</span></th>
+                            <th><div align="right">
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal_3" >
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Account
+                                    </button>
+                                </div>
+                            </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?=$tbody?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
-    </div>
 </div>
 
 
@@ -163,7 +154,7 @@ while(list(,$data_user)=each($data_users)){
         <h4 class="modal-title" id="myModalLabel">Delete User</h4>
       </div>
       <div class="modal-body" >
-			Are you sure to delete account: <span style="color:#blue;" id="email_delete"></span>
+			Are you sure to delete account: <span style="color:#063F84;" id="email_delete"></span>
 			<input id="login_id_delete" name="login_id_delete" type="hidden" type="text" value="" >			
       </div>
       <div class="modal-footer">

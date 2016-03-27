@@ -13,15 +13,15 @@
   
 </head>
 <body>
-<?php
-	include ('../menu.php');
-?>
+
+	<?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'header.php')?>
+	<?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'menu.php')?>
 <div class="container">
 	<h1>Subir Inventario</h1>
 	<form enctype="multipart/form-data">
 	<input id="fileUpload" name="fileUpload" class="file" type="file" data-min-file-count="1" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 	</form>
-	<div id="result" style="padding-top:10px;">	
+	<div id="result" style="padding-top:10px; overflow: scroll">
 	</div>
 </div>
 

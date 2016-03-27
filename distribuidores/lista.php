@@ -8,18 +8,13 @@
     $listaDistribuidores = $instDistribuidores->listaDistribuidores();
 ?>
 
-<html>
-
-<head>
-    <title>Listado Distribuidores <?php echo $raizProy?></title>
-    <meta charset="UTF-8">
 
     <script src="<?php echo $raizProy?>distribuidores/js/jquery.min.js"></script>
     <script src="<?php echo $raizProy?>distribuidores/js/funciones-distribuidor.js"></script>
 
-</head>
+    <link rel="stylesheet" type="text/css" href="<?php echo $raizProy?>css/buttons.css">
 
-<body>
+<?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'header.php')?>
 <?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'menu.php')?>
 <div class="container">
     <h3 class="form-signin-heading">Listado de distribuidores</h3>
@@ -61,7 +56,3 @@
         </tbody>
     </table>
 </div>
-
-</body>
-
-</html>

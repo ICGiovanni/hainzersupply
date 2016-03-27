@@ -1,0 +1,27 @@
+#menu{
+    background-color: #000 !important;
+}
+#menu ul li a, #menu ul li a:visited {
+    color: #FFF !important;
+    background-color: #000 !important;
+}
+
+#menu ul li a:hover{
+    color: #FFF !important;
+    background-image: linear-gradient(to bottom, #1E1D1D 0px, #514F4F 100%) !important;
+}
+
+#menu ul .dropdown-menu{
+    background-color: #000 !important;
+}
+
+
+.btn-primary, .btn-info, .btn-primary:active, .btn-info:active, .btn-primary:visited, .btn-info:visited {
+    background-color: #000 !important;
+    border-color: #000 !important;
+    background-image: linear-gradient(to bottom, #1E1D1D 0px, #514F4F 100%) !important;
+}
+
+.btn-primary:hover, .btn-info:hover{
+    background-image: linear-gradient(to bottom, #514F4F 0px, #1E1D1D 100%) !important;
+}

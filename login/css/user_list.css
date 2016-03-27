@@ -34,6 +34,26 @@ body{
     padding-top: 3px;
     margin-left: 60px;
 }
+
+.user-link{
+    color: #E70101;
+    font-size: 14px;
+}
+
+.user-link:hover{
+    color: #E70101;
+}
+
+.user-link-2{
+    color: #E70101;
+    font-size: 12px;
+}
+
+.user-link:hover{
+    color: #E70101;
+}
+
+
 a {
     color: #3498db;
     outline: none!important;

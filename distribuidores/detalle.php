@@ -47,6 +47,7 @@
 
 </head>
 <body>
+    <?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'header.php')?>
     <?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'menu.php')?>
 
     <div class="container">
