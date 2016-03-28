@@ -22,12 +22,6 @@
 
 ?>
 
-<html>
-
-<head>
-    <title>Información de distribuidor</title>
-    <meta charset="UTF-8">
-
     <script src="<?php echo $raizProy?>distribuidores/js/jquery.min.js"></script>
 
     <link rel="stylesheet" href="<?php echo $raizProy?>distribuidores/css/styles-distribuidores.css">
@@ -45,16 +39,14 @@
         }
     </style>
 
-</head>
-<body>
     <?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'header.php')?>
     <?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'menu.php')?>
 
-    <div class="container">
+    <div class="container" style="width: 75%; ">
+        <h3 class="form-signin-heading">Información de distribuidor</h3>
         <div class="row">
-            <h3 class="form-signin-heading">Información de distribuidor</h3>
             <div class="col-md-4">
-                <h4 class="form-signin-heading" style="padding: 14px">Datos de contacto</h4>
+                <h4 class="form-signin-heading rowRed" style="padding: 23px 5px;">Datos de contacto</h4>
                 <?php
                     $infoDistribuidor = $instDistribuidores->getInfoDistribuidor($idDistribuidor);
                     $facturacionDistribuidor = $instDistribuidores->getFacturacionDistribuidor($idDistribuidor);
@@ -95,80 +87,91 @@
                 </ul>
             </div>
             <div class="col-md-4">
-                <h4 class="panel-header">
-                    <div class="row">
-                        <div class="col-md-7" style="padding-top: 7px">
-                            Datos de facturación
+                <div class="row">
+                    <h4 class="form-signin-heading rowRed" style="padding: 15px 5px">
+                        <div class="row">
+                            <div class="col-md-7" style="padding-top: 7px">
+                                Datos de facturación
+                            </div>
+                            <div class="col-md-5 text-right">
+                                <button type="button" class="btn btn-warning btn-agregar-factura" data-toggle="modal" data-target="#myModal2">
+                                    Agregar
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-md-5 text-right">
-                            <button type="button" class="btn btn-warning btn-agregar-factura" data-toggle="modal" data-target="#myModal2">
-                                Agregar
-                            </button>
-                        </div>
-                    </div>
-                </h4>
-                <ul class="list-group">
-                <?php
-                foreach($facturacionDistribuidor as $factura) {
-                ?>
-                    <li style="list-style-type: none;">
-                        <ul class='list-group'>
-                            <li class="list-group-item" id="factura_<?php echo $factura['idDistribuidorFactura'] ?>">
-                                <span class="rfc"><?php echo $factura['rfc'] ?></span><br />
-                                <span class="razonSocial"><?php echo $factura['razonSocial'] ?></span><br />
-                                <span class="calle"><?php echo $factura['calle'] ?></span><br />
-                                <span class="numExt"><?php echo $factura['numExt']?></span>&nbsp;<span class="numInt"><?php echo $factura['numInt']?></span>&nbsp; C.P. <span class="cp"><?php echo $factura['codigoPostal'] ?></span><br />
-                                <span class="colonia"><?php echo $factura['colonia'] ?></span><br />
-                                <span class="delegacion"><?php echo $factura['delegacion'] ?></span><br />
-                                <span class="estado"><?php echo $factura['estado']?></span>&nbsp;, <span class="pais"><?php echo $factura['pais']?></span><br />
+                    </h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="padding: 0px;">
+                        <ul class="list-group">
+                        <?php
+                        foreach($facturacionDistribuidor as $factura) {
+                        ?>
+                            <li style="list-style-type: none;padding: 0px;">
+                                <ul class='list-group' style="margin-left: 0px">
+                                    <li class="list-group-item" id="factura_<?php echo $factura['idDistribuidorFactura'] ?>" style="list-style-type: none;">
+                                        <span class="rfc"><?php echo $factura['rfc'] ?></span><br />
+                                        <span class="razonSocial"><?php echo $factura['razonSocial'] ?></span><br />
+                                        <span class="calle"><?php echo $factura['calle'] ?></span><br />
+                                        <span class="numExt"><?php echo $factura['numExt']?></span>&nbsp;<span class="numInt"><?php echo $factura['numInt']?></span>&nbsp; C.P. <span class="cp"><?php echo $factura['codigoPostal'] ?></span><br />
+                                        <span class="colonia"><?php echo $factura['colonia'] ?></span><br />
+                                        <span class="delegacion"><?php echo $factura['delegacion'] ?></span><br />
+                                        <span class="estado"><?php echo $factura['estado']?></span>&nbsp;, <span class="pais"><?php echo $factura['pais']?></span><br />
+                                    </li>
+                                    <li class="list-group-item" style="text-align: right">
+                                        <button type='button' class='btn btn-info btn-editar-factura' data-toggle="modal" data-target="#myModal2" data-id="<?php echo $factura['idDistribuidorFactura'] ?>" data-idDireccion="<?php echo $factura['idDireccion'] ?>">Editar</button>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="list-group-item" style="text-align: right">
-                                <button type='button' class='btn btn-info btn-editar-factura' data-toggle="modal" data-target="#myModal2" data-id="<?php echo $factura['idDistribuidorFactura'] ?>" data-idDireccion="<?php echo $factura['idDireccion'] ?>">Editar</button>
-                            </li>
+                        <?php
+                        }
+                        ?>
                         </ul>
-                    </li>
-                <?php
-                }
-                ?>
-                </ul>
-
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
-                <h4 class="form-signin-heading">
-                    <div class="row">
-                        <div class="col-md-6" style="padding-top: 7px">
-                            Datos de envío
+                <div class="row" style="margin-left: 0px">
+                    <h4 class="form-signin-heading rowRed" style="padding: 15px 5px">
+                        <div class="row">
+                            <div class="col-md-6" style="padding-top: 7px">
+                                Datos de envío
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <button type="button" class="btn btn-warning btn-agregar-envio" data-toggle="modal" data-target="#myModal">
+                                    Agregar
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-md-6 text-right">
-                            <button type="button" class="btn btn-warning btn-agregar-envio" data-toggle="modal" data-target="#myModal">
-                                Agregar
-                            </button>
-                        </div>
-                    </div>
-                </h4>
-                <ul class="list-group">
-                    <?php
-                    foreach($envioDistribuidor as $envio) {
-                        ?>
-                        <li style="list-style-type: none;">
-                            <ul class='list-group'>
-                                <li class="list-group-item" id="envio_<?php echo $envio['idDireccion'] ?>">
+                    </h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="padding: 0px;">
+                        <ul class="list-group">
+                            <?php
+                            foreach($envioDistribuidor as $envio) {
+                                ?>
+                                <li style="list-style-type: none; padding: 0px">
+                                    <ul class='list-group' style="margin-left: 13px">
+                                        <li class="list-group-item" id="envio_<?php echo $envio['idDireccion'] ?>">
 
-                                    <span class="calle"><?php echo $envio['calle'] ?></span><br />
-                                    <span class="numExt"><?php echo $envio['numExt']?></span>&nbsp;<span class="numInt"><?php echo $envio['numInt']?></span>&nbsp; C.P. <span class="cp"><?php echo $envio['codigoPostal'] ?></span><br />
-                                    <span class="colonia"><?php echo $envio['colonia'] ?></span><br />
-                                    <span class="delegacion"><?php echo $envio['delegacion'] ?></span><br />
-                                    <span class="estado"><?php echo $envio['estado']?></span>&nbsp;, <span class="pais"><?php echo $envio['pais']?></span><br />
+                                            <span class="calle"><?php echo $envio['calle'] ?></span><br />
+                                            <span class="numExt"><?php echo $envio['numExt']?></span>&nbsp;<span class="numInt"><?php echo $envio['numInt']?></span>&nbsp; C.P. <span class="cp"><?php echo $envio['codigoPostal'] ?></span><br />
+                                            <span class="colonia"><?php echo $envio['colonia'] ?></span><br />
+                                            <span class="delegacion"><?php echo $envio['delegacion'] ?></span><br />
+                                            <span class="estado"><?php echo $envio['estado']?></span>&nbsp;, <span class="pais"><?php echo $envio['pais']?></span><br />
+                                        </li>
+                                        <li class="list-group-item" style="text-align: right">
+                                            <button type='button' class='btn btn-info btn-editar-envio' data-idDireccion='<?php echo $envio['idDireccion']?>' data-toggle="modal" data-target="#myModal">Editar</button>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li class="list-group-item" style="text-align: right">
-                                    <button type='button' class='btn btn-info btn-editar-envio' data-idDireccion='<?php echo $envio['idDireccion']?>' data-toggle="modal" data-target="#myModal">Editar</button>
-                                </li>
-                            </ul>
-                        </li>
-                        <?php
-                    }
-                    ?>
-                </ul>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

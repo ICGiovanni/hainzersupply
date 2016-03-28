@@ -25,3 +25,7 @@
 .btn-primary:hover, .btn-info:hover{
     background-image: linear-gradient(to bottom, #514F4F 0px, #1E1D1D 100%) !important;
 }
+
+.rowRed{
+    background-color: #E70101 !important;
+}

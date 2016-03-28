@@ -8,6 +8,7 @@
     <title>Hainzer Supply</title>
 
     <link href="<?php echo $raizProy;?>css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="<?php echo $raizProy;?>css/buttons.css" rel="stylesheet" >
 
 
     <link href="css/login.css" rel="stylesheet" >

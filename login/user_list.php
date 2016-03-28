@@ -87,13 +87,13 @@ while(list(,$data_user)=each($data_users)){
                     <table class="table user-list">
                         <thead>
                             <tr>
-                            <th><span>User</span></th>
-                            <th><span>Created</span></th>
-                            <th class="text-center"><span>Status</span></th>
-                            <th><span>Email</span></th>
+                            <th><span>Usuario</span></th>
+                            <th><span>Creación</span></th>
+                            <th class="text-center"><span>Estatus</span></th>
+                            <th><span>Correo electronico</span></th>
                             <th><div align="right">
                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal_3" >
-                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Account
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo usuario
                                     </button>
                                 </div>
                             </th>
@@ -113,14 +113,14 @@ while(list(,$data_user)=each($data_users)){
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit User</h4>
+        <h4 class="modal-title" id="myModalLabel">Editar usuario</h4>
       </div>
       <div class="modal-body" style="height:250px;">
 			<div class="col-md-6">
-				<input id="firstName" name="firstName" placeholder="First Name" type="text" class="form-control" autofocus>
+				<input id="firstName" name="firstName" placeholder="Nombre" type="text" class="form-control" autofocus>
 			</div>
 			<div class="col-md-6">
-				<input id="lastName" name="lastName" placeholder="Last Name" type="text" class="form-control"><br>
+				<input id="lastName" name="lastName" placeholder="Apellidos" type="text" class="form-control"><br>
 			</div>
 			<div class="col-md-6">	
 				<?=$login->selectProfiles()?>
@@ -130,16 +130,16 @@ while(list(,$data_user)=each($data_users)){
 				<br>
 			</div>
 			<div class="col-md-8">
-				<input id="email" name="email" placeholder="Email address" type="text" class="form-control" value="" ><br>
+				<input id="email" name="email" placeholder="Correo electrónico" type="text" class="form-control" value="" ><br>
 			</div>
 			<div class="col-md-8">
-				<input id="password" name="password" placeholder="Password" type="password" class="form-control" autocomplete="new-password"><br>
+				<input id="password" name="password" placeholder="Contraseña" type="password" class="form-control" autocomplete="new-password"><br>
 			</div>
 				<input id="login_id" name="login_id" type="hidden" type="text" value="" >
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="button_save_changes" type="button" class="btn btn-primary" onclick="update_user();">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button id="button_save_changes" type="button" class="btn btn-primary" onclick="update_user();">Guardar cambios</button>
 		<span id="span_save_changes"></span>
       </div>
     </div>
@@ -151,15 +151,15 @@ while(list(,$data_user)=each($data_users)){
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Delete User</h4>
+        <h4 class="modal-title" id="myModalLabel">Borrar Usuario</h4>
       </div>
       <div class="modal-body" >
-			Are you sure to delete account: <span style="color:#063F84;" id="email_delete"></span>
+			¿Esta seguro que desea borrar la cuenta: <span style="color:#063F84;" id="email_delete"></span>?
 			<input id="login_id_delete" name="login_id_delete" type="hidden" type="text" value="" >			
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button id="button_delete_user" type="button" class="btn btn-danger" onclick="delete_user();">DELETE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button id="button_delete_user" type="button" class="btn btn-danger" onclick="delete_user();">Borrar</button>
 		<span id="span_delete_user"></span>
       </div>
     </div>
@@ -171,29 +171,29 @@ while(list(,$data_user)=each($data_users)){
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Account</h4>
+        <h4 class="modal-title" id="myModalLabel">Nuevo usuario</h4>
       </div>
       <div class="modal-body" style="height:250px;">
 			<div class="col-md-6">
-				<input id="NewfirstName" name="NewfirstName" placeholder="First Name" type="text" class="form-control" autofocus>
+				<input id="NewfirstName" name="NewfirstName" placeholder="Nombre" type="text" class="form-control" autofocus>
 			</div>
 			<div class="col-md-6">
-				<input id="NewlastName" name="NewlastName" placeholder="Last Name" type="text" class="form-control"><br>
+				<input id="NewlastName" name="NewlastName" placeholder="Apellidos" type="text" class="form-control"><br>
 			</div>
 			<div class="col-md-6">	
 				<?=$login->selectProfiles('Newprofile')?><br>
 			</div>
 			
 			<div class="col-md-8">
-				<input id="Newemail" name="Newemail" placeholder="Email address" type="text" class="form-control" value="" ><br>
+				<input id="Newemail" name="Newemail" placeholder="Correo electrónico" type="text" class="form-control" value="" ><br>
 			</div>
 			<div class="col-md-8">
-				<input id="Newpassword" name="Newpassword" placeholder="Password" type="password" class="form-control" autocomplete="new-password"><br>
+				<input id="Newpassword" name="Newpassword" placeholder="Contraseña" type="password" class="form-control" autocomplete="new-password"><br>
 			</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="button_create_user" type="button" class="btn btn-primary" onclick="create_user();">Create Account</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button id="button_create_user" type="button" class="btn btn-primary" onclick="create_user();">Crear cuenta</button>
 		<span id="span_create_user"></span>
       </div>
     </div>

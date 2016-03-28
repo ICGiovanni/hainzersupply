@@ -59,7 +59,7 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 <?php include $_SERVER['REDIRECT_PATH_CONFIG'].'menu.php';?>
 
 <div class="container">
-<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply - Lista de Solicitudes de Compra </h3>    
+<h3 class="page_title">Lista de Solicitudes de Compra </h3>
    
     <table data-toggle="table">
         <thead>
