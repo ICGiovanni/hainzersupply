@@ -14,7 +14,8 @@
   <script type="text/javascript">
         $(document).ready(function () {
             (function ($) {
-				refresh();                
+				refresh();
+				$('#filtrar').focus();           
                 $('#filtrar').keyup(function () {
                     
                     var rex = new RegExp($(this).val(), 'i');
