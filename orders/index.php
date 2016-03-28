@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Hainzer Supply Solicitud de Compra</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+﻿    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-table.css">
 	<link href="http://www.virtuosoft.eu/code/bootstrap-touchspin/bootstrap-touchspin/v3.0.1/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" media="all">
     <link href="css/simple-sidebar.css" rel="stylesheet">
@@ -26,8 +22,10 @@
 		.glyphicon-pencil { cursor:pointer; }
 		.bg-success { background-color:#000; }
 	</style>
-</head>
-<body>
+
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'header.php';?>
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'menu.php';?>
+
 <div id="wrapper">
     <!-- Sidebar -->
         <div id="sidebar-wrapper">

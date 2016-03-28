@@ -2,6 +2,8 @@
     include_once $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 ?>
 
+<meta charset="utf-8">
+
 <link rel="stylesheet" href="<?php echo $raizProy;?>css/foundation.css" type="text/css" >
 <style type="text/css">
     #masthead{ height:170px;}
