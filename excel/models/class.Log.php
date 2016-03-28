@@ -53,6 +53,12 @@ class Log
 		$sql="SELECT * INTO OUTFILE '$file' FROM wp_postmeta";
 		$statement=$this->connect->prepare($sql);
 		$statement->execute();
+		
+		$nameFile=$name.'_'.'wp_term_relationships.sql';
+		$file=$_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'.$nameFile;
+		$sql="SELECT * INTO OUTFILE '$file' FROM wp_term_relationships";
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
 	}
 	
 	public function Restore($name)
@@ -76,6 +82,18 @@ class Log
 		$sql="LOAD DATA INFILE '$file' INTO TABLE wp_postmeta";
 		$statement=$this->connect->prepare($sql);
 		$statement->execute();
+		
+		
+		$sql="DELETE FROM wp_term_relationships";
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		
+		$nameFile=$name.'_'.'wp_term_relationships.sql';
+		$file=$_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'.$nameFile;
+		$sql="LOAD DATA INFILE '$file' INTO TABLE wp_term_relationships";
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		
 	}
 	
 	public function GetLog($logId='',$delete=false)
@@ -119,6 +137,10 @@ class Log
 		unlink($file);
 		
 		$nameFile=$restore.'_'.'wp_postmeta.sql';
+		$file=$_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'.$nameFile;
+		unlink($file);
+				
+		$nameFile=$restore.'_'.'wp_term_relationships.sql';
 		$file=$_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'.$nameFile;
 		unlink($file);
 		
