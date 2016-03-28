@@ -117,7 +117,7 @@ function checkOrder(elem){
 	$("#button_create_user").removeAttr("disabled");
 	
 	var jsonObj = $.parseJSON( jsonProducts );
-	var inDiv = '<table class="table"> <thead> <tr> <th>Sku</th> <th>Cantidad</th> <th>Precio</th> </tr> </thead> <tbody>';
+	var inDiv = '<table class="table"> <thead> <tr> <th>Sku</th> <th>Cantidad</th> <th>Precio de Lista</th> </tr> </thead> <tbody>';
 	for (var i = 0; i < jsonObj.rows.length; i++) {
 		var object = jsonObj.rows[i];		
 		// If property names are known beforehand, you can also just do e.g.
