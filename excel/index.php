@@ -1,3 +1,6 @@
+<?php
+	include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

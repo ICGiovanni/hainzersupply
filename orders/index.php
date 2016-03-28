@@ -1,4 +1,7 @@
-﻿    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+﻿<?php
+    include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+?>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-table.css">
 	<link href="http://www.virtuosoft.eu/code/bootstrap-touchspin/bootstrap-touchspin/v3.0.1/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" media="all">
     <link href="css/simple-sidebar.css" rel="stylesheet">
@@ -25,7 +28,24 @@
 
 <?php include $_SERVER['REDIRECT_PATH_CONFIG'].'header.php';?>
 <?php include $_SERVER['REDIRECT_PATH_CONFIG'].'menu.php';?>
+<?php
+	if(stristr($_SERVER['PHP_SELF'],'orders/index.php')) {
+?>
+	<style type="text/css">
+		#wrapper {
+			padding-right: 0px !important;
+			width: 100% !important;
+			max-width: 100% !important;
+		}
 
+        .fixed-table-container {
+            padding-bottom: 0px;
+            height: 21100px;
+        }
+	</style>
+<?php
+	}
+?>
 <div id="wrapper">
     <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -92,8 +112,11 @@
 		
 		<div id="page-content-wrapper">
             <div class="container-fluid">
-                <div class="row">
-				<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply - Nueva Solicitud de Compra <button style="float:right;" onclick="changeStyleSpanDetailOrder();" class="btn btn-sm btn-primary" id="menu-toggle"><span id="span_btn_detail_order" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Detalle de solicitud</button></h3> 
+                <div class="row" style="max-width: 82%!important;">
+                <div class="col-md-12">
+				<h3 class="page_title">Nueva Solicitud de Compra
+                    <!--<button style="float:right;" onclick="changeStyleSpanDetailOrder();" class="btn btn-sm btn-primary" id="menu-toggle"><span id="span_btn_detail_order" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Detalle de solicitud</button>-->
+                </h3>
 
 				<table id="table"
 					   data-side-pagination="server"
@@ -113,7 +136,8 @@
 					</tr>
 					</thead>
 					  
-				</table>		
+				</table>
+                </div>
 				</div>
 			</div>
 		</div>
