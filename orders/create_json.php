@@ -11,9 +11,11 @@ $count = 0;
 
 while(list($idNum,$product)=each($productos)){
 
+	
 	$flag_discount = "normal";
 	$span_tags='';
-	if($count%3==0){
+	$categories = explode(",",$product["Category"]);
+	if(in_array("descuento",$categories)){
 		$flag_discount = "discount";
 		$span_tags='<span class="glyphicon glyphicon-tags"></span>';
 	}
@@ -27,7 +29,7 @@ while(list($idNum,$product)=each($productos)){
 		"color": "'.$product["Color"].'",
 		"size": "'.$product["Size"].'",
 		"stock": "'.$product["Stock"].'",
-        "price": "$'.number_format($product["Price"], 2, '.', '').'",
+        "price": "'.$product["Price"].'",
 		"type_price": "'.$flag_discount.'",
 		"image": "'.$product["Img"].'"
     }';

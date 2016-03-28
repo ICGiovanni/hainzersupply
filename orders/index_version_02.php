@@ -186,7 +186,8 @@
                     }, {
                         field: 'price',
                         title: 'Precio',                        
-                        align: 'right'                        
+                        align: 'right',
+						formatter: priceFormatter
                     }, {
                         title: 'Cantidad',
                         align: 'center',
@@ -237,6 +238,12 @@
 		return [
 				strImage					
 			].join('');
+	}
+	
+	function priceFormatter(value, row, index){
+		formatPrice = Number(row.price);
+		formatPrice.toFixed(2);
+		return '$'+row.price;
 	}
 
     window.operateEvents = {
@@ -324,11 +331,11 @@
 	var total_pedido = Number(0).toFixed(2);
 	var iva = Number(0).toFixed(2);
 	var total_final = Number(0).toFixed(2);
+	
+	var doneDeal = false;
 
 function addProductOrder(){		
 		id_prod = $(this).attr("id");
-		
-		
 		
 		id_prod = id_prod.replace("add_prod_","");
 		
@@ -406,7 +413,7 @@ function addProductOrder(){
 		$("#row_prod_"+id_prod).css("background-color","#DFF0D8");
 		$("#dv_quantity_"+id_prod).css("display","none");
 		
-		$("#dv_quantity_info_"+id_prod).html(quantity+" ordered"+add_price);
+		$("#dv_quantity_info_"+id_prod).html(quantity+" ordered");
 		$("#span_desc_info").html(factor_discount_description);
 		
 		$("#img_save_level").attr("src","img/"+img_save_level);
@@ -553,8 +560,9 @@ function addProductOrder(){
 					},
 					success: function(msg){
 							/*$("#myModal").modal('hide'); */
-							msjModal = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span> Solicitud de compra ha sido procesada exitosamente. "; 
+							msjModal = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span> Solicitud de compra ha sido procesada exitosamente. ";
 							$("#dv_body_modal").html(msjModal);
+							doneDeal = true;
 					}
 				});
 		} else { 
@@ -573,7 +581,9 @@ function addProductOrder(){
 	}
 
 	function redirectList(){
-		window.location="order_list.php";
+		if(doneDeal){
+			window.location="order_list.php";
+		}
 	}
 /*version original*/
 	

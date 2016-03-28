@@ -1,51 +1,12 @@
-ï»¿<?php
-include_once('models/class.Orders.php');
-$order = New Order();
-
-$productos = $order->getProducts();
-
-$rows='';
-$initiate_quantitys = '';
-$count = 0;
-
-while(list(,$product)=each($productos)){
-
-	$flag_discount = "normal";
-	$span_tags='';
-	if($count%3==0){
-		$flag_discount = "discount";
-		$span_tags='<span class="glyphicon glyphicon-tags"></span>';
-	}
-	$count++;
-	$rows.='<tr id="row_prod_'.$product["Sku"].'">
-							<td>'.$product["Sku"].'</td>
-							<td>'.$product["Name"].'</td>
-							<td>'.$product["Trademark"].'</td>
-							<td>'.$product["Color"].'</td>
-							
-							<td>'.$product["Size"].'</td>
-							<td>'.$product["Stock"].'</td>
-
-							<td align="right">$'.number_format($product["Price"], 2, '.', '').'</td>
-							<td><div id="dv_quantity_'.$product["Sku"].'" class="td_price"><input id="quantity_'.$product["Sku"].'" type="text" value="" name="quantity_'.$product["Sku"].'"></div><div id="dv_quantity_info_'.$product["Sku"].'"></div></td>
-							<td><span class="glyphicon glyphicon-shopping-cart" id="add_prod_'.$product["Sku"].'" custom-data-1="'.$product["Price"].'" custom-data-2="'.$flag_discount.'"></span> '.$span_tags.'</td>
-						</tr>';
-	$initiate_quantitys.='$("input[name=\'quantity_'.$product["Sku"].'\']").TouchSpin({initval: 1,min: 1,max: '.$product["Stock"].',});
-	';
-}
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	
-	<title>Hainzer Supply Solicitud de Compra</title>
-	
-	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
-	<link href="//cdn.virtuosoft.eu/virtuosoft.eu/resources/prettify/prettify.css" rel="stylesheet" type="text/css" media="all">
+    <title>Hainzer Supply Solicitud de Compra</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-table.css">
 	<link href="http://www.virtuosoft.eu/code/bootstrap-touchspin/bootstrap-touchspin/v3.0.1/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
 	
-	<link href="css/simple-sidebar.css" rel="stylesheet">
 	<style type="text/css" class="init">
 		body{ padding:0px 10px;}
 		.td_price{width:120px; margin:auto;}
@@ -53,33 +14,22 @@ while(list(,$product)=each($productos)){
 		.glyphicon-pencil { cursor:pointer; }
 		.bg-success { background-color:#000; }
 	</style>
-	
-	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.0.min.js">
-	</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js">
-	</script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js">
-	</script>
-	<script src="//cdn.virtuosoft.eu/virtuosoft.eu/resources/prettify/prettify.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table.js"></script>
+    <script src="js/bootstrap-table-filter-control.js"></script>
 	<script src="http://www.virtuosoft.eu/code/bootstrap-touchspin/bootstrap-touchspin/v3.0.1/jquery.bootstrap-touchspin.js"></script>
-	<script type="text/javascript" class="init">
-$(document).ready(function() {
-	$('#example').DataTable({
-        "lengthMenu": [[-1], ["All"]]
-    });
-	
-	
-} );
-
-	</script>
+	<style type="text/css" class="init">
+		body{ padding:0px 10px;}
+		.td_price{width:120px; margin:auto;}
+		.glyphicon-shopping-cart { cursor:pointer; }
+		.glyphicon-pencil { cursor:pointer; }
+		.bg-success { background-color:#000; }
+	</style>
 </head>
 <body>
-
-
 <div id="wrapper">
-
-        <!-- Sidebar -->
+    <!-- Sidebar -->
         <div id="sidebar-wrapper">
 		
 		
@@ -88,7 +38,7 @@ $(document).ready(function() {
         <h2 style="color:#337AB7; margin-left:8px;"><span class="glyphicon glyphicon-eye-open"></span> Detalle</h2>
 		<table class="table table-sm" >
 			<tr>
-				<td>Productos s/promociÃ³n</td>
+				<td>Productos s/promoción</td>
 				<td align="right"><span id="span_prod_s_prom"  style="color:#DF0404">$0.00</span></td>
 			</tr>
 			<tr>
@@ -96,7 +46,7 @@ $(document).ready(function() {
 				<td align="right"><span id="span_desc"  style="color:#DF0404">$0.00</span></td>
 			</tr>
 			<tr>
-				<td>Productos s/promociÃ³n<br>con descuento aplicado</td>
+				<td>Productos s/promoción<br>con descuento aplicado</td>
 				<td align="right">$<span id="span_prod_s_prom_c_desc" >0.00</span></td>
 			</tr>
 			<tr>
@@ -141,39 +91,38 @@ $(document).ready(function() {
 			
         </div>
 		<!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
+		
+		<div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
 				<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply - Nueva Solicitud de Compra <button style="float:right;" onclick="changeStyleSpanDetailOrder();" class="btn btn-sm btn-primary" id="menu-toggle"><span id="span_btn_detail_order" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Detalle de solicitud</button></h3> 
-				
-				<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>SKU</th>
-							<th>Nombre</th>
-							<th>Marca</th>
-							<th>Color</th>
-							<th>Talla</th>
-							<th>Existencia</th>
 
-							<th>Precio</th>
-
-							<th>Cantidad</th>
-							<th>AcciÃ³n</th>
-						</tr>
-					</tfoot>
-					<tbody>
-						<?=$rows?>					
-					</tbody>
-				</table>
-		
+				<table id="table"
+					   data-side-pagination="server"
+					   data-url="json/data_product.json"         
+					   data-filter-control="true">
+					   <thead>
+					<tr>
+						<th>Imagen</th>
+						<th>Sku</th>
+						<th data-filter-control="input">Name</th>
+						<th data-filter-control="select">Brand</th>
+						<th>Color</th>
+						<th>Size</th>
+						<th>Stock</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Operate</th>
+					</tr>
+					</thead>
+					  
+				</table>		
 				</div>
 			</div>
 		</div>
+    
 </div>
-		
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -191,8 +140,180 @@ $(document).ready(function() {
     </div>
   </div>
 </div>
+
 </body>
+
 <script>
+    var $table = $('#table');
+
+    function initTable() {
+        $table.bootstrapTable({
+           columns: [
+                [
+					{
+						field: 'image',  
+                        title: 'Imagen',
+                        align: 'center',
+                        valign: 'middle',
+						formatter: imageFormatter
+                    },
+                    {
+						field: 'sku',  
+                        title: 'Sku',
+                        align: 'left',
+                        valign: 'middle'
+                    }, {
+                        field: 'name',
+                        title: 'Nombre',                       
+                        align: 'left'
+                    }, {
+                        field: 'brand',
+                        title: 'Marca',						
+                        align: 'left',
+						width: '80px'
+                    }, {
+                        field: 'color',
+                        title: 'Color',						
+                        align: 'left'
+                    }, {
+                        field: 'size',
+                        title: 'Talla',						
+                        align: 'center'
+                    }, {
+                        field: 'stock',
+                        title: 'Existencia',						
+                        align: 'right'
+                    }, {
+                        field: 'price',
+                        title: 'Precio',                        
+                        align: 'right',
+						formatter: priceFormatter
+                    }, {
+                        title: 'Cantidad',
+                        align: 'center',
+						formatter: quantityFormatter
+                    }, {
+                        field: 'operate',
+                        title: 'Acción',
+                        align: 'left',
+                        events: operateEvents,
+                        formatter: operateFormatter
+                    }
+                ]
+            ]
+            
+        });
+        
+    }
+
+    function operateFormatter(value, row, index) {
+	
+		span_tags = '';
+		
+		if(row.type_price == 'discount'){
+			span_tags = '<span class="glyphicon glyphicon-tags"></span>';
+		}
+		
+			return [
+				'<span class="glyphicon glyphicon-shopping-cart" id="add_prod_'+row.sku+'" custom-data-1="'+row.price+'" custom-data-2="'+row.type_price+'"></span> ',
+				span_tags
+			].join('');
+    }
+	
+	function quantityFormatter(value, row, index) {
+	
+		return [
+				'<div id="dv_quantity_'+row.sku+'" class="td_price"><input id="quantity_'+row.sku+'" type="text" value="" name="quantity_'+row.sku+'"></div><div id="dv_quantity_info_'+row.sku+'"></div>',
+				'<script> $("input[name=\'quantity_'+row.sku+'\']").TouchSpin({initval: 1,min: 1,max: '+row.stock+',}); <\/script>'
+					
+			].join('');
+	}
+	
+	function imageFormatter(value, row, index){
+		strImage = 'Sin imagen';
+		if(row.image != ''){
+			strImage = '<img src="'+row.image+'" width="100" />';
+		}
+	
+		return [
+				strImage					
+			].join('');
+	}
+	
+	function priceFormatter(value, row, index){
+		formatPrice = Number(row.price);
+		formatPrice.toFixed(2);
+		return '$'+row.price;
+	}
+
+    window.operateEvents = {
+        'click .glyphicon-shopping-cart': addProductOrder
+    };
+
+
+    $(function () {
+        var scripts = [
+                location.search.substring(1) || 'js/bootstrap-table.js', 'js/bootstrap-table-filter-control.js'
+            ],
+            eachSeries = function (arr, iterator, callback) {
+                callback = callback || function () {};
+                if (!arr.length) {
+                    return callback();
+                }
+                var completed = 0;
+                var iterate = function () {
+                    iterator(arr[completed], function (err) {
+                        if (err) {
+                            callback(err);
+                            callback = function () {};
+                        }
+                        else {
+                            completed += 1;
+                            if (completed >= arr.length) {
+                                callback(null);
+                            }
+                            else {
+                                iterate();
+                            }
+                        }
+                    });
+                };
+                iterate();
+            };
+
+        eachSeries(scripts, getScript, initTable);
+    });
+
+    function getScript(url, callback) {
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = url;
+
+        var done = false;
+        // Attach handlers for all browsers
+        script.onload = script.onreadystatechange = function() {
+            if (!done && (!this.readyState ||
+                    this.readyState == 'loaded' || this.readyState == 'complete')) {
+                done = true;
+                if (callback)
+                    callback();
+
+                // Handle memory leak in IE
+                script.onload = script.onreadystatechange = null;
+            }
+        };
+
+        head.appendChild(script);
+
+        // We handle everything using the script element injection
+        return undefined;
+    }
+/*version original*/
+
+	$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 
 	var init_items = '{ "rows" : [] }';
 	var items_ordered = JSON.parse(init_items);;
@@ -211,15 +332,11 @@ $(document).ready(function() {
 	var iva = Number(0).toFixed(2);
 	var total_final = Number(0).toFixed(2);
 	
+	var doneDeal = false;
 
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });	
-	
-	function addProductOrder(){
-		
+function addProductOrder(){		
 		id_prod = $(this).attr("id");
+		
 		id_prod = id_prod.replace("add_prod_","");
 		
 		add_price=$(this).attr("custom-data-1");
@@ -295,6 +412,7 @@ $(document).ready(function() {
 		$(this).removeClass().addClass("glyphicon glyphicon-pencil");
 		$("#row_prod_"+id_prod).css("background-color","#DFF0D8");
 		$("#dv_quantity_"+id_prod).css("display","none");
+		
 		$("#dv_quantity_info_"+id_prod).html(quantity+" ordered");
 		$("#span_desc_info").html(factor_discount_description);
 		
@@ -305,7 +423,7 @@ $(document).ready(function() {
 		$(this).unbind("click");
 		$(this).click(editProductOrder);
 	}
-	
+
 	function findId(idToLookFor) {
 		var itemsArray = items_ordered.rows;
 		for (var i = 0; i < itemsArray.length; i++) {
@@ -404,10 +522,11 @@ $(document).ready(function() {
 		$(this).unbind("click");
 		$(this).click(addProductOrder);
 	}
-
-	$(".glyphicon-shopping-cart").click(addProductOrder);
-
-	/////////////////////////
+	
+	//$(".glyphicon-shopping-cart").click(addProductOrder);
+	
+	/////Termina insertar y modificar productos a orden////////////////////
+	/////Inicia enviar orden a administrador////////////////////
 
 	function insertOrder(){
 
@@ -441,8 +560,9 @@ $(document).ready(function() {
 					},
 					success: function(msg){
 							/*$("#myModal").modal('hide'); */
-							msjModal = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span> Solicitud de compra ha sido procesada exitosamente. "; 
+							msjModal = "<span class=\"glyphicon glyphicon-ok\" style=\"color:green\"></span> Solicitud de compra ha sido procesada exitosamente. ";
 							$("#dv_body_modal").html(msjModal);
+							doneDeal = true;
 					}
 				});
 		} else { 
@@ -450,7 +570,7 @@ $(document).ready(function() {
 			$("#dv_body_modal").html(msjModal);
 		}
 	}
-
+	
 	function changeStyleSpanDetailOrder(){
 		currentClass = $("#span_btn_detail_order").attr("class");
 		if(currentClass == 'glyphicon glyphicon-eye-close'){
@@ -461,11 +581,13 @@ $(document).ready(function() {
 	}
 
 	function redirectList(){
-		window.location="order_list.php";
+		if(doneDeal){
+			window.location="order_list.php";
+		}
 	}
-
-	<?=$initiate_quantitys?>
-
-    </script>
-
+/*version original*/
+	
+	
+	
+</script>
 </html>

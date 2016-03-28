@@ -6,8 +6,8 @@
 		"color": "Negro",
 		"size": "XXL - 2 Extra Grande",
 		"stock": "35",
-        "price": "$25584.00",
-		"type_price": "discount",
+        "price": "25584",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 1,
@@ -17,7 +17,7 @@
 		"color": "Negro",
 		"size": "L - Grande",
 		"stock": "15",
-        "price": "$25584.00",
+        "price": "25584",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -28,7 +28,7 @@
 		"color": "",
 		"size": "",
 		"stock": "11",
-        "price": "$9000.00",
+        "price": "9000",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -39,8 +39,8 @@
 		"color": "",
 		"size": "",
 		"stock": "10",
-        "price": "$9000.00",
-		"type_price": "discount",
+        "price": "9000",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 4,
@@ -50,7 +50,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9000.00",
+        "price": "9000",
 		"type_price": "normal",
 		"image": "http://ingenierosencomputacion.com.mx/wordpress/wp-content/uploads/inventory/49-7083_baja-designs_led-adventure-bike-kit.jpg"
     },{
@@ -61,7 +61,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$5402.00",
+        "price": "5402",
 		"type_price": "normal",
 		"image": "http://ingenierosencomputacion.com.mx/wordpress/wp-content/uploads/inventory/55-7083_baja-designs_sport-led-adventure-bike-kit.jpg"
     },{
@@ -72,8 +72,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$4520.00",
-		"type_price": "discount",
+        "price": "4520",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 7,
@@ -83,7 +83,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9820.00",
+        "price": "9820",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -94,7 +94,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$6484.00",
+        "price": "6484",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -105,8 +105,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9768.00",
-		"type_price": "discount",
+        "price": "9768",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 10,
@@ -116,7 +116,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9954.00",
+        "price": "9954",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -127,7 +127,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9954.00",
+        "price": "9954",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -138,8 +138,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9954.00",
-		"type_price": "discount",
+        "price": "9954",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 13,
@@ -149,7 +149,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$10862.00",
+        "price": "10862",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -160,7 +160,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$592.00",
+        "price": "592",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -171,8 +171,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$272.00",
-		"type_price": "discount",
+        "price": "272",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 16,
@@ -182,7 +182,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$704.00",
+        "price": "704",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -193,7 +193,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$704.00",
+        "price": "704",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -204,8 +204,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$840.00",
-		"type_price": "discount",
+        "price": "840",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 19,
@@ -215,7 +215,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$7561.00",
+        "price": "7561",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -226,7 +226,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$7560.00",
+        "price": "7560",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -237,8 +237,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
-		"type_price": "discount",
+        "price": "1824",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 22,
@@ -248,7 +248,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -259,7 +259,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -270,8 +270,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1206.00",
-		"type_price": "discount",
+        "price": "1206",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 25,
@@ -281,7 +281,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$400.00",
+        "price": "400",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -292,7 +292,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3264.00",
+        "price": "3264",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -303,8 +303,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$562.00",
-		"type_price": "discount",
+        "price": "562",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 28,
@@ -314,7 +314,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$593.00",
+        "price": "593",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -325,7 +325,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$952.00",
+        "price": "952",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -336,8 +336,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$952.00",
-		"type_price": "discount",
+        "price": "952",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 31,
@@ -347,7 +347,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$306.00",
+        "price": "306",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -358,7 +358,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$154.00",
+        "price": "154",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -369,8 +369,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 34,
@@ -380,7 +380,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -391,7 +391,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -402,8 +402,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 37,
@@ -413,7 +413,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -424,7 +424,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -435,8 +435,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 40,
@@ -446,7 +446,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -457,7 +457,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -468,8 +468,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 43,
@@ -479,7 +479,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -490,7 +490,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -501,8 +501,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 46,
@@ -512,7 +512,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -523,7 +523,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -534,8 +534,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 49,
@@ -545,7 +545,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -556,7 +556,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -567,8 +567,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 52,
@@ -578,7 +578,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -589,7 +589,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -600,8 +600,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 55,
@@ -611,7 +611,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -622,7 +622,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -633,8 +633,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 58,
@@ -644,7 +644,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -655,7 +655,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -666,8 +666,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 61,
@@ -677,7 +677,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -688,7 +688,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -699,8 +699,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
-		"type_price": "discount",
+        "price": "3964",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 64,
@@ -710,7 +710,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -721,7 +721,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3964.00",
+        "price": "3964",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -732,8 +732,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$4475.00",
-		"type_price": "discount",
+        "price": "4475",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 67,
@@ -743,7 +743,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -754,7 +754,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -765,8 +765,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
-		"type_price": "discount",
+        "price": "8810",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 70,
@@ -776,7 +776,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -787,7 +787,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -798,8 +798,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
-		"type_price": "discount",
+        "price": "8810",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 73,
@@ -809,7 +809,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -820,7 +820,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -831,8 +831,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
-		"type_price": "discount",
+        "price": "8810",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 76,
@@ -842,7 +842,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -853,7 +853,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -864,8 +864,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
-		"type_price": "discount",
+        "price": "8810",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 79,
@@ -875,7 +875,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -886,7 +886,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -897,8 +897,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
-		"type_price": "discount",
+        "price": "8810",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 82,
@@ -908,7 +908,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -919,7 +919,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -930,8 +930,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9314.00",
-		"type_price": "discount",
+        "price": "9314",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 85,
@@ -941,7 +941,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9314.00",
+        "price": "9314",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -952,7 +952,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9314.00",
+        "price": "9314",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -963,8 +963,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$13218.00",
-		"type_price": "discount",
+        "price": "13218",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 88,
@@ -974,7 +974,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$13218.00",
+        "price": "13218",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -985,7 +985,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$13218.00",
+        "price": "13218",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -996,8 +996,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$13218.00",
-		"type_price": "discount",
+        "price": "13218",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 91,
@@ -1007,7 +1007,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1018,7 +1018,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1029,8 +1029,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
-		"type_price": "discount",
+        "price": "8810",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 94,
@@ -1040,7 +1040,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1051,7 +1051,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$13218.00",
+        "price": "13218",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1062,8 +1062,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$13218.00",
-		"type_price": "discount",
+        "price": "13218",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 97,
@@ -1073,7 +1073,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$13218.00",
+        "price": "13218",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1084,7 +1084,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9912.00",
+        "price": "9912",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1095,8 +1095,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9912.00",
-		"type_price": "discount",
+        "price": "9912",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 100,
@@ -1106,7 +1106,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1117,7 +1117,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1122.00",
+        "price": "1122",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1128,8 +1128,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1122.00",
-		"type_price": "discount",
+        "price": "1122",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 103,
@@ -1139,7 +1139,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1122.00",
+        "price": "1122",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1150,7 +1150,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$270.00",
+        "price": "270",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1161,8 +1161,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$13662.00",
-		"type_price": "discount",
+        "price": "13662",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 106,
@@ -1172,7 +1172,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$10245.00",
+        "price": "10245",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1183,7 +1183,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$9106.00",
+        "price": "9106",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1194,8 +1194,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
-		"type_price": "discount",
+        "price": "1824",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 109,
@@ -1205,7 +1205,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1216,7 +1216,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1227,8 +1227,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
-		"type_price": "discount",
+        "price": "1824",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 112,
@@ -1238,7 +1238,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1249,7 +1249,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1260,8 +1260,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
-		"type_price": "discount",
+        "price": "1824",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 115,
@@ -1271,7 +1271,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1282,7 +1282,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1293,8 +1293,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
-		"type_price": "discount",
+        "price": "1824",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 118,
@@ -1304,7 +1304,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1315,7 +1315,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1326,8 +1326,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
-		"type_price": "discount",
+        "price": "1824",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 121,
@@ -1337,7 +1337,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1348,7 +1348,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1824.00",
+        "price": "1824",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1359,8 +1359,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 124,
@@ -1370,7 +1370,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1381,7 +1381,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1392,8 +1392,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 127,
@@ -1403,7 +1403,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1414,7 +1414,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1425,8 +1425,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 130,
@@ -1436,7 +1436,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1447,7 +1447,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1458,8 +1458,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 133,
@@ -1469,7 +1469,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1480,7 +1480,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3172.00",
+        "price": "3172",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1491,8 +1491,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3172.00",
-		"type_price": "discount",
+        "price": "3172",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 136,
@@ -1502,7 +1502,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3172.00",
+        "price": "3172",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1513,7 +1513,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1524,8 +1524,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 139,
@@ -1535,7 +1535,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1546,7 +1546,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1557,8 +1557,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 142,
@@ -1568,7 +1568,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1579,7 +1579,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1590,8 +1590,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 145,
@@ -1601,7 +1601,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1612,7 +1612,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1623,8 +1623,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 148,
@@ -1634,7 +1634,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1645,7 +1645,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1656,8 +1656,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 151,
@@ -1667,7 +1667,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1678,7 +1678,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1689,8 +1689,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 154,
@@ -1700,7 +1700,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3524.00",
+        "price": "3524",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1711,7 +1711,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3524.00",
+        "price": "3524",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1722,8 +1722,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3524.00",
-		"type_price": "discount",
+        "price": "3524",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 157,
@@ -1733,7 +1733,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3524.00",
+        "price": "3524",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1744,7 +1744,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3524.00",
+        "price": "3524",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1755,8 +1755,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3310.00",
-		"type_price": "discount",
+        "price": "3310",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 160,
@@ -1766,7 +1766,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1777,7 +1777,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1788,8 +1788,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
-		"type_price": "discount",
+        "price": "8810",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 163,
@@ -1799,7 +1799,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1810,7 +1810,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1821,8 +1821,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
-		"type_price": "discount",
+        "price": "8810",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 166,
@@ -1832,7 +1832,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1843,7 +1843,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3310.00",
+        "price": "3310",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1854,8 +1854,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3310.00",
-		"type_price": "discount",
+        "price": "3310",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 169,
@@ -1865,7 +1865,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3310.00",
+        "price": "3310",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1876,7 +1876,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1887,8 +1887,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 172,
@@ -1898,7 +1898,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1909,7 +1909,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
+        "price": "2643",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1920,8 +1920,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 175,
@@ -1931,7 +1931,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3310.00",
+        "price": "3310",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1942,7 +1942,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3310.00",
+        "price": "3310",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1953,8 +1953,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3310.00",
-		"type_price": "discount",
+        "price": "3310",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 178,
@@ -1964,7 +1964,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3310.00",
+        "price": "3310",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1975,7 +1975,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
+        "price": "8810",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -1986,8 +1986,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8810.00",
-		"type_price": "discount",
+        "price": "8810",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 181,
@@ -1997,7 +1997,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3524.00",
+        "price": "3524",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2008,7 +2008,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$3524.00",
+        "price": "3524",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2019,8 +2019,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2643.00",
-		"type_price": "discount",
+        "price": "2643",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 184,
@@ -2030,7 +2030,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$7928.00",
+        "price": "7928",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2041,7 +2041,7 @@
 		"color": "Bomb",
 		"size": "M",
 		"stock": "1",
-        "price": "$3640.00",
+        "price": "3640",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2052,8 +2052,8 @@
 		"color": "Azul / Rojo",
 		"size": "M",
 		"stock": "1",
-        "price": "$2730.00",
-		"type_price": "discount",
+        "price": "2730",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 187,
@@ -2063,7 +2063,7 @@
 		"color": "Blanco",
 		"size": "M",
 		"stock": "1",
-        "price": "$3258.00",
+        "price": "3258",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2074,7 +2074,7 @@
 		"color": "Gris / Negro / Cromo",
 		"size": "L",
 		"stock": "1",
-        "price": "$3258.00",
+        "price": "3258",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2085,8 +2085,8 @@
 		"color": "Gris / Negro / Cromo",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$3258.00",
-		"type_price": "discount",
+        "price": "3258",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 190,
@@ -2096,7 +2096,7 @@
 		"color": "Rojo /negro",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$3258.00",
+        "price": "3258",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2107,7 +2107,7 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$3258.00",
+        "price": "3258",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2118,8 +2118,8 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$3258.00",
-		"type_price": "discount",
+        "price": "3258",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 193,
@@ -2129,7 +2129,7 @@
 		"color": "Negro",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$3258.00",
+        "price": "3258",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2140,7 +2140,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2151,8 +2151,8 @@
 		"color": "Hi-vis",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 196,
@@ -2162,7 +2162,7 @@
 		"color": "Hi-vis",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2173,7 +2173,7 @@
 		"color": "Hi-vis",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2184,8 +2184,8 @@
 		"color": "Hi-vis",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 199,
@@ -2195,7 +2195,7 @@
 		"color": "Hi-vis",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2206,7 +2206,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2217,8 +2217,8 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 202,
@@ -2228,7 +2228,7 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2239,7 +2239,7 @@
 		"color": "Negro",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2250,8 +2250,8 @@
 		"color": "Negro",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 205,
@@ -2261,7 +2261,7 @@
 		"color": "Negro Mate",
 		"size": "Xs",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2272,7 +2272,7 @@
 		"color": "Negro Mate",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2283,8 +2283,8 @@
 		"color": "Negro Mate",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 208,
@@ -2294,7 +2294,7 @@
 		"color": "Negro Mate",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2305,7 +2305,7 @@
 		"color": "Negro Mate",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2316,8 +2316,8 @@
 		"color": "Negro Mate",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 211,
@@ -2327,7 +2327,7 @@
 		"color": "Plata / Metalico",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2338,7 +2338,7 @@
 		"color": "Plata / Metalico",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2349,8 +2349,8 @@
 		"color": "Plata / Metalico",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 214,
@@ -2360,7 +2360,7 @@
 		"color": "Plata / Metalico",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2371,7 +2371,7 @@
 		"color": "Plata / Metalico",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2382,8 +2382,8 @@
 		"color": "Blanco",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 217,
@@ -2393,7 +2393,7 @@
 		"color": "Blanco",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2404,7 +2404,7 @@
 		"color": "Blanco",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2415,8 +2415,8 @@
 		"color": "Blanco",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 220,
@@ -2426,7 +2426,7 @@
 		"color": "Blanco",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2437,7 +2437,7 @@
 		"color": "Hi-vis Amarillo",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2448,8 +2448,8 @@
 		"color": "Hi-vis Amarillo",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 223,
@@ -2459,7 +2459,7 @@
 		"color": "Hi-vis Amarillo",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2470,7 +2470,7 @@
 		"color": "Hi-vis Amarillo",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2481,8 +2481,8 @@
 		"color": "Hi-vis Amarillo",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 226,
@@ -2492,7 +2492,7 @@
 		"color": "Ghost",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2503,7 +2503,7 @@
 		"color": "Ghost",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2514,8 +2514,8 @@
 		"color": "Ghost",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 229,
@@ -2525,7 +2525,7 @@
 		"color": "Ghost",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2536,7 +2536,7 @@
 		"color": "Rojo",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2547,8 +2547,8 @@
 		"color": "Rojo",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 232,
@@ -2558,7 +2558,7 @@
 		"color": "Rojo",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2569,7 +2569,7 @@
 		"color": "Negro Mate / Blanco",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2580,8 +2580,8 @@
 		"color": "Negro Mate / Blanco",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 235,
@@ -2591,7 +2591,7 @@
 		"color": "Negro Mate / Blanco",
 		"size": "L",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2602,7 +2602,7 @@
 		"color": "Negro Mate / Blanco",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2613,8 +2613,8 @@
 		"color": "Negro Mate / Blanco",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 238,
@@ -2624,7 +2624,7 @@
 		"color": "Negro Mate / Blanco",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2635,7 +2635,7 @@
 		"color": "Verde / Naranja",
 		"size": "M",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2646,8 +2646,8 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$4138.00",
-		"type_price": "discount",
+        "price": "4138",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 241,
@@ -2657,7 +2657,7 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2668,7 +2668,7 @@
 		"color": "Negro",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2679,8 +2679,8 @@
 		"color": "Naranja",
 		"size": "M",
 		"stock": "1",
-        "price": "$4138.00",
-		"type_price": "discount",
+        "price": "4138",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 244,
@@ -2690,7 +2690,7 @@
 		"color": "Naranja",
 		"size": "L",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2701,7 +2701,7 @@
 		"color": "Naranja",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2712,8 +2712,8 @@
 		"color": "Rojo",
 		"size": "M",
 		"stock": "1",
-        "price": "$4138.00",
-		"type_price": "discount",
+        "price": "4138",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 247,
@@ -2723,7 +2723,7 @@
 		"color": "Rojo",
 		"size": "L",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2734,7 +2734,7 @@
 		"color": "Rojo",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2745,8 +2745,8 @@
 		"color": "Hi-vis",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4138.00",
-		"type_price": "discount",
+        "price": "4138",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 250,
@@ -2756,7 +2756,7 @@
 		"color": "Hi-vis",
 		"size": "M",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2767,7 +2767,7 @@
 		"color": "Hi-vis",
 		"size": "L",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2778,8 +2778,8 @@
 		"color": "Hi-vis",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4138.00",
-		"type_price": "discount",
+        "price": "4138",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 253,
@@ -2789,7 +2789,7 @@
 		"color": "Blanco",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2800,7 +2800,7 @@
 		"color": "Blanco",
 		"size": "M",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2811,8 +2811,8 @@
 		"color": "Blanco",
 		"size": "L",
 		"stock": "1",
-        "price": "$4138.00",
-		"type_price": "discount",
+        "price": "4138",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 256,
@@ -2822,7 +2822,7 @@
 		"color": "Blanco",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2833,7 +2833,7 @@
 		"color": "Rojo",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2844,8 +2844,8 @@
 		"color": "Rojo",
 		"size": "M",
 		"stock": "1",
-        "price": "$4138.00",
-		"type_price": "discount",
+        "price": "4138",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 259,
@@ -2855,7 +2855,7 @@
 		"color": "Rojo",
 		"size": "L",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2866,7 +2866,7 @@
 		"color": "Rojo",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2877,8 +2877,8 @@
 		"color": "Rojo",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4138.00",
-		"type_price": "discount",
+        "price": "4138",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 262,
@@ -2888,7 +2888,7 @@
 		"color": "Negro",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2899,7 +2899,7 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2910,8 +2910,8 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$4138.00",
-		"type_price": "discount",
+        "price": "4138",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 265,
@@ -2921,7 +2921,7 @@
 		"color": "Negro",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4138.00",
+        "price": "4138",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2932,7 +2932,7 @@
 		"color": "Hi-vis",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4185.00",
+        "price": "4185",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2943,8 +2943,8 @@
 		"color": "Hi-vis",
 		"size": "M",
 		"stock": "1",
-        "price": "$4185.00",
-		"type_price": "discount",
+        "price": "4185",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 268,
@@ -2954,7 +2954,7 @@
 		"color": "Hi-vis",
 		"size": "L",
 		"stock": "1",
-        "price": "$4185.00",
+        "price": "4185",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2965,7 +2965,7 @@
 		"color": "Hi-vis",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4185.00",
+        "price": "4185",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2976,8 +2976,8 @@
 		"color": "Hi-vis",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4185.00",
-		"type_price": "discount",
+        "price": "4185",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 271,
@@ -2987,7 +2987,7 @@
 		"color": "Negro Mate",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$4185.00",
+        "price": "4185",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -2998,7 +2998,7 @@
 		"color": "Negro Mate",
 		"size": "M",
 		"stock": "1",
-        "price": "$4185.00",
+        "price": "4185",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3009,8 +3009,8 @@
 		"color": "Negro Mate",
 		"size": "L",
 		"stock": "1",
-        "price": "$4185.00",
-		"type_price": "discount",
+        "price": "4185",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 274,
@@ -3020,7 +3020,7 @@
 		"color": "Negro Mate",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4185.00",
+        "price": "4185",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3031,7 +3031,7 @@
 		"color": "Negro Mate",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$4185.00",
+        "price": "4185",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3042,8 +3042,8 @@
 		"color": "Blanco",
 		"size": "L",
 		"stock": "1",
-        "price": "$4185.00",
-		"type_price": "discount",
+        "price": "4185",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 277,
@@ -3053,7 +3053,7 @@
 		"color": "Blanco",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$4185.00",
+        "price": "4185",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3064,7 +3064,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$4405.00",
+        "price": "4405",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3075,8 +3075,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$4405.00",
-		"type_price": "discount",
+        "price": "4405",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 280,
@@ -3086,7 +3086,7 @@
 		"color": "Airtrix Laguna",
 		"size": "M",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3097,7 +3097,7 @@
 		"color": "Airtrix Laguna",
 		"size": "L",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3108,8 +3108,8 @@
 		"color": "Pinned Rojo",
 		"size": "Xs",
 		"stock": "1",
-        "price": "$8906.00",
-		"type_price": "discount",
+        "price": "8906",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 283,
@@ -3119,7 +3119,7 @@
 		"color": "Pinned Mate / Blanco Brillante",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3130,7 +3130,7 @@
 		"color": "Hurricane",
 		"size": "M",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3141,8 +3141,8 @@
 		"color": "Hurricane",
 		"size": "L",
 		"stock": "1",
-        "price": "$8906.00",
-		"type_price": "discount",
+        "price": "8906",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 286,
@@ -3152,7 +3152,7 @@
 		"color": "Hurricane",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3163,7 +3163,7 @@
 		"color": "Emblema Blanco",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3174,8 +3174,8 @@
 		"color": "Emblema Blanco",
 		"size": "M",
 		"stock": "1",
-        "price": "$8906.00",
-		"type_price": "discount",
+        "price": "8906",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 289,
@@ -3185,7 +3185,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3196,7 +3196,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3207,8 +3207,8 @@
 		"color": "Naranja",
 		"size": "M",
 		"stock": "1",
-        "price": "$8906.00",
-		"type_price": "discount",
+        "price": "8906",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 292,
@@ -3218,7 +3218,7 @@
 		"color": "Naranja",
 		"size": "L",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3229,7 +3229,7 @@
 		"color": "Naranja",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3240,8 +3240,8 @@
 		"color": "Azul",
 		"size": "M",
 		"stock": "1",
-        "price": "$8906.00",
-		"type_price": "discount",
+        "price": "8906",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 295,
@@ -3251,7 +3251,7 @@
 		"color": "Azul",
 		"size": "L",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3262,7 +3262,7 @@
 		"color": "Azul",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$8906.00",
+        "price": "8906",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3273,8 +3273,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$14318.00",
-		"type_price": "discount",
+        "price": "14318",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 298,
@@ -3284,7 +3284,7 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$7232.00",
+        "price": "7232",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3295,7 +3295,7 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$7232.00",
+        "price": "7232",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3306,8 +3306,8 @@
 		"color": "Negro",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$7232.00",
-		"type_price": "discount",
+        "price": "7232",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 301,
@@ -3317,7 +3317,7 @@
 		"color": "Naranja",
 		"size": "M",
 		"stock": "1",
-        "price": "$7232.00",
+        "price": "7232",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3328,7 +3328,7 @@
 		"color": "Naranja",
 		"size": "L",
 		"stock": "1",
-        "price": "$7232.00",
+        "price": "7232",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3339,8 +3339,8 @@
 		"color": "Naranja",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$7232.00",
-		"type_price": "discount",
+        "price": "7232",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 304,
@@ -3350,7 +3350,7 @@
 		"color": "Azul / Verde",
 		"size": "L",
 		"stock": "1",
-        "price": "$6219.00",
+        "price": "6219",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3361,7 +3361,7 @@
 		"color": "Naranja / Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$14798.00",
+        "price": "14798",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3372,8 +3372,8 @@
 		"color": "Amarillo / Rojo",
 		"size": "M",
 		"stock": "1",
-        "price": "$14798.00",
-		"type_price": "discount",
+        "price": "14798",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 307,
@@ -3383,7 +3383,7 @@
 		"color": "Camo",
 		"size": "M",
 		"stock": "1",
-        "price": "$9106.00",
+        "price": "9106",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3394,7 +3394,7 @@
 		"color": "Titanio Mate",
 		"size": "M",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3405,8 +3405,8 @@
 		"color": "Titanio Mate",
 		"size": "L",
 		"stock": "1",
-        "price": "$2863.00",
-		"type_price": "discount",
+        "price": "2863",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 310,
@@ -3416,7 +3416,7 @@
 		"color": "Titanio Mate",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3427,7 +3427,7 @@
 		"color": "Rosa",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3438,8 +3438,8 @@
 		"color": "Rosa",
 		"size": "M",
 		"stock": "1",
-        "price": "$2863.00",
-		"type_price": "discount",
+        "price": "2863",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 313,
@@ -3449,7 +3449,7 @@
 		"color": "Rosa",
 		"size": "L",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3460,7 +3460,7 @@
 		"color": "Negro",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3471,8 +3471,8 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$2863.00",
-		"type_price": "discount",
+        "price": "2863",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 316,
@@ -3482,7 +3482,7 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3493,7 +3493,7 @@
 		"color": "Negro",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3504,8 +3504,8 @@
 		"color": "Negro Mate",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$2863.00",
-		"type_price": "discount",
+        "price": "2863",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 319,
@@ -3515,7 +3515,7 @@
 		"color": "Negro Mate",
 		"size": "M",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3526,7 +3526,7 @@
 		"color": "Negro Mate",
 		"size": "L",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3537,8 +3537,8 @@
 		"color": "Negro Mate",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$2863.00",
-		"type_price": "discount",
+        "price": "2863",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 322,
@@ -3548,7 +3548,7 @@
 		"color": "Titanio",
 		"size": "M",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3559,7 +3559,7 @@
 		"color": "Titanio",
 		"size": "L",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3570,8 +3570,8 @@
 		"color": "Titanio",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$2863.00",
-		"type_price": "discount",
+        "price": "2863",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 325,
@@ -3581,7 +3581,7 @@
 		"color": "Negro / Gris",
 		"size": "M",
 		"stock": "1",
-        "price": "$2958.00",
+        "price": "2958",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3592,7 +3592,7 @@
 		"color": "Naranja / Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$2958.00",
+        "price": "2958",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3603,8 +3603,8 @@
 		"color": "Hi-vis",
 		"size": "M",
 		"stock": "1",
-        "price": "$2275.00",
-		"type_price": "discount",
+        "price": "2275",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 328,
@@ -3614,7 +3614,7 @@
 		"color": "Hi-vis",
 		"size": "L",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3625,7 +3625,7 @@
 		"color": "Hi-vis",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3636,8 +3636,8 @@
 		"color": "Hi-vis",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$3978.00",
-		"type_price": "discount",
+        "price": "3978",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 331,
@@ -3647,7 +3647,7 @@
 		"color": "Negro / Rosa",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3658,7 +3658,7 @@
 		"color": "Negro / Rosa",
 		"size": "M",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3669,8 +3669,8 @@
 		"color": "Legio",
 		"size": "M",
 		"stock": "1",
-        "price": "$2275.00",
-		"type_price": "discount",
+        "price": "2275",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 334,
@@ -3680,7 +3680,7 @@
 		"color": "Legio",
 		"size": "L",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3691,7 +3691,7 @@
 		"color": "Legio",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3702,8 +3702,8 @@
 		"color": "Negro Mate",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$2275.00",
-		"type_price": "discount",
+        "price": "2275",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 337,
@@ -3713,7 +3713,7 @@
 		"color": "Negro Mate",
 		"size": "M",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3724,7 +3724,7 @@
 		"color": "Negro Mate",
 		"size": "L",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3735,8 +3735,8 @@
 		"color": "Negro Mate",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$2275.00",
-		"type_price": "discount",
+        "price": "2275",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 340,
@@ -3746,7 +3746,7 @@
 		"color": "Azul",
 		"size": "M",
 		"stock": "1",
-        "price": "$5066.00",
+        "price": "5066",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3757,7 +3757,7 @@
 		"color": "Azul",
 		"size": "L",
 		"stock": "1",
-        "price": "$5066.00",
+        "price": "5066",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3768,8 +3768,8 @@
 		"color": "Rosa",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$5066.00",
-		"type_price": "discount",
+        "price": "5066",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 343,
@@ -3779,7 +3779,7 @@
 		"color": "Rosa",
 		"size": "M",
 		"stock": "1",
-        "price": "$5066.00",
+        "price": "5066",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3790,7 +3790,7 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$5066.00",
+        "price": "5066",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3801,8 +3801,8 @@
 		"color": "Devil May Care",
 		"size": "M",
 		"stock": "1",
-        "price": "$5066.00",
-		"type_price": "discount",
+        "price": "5066",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 346,
@@ -3812,7 +3812,7 @@
 		"color": "Devil May Care",
 		"size": "L",
 		"stock": "1",
-        "price": "$5066.00",
+        "price": "5066",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3823,7 +3823,7 @@
 		"color": "Devil May Care",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$5066.00",
+        "price": "5066",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3834,8 +3834,8 @@
 		"color": "Hi-vis",
 		"size": "M",
 		"stock": "1",
-        "price": "$5066.00",
-		"type_price": "discount",
+        "price": "5066",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 349,
@@ -3845,7 +3845,7 @@
 		"color": "Hi-vis",
 		"size": "L",
 		"stock": "1",
-        "price": "$5066.00",
+        "price": "5066",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3856,7 +3856,7 @@
 		"color": "Hi-vis",
 		"size": "M",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3867,8 +3867,8 @@
 		"color": "Hi-vis",
 		"size": "L",
 		"stock": "1",
-        "price": "$2863.00",
-		"type_price": "discount",
+        "price": "2863",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 352,
@@ -3878,7 +3878,7 @@
 		"color": "Hi-vis",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$2863.00",
+        "price": "2863",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3889,7 +3889,7 @@
 		"color": "Rosa Camo",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3900,8 +3900,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$2422.00",
-		"type_price": "discount",
+        "price": "2422",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 355,
@@ -3911,7 +3911,7 @@
 		"color": "Blanco / Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$5235.00",
+        "price": "5235",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3922,7 +3922,7 @@
 		"color": "Titanio Mate",
 		"size": "M",
 		"stock": "1",
-        "price": "$5235.00",
+        "price": "5235",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3933,8 +3933,8 @@
 		"color": "Emblema Blanco",
 		"size": "L",
 		"stock": "1",
-        "price": "$7240.00",
-		"type_price": "discount",
+        "price": "7240",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 358,
@@ -3944,7 +3944,7 @@
 		"color": "Emblema Blanco",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$7240.00",
+        "price": "7240",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3955,7 +3955,7 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$7240.00",
+        "price": "7240",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3966,8 +3966,8 @@
 		"color": "Negro",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$7240.00",
-		"type_price": "discount",
+        "price": "7240",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 361,
@@ -3977,7 +3977,7 @@
 		"color": "Blanco Aperlado",
 		"size": "M",
 		"stock": "1",
-        "price": "$7240.00",
+        "price": "7240",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3988,7 +3988,7 @@
 		"color": "Blanco Aperlado",
 		"size": "L",
 		"stock": "1",
-        "price": "$7240.00",
+        "price": "7240",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -3999,8 +3999,8 @@
 		"color": "Blanco Aperlado",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$7240.00",
-		"type_price": "discount",
+        "price": "7240",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 364,
@@ -4010,7 +4010,7 @@
 		"color": "Blanco Aperlado",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$7240.00",
+        "price": "7240",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4021,7 +4021,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$8279.00",
+        "price": "8279",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4032,8 +4032,8 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$5506.00",
-		"type_price": "discount",
+        "price": "5506",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 367,
@@ -4043,7 +4043,7 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4054,7 +4054,7 @@
 		"color": "Negro",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4065,8 +4065,8 @@
 		"color": "Negro Mate",
 		"size": "M",
 		"stock": "1",
-        "price": "$5506.00",
-		"type_price": "discount",
+        "price": "5506",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 370,
@@ -4076,7 +4076,7 @@
 		"color": "Negro Mate",
 		"size": "L",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4087,7 +4087,7 @@
 		"color": "Negro Mate",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4098,8 +4098,8 @@
 		"color": "Negro Mate",
 		"size": "Xxl",
 		"stock": "1",
-        "price": "$5506.00",
-		"type_price": "discount",
+        "price": "5506",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 373,
@@ -4109,7 +4109,7 @@
 		"color": "Gunny",
 		"size": "L",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4120,7 +4120,7 @@
 		"color": "Gunny",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4131,8 +4131,8 @@
 		"color": "Gunny Mate",
 		"size": "M",
 		"stock": "1",
-        "price": "$5506.00",
-		"type_price": "discount",
+        "price": "5506",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 376,
@@ -4142,7 +4142,7 @@
 		"color": "Gunny Mate",
 		"size": "L",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4153,7 +4153,7 @@
 		"color": "Gunny Mate",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4164,8 +4164,8 @@
 		"color": "Negro / Gris",
 		"size": "M",
 		"stock": "1",
-        "price": "$5506.00",
-		"type_price": "discount",
+        "price": "5506",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 379,
@@ -4175,7 +4175,7 @@
 		"color": "Negro / Gris",
 		"size": "L",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4186,7 +4186,7 @@
 		"color": "Negro / Gris",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$5506.00",
+        "price": "5506",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4197,8 +4197,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$5506.00",
-		"type_price": "discount",
+        "price": "5506",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 382,
@@ -4208,7 +4208,7 @@
 		"color": "Negro Mate",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$1542.00",
+        "price": "1542",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4219,7 +4219,7 @@
 		"color": "Negro Mate",
 		"size": "M",
 		"stock": "1",
-        "price": "$1542.00",
+        "price": "1542",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4230,8 +4230,8 @@
 		"color": "Negro Mate",
 		"size": "L",
 		"stock": "1",
-        "price": "$1542.00",
-		"type_price": "discount",
+        "price": "1542",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 385,
@@ -4241,7 +4241,7 @@
 		"color": "Negro Mate",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$1542.00",
+        "price": "1542",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4252,7 +4252,7 @@
 		"color": "Negro",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$1542.00",
+        "price": "1542",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4263,8 +4263,8 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$1542.00",
-		"type_price": "discount",
+        "price": "1542",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 388,
@@ -4274,7 +4274,7 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$1542.00",
+        "price": "1542",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4285,7 +4285,7 @@
 		"color": "Negro",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$1542.00",
+        "price": "1542",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4296,8 +4296,8 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$1868.00",
-		"type_price": "discount",
+        "price": "1868",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 391,
@@ -4307,7 +4307,7 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$1868.00",
+        "price": "1868",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4318,7 +4318,7 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$1868.00",
+        "price": "1868",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4329,8 +4329,8 @@
 		"color": "Azul",
 		"size": "M",
 		"stock": "1",
-        "price": "$1868.00",
-		"type_price": "discount",
+        "price": "1868",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 394,
@@ -4340,7 +4340,7 @@
 		"color": "Azul",
 		"size": "L",
 		"stock": "1",
-        "price": "$1868.00",
+        "price": "1868",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4351,7 +4351,7 @@
 		"color": "Azul",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$1868.00",
+        "price": "1868",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4362,8 +4362,8 @@
 		"color": "Amarillo",
 		"size": "M",
 		"stock": "1",
-        "price": "$1868.00",
-		"type_price": "discount",
+        "price": "1868",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 397,
@@ -4373,7 +4373,7 @@
 		"color": "Amarillo",
 		"size": "L",
 		"stock": "1",
-        "price": "$1868.00",
+        "price": "1868",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4384,7 +4384,7 @@
 		"color": "Amarillo",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$1868.00",
+        "price": "1868",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4395,8 +4395,8 @@
 		"color": "Naranja",
 		"size": "M",
 		"stock": "1",
-        "price": "$1868.00",
-		"type_price": "discount",
+        "price": "1868",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 400,
@@ -4406,7 +4406,7 @@
 		"color": "Naranja",
 		"size": "L",
 		"stock": "1",
-        "price": "$1868.00",
+        "price": "1868",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4417,7 +4417,7 @@
 		"color": "Naranja",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$1868.00",
+        "price": "1868",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4428,8 +4428,8 @@
 		"color": "Azul",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$1994.00",
-		"type_price": "discount",
+        "price": "1994",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 403,
@@ -4439,7 +4439,7 @@
 		"color": "Azul",
 		"size": "M",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4450,7 +4450,7 @@
 		"color": "Azul",
 		"size": "L",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4461,8 +4461,8 @@
 		"color": "Azul",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$1994.00",
-		"type_price": "discount",
+        "price": "1994",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 406,
@@ -4472,7 +4472,7 @@
 		"color": "Rojo",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4483,7 +4483,7 @@
 		"color": "Rojo",
 		"size": "M",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4494,8 +4494,8 @@
 		"color": "Rojo",
 		"size": "L",
 		"stock": "1",
-        "price": "$1994.00",
-		"type_price": "discount",
+        "price": "1994",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 409,
@@ -4505,7 +4505,7 @@
 		"color": "Rojo",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4516,7 +4516,7 @@
 		"color": "Naranja",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4527,8 +4527,8 @@
 		"color": "Naranja",
 		"size": "M",
 		"stock": "1",
-        "price": "$1994.00",
-		"type_price": "discount",
+        "price": "1994",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 412,
@@ -4538,7 +4538,7 @@
 		"color": "Naranja",
 		"size": "L",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4549,7 +4549,7 @@
 		"color": "Naranja",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4560,8 +4560,8 @@
 		"color": "Amarillo",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$1994.00",
-		"type_price": "discount",
+        "price": "1994",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 415,
@@ -4571,7 +4571,7 @@
 		"color": "Amarillo",
 		"size": "M",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4582,7 +4582,7 @@
 		"color": "Amarillo",
 		"size": "L",
 		"stock": "1",
-        "price": "$1994.00",
+        "price": "1994",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4593,8 +4593,8 @@
 		"color": "Amarillo",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$1994.00",
-		"type_price": "discount",
+        "price": "1994",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 418,
@@ -4604,7 +4604,7 @@
 		"color": "Azul / Rosa",
 		"size": "M",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4615,7 +4615,7 @@
 		"color": "Naranja",
 		"size": "S - Chica",
 		"stock": "1",
-        "price": "$2275.00",
+        "price": "2275",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4626,8 +4626,8 @@
 		"color": "Negro",
 		"size": "M",
 		"stock": "1",
-        "price": "$528.00",
-		"type_price": "discount",
+        "price": "528",
+		"type_price": "normal",
 		"image": ""
     },{
         "id": 421,
@@ -4637,7 +4637,7 @@
 		"color": "Negro",
 		"size": "L",
 		"stock": "1",
-        "price": "$528.00",
+        "price": "528",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4648,7 +4648,7 @@
 		"color": "Negro",
 		"size": "Xl",
 		"stock": "1",
-        "price": "$528.00",
+        "price": "528",
 		"type_price": "normal",
 		"image": ""
     },{
@@ -4659,7 +4659,7 @@
 		"color": "",
 		"size": "",
 		"stock": "1",
-        "price": "$638.00",
-		"type_price": "discount",
+        "price": "638",
+		"type_price": "normal",
 		"image": ""
     }] }
