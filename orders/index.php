@@ -38,7 +38,7 @@
         <h2 style="color:#337AB7; margin-left:8px;"><span class="glyphicon glyphicon-eye-open"></span> Detalle</h2>
 		<table class="table table-sm" >
 			<tr>
-				<td>Productos s/promoción</td>
+				<td>Productos s/promociÃ³n</td>
 				<td align="right"><span id="span_prod_s_prom"  style="color:#DF0404">$0.00</span></td>
 			</tr>
 			<tr>
@@ -46,7 +46,7 @@
 				<td align="right"><span id="span_desc"  style="color:#DF0404">$0.00</span></td>
 			</tr>
 			<tr>
-				<td>Productos s/promoción<br>con descuento aplicado</td>
+				<td>Productos s/promociÃ³n<br>con descuento aplicado</td>
 				<td align="right">$<span id="span_prod_s_prom_c_desc" >0.00</span></td>
 			</tr>
 			<tr>
@@ -104,7 +104,6 @@
 					   <thead>
 					<tr>
 						<th>Imagen</th>
-						<th>Sku</th>
 						<th data-filter-control="input">Name</th>
 						<th data-filter-control="select">Brand</th>
 						<th>Color</th>
@@ -156,12 +155,6 @@
                         align: 'center',
                         valign: 'middle',
 						formatter: imageFormatter
-                    },
-                    {
-						field: 'sku',  
-                        title: 'Sku',
-                        align: 'left',
-                        valign: 'middle'
                     }, {
                         field: 'name',
                         title: 'Nombre',                       
@@ -194,7 +187,7 @@
 						formatter: quantityFormatter
                     }, {
                         field: 'operate',
-                        title: 'Acción',
+                        title: 'AcciÃ³n',
                         align: 'left',
                         events: operateEvents,
                         formatter: operateFormatter
