@@ -28,7 +28,7 @@
 
         function restoreLog(restore)
         {
-            var msj="¿Desea restaurar la información?";
+            var msj="ï¿½Desea restaurar la informaciï¿½n?";
         	if (confirm(msj) == true)
             {
         		$.ajax({
@@ -45,7 +45,7 @@
 
         function deleteLog(id)
         {
-        	var msj="¿Desea eliminar el Registro?";
+        	var msj="ï¿½Desea eliminar el Registro?";
         	if (confirm(msj) == true)
             {
         		$.ajax(
@@ -81,9 +81,9 @@
 </head>
 <body>
 
-<?php
-	include ('../menu.php');
-?>
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'header.php';?>
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'menu.php';?>
+
 <div class="container">
 	<div class="input-group">
   	<span class="input-group-addon">Buscar</span>

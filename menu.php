@@ -48,6 +48,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="<?php echo $ruta?>excel">importar</a></li>
                     <li><a href="<?php echo $ruta?>excel/images.php">subir imagenes</a></li>
+                    <li><a href="<?php echo $ruta?>excel/showlog.php">Log</a></li>
                 </ul>
             </li>
 

@@ -40,10 +40,6 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 	';	
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Lista de Solicitudes de Compra - Hainzer Supply</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://issues.wenzhixin.net.cn/bootstrap-table/assets/bootstrap-table/src/bootstrap-table.css">
@@ -61,11 +57,12 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 }
 	</style>
 
-</head>
-<body>
-<?php include '../menu.php'?>
+
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'header.php';?>
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'menu.php';?>
+
 <div class="container">
-<h3 class="page_title"> <img src="http://ingenierosencomputacion.com.mx/login/img/logo.png" width="50" /> Hainzer Supply - Lista de Solicitudes de Compra </h3>    
+<h3 class="page_title">Lista de Solicitudes de Compra </h3>
    
     <table data-toggle="table">
         <thead>
