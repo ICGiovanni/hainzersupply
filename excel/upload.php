@@ -1,8 +1,6 @@
 <?php
-require_once('models/class.Upload.php');
 require_once('models/class.Inventory.php');
 
-$upload=new Upload();
 $inventory=new Inventory();
 $general=new General();
 $images=count($_FILES['fileUpload']['name']);
@@ -30,13 +28,12 @@ for($i=0;$i<$images;$i++)
 		$n=explode('.',$nameFileO);
 		$nameFile=$general->NameToURL($n[0]).".".$n[1];
 		$route=$_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$dirBase.'/'.$nameFile;
-		$upload->UploadFile($tmpName,$route);
 		
-		$r=$inventory->InsertImage($nameFileO,$dirBase.'/'.$nameFile);
+		$r=$inventory->InsertImage($nameFileO,$tmpName,$dirBase.'/'.$nameFile,$route);
 		
 		$result.='<div class="alert alert-info">
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	    <strong>'.$r.' '.$nameFile.'</strong>
+	    <strong>'.$r.' '.$nameFileO.'</strong>
 				</div>';
 		
 		$output=['result'=>$result];

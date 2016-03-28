@@ -2,14 +2,25 @@
 require_once('PhpExcel/Classes/PHPExcel.php');
 require_once('models/class.Inventory.php');
 require_once('models/class.Upload.php');
+require_once('models/class.Log.php');
 
-$dirBase="tmp";
+$dirBase="files";
 $output=[];
 $ext=explode('.',$_FILES['fileUpload']['name']);
 $ext=$ext[count($ext)-1];
 $upload=new Upload();
 $inventory=new Inventory();
+$log=new Log();
 $result="";
+$banderaNew=false;
+$banderaUpdate=false;
+$productsUpdate=0;
+$result1="";
+
+if(!file_exists($dirBase))
+{
+	mkdir($dirBase);	
+}
 
 if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
 {
@@ -22,13 +33,14 @@ else if($ext!='xls' && $ext!='xlsx')
 else
 {
 	$nameFile=date('YmdHis').'.'.$ext;
+	$file=$dirBase.'/'.$nameFile;
 	
-	$upload->UploadFile($_FILES['fileUpload']['tmp_name'],$dirBase.'/'.$nameFile);
+	$upload->UploadFile($_FILES['fileUpload']['tmp_name'],$file);
 	
 	$objReader = PHPExcel_IOFactory::createReader('Excel2007');
 	$objReader->setReadDataOnly(true);
-
-	$objPHPExcel=$objReader->load($dirBase.'/'.$nameFile);
+	
+	$objPHPExcel=$objReader->load($file);
 	$objWorksheet=$objPHPExcel->getActiveSheet();
 
 	$highestRow=$objWorksheet->getHighestRow(); 
@@ -103,7 +115,6 @@ else
 						
 				$prefix=$inventory->getPrefix($skuPrefix,$color,$trademark,$product,$parent);
 				
-				
 				$result.='<tr>';
 				$result.='<th>'.$skuSenior.'</th>';
 				$result.='<th>'.$sku.'</th>';
@@ -117,13 +128,14 @@ else
 				$result.='<th>'.$stock.'</th>';
 				$result.='<th>$'.$priceWIVA.'</th>';
 				
-				
 				if(!$ID)
 				{
 					if(!$skuSenior)
 					{
 						$inventory->InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$priceWIVA,$trademark,$type,$line,$gender);
 						$result.='<th>'.'Nuevo Producto'.'</th>';
+						$banderaNew=true;
+						$productsUpdate++;
 					}
 					else
 					{
@@ -134,6 +146,8 @@ else
 							
 							$inventory->InsertProductVariable($sku,$IDParent,$descriptionShort,$stock,$priceWIVA,$color,$size,$trademark,$type,$line,$gender);
 							$result.='<th>'.'Producto Hijo'.'</th>';
+							$banderaNew=true;
+							$productsUpdate++;
 						}
 						else
 						{
@@ -174,9 +188,9 @@ else
 		$html.=$result2.$result;
 		$html.='</body></html>';
 		
-		$file=fopen("result.html", "w");
-		fwrite($file,$html);
-		fclose($file);
+		$fileReport=fopen("result.html", "w");
+		fwrite($fileReport,$html);
+		fclose($fileReport);
 	}
 	else if($highestColumn=='D')
 	{
@@ -208,9 +222,11 @@ else
 			
 			if($ID)
 			{
-				//$inventory->UpdateProduct($ID,$stock,$priceWIVA);
+				$inventory->UpdateProduct($ID,$stock,$priceWIVA);
 				$result.='<th>'.'Producto Actualizado'.'</th>';
 				$result.='</tr>';
+				$banderaUpdate=true;
+				$productsUpdate++;
 			}
 			else
 			{
@@ -222,8 +238,18 @@ else
 	
 	$output=['result'=>$result1.$result];
 
-	unlink($dirBase.'/'.$nameFile);
+	//unlink($dirBase.'/'.$nameFile);
 
 }
+
+if($banderaNew)
+{
+	$log->InsertLogInventory($file,'Nuevo',$productsUpdate);
+}
+else if($banderaUpdate)
+{
+	$log->InsertLogInventory($file,'Actualizacion',$productsUpdate);
+}
+
 echo json_encode($output);
 ?>

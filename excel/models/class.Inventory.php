@@ -2,6 +2,7 @@
 //require_once('class.Connection.php');
 require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
 require_once('class.General.php');
+require_once('class.Upload.php');
 
 class Inventory
 {
@@ -563,28 +564,35 @@ class Inventory
 		$this->InsertPostMeta($ID,'gender_product',ucwords(strtolower($genderProduct)));
 	}
 	
-	public function InsertImage($image,$route)
+	public function InsertImage($image,$tmpImage,$route,$routeF)
 	{
 		$general=new General();
-	
+		$upload=new Upload();
+		
 		$ID=$this->GetID();
 		$n=explode('.',$image);
 		$nameImage=$n[0];
 		$s=explode('_',$nameImage);
 		$color="";
+		$result="";
 		$skuParent=$s[0];
+		$IDParent=$this->getSku($skuParent);
 		
 		if(count($s)==4)
 		{
-			
 			$color=$s[1];
+			$result=$this->GetChildrensbyColor($IDParent,$color);
+			
+			if(!count($result))
+			{
+				return "No existe Producto Hijo ".$color;
+			}
 		}
-		
-		
-		$IDParent=$this->getSku($skuParent);
 		
 		if($IDParent)
 		{
+			$upload->UploadFile($tmpImage,$routeF);
+			
 			$postAuthor=2;
 			$postDate=date('Y-m-d H:i:s');
 			$postDateGMT=$postDate;
@@ -665,9 +673,7 @@ class Inventory
 				}
 			}
 			else
-			{
-				$result=$this->GetChildrensbyColor($IDParent,$color);
-				
+			{				
 				foreach($result as $r)
 				{
 					$IDChildren=$r['ID'];
