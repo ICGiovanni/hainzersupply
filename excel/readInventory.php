@@ -28,7 +28,7 @@ if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
 }
 else if($ext!='xls' && $ext!='xlsx')
 {
-	$output=['error'=>'La extensión del Archivo no es valida('.$ext.').'];
+	$output=['error'=>'La extensiï¿½n del Archivo no es valida('.$ext.').'];
 }
 else
 {
@@ -48,7 +48,7 @@ else
 
 	$highestColumnIndex=PHPExcel_Cell::columnIndexFromString($highestColumn);
 	
-	if($highestColumn=='R')
+	if($highestColumn=='R' || $highestColumn=='N')
 	{	
 		$result1='<table class="table">';
 		$result2='<table class="table" border=1>';
