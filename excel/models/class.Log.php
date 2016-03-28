@@ -14,8 +14,11 @@ class Log
 	
 	public function InsertLogInventory($file,$status,$total)
 	{
-		$loginId=$_SESSION['login_user']['login_id'];
-		if(!$loginId)
+		if(isset($_SESSION['login_user']['login_id']))
+		{
+			$loginId=$_SESSION['login_user']['login_id'];
+		}
+		else
 		{
 			$loginId=1;
 		}
