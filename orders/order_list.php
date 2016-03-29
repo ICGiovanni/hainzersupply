@@ -118,13 +118,13 @@ function checkOrder(elem){
 	$("#button_create_user").removeAttr("disabled");
 	
 	var jsonObj = $.parseJSON( jsonProducts );
-	var inDiv = '<table class="table"> <thead> <tr> <th>Sku</th> <th>Cantidad</th> <th>Precio de Lista</th> </tr> </thead> <tbody>';
+	var inDiv = '<table class="table"> <thead> <tr> <th>Name</th> <th>Cantidad</th> <th>Precio de Lista</th> </tr> </thead> <tbody>';
 	for (var i = 0; i < jsonObj.rows.length; i++) {
 		var object = jsonObj.rows[i];		
 		// If property names are known beforehand, you can also just do e.g.
 		// alert(object.sku + ',' + object.quantity + ',' + object.price);
 		 
-		 inDiv+='<tr> <td>' + object.sku + '</td><td>' + object.quantity + '</td><td>$ ' + object.price + '</td></tr>'; 
+		 inDiv+='<tr> <td>' + object.name + '</td><td>' + object.quantity + '</td><td>$ ' + object.price + '</td></tr>'; 
 	}
 	inDiv+=' </tbody> </table><div style="width:300px;"><b>Cambiar status de la solicitud de compra:</b><br> <?=$order->selectOrderStatus()?></div>';
 	
