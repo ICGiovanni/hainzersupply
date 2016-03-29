@@ -1,7 +1,7 @@
 <?php
     include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 
-    if(stristr($_SERVER['PHP_SELF'],'distribuidores')) {
+    if(stristr($_SERVER['PHP_SELF'],'distribuidores') || stristr($_SERVER['PHP_SELF'],'login')) {
 ?>
         <script src="<?php echo $raizProy?>distribuidores/js/jquery.min.js"></script>
         <script src="<?php echo $raizProy ?>distribuidores/js/bootstrap.min.js"></script>
