@@ -14,6 +14,7 @@ class Log
 	
 	public function InsertLogInventory($file,$status,$total)
 	{
+		session_start();
 		if(isset($_SESSION['login_user']['login_id']))
 		{
 			$loginId=$_SESSION['login_user']['login_id'];
@@ -60,6 +61,7 @@ class Log
 				if($k=='post_content' || $k=='post_excerpt')
 				{
 					$c=mysql_escape_string($c);
+					$c=str_replace('\'','´',$c);
 				}
 				
 				if($cont==0)
