@@ -244,11 +244,11 @@ else
 
 if($banderaNew)
 {
-	//$log->InsertLogInventory($file,'Nuevo',$productsUpdate);
+	$log->InsertLogInventory($file,'Nuevo',$productsUpdate);
 }
 else if($banderaUpdate)
 {
-	//$log->InsertLogInventory($file,'Actualizacion',$productsUpdate);
+	$log->InsertLogInventory($file,'Actualizacion',$productsUpdate);
 }
 
 echo json_encode($output);
