@@ -7,7 +7,7 @@
         $infoDistribuidor = $inslogin->getUserDistribuidor($login_session['login_id']);
 
         if(!$infoDistribuidor){
-            header('location: distribuidores/registro.php');
+            header('location: '.$raizProy.'distribuidores/registro.php');
         }
         else{
             $_SESSION['login_user']['idDistribuidor']=$infoDistribuidor['idDistribuidor'];

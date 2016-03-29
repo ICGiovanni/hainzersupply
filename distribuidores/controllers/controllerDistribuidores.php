@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 
 if($_POST){
@@ -60,6 +60,9 @@ if($_POST){
                 'idDistribuidor'=>$idDistribuidor
             );
             $instDistribuidores->insertEnvioDistribuidor($infoEnvio);
+
+            //guardar la relacion distribuidor/login
+            $instDistribuidores->insertUserDistribuidor($idDistribuidor, $_SESSION['login_user']['login_id']);
 
             header("location: ../lista.php");
 

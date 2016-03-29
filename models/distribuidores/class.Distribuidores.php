@@ -56,6 +56,19 @@ class Distribuidores{
 
     }
 
+    public function insertUserDistribuidor($idDistribuidor, $profile_id){
+        echo $idDistribuidor.'--'.$profile_id;
+        $sql = "INSERT INTO inv_user_distribuidor VALUES(0,:login_id,:idDistribuidor)";
+        $statement=$this->connect->prepare($sql);
+
+        $statement->bindParam(':login_id',$profile_id,PDO::PARAM_INT);
+        $statement->bindParam(':idDistribuidor',$idDistribuidor,PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $this->connect->lastInsertId();
+    }
+
     public function insertDireccion($info){
         $sql = "INSERT INTO inv_direcciones VALUES(0,:calle,:numExt,:numInt,:codigoPostal,:colonia,:delegacion,:estado,:pais)";
         $statement=$this->connect->prepare($sql);
