@@ -1,23 +1,21 @@
 <?php
-
-include_once $_SERVER['REDIRECT_PATH_CONFIG'].'models/connection/class.Connection.php';
+require_once $_SERVER['REDIRECT_PATH_CONFIG'].'models/connection/class.Connection.php';
 
 class user_login{
 
-    private $db;
-
-    function __construct(){
-
-        $c = new Connection();
-        $this->db = $c->db;
-
-    }
+    private $connect;
+	
+	function __construct()
+	{
+		$c=new Connection();
+		$this->connect=$c->db;
+	}
 
     function auth($email,$password){
 
-        $sql = "SELECT login_id, profile_id, email, firstName FROM `inv_login` WHERE email = :email AND password = :password";
+        $sql = "SELECT login_id, profile_id, email, firstName FROM `inv_login` WHERE email = :email AND password = :password AND status_id = 2";
 
-        $statement = $this->db->prepare($sql);
+        $statement = $this->connect->prepare($sql);
 
         $password = base64_encode($this->encrypt($password,md5($email.$password)));
 
@@ -26,7 +24,6 @@ class user_login{
 
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
 
 		return(!empty($result))?$result[0]:false;
     }
@@ -37,7 +34,7 @@ class user_login{
 		$createDate = date("Y-m-d",$timeStamp);
         $sql = "INSERT INTO `inv_login` (firstName, lastName, profile_id, email, password, created_date, created_timestamp, modify_date, modify_timestamp, status_id) VALUES (:firstName, :lastName, :profile, :email, :password, '".$createDate."', '".$timeStamp."', '".$createDate."', '".$timeStamp."', '2')";
 
-        $statement = $this->db->prepare($sql);
+        $statement = $this->connect->prepare($sql);
 
         $password = base64_encode($this->encrypt($password,md5($email.$password)));
 
@@ -49,16 +46,16 @@ class user_login{
 
         $statement->execute();
 
-        return "login_id=".$this->db->lastInsertId();
+        return "login_id=".$this->connect->lastInsertId();
     }
 	
 	function users_list(){
 
 		$sql = "SELECT login_id, firstName, lastName, email, status_name, profile_name, inv_login.profile_id, created_date, inv_login.status_id  FROM `inv_login`
 				INNER JOIN inv_status on inv_login.status_id = inv_status.status_id
-				INNER JOIN inv_profile on inv_login.profile_id = inv_profile.profile_id";
+				INNER JOIN inv_profile on inv_login.profile_id = inv_profile.profile_id ORDER BY login_id DESC";
 		
-		$statement = $this->db->prepare($sql);
+		$statement = $this->connect->prepare($sql);
 
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -89,7 +86,7 @@ class user_login{
 			WHERE
 				login_id = :login_id";
 			
-		$statement = $this->db->prepare($sql);
+		$statement = $this->connect->prepare($sql);
 		
 		if(!empty($password)){	
 			$password = base64_encode($this->encrypt($password,md5($email.$password)));
@@ -110,7 +107,7 @@ class user_login{
 	function user_delete($loginId){
 
 		$sql = "DELETE FROM inv_login WHERE login_id = :login_id LIMIT 1";
-		$statement = $this->db->prepare($sql);
+		$statement = $this->connect->prepare($sql);
 		
 		$statement->bindParam(':login_id', $loginId, PDO::PARAM_STR);
 		
@@ -122,7 +119,7 @@ class user_login{
 
 		$sql = "SELECT profile_id, profile_name FROM inv_profile";
 
-		$statement = $this->db->prepare($sql);
+		$statement = $this->connect->prepare($sql);
 
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -139,7 +136,7 @@ class user_login{
 
 		$sql = "SELECT status_id, status_name FROM inv_status";
 
-		$statement = $this->db->prepare($sql);
+		$statement = $this->connect->prepare($sql);
 
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -202,7 +199,7 @@ class user_login{
                 inner join inv_distribuidores di on ud.idDistribuidor = di.idDistribuidor
                 where ud.login_id = ".$idUser;
 
-        $statement = $this->db->prepare($sql);
+        $statement = $this->connect->prepare($sql);
 
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -221,7 +218,7 @@ class user_login{
         $sql = "SELECT page FROM inv_profile_pages
                 where profile_id=".$idProfile;
 
-        $statement = $this->db->prepare($sql);
+        $statement = $this->connect->prepare($sql);
 
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
