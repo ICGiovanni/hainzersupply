@@ -1058,6 +1058,27 @@ class Inventory
 		
 		return $prefix;
 	}
+		
+	public function UpdateDataProduct($ID,$name,$stock,$price)
+	{
+		$sql="UPDATE wp_posts SET post_title=:name WHERE ID=:ID";
+		
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
+		$statement->bindParam(':name',$name,PDO::PARAM_STR);
+		$statement->execute();
+		
+		//_stock
+		$this->UpdatePostMeta($ID,'_stock',$stock);
+		
+		//_price
+		$this->UpdatePostMeta($ID,'_price',$price);
+		
+		//_regular_price
+		$this->UpdatePostMeta($ID,'_regular_price',$price);
+		
+		return "Datos Actualizados";
+	}
 }
 
 ?>
