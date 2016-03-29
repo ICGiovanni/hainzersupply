@@ -53,7 +53,7 @@
                         <li><a href="<?php echo $ruta ?>excel/index.php">Importar</a></li>
                         <li><a href="<?php echo $ruta ?>excel/images.php">Subir imagenes</a></li>
                         <li><a href="<?php echo $ruta ?>excel/showlog.php">Log</a></li>
-                        <li><a href="<?php echo $ruta ?>orders/index_older_version.php">Administrar</a></li>
+                        <li><a href="<?php echo $ruta ?>orders/administrar.php">Administrar</a></li>
                     </ul>
                 </li>
 
@@ -99,7 +99,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo $ruta ?>excel/index.php">Importar</a></li>
                             <li><a href="<?php echo $ruta ?>excel/images.php">Subir imagenes</a></li>
-                            <li><a href="<?php echo $ruta ?>orders/index_older_version.php">Administrar</a></li>
+                            <li><a href="<?php echo $ruta ?>orders/administrar.php">Administrar</a></li>
                         </ul>
                     </li>
                     <?php

@@ -10,7 +10,10 @@
     #masthead{background-color:#fff; background-image:url('<?php echo $raizProy;?>images/back_img_redc.jpg'); background-repeat:repeat-x ;}
     .wide-nav {background-color:#0a0a0a}
     #top-bar{background-color:#ba0101 }
-    #wrapper{max-width: 75%; margin: 0 auto }
+    #wrapper{
+        max-width: 75%;
+        margin: 0 auto
+    }
     .bodyClass{
         background-image: url('<?php echo $raizProy;?>images/HainzerSupplay_Background_2016.jpg');
         background-size: cover; background-attachment: fixed; background-repeat: no-repeat;
