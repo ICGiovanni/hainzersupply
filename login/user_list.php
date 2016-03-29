@@ -1,4 +1,6 @@
 <?php
+include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 require_once('class/user_login.php');
 $login = new user_login();
 $data_users = $login->users_list();
