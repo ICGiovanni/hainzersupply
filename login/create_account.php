@@ -9,5 +9,11 @@ if(!empty($_POST["create_user"])){
 	$email=stripslashes($_POST['email']);
 	$password=stripslashes($_POST['password']);
 
-	$login->sign_up($firstName, $lastName, $profile, $email, $password);
+	$user_id = $login->sign_up($firstName, $lastName, $profile, $email, $password);
+
+	if(isset($_POST['registroExterno'])){
+		header('location: index.php');
+	}else{
+		echo $user_id;
+	}
 }

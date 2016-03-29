@@ -49,6 +49,7 @@
                     <li><a href="<?php echo $ruta?>excel/index.php">importar</a></li>
                     <li><a href="<?php echo $ruta?>excel/images.php">subir imagenes</a></li>
                     <li><a href="<?php echo $ruta?>excel/showlog.php">Log</a></li>
+                    <li><a href="<?php echo $ruta?>orders/index_older_version.php">administrar</a></li>
                 </ul>
             </li>
 

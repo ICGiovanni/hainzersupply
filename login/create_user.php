@@ -9,5 +9,5 @@ if(!empty($_POST["email"])){
 	$email=stripslashes($_POST['email']);
 	$password=stripslashes($_POST['password']);
 
-	$login->sign_up($firstName, $lastName, $profile, $email, $password);
+	echo $login->sign_up($firstName, $lastName, $profile, $email, $password);
 }

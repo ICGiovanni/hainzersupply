@@ -15,6 +15,7 @@
         <div class="card card-container">
             <h3 align="center">Registrarse</h3>
 	        <form action="create_account.php" method="post"  autocomplete="off">
+                <input type="hidden" name="registroExterno" value="1" />
 	            <input id="firstName" name="firstName" placeholder="Nombre" type="text" class="form-control" autofocus><br>
 	            <input id="lastName" name="lastName" placeholder="Apellidos" type="text" class="form-control"><br>
                 <select class="form-control" name="profile" id="profile">

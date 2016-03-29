@@ -48,9 +48,8 @@ class user_login{
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
         $statement->execute();
-		die("login_id=".$this->db->lastInsertId());
-        
-		return(!empty($result))?true:false;
+
+        return "login_id=".$this->db->lastInsertId();
     }
 	
 	function users_list(){
