@@ -86,7 +86,7 @@ $tbody.='					<tr id="user_row_'.$data_user['login_id'].'">
 <div class="container bootstrap snippet">
 	<div>
 		
-		<h3> <img src="img/logo.png" width="50" /> Hainzer Supply - Control de Usuarios</h3>
+		<h3> Control de Usuarios</h3>
 	</div>
 	
     <div class="row">
