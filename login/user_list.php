@@ -1,23 +1,19 @@
 <?php
-include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
-include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
-
 require_once('class/user_login.php');
 $login = new user_login();
 $data_users = $login->users_list();
 $tbody='';
-
 while(list(,$data_user)=each($data_users)){
 	$css_status='';
 	
 	switch($data_user['status_name']){
-		case 'Active':
+		case 'Activo':
 			$css_status='success';
 		break;
-		case 'Pending':
+		case 'Pendiente':
 			$css_status='default';
 		break;
-		case 'Inactive':
+		case 'Inactivo':
 			$css_status='danger';
 		break;
 		default:
@@ -25,42 +21,44 @@ while(list(,$data_user)=each($data_users)){
 		break;
 	}
 	
-    $tbody.='	<tr id="user_row_'.$data_user['login_id'].'">
-                    <td>
-                        <img id="img_profile_'.$data_user['login_id'].'" src="'.$raizProy.'login/img/profile_'.$data_user['profile_id'].'.jpg" alt="">
-                        <a id="full_name_'.$data_user['login_id'].'" href="#" class="user-link">'.$data_user['firstName'].' '.$data_user['lastName'].'</a>
-                        <span id="profile_name_'.$data_user['login_id'].'" class="user-subhead" >'.$data_user['profile_name'].'</span>
-                    </td>
-                    <td>'.str_replace('-','/',$data_user['created_date']).'</td>
-                    <td class="text-center">
-                        <span id="status_name_'.$data_user['login_id'].'" class="label label-'.$css_status.'">'.$data_user['status_name'].'</span>
-                    </td>
-                    <td>
-                        <a id="user_mail_'.$data_user['login_id'].'" href="#">'.$data_user['email'].'</a>
-                    </td>
-                    <td style="width: 20%;">
-                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" onclick="javascript:loadDatauser(this);" data-custom_01="'.$data_user['login_id'].'" data-custom_02="'.$data_user['firstName'].'" data-custom_03="'.$data_user['lastName'].'" data-custom_04="'.$data_user['profile_id'].'" data-custom_05="'.$data_user['email'].'" data-custom_06="'.$data_user['status_id'].'">
-                        <span class="glyphicon glyphicon-pencil" ></span>
-                        </button>
-                        &nbsp;&nbsp;
-                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal_2" onclick="javascript:loadDatauser_2(this);" data-custom_01="'.$data_user['login_id'].'" data-custom_02="'.$data_user['firstName'].'" data-custom_03="'.$data_user['lastName'].'" data-custom_04="'.$data_user['profile_id'].'" data-custom_05="'.$data_user['email'].'" data-custom_06="'.$data_user['status_id'].'">
-                        <span  class="glyphicon glyphicon-trash" ></span>
-                        </button>
-                    </td>
-                </tr>';
+$tbody.='					<tr id="user_row_'.$data_user['login_id'].'">
+				<td>
+					<img id="img_profile_'.$data_user['login_id'].'" src="img/profile_'.$data_user['profile_id'].'.jpg" alt="">
+					<a id="full_name_'.$data_user['login_id'].'" href="#" class="user-link">'.$data_user['firstName'].' '.$data_user['lastName'].'</a>
+					<span id="profile_name_'.$data_user['login_id'].'" class="user-subhead" >'.$data_user['profile_name'].'</span>
+				</td>
+				<td>'.str_replace('-','/',$data_user['created_date']).'</td>
+				<td class="text-center">
+					<span id="status_name_'.$data_user['login_id'].'" class="label label-'.$css_status.'">'.$data_user['status_name'].'</span>
+				</td>
+				<td>
+					<a id="user_mail_'.$data_user['login_id'].'" href="#">'.$data_user['email'].'</a>
+				</td>
+				<td style="width: 20%;">
+				
+				<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" onclick="javascript:loadDatauser(this);" data-custom_01="'.$data_user['login_id'].'" data-custom_02="'.$data_user['firstName'].'" data-custom_03="'.$data_user['lastName'].'" data-custom_04="'.$data_user['profile_id'].'" data-custom_05="'.$data_user['email'].'" data-custom_06="'.$data_user['status_id'].'">
+					<span class="glyphicon glyphicon-pencil" ></span>
+				</button>
+				&nbsp;&nbsp;
+				<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal_2" onclick="javascript:loadDatauser_2(this);" data-custom_01="'.$data_user['login_id'].'" data-custom_02="'.$data_user['firstName'].'" data-custom_03="'.$data_user['lastName'].'" data-custom_04="'.$data_user['profile_id'].'" data-custom_05="'.$data_user['email'].'" data-custom_06="'.$data_user['status_id'].'">
+					<span  class="glyphicon glyphicon-trash" ></span>
+				</button>
+				</td>
+			</tr>';
 }
-?>
-
-<script src="js/jquery-1.10.2.min.js"></script>
+?><!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="js/jquery-1.10.2.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>		
-
-<link rel="stylesheet" type="text/css" href="css/user_list.css">
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
+		
+		<link rel="stylesheet" type="text/css" href="css/user_list.css">
+		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <style>
 .glyphicon-refresh-animate {
     -animation: spin .9s infinite linear;
@@ -77,34 +75,47 @@ while(list(,$data_user)=each($data_users)){
     to { transform: scale(1) rotate(360deg);}
 }
 </style>
+	</head>
+<body>
 
-<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'header.php';?>
-<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'menu.php';?>
-
-<div class="container" style="width: 75%">
-            <div class="main-box">
-                <div class="table-responsive">
-                    <table class="table user-list">
-                        <thead>
-                            <tr>
-                            <th><span>Usuario</span></th>
-                            <th><span>Creado</span></th>
-                            <th class="text-center"><span>Estatus</span></th>
-                            <th><span>Correo electrónico</span></th>
-                            <th><div align="right">
-                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal_3" >
-                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Usuario
-                                    </button>
-                                </div>
-                            </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?=$tbody?>
-                        </tbody>
-                    </table>
+<?php
+	include ('../menu.php');
+?>
+<div class="container bootstrap snippet">
+	<div>
+		
+		<h3> <img src="img/logo.png" width="50" /> Hainzer Supply - Control de Usuarios</h3>
+	</div>
+	
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list" id="myTableUserList">
+                            <thead>
+                                <tr>
+                                <th><span>Usuario</span></th>
+                                <th><span>Creado</span></th>
+                                <th class="text-center"><span>Estado</span></th>
+                                <th><span>Correo Electrónico</span></th>
+                                <th><div align="right">
+										<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal_3" >
+											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo Usuario
+										</button>
+									</div>
+								</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?=$tbody?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
 </div>
 
 
@@ -117,10 +128,10 @@ while(list(,$data_user)=each($data_users)){
       </div>
       <div class="modal-body" style="height:250px;">
 			<div class="col-md-6">
-				<input id="firstName" name="firstName" placeholder="Nombre" type="text" class="form-control" autofocus>
+				<input id="firstName" name="firstName" placeholder="First Name" type="text" class="form-control" autofocus>
 			</div>
 			<div class="col-md-6">
-				<input id="lastName" name="lastName" placeholder="Apellidos" type="text" class="form-control"><br>
+				<input id="lastName" name="lastName" placeholder="Last Name" type="text" class="form-control"><br>
 			</div>
 			<div class="col-md-6">	
 				<?=$login->selectProfiles()?>
@@ -130,16 +141,16 @@ while(list(,$data_user)=each($data_users)){
 				<br>
 			</div>
 			<div class="col-md-8">
-				<input id="email" name="email" placeholder="Correo electrónico" type="text" class="form-control" value="" ><br>
+				<input id="email" name="email" placeholder="Email address" type="text" class="form-control" value="" ><br>
 			</div>
 			<div class="col-md-8">
-				<input id="password" name="password" placeholder="Contraseña" type="password" class="form-control" autocomplete="new-password"><br>
+				<input id="password" name="password" placeholder="Password" type="password" class="form-control" autocomplete="new-password"><br>
 			</div>
 				<input id="login_id" name="login_id" type="hidden" type="text" value="" >
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button id="button_save_changes" type="button" class="btn btn-primary" onclick="update_user();">Guardar cambios</button>
+        <button id="button_save_changes" type="button" class="btn btn-primary" onclick="update_user();">Guardar Cambios</button>
 		<span id="span_save_changes"></span>
       </div>
     </div>
@@ -154,12 +165,12 @@ while(list(,$data_user)=each($data_users)){
         <h4 class="modal-title" id="myModalLabel">Borrar Usuario</h4>
       </div>
       <div class="modal-body" >
-			¿Esta seguro que desea borrar la cuenta: <span style="color:#0e90d2;" id="email_delete"></span>?
+			Estas seguro de borrar al usuario: <span style="color:#0e90d2;" id="email_delete"></span> ?
 			<input id="login_id_delete" name="login_id_delete" type="hidden" type="text" value="" >			
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button id="button_delete_user" type="button" class="btn btn-danger" onclick="delete_user();">Borrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button id="button_delete_user" type="button" class="btn btn-danger" onclick="delete_user();">BORRAR</button>
 		<span id="span_delete_user"></span>
       </div>
     </div>
@@ -175,25 +186,25 @@ while(list(,$data_user)=each($data_users)){
       </div>
       <div class="modal-body" style="height:250px;">
 			<div class="col-md-6">
-				<input id="NewfirstName" name="NewfirstName" placeholder="Nombre" type="text" class="form-control" autofocus>
+				<input id="NewfirstName" name="NewfirstName" placeholder="First Name" type="text" class="form-control" autofocus>
 			</div>
 			<div class="col-md-6">
-				<input id="NewlastName" name="NewlastName" placeholder="Apellidos" type="text" class="form-control"><br>
+				<input id="NewlastName" name="NewlastName" placeholder="Last Name" type="text" class="form-control"><br>
 			</div>
 			<div class="col-md-6">	
 				<?=$login->selectProfiles('Newprofile')?><br>
 			</div>
 			
 			<div class="col-md-8">
-				<input id="Newemail" name="Newemail" placeholder="Correo electrónico" type="text" class="form-control" value="" ><br>
+				<input id="Newemail" name="Newemail" placeholder="Email address" type="text" class="form-control" value="" ><br>
 			</div>
 			<div class="col-md-8">
-				<input id="Newpassword" name="Newpassword" placeholder="Contraseña" type="password" class="form-control" autocomplete="new-password"><br>
+				<input id="Newpassword" name="Newpassword" placeholder="Password" type="password" class="form-control" autocomplete="new-password"><br>
 			</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button id="button_create_user" type="button" class="btn btn-primary" onclick="create_user();">Crear usuario</button>
+        <button id="button_create_user" type="button" class="btn btn-primary" onclick="create_user();">Crear Nuevo Usuario</button>
 		<span id="span_create_user"></span>
       </div>
     </div>
@@ -237,11 +248,11 @@ while(list(,$data_user)=each($data_users)){
 		
 		CssStatus='default';
 		
-		if(statusName == 'Active'){		
+		if(statusName == 'Activo'){		
 			CssStatus='success';
-		} else if (statusName == 'Pending'){
+		} else if (statusName == 'Pendiente'){
 			CssStatus='default';
-		} else if (statusName == 'Inactive'){
+		} else if (statusName == 'Inactivo'){
 			CssStatus='danger';
 		}
 		
@@ -255,7 +266,7 @@ while(list(,$data_user)=each($data_users)){
 					$("#myModal").modal('hide'); 
 					$("#button_save_changes").removeClass().addClass("btn btn-primary");
 					$("#span_save_changes").removeClass();
-					$("#img_profile_"+login_id).attr("src","/login/img/profile_"+profile+".jpg");
+					$("#img_profile_"+login_id).attr("src","img/profile_"+profile+".jpg");
 					$("#full_name_"+login_id).html(firstName+" "+lastName);
 					$("#profile_name_"+login_id).html(profileName);
 					$("#status_name_"+login_id).html(statusName);
@@ -303,18 +314,19 @@ while(list(,$data_user)=each($data_users)){
 		
 		firstName=$("#NewfirstName").val();
 		lastName=$("#NewlastName").val();
-		profile=$("#Newprofile").val();
+		profile_id=$("#Newprofile").val();
 		profileName=$("#Newprofile option:selected" ).text();
 		email=$("#Newemail").val();		
 		password=$("#Newpassword").val();		
 			
-		CssStatus='success';
-		statusName = 'Active';
+		CssStatus = 'success';
+		statusName = 'Activo';
+		status_id = '1';
 		
 		$.ajax({
     		type: "POST",
 			url: "create_user.php",			
-			data: {firstName: firstName, lastName: lastName, profile: profile, email: email, password:password},
+			data: {firstName: firstName, lastName: lastName, profile: profile_id, email: email, password:password},
         	success: function(msg){
 				
 					$("#myModal_3").modal('hide');
@@ -322,11 +334,45 @@ while(list(,$data_user)=each($data_users)){
 					$("#span_create_user").removeClass();
 					
 					login_id = msg.replace('login_id=',''); 
-					alert('Usuario creado correctamente con el id: '+login_id);
-                    location.reload();
+					
+					var d = new Date();
+					var month = d.getMonth()+1;
+					var day = d.getDate();					
+					var created_date = d.getFullYear() + '/' + (month<10 ? '0' : '') + month + '/' + (day<10 ? '0' : '') + day;
+					
+					newTr = '<tr id="user_row_'+login_id+'">'+
+				'<td>'+
+					'<img id="img_profile_'+login_id+'" src="img/profile_'+profile_id+'.jpg" alt="">'+
+					'<a id="full_name_'+login_id+'" href="#" class="user-link">'+firstName+' '+lastName+'</a>'+
+					'<span id="profile_name_'+login_id+'" class="user-subhead" >'+profileName+'</span>'+
+				'</td>'+
+				'<td>'+created_date+'</td>'+
+				'<td class="text-center">'+
+					'<span id="status_name_'+login_id+'" class="label label-'+CssStatus+'">'+statusName+'</span>'+
+				'</td>'+
+				'<td>'+
+					'<a id="user_mail_'+login_id+'" href="#">'+email+'</a>'+
+				'</td>'+
+				'<td style="width: 20%;">'+
+				'<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" onclick="javascript:loadDatauser(this);" data-custom_01="'+login_id+'" data-custom_02="'+firstName+'" data-custom_03="'+lastName+'" data-custom_04="'+profile_id+'" data-custom_05="'+email+'" data-custom_06="'+status_id+'">'+
+					'<span class="glyphicon glyphicon-pencil" ></span>'+
+				'</button>'+
+				'&nbsp;&nbsp;'+
+				'<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal_2" onclick="javascript:loadDatauser_2(this);" data-custom_01="'+login_id+'" data-custom_02="'+firstName+'" data-custom_03="'+lastName+'" data-custom_04="'+profile_id+'" data-custom_05="'+email+'" data-custom_06="'+status_id+'">'+
+					'<span  class="glyphicon glyphicon-trash" ></span>'+
+				'</button>'+
+				'</td>'+
+			'</tr>';
+					
+					
+					
+					
+					 $('#myTableUserList tbody').prepend(newTr);
 					//$("#user_row_"+login_id).fadeIn(1000);
 			}		
       	});
 	}
 	
 </script>
+</body>
+</html>
