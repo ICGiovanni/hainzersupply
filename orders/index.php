@@ -228,9 +228,10 @@
 		if(row.type_price == 'discount'){
 			span_tags = '<span class="glyphicon glyphicon-tags"></span>';
 		}
-		
+		strName = row.name;
+		strName = strName.replace('"','\"');
 			return [
-				'<span class="glyphicon glyphicon-shopping-cart" id="add_prod_'+row.sku+'" custom-data-1="'+row.price+'" custom-data-2="'+row.type_price+'"></span> ',
+				'<span class="glyphicon glyphicon-shopping-cart" id="add_prod_'+row.sku+'" custom-data-1="'+row.price+'" custom-data-2="'+row.type_price+'" custom-data-3="'+strName+'" ></span> ',
 				span_tags
 			].join('');
     }
@@ -356,13 +357,14 @@ function addProductOrder(){
 		
 		add_price=$(this).attr("custom-data-1");
 		type_price=$(this).attr("custom-data-2");
+		name_prod = $(this).attr("custom-data-3");
 		
 		quantity = $("#quantity_"+id_prod).val();
 		
 		add_price = Number(add_price) * Number(quantity);
 		add_price = add_price.toFixed(2);
 		
-		items_ordered.rows.push({"sku":id_prod, "quantity":quantity, "price":add_price});		
+		items_ordered.rows.push({"sku":id_prod, "name":name_prod, "quantity":quantity, "price":add_price});		
 		
 		if(type_price=='discount'){
 			
