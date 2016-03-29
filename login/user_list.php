@@ -80,9 +80,8 @@ $tbody.='					<tr id="user_row_'.$data_user['login_id'].'">
 	</head>
 <body>
 
-<?php
-	include ('../menu.php');
-?>
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'header.php';?>
+<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'menu.php';?>
 <div class="container bootstrap snippet">
 	<div>
 		
