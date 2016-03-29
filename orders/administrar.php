@@ -25,7 +25,7 @@ while(list(,$product)=each($productos)){
                 <td class="Size">'.$product["Size"].'</td>
                 <td class="Stock">'.$product["Stock"].'</td>
                 <td class="Precio" align="right">$'.number_format($product["Price"], 2, '.', '').'</td>
-                <td class="botones" align="right"><button class="btn btn-primary" onclick="editarProducto('.$product["Sku"].')"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                <td class="botones" align="right"><button class="btn btn-primary" onclick="editarProducto(\''.$product["Sku"].'\')"><span class="glyphicon glyphicon-pencil"></span></button></td>
             </tr>';
 }
 ?>
@@ -124,7 +124,7 @@ while(list(,$product)=each($productos)){
                         "<td><input type='text' id='"+sku+"_inputSize' value='"+$(row + " .Size").html()+"' /></td>" +
                         "<td><input type='text' id='"+sku+"_inputStock' value='"+$(row + " .Stock").html()+"' /></td>" +
                         "<td><input type='text' id='"+sku+"_inputPrecio' value='"+$(row + " .Precio").html()+"' /></td>" +
-                        "<td><button class='btn btn-danger' onclick='guardarProducto("+sku+")'><span class='glyphicon glyphicon-ok'></span></button></td>"
+                        "<td><button class='btn btn-danger' onclick=\"guardarProducto('"+sku+"')\"><span class='glyphicon glyphicon-ok'></span></button></td>"
             );
         }
 
@@ -138,7 +138,7 @@ while(list(,$product)=each($productos)){
                 "<td class='Size'>"+$("#"+sku+"_inputSize").val()+"</td>" +
                 "<td class='Stock'>"+$("#"+sku+"_inputStock").val()+"</td>" +
                 "<td class='Precio'>"+$("#"+sku+"_inputPrecio").val()+"</td>" +
-                "<td><button class='btn btn-primary' onclick='editarProducto("+sku+")'><span class='glyphicon glyphicon-pencil'></span></button></td>"
+                "<td><button class='btn btn-primary' onclick=\"editarProducto('"+sku+"')\"><span class='glyphicon glyphicon-pencil'></span></button></td>"
             );
         }
     </script>
