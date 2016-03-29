@@ -58,11 +58,8 @@ class Log
 			foreach($r as $k=>$c)
 			{
 				
-				if($k=='post_content' || $k=='post_excerpt')
-				{
-					$c=mysql_escape_string($c);
-					$c=str_replace('\'','´',$c);
-				}
+				$c=str_replace('\'','´',$c);
+				$c=mysql_escape_string($c);
 				
 				if($cont==0)
 				{
@@ -128,7 +125,17 @@ class Log
 			if($sql)
 			{
 				$statement=$this->connect->prepare($sql);
-				$statement->execute();
+				
+				try
+				{
+					$statement->execute();
+				}
+				catch (Exception $e)
+				{
+					$date=date("Y-m-d H:i:s");
+					file_put_contents('sql/Error.log',$date." ".$nameFile."\n",FILE_APPEND);
+					file_put_contents('sql/Error.log',$sql."\n",FILE_APPEND);
+				}
 			}
 		}
 		
