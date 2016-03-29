@@ -1,4 +1,5 @@
 <?php
+include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
 require_once('models/class.Orders.php');
 $idDistribuidor = 1;
 $order = New Order();

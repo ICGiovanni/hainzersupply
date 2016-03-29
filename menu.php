@@ -21,52 +21,96 @@
 
     <div class="container" id="menu" <?php if(stristr($_SERVER['PHP_SELF'],'orders/index.php')) echo'style="width: 100%"'?> >
         <ul class="nav navbar-nav ">
-            <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Usuarios <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?php echo $ruta?>login/sign_up.php">Registro</a></li>
-                    <li><a href="<?php echo $ruta?>login/user_list.php">Lista</a></li>
-                </ul>
-            </li>
 
-            <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Distribuidores <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?php echo $ruta?>distribuidores/registro.php">Registro</a></li>
-                    <li><a href="<?php echo $ruta?>distribuidores/lista.php">Lista</a></li>
-                </ul>
-            </li>
+            <?php
+            if($_SESSION['login_user']['profile_id']=='3') {
+            ?>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Usuarios <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo $ruta ?>login/sign_up.php">Registro</a></li>
+                        <li><a href="<?php echo $ruta ?>login/user_list.php">Lista</a></li>
+                    </ul>
+                </li>
 
-            <li >
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Inventarios <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?php echo $ruta?>excel/index.php">importar</a></li>
-                    <li><a href="<?php echo $ruta?>excel/images.php">subir imagenes</a></li>
-                    <li><a href="<?php echo $ruta?>excel/showlog.php">Log</a></li>
-                    <li><a href="<?php echo $ruta?>orders/index_older_version.php">administrar</a></li>
-                </ul>
-            </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Distribuidores <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo $ruta ?>distribuidores/registro.php">Registro</a></li>
+                        <li><a href="<?php echo $ruta ?>distribuidores/lista.php">Lista</a></li>
+                    </ul>
+                </li>
 
-            <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Pedidos <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?php echo $ruta?>orders/index.php">nuevo</a></li>
-                    <li><a href="<?php echo $ruta?>orders/order_list.php">Lista</a></li>
-                </ul>
-            </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Inventarios <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo $ruta ?>excel/index.php">Importar</a></li>
+                        <li><a href="<?php echo $ruta ?>excel/images.php">Subir imagenes</a></li>
+                        <li><a href="<?php echo $ruta ?>excel/showlog.php">Log</a></li>
+                        <li><a href="<?php echo $ruta ?>orders/index_older_version.php">Administrar</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Pedidos <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo $ruta ?>orders/index.php">Nuevo</a></li>
+                        <li><a href="<?php echo $ruta ?>orders/order_list.php">Lista</a></li>
+                    </ul>
+                </li>
+            <?php
+            }
+            ?>
+            <?php
+                if($_SESSION['login_user']['profile_id']=='2') {
+                    ?>
+                    <li>
+                        <a href="<?php echo $ruta ?>distribuidores/detalle.php">
+                            Información
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Pedidos <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $ruta ?>orders/index.php">Nuevo</a></li>
+                            <li><a href="<?php echo $ruta ?>orders/order_list.php">Lista</a></li>
+                        </ul>
+                    </li>
+                    <?php
+                }
+            ?>
+            <?php
+                if($_SESSION['login_user']['profile_id']=='1') {
+                    ?>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Inventarios <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $ruta ?>excel/index.php">Importar</a></li>
+                            <li><a href="<?php echo $ruta ?>excel/images.php">Subir imagenes</a></li>
+                            <li><a href="<?php echo $ruta ?>orders/index_older_version.php">Administrar</a></li>
+                        </ul>
+                    </li>
+                    <?php
+                }
+            ?>
 
             <li>
                 <a href="<?php echo $ruta?>login/logout.php">
                     Salir
                 </a>
             </li>
+
         </ul>
     </div>
