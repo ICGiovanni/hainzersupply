@@ -1,5 +1,6 @@
 ﻿<?php
 include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+    include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 include_once('models/class.Orders.php');
 
 $order = New Order();
@@ -119,11 +120,11 @@ while(list(,$product)=each($productos)){
             var row = "#row_prod_"+sku;
             $(row).html("<td class='Sku'>"+$(row + " .Sku").html()+"</td>" +
                         "<td><input type='text' id='"+sku+"_inputName' value='"+$(row + " .Name").html()+"' /></td>" +
-                        "<td><input type='text' id='"+sku+"_inputTrademark' value='"+$(row + " .Trademark").html()+"' /></td>" +
-                        "<td><input type='text' id='"+sku+"_inputColor' value='"+$(row + " .Color").html()+"' /></td>" +
-                        "<td><input type='text' id='"+sku+"_inputSize' value='"+$(row + " .Size").html()+"' /></td>" +
+                        "<td class='Trademark'>"+$(row + " .Trademark").html()+"</td>" +
+                        "<td class='Color'>"+$(row + " .Color").html()+"</td>" +
+                        "<td class='Size'>"+$(row + " .Size").html()+"</td>" +
                         "<td><input type='text' id='"+sku+"_inputStock' value='"+$(row + " .Stock").html()+"' /></td>" +
-                        "<td><input type='text' id='"+sku+"_inputPrecio' value='"+$(row + " .Precio").html()+"' /></td>" +
+                        "<td><input type='text' id='"+sku+"_inputPrecio' value='"+$(row + " .Precio").html().replace("$", "")+"' /></td>" +
                         "<td><button class='btn btn-danger' onclick=\"guardarProducto('"+sku+"')\"><span class='glyphicon glyphicon-ok'></span></button></td>"
             );
         }
@@ -131,15 +132,29 @@ while(list(,$product)=each($productos)){
         function guardarProducto(sku){
             var row = "#row_prod_"+sku;
 
+            var nombre = $("#"+sku+"_inputName").val();
+            var stock = $("#"+sku+"_inputStock").val();
+            var precio = $("#"+sku+"_inputPrecio").val();
             $(row).html("<td class='Sku'>"+$(row + " .Sku").html()+"</td>" +
-                "<td class='Name'>"+$("#"+sku+"_inputName").val()+"</td>" +
-                "<td class='Trademark'>"+$("#"+sku+"_inputTrademark").val()+"</td>" +
-                "<td class='Color'>"+$("#"+sku+"_inputColor").val()+"</td>" +
-                "<td class='Size'>"+$("#"+sku+"_inputSize").val()+"</td>" +
-                "<td class='Stock'>"+$("#"+sku+"_inputStock").val()+"</td>" +
-                "<td class='Precio'>"+$("#"+sku+"_inputPrecio").val()+"</td>" +
+                "<td class='Name'>"+nombre+"</td>" +
+                "<td class='Trademark'>"+$(row + " .Trademark").html()+"</td>" +
+                "<td class='Color'>"+$(row + " .Color").html()+"</td>" +
+                "<td class='Size'>"+$(row + " .Size").html()+"</td>" +
+                "<td class='Stock'>"+stock+"</td>" +
+                "<td class='Precio'>$"+precio+"</td>" +
                 "<td><button class='btn btn-primary' onclick=\"editarProducto('"+sku+"')\"><span class='glyphicon glyphicon-pencil'></span></button></td>"
             );
+
+
+            var json='{"Sku":"'+sku+'","Name":"'+nombre+'","Stock":"'+stock+'","Price":"'+precio+'"}';
+            $.ajax({
+                method: "POST",
+                url: '<?php echo $raizProy?>excel/updateProducts.php',
+                data: { json: json}
+            }).done(function( msg ){
+                $('#result').html(msg);
+            });
+
         }
     </script>
 </html>

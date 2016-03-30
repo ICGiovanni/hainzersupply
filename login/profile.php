@@ -25,7 +25,7 @@
 
     //para el caso de administrador
     else if($login_session['profile_id']==1){
-        header('location: '.$raizProy.'excel/inventario.php');
+        header('location: '.$raizProy.'orders/administrar.php');
     }
 
 ?>

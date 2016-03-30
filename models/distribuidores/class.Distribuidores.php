@@ -57,7 +57,7 @@ class Distribuidores{
     }
 
     public function insertUserDistribuidor($idDistribuidor, $profile_id){
-        echo $idDistribuidor.'--'.$profile_id;
+
         $sql = "INSERT INTO inv_user_distribuidor VALUES(0,:login_id,:idDistribuidor)";
         $statement=$this->connect->prepare($sql);
 
