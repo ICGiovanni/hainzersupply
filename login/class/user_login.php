@@ -193,6 +193,57 @@ class user_login{
         return mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $value, MCRYPT_MODE_ECB, $iv);
     }
 
+	public function pwd_recovery($email){
+		
+		$sql = "SELECT login_id FROM `inv_login` WHERE email = :email";
+        $statement = $this->connect->prepare($sql);
+		$statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+		if(!empty($result)){
+			//el correo existe, asignar nuevo pwd
+			$password = $this->randomPassword();
+			$originalPwd = $password;
+			/////
+				$timeStamp = time();
+				$modifyDate = date("Y-m-d",$timeStamp);
+
+			$sql = "UPDATE inv_login SET
+				password = :password,
+				modify_date = '".$modifyDate."',
+				modify_timestamp = '".$timeStamp."'
+				WHERE
+					email = :email";
+				
+			$statement = $this->connect->prepare($sql);
+
+			$password = base64_encode($this->encrypt($password,md5($email.$password)));
+			$statement->bindParam(':password', $password, PDO::PARAM_STR);
+			$statement->bindParam(':email', $email, PDO::PARAM_STR);
+			$statement->execute();
+			/////
+			mail($email,"Nuevo password Hainzer Supply","Ha su solicitud le ha sido asignado un nuevo pwd: ".$originalPwd."\n\n CMS Hainzer Supply");
+			
+			return "true";
+		} else {
+			//el correo no existe
+			return "false";
+		}
+	}
+	
+	public function randomPassword() {
+    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
+}
+	
     public function getUserDistribuidor($idUser){
 
         $sql = "select ud.idDistribuidor, nombre, representante, idNivel from inv_user_distribuidor ud
