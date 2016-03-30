@@ -13,7 +13,7 @@ class user_login{
 
     function auth($email,$password){
 
-        $sql = "SELECT login_id, profile_id, email, firstName FROM `inv_login` WHERE email = :email AND password = :password AND status_id = 2";
+        $sql = "SELECT login_id, profile_id, email, firstName FROM `inv_login` WHERE email = :email AND password = :password AND status_id = 1";
 
         $statement = $this->connect->prepare($sql);
 
@@ -32,7 +32,7 @@ class user_login{
 
 		$timeStamp = time();
 		$createDate = date("Y-m-d",$timeStamp);
-        $sql = "INSERT INTO `inv_login` (firstName, lastName, profile_id, email, password, created_date, created_timestamp, modify_date, modify_timestamp, status_id) VALUES (:firstName, :lastName, :profile, :email, :password, '".$createDate."', '".$timeStamp."', '".$createDate."', '".$timeStamp."', '2')";
+        $sql = "INSERT INTO `inv_login` (firstName, lastName, profile_id, email, password, created_date, created_timestamp, modify_date, modify_timestamp, status_id) VALUES (:firstName, :lastName, :profile, :email, :password, '".$createDate."', '".$timeStamp."', '".$createDate."', '".$timeStamp."', '1')";
 
         $statement = $this->connect->prepare($sql);
 
