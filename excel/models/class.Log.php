@@ -74,6 +74,11 @@ class Log
 			$content.="INSERT INTO $table VALUES($values);\n";
 		}
 		
+		if(!file_exists($_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'))
+		{
+			mkdir($_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/',0775,true);
+		}
+		
 		$file=$_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'.$nameFile;
 		$f=fopen($file,"w");
 		fwrite($f,$content);

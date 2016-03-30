@@ -65,10 +65,10 @@ class Inventory
 		$general=new General();
 		
 		$category=trim($category);
-		
+				
 		$sql="SELECT wt.term_id
 				FROM wp_terms wt
-				WHERE name=:category";
+				WHERE name='$category'";
 		
 		$statement=$this->connect->prepare($sql);
 		
@@ -779,6 +779,7 @@ class Inventory
 		
 		foreach($ct as $c)
 		{
+			$c=trim($c);
 			$categoryId=$this->GetCategory($c);
 			
 			if($categoryId)
@@ -792,7 +793,21 @@ class Inventory
 			}
 			
 		}
-				
+		
+		//_trademark
+		$trademark=ucwords(strtolower(trim($trademark)));
+		$categoryId=$this->GetCategory($trademark);
+			
+		if($categoryId)
+		{
+			$this->InsertCategoryProduct($ID,$categoryId);
+		}
+		else
+		{
+			$categoryId=$this->InsertCategory($trademark);
+			$this->InsertCategoryProduct($ID,$categoryId);
+		}
+						
 		//_backorders
 		$backorders='no';
 		$this->InsertPostMeta($ID,'_backorders',$backorders);
@@ -900,10 +915,7 @@ class Inventory
 		//total_sales
 		$totalSales=0;
 		$this->InsertPostMeta($ID,'total_sales',$totalSales);
-		
-		//_trademark
-		$this->InsertPostMeta($ID,'_trademark',ucwords(strtolower($trademark)));
-		
+				
 		//type_product
 		$this->InsertPostMeta($ID,'type_product',ucwords(strtolower($typeProduct)));
 		
