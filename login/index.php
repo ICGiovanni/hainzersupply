@@ -34,8 +34,69 @@
 
             </form>
             <a href="sign_up.php" class="forgot-password">Registrar</a><br /><br />
-            <a href="#" class="forgot-password">Recordar contraseña?</a>
+            <a href="#" class="forgot-password"  data-target="#pwdModal" data-toggle="modal">Olvide mi contraseña</a>
         </div>
     </div>
+	
+<!--modal-->
+<div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h1 class="text-center">Asignarme un nuevo password</h1>
+      </div>
+      <div class="modal-body">
+          <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="text-center">
+                          
+                          <p>Si ya haz olvidado tu password, aquí puedes asignar uno nuevo.</p>
+                            <div class="panel-body">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input id="findEmail" class="form-control input-lg" placeholder="E-mail Address" name="findEmail" type="findEmail">
+                                    </div>
+									
+										<input class="btn btn-lg btn-primary btn-block" value="Enviarme un nuevo password" type="submit" onclick="sendNewPwd();">
+									
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
 </body>
+
+<script>
+	function sendNewPwd(){
+		findEmail = $("#findEmail").val();
+		
+		$.ajax({
+    		type: "POST",
+			url: "pwd_recovery.php",
+			data: {email: findEmail},
+        	success: function(msg){
+				
+					if(msg == "true"){
+						alert("Ha sido asignado un nuevo password a su cuenta y ha sido enviado a su correo.");
+						$("#pwdModal").modal('hide');
+					} else {						 
+						alert("La cuenta de correo especificada no existe, favor de verificar.");
+					}
+			}
+		
+      	});
+	}
+</script>
 </html>
