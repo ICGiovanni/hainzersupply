@@ -59,7 +59,7 @@
                                         <input id="findEmail" class="form-control input-lg" placeholder="E-mail Address" name="findEmail" type="findEmail">
                                     </div>
 									
-										<input class="btn btn-lg btn-primary btn-block" value="Enviarme un nuevo password" type="submit" onclick="sendNewPwd();">
+										<input id="button_send_new_pwd" class="btn btn-lg btn-primary btn-block" value="Enviarme un nuevo password" type="submit" onclick="sendNewPwd();">
 									
                                 </fieldset>
                             </div>
@@ -80,6 +80,7 @@
 
 <script>
 	function sendNewPwd(){
+		$("#button_send_new_pwd").addClass("disabled");
 		findEmail = $("#findEmail").val();
 		
 		$.ajax({
@@ -94,6 +95,7 @@
 					} else {						 
 						alert("La cuenta de correo especificada no existe, favor de verificar.");
 					}
+					$("#button_send_new_pwd").removeClass().addClass("btn btn-lg btn-primary btn-block");
 			}
 		
       	});
