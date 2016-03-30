@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
 
 
@@ -157,7 +157,7 @@ LIMIT 0,1)!=0;";
 				inv_orden_compra_total,
 				inv_orden_compra_created_date, inv_orden_compra_created_timestamp
 			) VALUES (
-				'1',
+				".$_SESSION['login_user']['idDistribuidor'].",
 				:inv_orden_compra_status_id,
 				:inv_orden_compra_productos,
 				:inv_orden_compra_suma_precio_lista,

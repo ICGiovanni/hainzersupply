@@ -1,7 +1,7 @@
 <?php
 include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
 require_once('models/class.Orders.php');
-$idDistribuidor = 1;
+$idDistribuidor = $_SESSION['login_user']['idDistribuidor'];
 $order = New Order();
 
 $ordersDistribuidor = $order->getOrders($idDistribuidor);
