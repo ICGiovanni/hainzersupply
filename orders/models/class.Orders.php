@@ -217,7 +217,29 @@ LIMIT 0,1)!=0;";
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		
 		return $result;
+	}
+	
+	public function getOrderData($idOrder){
+		$sql="SELECT 
+			idDistribuidor,
+			nombre,
+			inv_orden_compra_productos,
+			inv_orden_compra_factor_descuento,
+			inv_orden_compra_subtotal,
+			inv_orden_compra_iva,
+			inv_orden_compra_total
+		FROM inv_orden_compra 
+		INNER JOIN inv_orden_compra_status USING(inv_orden_compra_status_id)
+		INNER JOIN inv_distribuidores USING (idDistribuidor)
+		WHERE inv_orden_compra_id = :inv_orden_compra_id ";
+
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':inv_orden_compra_id', $idDistribuidor, PDO::PARAM_STR);
 		
+		$statement->execute();
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $result;
 	}
 	
 	public function selectOrderStatus($idSelect='orderStatus', $idSelected='1'){
