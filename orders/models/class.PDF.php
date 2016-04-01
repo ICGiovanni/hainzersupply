@@ -1,15 +1,24 @@
 <?php
-require($_SERVER["REDIRECT_PATH_CONFIG"]."orders/tcpdf/tcpdf.php");
+require_once($_SERVER["REDIRECT_PATH_CONFIG"]."orders/tcpdf/tcpdf.php");
+require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
 require_once('class.Orders.php');
 
 class PDF
 {
+	function __construct()
+	{
+		$c=new Connection();
+		$this->connect=$c->db;
+	}
+	
 	public function CreatePDF($idOrder)
 	{
 		$order=new Order();
 		$r=$order->getOrderData($idOrder);
-		die(var_dump($r));
-		$IdDistribuidor=$r[0]['idDistribuidor'];
+		
+		$idDistribuidor=$r[0]['idDistribuidor'];
+		$d=$this->getDataDistribuidor($idDistribuidor);		
+		
 		$descuento="";
 		
 		if($descuento)
@@ -43,27 +52,28 @@ class PDF
 		imagettftext($img, 13,0,$posX, 143,$negro, $fuente,$noPedido);
 
 		//Date
-		$date=date('d-m-Y');
+		$f=explode('-',$r[0]['inv_orden_compra_created_date']);
+		$date=$f[2].'/'.$f[1].'/'.$f[0];
 		imagettftext($img, 13,0,1105,172,$negro, $fuente,$date);
 
 		//Distribuidor
-		$distribuidor='ALFREDO URIEL MEDINA GARCIA';
+		$distribuidor=$d[0]['nombre'];
 		imagettftext($img, 13,0, 290, 244,$negro, $fuente,$distribuidor);
 
 		//Direcci�n
-		$direccion='MANUEL COTERO 144-B COL.CARLOS HANK GONZALEZ TOLUCA,MEXICO CP. 50026';
+		$direccion=$d[0]['direccion'];
 		imagettftext($img, 13,0, 290, 293,$negro, $fuente,$direccion);
 
 		//Telefono
-		$telefono='7222306547';
+		$telefono=$d[0]['telefono'];
 		imagettftext($img, 13,0, 290, 344,$negro, $fuente,$telefono);
 
 		//E-mail
-		$email='umedina86@yahoo.com.mx';
+		$email=$d[0]['correoElectronico'];
 		imagettftext($img, 13,0, 774, 344,$negro, $fuente,$email);
 
 		//Direcci�n
-		$direccionE='MANUEL COTERO 144-B COL.CARLOS HANK GONZALEZ TOLUCA,MEXICO CP. 50026';
+		$direccionE=$d[0]['direccion'];
 		imagettftext($img, 13,0, 290, 392,$negro, $fuente,$direccionE);
 		
 		
@@ -168,8 +178,8 @@ class PDF
 
 		$pdf->Image($namePlantilla);
 
-		$pdf->Output('Pedido_'.$noPedido.'.pdf', 'I');
-		//$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
+		//$pdf->Output('Pedido_'.$noPedido.'.pdf', 'I');
+		$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
 
 		unlink($namePlantilla);
 	}
@@ -343,6 +353,28 @@ class PDF
 	   //Zi hack --> return ucfirst($tex);
 	   $end_num=ucfirst($tex).' pesos '.$float[1].'/100 M.N.';
 	   return $end_num; 
+	}
+	
+	public function getDataDistribuidor($idDistribuidor)
+	{
+		$sql="SELECT id.nombre,id.representante,id.telefono,id.correoElectronico,
+				(SELECT CONCAT(calle,' ,',numExt,' ',IF(numInt!='',CONCAT('Int. ',numInt),''),' ,',colonia,
+				' ,C.P. ',codigoPostal,' ,',estado,',',pais) AS direccion
+				FROM inv_distribuidores id2
+				INNER JOIN inv_distribuidor_envio ide USING(idDistribuidor)
+				INNER JOIN inv_direcciones idir USING(idDireccion)
+				WHERE id2.idDistribuidor=id.idDistribuidor
+				LIMIT 0,1) AS direccion
+				FROM inv_distribuidores id
+				WHERE id.idDistribuidor=:idDistribuidor";
+	
+		$statement=$this->connect->prepare($sql);
+		$statement->bindParam(':idDistribuidor', $idDistribuidor, PDO::PARAM_STR);
+	
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		return $result;
 	}
 
 }
