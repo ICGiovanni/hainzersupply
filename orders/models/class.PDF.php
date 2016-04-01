@@ -1,5 +1,5 @@
 <?php
-require_once('/../tcpdf/tcpdf.php');
+require($_SERVER["REDIRECT_PATH_CONFIG"]."orders/tcpdf/tcpdf.php");
 require_once('class.Orders.php');
 
 class PDF
@@ -8,6 +8,7 @@ class PDF
 	{
 		$order=new Order();
 		$r=$order->getOrderData($idOrder);
+		die(var_dump($r));
 		$IdDistribuidor=$r[0]['idDistribuidor'];
 		$descuento="";
 		
@@ -167,8 +168,8 @@ class PDF
 
 		$pdf->Image($namePlantilla);
 
-		//$pdf->Output('Pedido_'.$noPedido.'.pdf', 'I');
-		$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
+		$pdf->Output('Pedido_'.$noPedido.'.pdf', 'I');
+		//$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
 
 		unlink($namePlantilla);
 	}
