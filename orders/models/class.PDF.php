@@ -83,7 +83,7 @@ class PDF
 		{
 			//SKU
 			$sku=$j->sku;
-			imagettftext($img, 13,0, 85, $posIniY,$negro, $fuente,$sku);
+			imagettftext($img, 10,0, 65, $posIniY,$negro, $fuente,$sku);
 
 			//Product
 			$product=$j->name;

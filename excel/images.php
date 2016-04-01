@@ -38,8 +38,7 @@ $("#fileU").fileinput({
 	fileType: "jpg,jpge,png,bit",
 	uploadUrl: "upload.php",
     uploadAsync: false,
-    minFileCount:1,
-    maxFileCount: 5
+    minFileCount:1
 });
 
 /*$("#fileUpload").fileinput(
