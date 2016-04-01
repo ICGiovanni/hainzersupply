@@ -1,7 +1,7 @@
 <?php
     include $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
 
-    if(stristr($_SERVER['PHP_SELF'],'distribuidores') || stristr($_SERVER['PHP_SELF'],'login')) {
+    if(stristr($_SERVER['PHP_SELF'],'distribuidores') || stristr($_SERVER['PHP_SELF'],'login') || stristr($_SERVER['PHP_SELF'],'incentivos')) {
 ?>
         <script src="<?php echo $raizProy?>distribuidores/js/jquery.min.js"></script>
         <script src="<?php echo $raizProy ?>distribuidores/js/bootstrap.min.js"></script>
@@ -65,6 +65,11 @@
                         <li><a href="<?php echo $ruta ?>orders/index.php">Nuevo</a></li>
                         <li><a href="<?php echo $ruta ?>orders/order_list.php">Lista</a></li>
                     </ul>
+                </li>
+                <li>
+                    <a href="<?php echo $ruta?>incentivos/index.php">
+                        Incentivos
+                    </a>
                 </li>
             <?php
             }
