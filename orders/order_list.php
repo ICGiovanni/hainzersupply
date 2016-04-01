@@ -36,7 +36,7 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 		
 	
 	$tr_orders.= '<tr>
-        <td><button type="button" class="btn btn-primary btn-agregar-incentivo" data-toggle="modal" data-target="#modalIncentivos" onclick="getIncentivos('.$orden["inv_orden_compra_id"].')">+</button>
+        <td><button type="button" class="btn btn-primary btn-sm btn-agregar-incentivo" data-toggle="modal" data-target="#modalIncentivos" onclick="getIncentivos('.$orden["inv_orden_compra_id"].')">+</button>
 		<td id="td_status_order_'.$orden["inv_orden_compra_id"].'">'.$td_status.'</td>
 		<td>'.$orden["nombre"].'</td>
 		<td>'.$numProducts.' Productos</td>
@@ -47,6 +47,7 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 		<td><p class="text-right">$&nbsp;'.number_format($orden["inv_orden_compra_iva"],2).'</p></td>
 		<td><p class="text-right"><b>$&nbsp;'.number_format($orden["inv_orden_compra_total"],2).'</b></p></td>
 		<td><p class="text-center">'.$orden["inv_orden_compra_created_date"].'</p></td>
+		<td><a href="pdf.php?idOrder='.$orden["inv_orden_compra_id"].'" target="_blank" class="btn btn-sm btn-primary" ><span class="glyphicon glyphicon-download-alt" style="color:white" aria-hidden="true"></span></a></td>
 	</tr>
 	';	
 }
@@ -89,6 +90,7 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 			<th>IVA</th>
 			<th>Total Final</th>
 			<th>Fecha de <br>Solicitud</th>
+			<th></th>
         </tr>
         </thead>
         <tbody>
