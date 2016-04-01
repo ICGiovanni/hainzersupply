@@ -1,10 +1,23 @@
 <?php
 require_once('/../tcpdf/tcpdf.php');
+require_once('class.Orders.php');
 
 class PDF
 {
-	public function CreatePDF()
+	public function CreatePDF($idOrder)
 	{
+		$order=new Order();
+		$r=$order->getOrderData($idOrder);
+		$IdDistribuidor=$r[0]['idDistribuidor'];
+		$descuento="";
+		
+		if($descuento)
+		{
+			$descuento=(($r[0]['inv_orden_compra_factor_descuento'])*100)."%";
+		}
+		
+		$productos=json_decode($r[0]['inv_orden_compra_productos']);
+		
 		$pdf=new TCPDF('P','mm','A4', true, 'UTF-8', false);
 
 		$pdf->SetCreator('HAINZER');
@@ -24,7 +37,7 @@ class PDF
 		$fuente='css/arial.ttf';
 
 		//No. Pedido
-		$noPedido=123;
+		$noPedido=$idOrder;
 		$posX=1140-strlen($noPedido);
 		imagettftext($img, 13,0,$posX, 143,$negro, $fuente,$noPedido);
 
@@ -36,7 +49,7 @@ class PDF
 		$distribuidor='ALFREDO URIEL MEDINA GARCIA';
 		imagettftext($img, 13,0, 290, 244,$negro, $fuente,$distribuidor);
 
-		//Dirección
+		//Direcciï¿½n
 		$direccion='MANUEL COTERO 144-B COL.CARLOS HANK GONZALEZ TOLUCA,MEXICO CP. 50026';
 		imagettftext($img, 13,0, 290, 293,$negro, $fuente,$direccion);
 
@@ -48,21 +61,21 @@ class PDF
 		$email='umedina86@yahoo.com.mx';
 		imagettftext($img, 13,0, 774, 344,$negro, $fuente,$email);
 
-		//Dirección
+		//Direcciï¿½n
 		$direccionE='MANUEL COTERO 144-B COL.CARLOS HANK GONZALEZ TOLUCA,MEXICO CP. 50026';
 		imagettftext($img, 13,0, 290, 392,$negro, $fuente,$direccionE);
-
-
+		
+		
 		$posIniY=520;
 		$importeSubotal=0;
-		for($i=0;$i<10;$i++)
+		foreach($productos->rows as $j)
 		{
 			//SKU
-			$sku='47-1001';
+			$sku=$j->sku;
 			imagettftext($img, 13,0, 85, $posIniY,$negro, $fuente,$sku);
 
 			//Product
-			$product='REVOLVER EVO METALLIC SILVER SOLID XXL';
+			$product=$j->name;
 			imagettftext($img, 13,0, 222, $posIniY,$negro, $fuente,$product);
 
 			//Unidad
@@ -71,12 +84,12 @@ class PDF
 
 
 			//Cantidad
-			$cantidad='12';
+			$cantidad=$j->quantity;
 			$posX=805-strlen($cantidad);
 			imagettftext($img, 13,0, $posX, $posIniY,$negro, $fuente,$cantidad);
 
 			//Precio
-			$precio='18000.00';
+			$precio=$j->unit_list_price;
 			$precio=round($precio,2);
 			
 			$p=explode('.',$precio);
@@ -92,7 +105,7 @@ class PDF
 			imagettftext($img, 13,0,1010,$posIniY,$negro, $fuente,$descuento);
 
 			//Descuento
-			$importe=round(($cantidad*$precio),2);
+			$importe=$j->amount_price;
 			$p=explode('.',$importe);
 			if(count($p)==1)
 			{
@@ -154,8 +167,8 @@ class PDF
 
 		$pdf->Image($namePlantilla);
 
-		$pdf->Output('Pedido_'.$noPedido.'.pdf', 'I');
-		//$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
+		//$pdf->Output('Pedido_'.$noPedido.'.pdf', 'I');
+		$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
 
 		unlink($namePlantilla);
 	}
