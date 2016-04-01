@@ -1,4 +1,8 @@
-<?php include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+<?php
+include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+include $_SERVER['REDIRECT_PATH_CONFIG'].'models/incentivos/class.Incentivos.php';
+$insIncentivos = new Incentivos();
+
 require_once('models/class.Orders.php');
 if(isset($_SESSION['login_user']['idDistribuidor'])){
 	$idDistribuidor = $_SESSION['login_user']['idDistribuidor'];
@@ -32,15 +36,16 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 		
 	
 	$tr_orders.= '<tr>
+        <td><button type="button" class="btn btn-primary btn-agregar-incentivo" data-toggle="modal" data-target="#modalIncentivos" onclick="getIncentivos('.$orden["inv_orden_compra_id"].')">+</button>
 		<td id="td_status_order_'.$orden["inv_orden_compra_id"].'">'.$td_status.'</td>
 		<td>'.$orden["nombre"].'</td>
 		<td>'.$numProducts.' Productos</td>
 	<!--	<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_precio_lista"],2).'</p></td> -->
 		<td><p class="text-center">'.$orden["inv_orden_compra_factor_descuento"].'</p></td>
 	<!--	<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_promociones"],2).'</p></td> -->
-		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_subtotal"],2).'</p></td>
-		<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_iva"],2).'</p></td>
-		<td><p class="text-right"><b>$ '.number_format($orden["inv_orden_compra_total"],2).'</b></p></td>
+		<td><p class="text-right">$&nbsp;'.number_format($orden["inv_orden_compra_subtotal"],2).'</p></td>
+		<td><p class="text-right">$&nbsp;'.number_format($orden["inv_orden_compra_iva"],2).'</p></td>
+		<td><p class="text-right"><b>$&nbsp;'.number_format($orden["inv_orden_compra_total"],2).'</b></p></td>
 		<td><p class="text-center">'.$orden["inv_orden_compra_created_date"].'</p></td>
 	</tr>
 	';	
@@ -73,16 +78,17 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
     <table data-toggle="table">
         <thead>
         <tr>
+            <th style="font-size: 8px !important;">Incentivos <br />y/o envío</th>
 			<th>Estado</th>
 			<th>Distribuidor</th>
             <th>Productos</th>
            <!-- <th><p class="text-center">Suma Precios<br> de Lista</p></th>-->
-            <th><p class="text-center">Factor de<br> Descuento</p></th>
+            <th>Factor de <br />Descuento</th>
 			<!-- <th><p class="text-center">Suma de <br>Remates</p></th> -->
-			<th><p class="text-center">Subtotal</p></th>
-			<th><p class="text-center">IVA</p></th>
-			<th><p class="text-center">Total Final</p></th>
-			<th><p class="text-center">Fecha de <br>Solicitud</p></th>
+			<th>Subtotal</th>
+			<th>IVA</th>
+			<th>Total Final</th>
+			<th>Fecha de <br>Solicitud</th>
         </tr>
         </thead>
         <tbody>
@@ -110,6 +116,49 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal editar informacion contacto-->
+<div class="modal fade" id="modalIncentivos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Incentivos</h4>
+            </div>
+            <div class="modal-body form-signin">
+                <b>Incentivos aplicados</b>
+                <div id="incentivosAplicados">
+                    No hay registros
+                </div>
+                <br />
+                <br />
+                <b>Agregar Nuevo</b>
+                <div id="agregarIncentivos">
+                    <?php
+                        $listaIncentivos = $insIncentivos->getList();
+                        echo "<select id='incentivos' onchange='selectOption(this.value)'>";
+                                echo "<option value='0'>selecciona una opción</option>";
+                                echo "<option value='999'>Costo de envío</option>";
+                            foreach($listaIncentivos as $incentivo){
+                                echo "<option value='".$incentivo['idIncentivo']."'>".$incentivo['etiqueta']."</option>";
+                            }
+                        echo "</select>";
+                        echo "<div id='envioContainer' style='display: none'>
+                                <br />
+                                <label for='costoEnvio'>Costo de envío: </label>
+                                <input type='text' id='costoEnvio' name='costoEnvio' value='' />
+                              </div>";
+                    ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="idOrdenModal" value="">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger" onclick="agregarIncentivo()">Agregar incentivo</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -183,6 +232,64 @@ function changeOrderStatus(){
 
 		});
 	}
+}
+
+function getIncentivos(idOrden){
+    $("#idOrdenModal").val(idOrden);
+    $.ajax({
+        method: "POST",
+        url: "ajax/incentivos_order.php",
+        data: {
+            accion: 'listIncentivosOrden',
+            idOrden: idOrden
+        }
+    }).done(function( result ) {
+        var data = JSON.parse(result);
+        if(data.result){
+            $("#incentivosAplicados").html('');
+            $.each(data.result, function( index, value ) {
+                $("#incentivosAplicados").append("<br /><b>°</b>&nbsp;"+value.descripcion);
+            });
+        }
+        else{
+            $("#incentivosAplicados").html('No hay incentivos aplicados a esta orden');
+        }
+    });
+}
+
+function selectOption(value){
+    if(value==999){
+        $("#envioContainer").show();
+        $("#costoEnvio").val('');
+    }
+    else{
+        $("#costoEnvio").val('');
+        $("#envioContainer").hide();
+    }
+}
+
+function agregarIncentivo(){
+    var idOrden = $("#idOrdenModal").val();
+    var idIncentivo = $("#incentivos").val();
+
+    if(idIncentivo==999){
+        console.log('guardar envio');
+    }else{
+        $.ajax({
+            method: "POST",
+            url: "ajax/incentivos_order.php",
+            data: {
+                accion: 'agregarOrdenIncentivo',
+                idOrden: idOrden,
+                idIncentivo: idIncentivo
+            }
+        }).done(function( result ) {
+            getIncentivos(idOrden);
+            return false;
+        });
+    }
+
+    alert(idOrden);
 }
 
 </script>

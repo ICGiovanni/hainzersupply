@@ -67,5 +67,30 @@
             return $statement->execute();
         }
 
+        public function getIncentivosOrden($idOrden){
+            $sql="SELECT * FROM inv_orders_incentivos iio
+                  inner join inv_incentivos ii on iio.idIncentivo = ii.idIncentivo
+                  where inv_orden_compra_id=".$idOrden;
+
+            $statement=$this->connect->prepare($sql);
+
+            $statement->execute();
+            $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
+        }
+
+        public function guardarOrdenIncentivo($idOrden,$idIncentivo){
+            $sql = "INSERT INTO inv_orders_incentivos VALUES(0,:inv_orden_compra_id,:idIncentivo)";
+            $statement=$this->connect->prepare($sql);
+
+            $statement->bindParam(':inv_orden_compra_id',$idOrden,PDO::PARAM_INT);
+            $statement->bindParam(':idIncentivo',$idIncentivo,PDO::PARAM_INT);
+
+            $statement->execute();
+
+            return $this->connect->lastInsertId();
+        }
+
     }
 ?>
