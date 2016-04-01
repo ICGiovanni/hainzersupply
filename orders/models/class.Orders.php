@@ -1,5 +1,7 @@
-<?php session_start();
-require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
+<?php if(!isset($_SESSION)) {
+			session_start();
+	  }
+	require_once($_SERVER["REDIRECT_PATH_CONFIG"].'models/connection/class.Connection.php');
 
 
 class Order {
@@ -217,65 +219,43 @@ LIMIT 0,1)!=0;";
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		
 		return $result;
-	}
-	
-	public function getOrderData($idOrder){
-		$sql="SELECT 
-			idDistribuidor,
-			nombre,
-			inv_orden_compra_productos,
-			inv_orden_compra_factor_descuento,
-			inv_orden_compra_subtotal,
-			inv_orden_compra_iva,
-			inv_orden_compra_total
-		FROM inv_orden_compra 
-		INNER JOIN inv_orden_compra_status USING(inv_orden_compra_status_id)
-		INNER JOIN inv_distribuidores USING (idDistribuidor)
-		WHERE inv_orden_compra_id = :inv_orden_compra_id ";
 
-		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':inv_orden_compra_id', $idDistribuidor, PDO::PARAM_STR);
-		
-		$statement->execute();
-        $result=$statement->fetchAll(PDO::FETCH_ASSOC);
-		
-		return $result;
 	}
-	
+
 	public function selectOrderStatus($idSelect='orderStatus', $idSelected='1'){
-		
+
 		$select = '<select id="'.$idSelect.'" name="'.$idSelect.'" class="form-control"><option >--Select Profile--</option>';
-		
-		$options = '';		
+
+		$options = '';
 		$opt_value = $this->getOrdersStatus();
-		
+
 		while(list($id, $name) = each($opt_value) ){
 			$selected = '';
 			if($id == $idSelected) $selected=' selected';
 			$options.='<option value="'.$id.'"'.$selected.'>'.$name.'</option>';
 		}
-		
+
 		$select.=$options.'</select>';
 		return $select;
 	}
-	
+
 	public function getOrdersStatus(){
-		
+
 		$sql = "SELECT inv_orden_compra_status_id, inv_orden_compra_status_desc FROM inv_orden_compra_status;";
 
 		$statement = $this->connect->prepare($sql);
 
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-		
+
 		$assoc_result = array();
 		while(list(,$data)=each($result)){
 			$assoc_result[$data['inv_orden_compra_status_id']]=$data['inv_orden_compra_status_desc'];
 		}
-		
+
 		return(!empty($assoc_result))?$assoc_result:false;
 	}
-	
+
 	public function changeOrderStatus($idOrder, $newStatusId, $jsonProducts){
 
 		$products = json_decode($jsonProducts);
@@ -290,34 +270,34 @@ LIMIT 0,1)!=0;";
 			while(list($num, $item) = each($products->rows)){
 				//echo "actualizar ".$item->sku." en stock menos ".$item->quantity."<br>";
 				$now = intval($inventory->GetStockbySku($item->sku));
-				
+
 				if($now >= $item->quantity){
 					//echo "actualiza ";
 					$inventory->UpdateStockbySku($item->sku,$item->quantity);
 				} else {
 					$sinStock.="-sku= ".$item->sku.", items en stock=".$now.", items solicitados=".$item->quantity." <br>";
 				}
-					
+
 			}
 		}
-		
+
 		if(!empty($sinStock)){
 			die($sinStock);
 		}
-		
+
 		/////
 		$sql = "UPDATE inv_orden_compra SET
 			inv_orden_compra_status_id = :inv_orden_compra_status_id
 			WHERE
 				inv_orden_compra_id = :inv_orden_compra_id";
-			
+
 		$statement = $this->connect->prepare($sql);
 
 		$statement->bindParam(':inv_orden_compra_status_id', $newStatusId, PDO::PARAM_STR);
-		$statement->bindParam(':inv_orden_compra_id', $idOrder, PDO::PARAM_STR); 
+		$statement->bindParam(':inv_orden_compra_id', $idOrder, PDO::PARAM_STR);
 
         $statement->execute();
-		die("success update");		
+		die("success update");
 	}
 
 	public function getProductoSinStock(){
