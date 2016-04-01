@@ -182,7 +182,7 @@ LIMIT 0,1)!=0;";
 		$statement->bindParam(':inv_orden_compra_total', $params['inv_orden_compra_total'], PDO::PARAM_STR);
 		
 		$statement->execute();
-		die("order_id=".$this->connect->lastInsertId());
+		return $this->connect->lastInsertId();
 	}
 	
 	public function getOrders($idDistribuidor = 0){
