@@ -33,18 +33,26 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
 	elseif($orden["inv_orden_compra_status_id"] == 3){
 		$td_status = '<span class="glyphicon glyphicon-ban-circle" style="color:red" aria-hidden="true"></span> '.$orden["inv_orden_compra_status_desc"];
 	}
-		
+	$html_boton_envio = '';
+	$html_header_envio = '';
+	
+	if($idDistribuidor == 0){
+		$html_boton_envio = '<td><button type="button" class="btn btn-primary btn-sm btn-agregar-incentivo" data-toggle="modal" data-target="#modalIncentivos" onclick="getIncentivos('.$orden["inv_orden_compra_id"].')">+</button></td>';
+		$html_header_envio = '<th style="font-size: 8px !important;">Incentivos <br />y/o envío</th>';
+	}
+	
 	
 	$tr_orders.= '<tr>
-        <td><button type="button" class="btn btn-primary btn-sm btn-agregar-incentivo" data-toggle="modal" data-target="#modalIncentivos" onclick="getIncentivos('.$orden["inv_orden_compra_id"].')">+</button>
+		'.$html_boton_envio.'
 		<td id="td_status_order_'.$orden["inv_orden_compra_id"].'">'.$td_status.'</td>
 		<td>'.$orden["nombre"].'</td>
-		<td>'.$numProducts.' Productos</td>
+		
 	<!--	<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_precio_lista"],2).'</p></td> -->
 		<td><p class="text-center">'.$orden["inv_orden_compra_factor_descuento"].'</p></td>
 	<!--	<td><p class="text-right">$ '.number_format($orden["inv_orden_compra_suma_promociones"],2).'</p></td> -->
 		<td><p class="text-right">$&nbsp;'.number_format($orden["inv_orden_compra_subtotal"],2).'</p></td>
 		<td><p class="text-right">$&nbsp;'.number_format($orden["inv_orden_compra_iva"],2).'</p></td>
+		<td>$&nbsp;'.number_format($orden["inv_orden_compra_costo_envio"],2).'</td>
 		<td><p class="text-right"><b>$&nbsp;'.number_format($orden["inv_orden_compra_total"],2).'</b></p></td>
 		<td><p class="text-center">'.$orden["inv_orden_compra_created_date"].'</p></td>
 		<td><a href="pdf.php?idOrder='.$orden["inv_orden_compra_id"].'" target="_blank" class="btn btn-sm btn-primary" ><span class="glyphicon glyphicon-download-alt" style="color:white" aria-hidden="true"></span></a></td>
@@ -79,15 +87,15 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
     <table data-toggle="table">
         <thead>
         <tr>
-            <th style="font-size: 8px !important;">Incentivos <br />y/o envío</th>
+            <?=$html_header_envio?>
 			<th>Estado</th>
-			<th>Distribuidor</th>
-            <th>Productos</th>
+			<th>Distribuidor</th>            
            <!-- <th><p class="text-center">Suma Precios<br> de Lista</p></th>-->
             <th>Factor de <br />Descuento</th>
 			<!-- <th><p class="text-center">Suma de <br>Remates</p></th> -->
 			<th>Subtotal</th>
 			<th>IVA</th>
+			<th>Costo<br> Envío</th>
 			<th>Total Final</th>
 			<th>Fecha de <br>Solicitud</th>
 			<th></th>
@@ -148,8 +156,7 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
                         echo "</select>";
                         echo "<div id='envioContainer' style='display: none'>
                                 <br />
-                                <label for='costoEnvio'>Costo de envío: </label>
-                                <input type='text' id='costoEnvio' name='costoEnvio' value='' />
+                                Costo de envío:&nbsp;&nbsp;&nbsp;&nbsp; $ <input style='width: auto; display: inline;' type='text' id='costoEnvio' name='costoEnvio' value='' /> MX
                               </div>";
                     ?>
                 </div>
@@ -157,7 +164,7 @@ while(list($indice,$orden)=each($ordersDistribuidor)){
             <div class="modal-footer">
                 <input type="hidden" id="idOrdenModal" value="">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-danger" onclick="agregarIncentivo()">Agregar incentivo</button>
+                <button type="button" class="btn btn-danger" onclick="agregarIncentivo();">Agregar incentivo</button>
             </div>
         </div>
     </div>
@@ -182,7 +189,7 @@ function checkOrder(elem){
 		 
 		 inDiv+='<tr> <td><div class="text-left">' + object.name + '</div></td><td>' + object.quantity + '</td><td>$ ' + object.price + '</td></tr>'; 
 	}
-	inDiv+=' </tbody> </table><div style="width:300px;"><b>Cambiar status de la solicitud de compra:</b><br> <?=$order->selectOrderStatus()?></div>';
+	inDiv+=' </tbody> </table><div style="width:300px;"><b>Cambiar status de la solicitud de compra:</b><br> <?=$order->selectOrderStatus('orderStatus', '1', $idDistribuidor)?></div>';
 	
 	$("#dv_body_modal").html(inDiv);
 }
@@ -271,27 +278,44 @@ function selectOption(value){
 }
 
 function agregarIncentivo(){
-    var idOrden = $("#idOrdenModal").val();
+    var idOrder = $("#idOrdenModal").val();
     var idIncentivo = $("#incentivos").val();
 
     if(idIncentivo==999){
         console.log('guardar envio');
+		costoEnvio = $("#costoEnvio").val();
+		
+		$.ajax({
+			type: "POST",
+			url: "ajax/change_shipping_cost.php",
+			data: {
+					idOrder: idOrder,
+					costoEnvio: costoEnvio
+			},
+			success: function(msg){
+				if(msg == "success update"){
+					alert("El costo del envio ha sido actualizado para la orden seleccionada.");
+					location.reload();
+				}
+			}
+		});
+		
     }else{
         $.ajax({
             method: "POST",
             url: "ajax/incentivos_order.php",
             data: {
                 accion: 'agregarOrdenIncentivo',
-                idOrden: idOrden,
+                idOrder: idOrder,
                 idIncentivo: idIncentivo
             }
         }).done(function( result ) {
-            getIncentivos(idOrden);
+            getIncentivos(idOrder);
             return false;
         });
     }
 
-    alert(idOrden);
+    
 }
 
 </script>
