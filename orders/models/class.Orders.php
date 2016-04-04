@@ -202,6 +202,7 @@ LIMIT 0,1)!=0;";
 			inv_orden_compra_suma_promociones,
 			inv_orden_compra_subtotal,
 			inv_orden_compra_iva,
+			inv_orden_compra_costo_envio,
 			inv_orden_compra_total,
 			inv_orden_compra_created_date
 		FROM inv_orden_compra 
@@ -227,6 +228,7 @@ LIMIT 0,1)!=0;";
 			inv_orden_compra_factor_descuento,
 			inv_orden_compra_subtotal,
 			inv_orden_compra_iva,
+			inv_orden_compra_costo_envio,
 			inv_orden_compra_total,
 			inv_orden_compra_created_date
 		FROM inv_orden_compra 
@@ -243,17 +245,19 @@ LIMIT 0,1)!=0;";
 		return $result;
 	}
 	
-	public function selectOrderStatus($idSelect='orderStatus', $idSelected='1'){
+	public function selectOrderStatus($idSelect='orderStatus', $idSelected='1', $idDistribuidor=0){
 		
-		$select = '<select id="'.$idSelect.'" name="'.$idSelect.'" class="form-control"><option >--Select Profile--</option>';
+		$select = '<select id="'.$idSelect.'" name="'.$idSelect.'" class="form-control"><option value="1" >--Select Profile--</option>';
 		
 		$options = '';		
 		$opt_value = $this->getOrdersStatus();
 		
 		while(list($id, $name) = each($opt_value) ){
 			$selected = '';
-			if($id == $idSelected) $selected=' selected';
-			$options.='<option value="'.$id.'"'.$selected.'>'.$name.'</option>';
+			if($id == $idSelected) 
+				$selected=' selected';
+			if($idDistribuidor==0 || $id != 2)
+				$options.='<option value="'.$id.'"'.$selected.'>'.$name.'</option>';
 		}
 		
 		$select.=$options.'</select>';
@@ -318,7 +322,24 @@ LIMIT 0,1)!=0;";
 		$statement->bindParam(':inv_orden_compra_id', $idOrder, PDO::PARAM_STR); 
 
         $statement->execute();
-		die("success update");		
+		die("success update");
+	}
+	
+	public function changeShippingCost($idOrder, $costoEnvio){
+		$costoEnvio = sprintf("%f",$costoEnvio);
+		$sql = "UPDATE inv_orden_compra SET
+			inv_orden_compra_total = inv_orden_compra_total - inv_orden_compra_costo_envio + :inv_orden_compra_costo_envio,
+			inv_orden_compra_costo_envio = :inv_orden_compra_costo_envio			
+			WHERE
+				inv_orden_compra_id = :inv_orden_compra_id";
+			
+		$statement = $this->connect->prepare($sql);
+
+		$statement->bindParam(':inv_orden_compra_costo_envio', $costoEnvio, PDO::PARAM_STR);
+		$statement->bindParam(':inv_orden_compra_id', $idOrder, PDO::PARAM_STR); 
+
+        $statement->execute();
+		return "success update";
 	}
 
 	public function getProductoSinStock(){
