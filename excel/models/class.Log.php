@@ -39,6 +39,44 @@ class Log
 		
 		$this->GetRestore($restore);
 		$this->CleanLog();
+		$this->sendMailLog();		
+	}
+	
+	public function sendMailLog()
+	{
+		$nombre=$_SESSION['login_user']['nombre'];
+		$date=date('d/m/Y H:m:s');
+		
+		$to = 'info@hainzersupply.com';
+		$subject = "Registro Hainzersupply";
+		$txt = "<html>
+                <body style='background-color: #000'>
+                    <p style='text-align: center; width: 300px'>
+                        <img src='http://hainzersupply.com/new_site/control/images/Logotipo_HainzerSupply.png' width='200px' alt='HainzerSupply'/>
+                    </p>
+                    <div style='background-color: #FFF'>
+                        <table align='center'>
+                            <tr>
+                                <td colspan='2'>HAINZER SUPPLY</td>
+                            </tr>
+                            <tr>
+                                <td colspan='2'>El Usuario ".$nombre." ha realizado una modificación en el inventario a las ".$date."</td>
+                            </tr>
+                            <tr>
+                                <td colspan='2'>GUARDA ESTA INFORMACIÓN PARA FUTURAS REFERENCIAS.</td>
+                            </tr>
+                        </table>
+                        <p style='text-align: center; width: 300px'>
+                            www.hainzersupply.com / VISITA NUESTRO AVISO DE PRIVACIDAD PARA MAS INFORMACIÓN
+                        </p>
+                    </div>
+                </body>
+            </html>";
+		$headers = "From: test@hainzersupply.com\r\n";
+		$headers .= "MIME-Version: 1.0\r\n";
+		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+		
+		mail($to,$subject,$txt,$headers);
 	}
 	
 	public function GetDataTable($table,$nameFile)
@@ -225,19 +263,31 @@ class Log
 		$file=$r[0]['file'];
 		$restore=$r[0]['restore'];
 		
-		unlink($file);
+		if(file_exists($file))
+		{
+			unlink($file);
+		}
 		
 		$nameFile=$restore.'_'.'wp_posts.sql';
 		$file=$_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'.$nameFile;
-		unlink($file);
+		if(file_exists($file))
+		{
+			unlink($file);
+		}
 		
 		$nameFile=$restore.'_'.'wp_postmeta.sql';
 		$file=$_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'.$nameFile;
-		unlink($file);
+		if(file_exists($file))
+		{
+			unlink($file);
+		}
 				
 		$nameFile=$restore.'_'.'wp_term_relationships.sql';
 		$file=$_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'.$nameFile;
-		unlink($file);
+		if(file_exists($file))
+		{
+			unlink($file);
+		}
 		
 		$sql="DELETE FROM inv_log WHERE log_id=:logId";
 		$statement=$this->connect->prepare($sql);

@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+require_once $_SERVER["REDIRECT_PATH_CONFIG"]."orders/models/class.PDF.php";
 
 if(isset($_SESSION['login_user'])){
 	
@@ -8,9 +9,25 @@ if(isset($_SESSION['login_user'])){
 		if(isset($_POST["inv_orden_compra_productos"]) && !empty($_POST["inv_orden_compra_productos"])) {
 			require_once('../models/class.Orders.php');
 			$order = new Order();
+			$pdf=new PDF();
 			$_POST['inv_orden_compra_status_id'] = '1';
 			
 			$idOrder = $order->insertOrder($_POST);
+			
+			$pdf->CreatePDF($idOrder);				
+			
+			$fileA=$rute=$_SERVER["REDIRECT_PATH_CONFIG"]."orders/pdf/".'pedido_'.$noPedido.'.pdf';
+			$fileatt_type = 'application/pdf';
+			$fileatt_name = 'pedido_'.$noPedido.'.pdf';
+			
+			$file = fopen($fileA,'rb');
+			$data = fread($file,filesize($fileA));
+			fclose($file);
+			
+			// Generate a boundary string
+			$semi_rand = md5(time());
+			$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
+			
 			/*Uriel*/
 			$to = $_SESSION['login_user']['correoElectronico'];
 			$subject = "Haizer Supply - Se ha creado el pedido #".$idOrder;
@@ -76,9 +93,29 @@ if(isset($_SESSION['login_user'])){
                     </p>
                 </body>
             </html>";
+			
+			$txt.="This is a multi-part message in MIME format.\n\n" .
+             "--{$mime_boundary}\n" .
+             "Content-Type: text/plain; charset=\"iso-8859-1\"\n" .
+             "Content-Transfer-Encoding: 7bit\n\n";
+			
+			$txt .= "--{$mime_boundary}\n" .
+			"Content-Type: {$fileatt_type};\n" .
+			" name=\"{$fileatt_name}\"\n" .
+			//"Content-Disposition: attachment;\n" .
+			//" filename=\"{$fileatt_name}\"\n" .
+			"Content-Transfer-Encoding: base64\n\n" .
+			$data . "\n\n" .
+			"--{$mime_boundary}--\n";
+			
 			$headers = "From: test@hainzersupply.com\r\n";
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=utf-8\r\n";
+			$headers .= "Content-Type: multipart/mixed;\n" .
+					" boundary=\"{$mime_boundary}\"";
+			$data = chunk_split(base64_encode($data));
+				
+			
 
 			mail($to, $subject, $txt, $headers);
 			/*Uriel*/

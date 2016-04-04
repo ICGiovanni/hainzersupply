@@ -191,11 +191,11 @@ class PDF
 				mkdir($rute,0775,true);
 			}
 			
-			$pdf->Output($rute.'Pedido_'.$noPedido.'.pdf', 'F');
+			$pdf->Output($rute.'pedido_'.$noPedido.'.pdf', 'F');
 		}
 		else
 		{
-			$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
+			$pdf->Output('pedido_'.$noPedido.'.pdf', 'D');
 		}
 		
 
