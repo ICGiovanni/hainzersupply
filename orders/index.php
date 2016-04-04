@@ -611,8 +611,6 @@ function addProductOrder(){
 		}
 	}
 /*version original*/
-	
-	
-	
+
 </script>
 </html>
