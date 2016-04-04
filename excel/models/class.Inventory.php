@@ -1073,7 +1073,7 @@ class Inventory
 		}
 		else
 		{
-			$prefix.=$sku;
+			$prefix.=$sku.'@';
 		}
 				
 		return $prefix;
