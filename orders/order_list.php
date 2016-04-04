@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
-include $_SERVER['REDIRECT_PATH_CONFIG'].'models/incentivos/class.Incentivos.php';
+require_once $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
+require_once $_SERVER['REDIRECT_PATH_CONFIG'].'models/incentivos/class.Incentivos.php';
 $insIncentivos = new Incentivos();
 
 require_once('models/class.Orders.php');
