@@ -45,6 +45,19 @@ $('#fileUpload').on('change', function(event)
     $('#result').html('');
 });
 
+$('#fileUpload').on('filepreupload', function(event, data, previewId, index)
+{
+	var r = confirm("¿Desea continuar con la carga?");
+	
+    if(r == false)
+    {
+    	$('#fileUpload').fileinput('cancel').fileinput('disable');
+    	$('#fileUpload').fileinput('clear');
+    	$('#fileUpload').fileinput('unlock');
+    	$('#fileUpload').fileinput('enable');
+    }
+});
+
 $('#fileUpload').on('fileuploaded', function(event, data, previewId, index)
 {
     var form = data.form, files = data.files, extra = data.extra,

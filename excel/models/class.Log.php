@@ -201,7 +201,7 @@ class Log
 		}
 		else if($delete)
 		{
-			$where="WHERE DATE_ADD(NOW(),INTERVAL -1 DAY)>il.date";
+			$where="WHERE DATE_ADD(NOW(),INTERVAL -90 DAY)>il.date";
 		}
 		
 		$sql="SELECT il.log_id,CONCAT(ilo.firstName,' ',ilo.lastName)  AS Name,
@@ -253,7 +253,7 @@ class Log
 		{
 			$logId=$r['log_id'];
 		
-			$log->DeleteLog($logId);
+			$this->DeleteLog($logId);
 		}
 	}
 	
