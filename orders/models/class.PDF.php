@@ -18,7 +18,7 @@ class PDF
 		
 		$idDistribuidor=$r[0]['idDistribuidor'];
 		$d=$this->getDataDistribuidor($idDistribuidor);		
-		
+				
 		$descuento="";
 		
 		if($descuento)
@@ -44,7 +44,7 @@ class PDF
 
 		$img=imagecreatefromjpeg($_SERVER["REDIRECT_PATH_CONFIG"].'orders/plantillas/plantilla.jpg');
 		$negro = imagecolorallocate($img, 0, 0, 0);
-		$fuente='css/arial.ttf';
+		$fuente=$_SERVER["REDIRECT_PATH_CONFIG"].'orders/css/arial.ttf';
 
 		//No. Pedido
 		$noPedido=$idOrder;
@@ -166,9 +166,9 @@ class PDF
 		$letra=$this->num2letras($importeTotal);
 		imagettftext($img, 13,0,73,1386,$negro, $fuente,$letra);
 
-		if(!file_exists('plantillas'))
+		if(!file_exists($_SERVER["REDIRECT_PATH_CONFIG"].'orders/plantillas/'))
 		{
-			mkdir('plantillas',0775,true);
+			mkdir($_SERVER["REDIRECT_PATH_CONFIG"].'orders/plantillas/',0775,true);
 		}
 
 		$namePlantilla=$_SERVER["REDIRECT_PATH_CONFIG"].'orders/plantillas/plantilla_'.$noPedido.'.jpg';

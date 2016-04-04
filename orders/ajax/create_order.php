@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['REDIRECT_PATH_CONFIG'].'login/session.php';
 require_once $_SERVER["REDIRECT_PATH_CONFIG"]."orders/models/class.PDF.php";
+require_once $_SERVER["REDIRECT_PATH_CONFIG"]."orders/models/class.phpmailer.php";
 
 if(isset($_SESSION['login_user'])){
 	
@@ -10,24 +11,29 @@ if(isset($_SESSION['login_user'])){
 			require_once('../models/class.Orders.php');
 			$order = new Order();
 			$pdf=new PDF();
+			$mail = new PHPMailer();
+			
 			$_POST['inv_orden_compra_status_id'] = '1';
 			
 			$idOrder = $order->insertOrder($_POST);
 			
-			$pdf->CreatePDF($idOrder,'L');				
-			
-			$fileA=$rute=$_SERVER["REDIRECT_PATH_CONFIG"]."orders/pdf/".'pedido_'.$noPedido.'.pdf';
-			$file = fopen($fileA,'rb');
-			$sizeFile=fread($file,filesize($fileA));
-			
-			fclose($file);
-				
-			
-			/*Uriel*/
+			$pdf->CreatePDF($idOrder,'L');
+			$fileName='pedido_'.$idOrder.'.pdf';
+			$fileA=$rute=$_SERVER["REDIRECT_PATH_CONFIG"]."orders/pdf/".$fileName;
 			$to = $_SESSION['login_user']['correoElectronico'];
 			$subject = "Haizer Supply - Se ha creado el pedido #".$idOrder;
 			
-			$txt = "<html>
+			$mail->SetFrom('test@hainzersupply.com');
+			
+			$mail->AddReplyTo('test@hainzersupply.com',"");
+			$mail->AddAddress($to, "");
+			
+			$mail->Subject=$subject;
+			
+			/*Uriel*/
+			
+			
+			$msj = "<html>
                 <body style='background-color: #000'>
                     <p style='text-align: center; width: 300px'>
                         <img src='http://hainzersupply.com/new_site/control/images/Logotipo_HainzerSupply.png' width='200px' alt='HainzerSupply'/>
@@ -88,39 +94,26 @@ if(isset($_SESSION['login_user'])){
                     </p>
                 </body>
             </html>";
-						
-			$headers = "From: test@hainzersupply.com\r\n";
-			$headers .= "MIME-Version: 1.0\r\n";
-			//$headers .= "Content-Type: text/html; charset=utf-8\r\n";
-			$headers .= "Content-type: multipart/mixed; ";
-			$headers .= "boundary=Message-Boundary"."\n";
-			$headers .= "Content-transfer-encoding: 7BIT"."\n";
-			$headers .= "X-attachments: "."pedido_".$noPedido.".pdf";
 			
-			if($sizeFile>0)
+			$mail->MsgHTML(utf8_decode($msj));
+			$mail->AddAttachment($fileA);
+			
+			
+			if(!$mail->Send())
 			{
-				$oFichero=fopen($fileA, 'r');
-				$sContenido = fread($oFichero, filesize($fileA));
-				$sAdjuntos .= chunk_split(base64_encode($sContenido));
-				fclose($oFichero);
-				//Adjunto el fichero
-				$txt .= "\n\n"."--Message-Boundary"."\n";
-				$txt .= "Content-type: Binary; name=".$nombref."\n";
-				$txt .= "Content-Transfer-Encoding: BASE64"."\n";
-				$txt .= "Content-disposition: attachment; filename=".$nombref."\n";
-				$txt .= $sAdjuntos."\n";
-				$txt .= "--Message-Boundary--";
+				echo "Error al enviar el mensaje: " . $mail­>ErrorInfo;
 			}
-				
-			mail($to, $subject, $txt, $headers);
-			
+			else
+			{
+				echo "order_id=".$idOrder;
+			}
 			if(file_exists($fileA))
 			{
-				//unlink($fileA);
+				unlink($fileA);
 			}
 			
 			/*Uriel*/
-			echo "order_id=".$idOrder;
+			//echo "order_id=".$idOrder;
 		}
 		else echo "insufficient data";
 	}	
