@@ -42,7 +42,7 @@ class PDF
 		$pdf->AddPage();
 		$pdf->setJPEGQuality(100);
 
-		$img=imagecreatefromjpeg('plantillas/plantilla.jpg');
+		$img=imagecreatefromjpeg($_SERVER["REDIRECT_PATH_CONFIG"].'orders/plantillas/plantilla.jpg');
 		$negro = imagecolorallocate($img, 0, 0, 0);
 		$fuente='css/arial.ttf';
 
@@ -171,7 +171,7 @@ class PDF
 			mkdir('plantillas',0775,true);
 		}
 
-		$namePlantilla='plantillas/plantilla_'.$noPedido.'.jpg';
+		$namePlantilla=$_SERVER["REDIRECT_PATH_CONFIG"].'orders/plantillas/plantilla_'.$noPedido.'.jpg';
 		imagejpeg($img,$namePlantilla);
 
 		imagedestroy($img);
