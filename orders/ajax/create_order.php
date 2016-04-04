@@ -1,4 +1,4 @@
-<?php 
+<?php
 if(isset($_POST)){
 require_once('../models/class.Orders.php');
 $order = new Order();
@@ -7,6 +7,7 @@ print_r($_POST);
 
 $idOrder = $order->insertOrder($_POST);
 /**/
+
 
 /**/
 echo "order_id=".$idOrder;
