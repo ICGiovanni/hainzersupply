@@ -14,7 +14,7 @@ if(isset($_SESSION['login_user'])){
 			
 			$idOrder = $order->insertOrder($_POST);
 			
-			$pdf->CreatePDF($idOrder);				
+			$pdf->CreatePDF($idOrder,'L');				
 			
 			$fileA=$rute=$_SERVER["REDIRECT_PATH_CONFIG"]."orders/pdf/".'pedido_'.$noPedido.'.pdf';
 			$fileatt_type = 'application/pdf';
@@ -115,9 +115,13 @@ if(isset($_SESSION['login_user'])){
 					" boundary=\"{$mime_boundary}\"";
 			$data = chunk_split(base64_encode($data));
 				
-			
-
 			mail($to, $subject, $txt, $headers);
+			
+			if(file_exists($fileA))
+			{
+				unlink($fileA);
+			}
+			
 			/*Uriel*/
 			echo "order_id=".$idOrder;
 		}
