@@ -42,5 +42,4 @@ $jsonPathFile = 'json/data_product.json';
 $handler = fopen($jsonPathFile, "w");
 fwrite($handler, $jsonString);
 fclose($handler);
-echo "json creado";
 ?>
