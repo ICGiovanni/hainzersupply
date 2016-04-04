@@ -21,6 +21,12 @@
 	<?php include_once($_SERVER['REDIRECT_PATH_CONFIG'].'menu.php')?>
 <div class="container">
 	<h1>Subir Inventario</h1>
+	<h5>En esta sección se sube un Excel con la lista de productos para el inventario. La plantilla debera contar con las siguientes caracteristicas</h5>
+<h6>- El producto Unico no tiene variaciones por lo que no es necesario la talla ni el color</h6>
+<h6>- El producto Padre tampoco necesita talla ni color, ya que lo llevan los hijos</h6>
+<h6>- El producto Hijo debe de tener un producto Padre, talla y color de manera obligatoria</h6>
+<h6>- Para agregar el producto Hijo debe de existir el producto Padre primero</h6>
+	
 	<form enctype="multipart/form-data">
 	<input id="fileUpload" name="fileUpload" class="file" type="file" data-min-file-count="1" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 	</form>
@@ -47,7 +53,7 @@ $('#fileUpload').on('change', function(event)
 
 $('#fileUpload').on('filepreupload', function(event, data, previewId, index)
 {
-	var r = confirm("�Desea continuar con la carga?");
+	var r = confirm("¿Desea continuar con la carga?");
 	
     if(r == false)
     {
