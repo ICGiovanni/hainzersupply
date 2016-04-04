@@ -17,16 +17,11 @@ if(isset($_SESSION['login_user'])){
 			$pdf->CreatePDF($idOrder,'L');				
 			
 			$fileA=$rute=$_SERVER["REDIRECT_PATH_CONFIG"]."orders/pdf/".'pedido_'.$noPedido.'.pdf';
-			$fileatt_type = 'application/pdf';
-			$fileatt_name = 'pedido_'.$noPedido.'.pdf';
-			
 			$file = fopen($fileA,'rb');
-			$data = fread($file,filesize($fileA));
-			fclose($file);
+			$sizeFile=fread($file,filesize($fileA));
 			
-			// Generate a boundary string
-			$semi_rand = md5(time());
-			$mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
+			fclose($file);
+				
 			
 			/*Uriel*/
 			$to = $_SESSION['login_user']['correoElectronico'];
@@ -93,27 +88,29 @@ if(isset($_SESSION['login_user'])){
                     </p>
                 </body>
             </html>";
-			
-			$txt.="This is a multi-part message in MIME format.\n\n" .
-             "--{$mime_boundary}\n" .
-             "Content-Type: text/plain; charset=\"iso-8859-1\"\n" .
-             "Content-Transfer-Encoding: 7bit\n\n";
-			
-			$txt .= "--{$mime_boundary}\n" .
-			"Content-Type: {$fileatt_type};\n" .
-			" name=\"{$fileatt_name}\"\n" .
-			//"Content-Disposition: attachment;\n" .
-			//" filename=\"{$fileatt_name}\"\n" .
-			"Content-Transfer-Encoding: base64\n\n" .
-			$data . "\n\n" .
-			"--{$mime_boundary}--\n";
-			
+						
 			$headers = "From: test@hainzersupply.com\r\n";
 			$headers .= "MIME-Version: 1.0\r\n";
-			$headers .= "Content-Type: text/html; charset=utf-8\r\n";
-			$headers .= "Content-Type: multipart/mixed;\n" .
-					" boundary=\"{$mime_boundary}\"";
-			$data = chunk_split(base64_encode($data));
+			//$headers .= "Content-Type: text/html; charset=utf-8\r\n";
+			$headers .= "Content-type: multipart/mixed; ";
+			$headers .= "boundary=Message-Boundary"."\n";
+			$headers .= "Content-transfer-encoding: 7BIT"."\n";
+			$headers .= "X-attachments: "."pedido_".$noPedido.".pdf";
+			
+			if($sizeFile>0)
+			{
+				$oFichero=fopen($fileA, 'r');
+				$sContenido = fread($oFichero, filesize($fileA));
+				$sAdjuntos .= chunk_split(base64_encode($sContenido));
+				fclose($oFichero);
+				//Adjunto el fichero
+				$txt .= "\n\n"."--Message-Boundary"."\n";
+				$txt .= "Content-type: Binary; name=".$nombref."\n";
+				$txt .= "Content-Transfer-Encoding: BASE64"."\n";
+				$txt .= "Content-disposition: attachment; filename=".$nombref."\n";
+				$txt .= $sAdjuntos."\n";
+				$txt .= "--Message-Boundary--";
+			}
 				
 			mail($to, $subject, $txt, $headers);
 			
