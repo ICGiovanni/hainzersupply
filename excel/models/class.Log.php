@@ -21,7 +21,7 @@ class Log
 		}
 		else
 		{
-			$loginId=1;
+			$loginId=34;
 		}
 		
 		$date=date('Y-m-d H:i:s');

@@ -33,7 +33,7 @@ for($i=0;$i<$images;$i++)
 		
 		$result.='<div class="alert alert-info">
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	    <strong>'.$r.' '.$nameFileO.'</strong>
+	    <strong>'.$r.' File: '.$nameFileO.'</strong>
 				</div>';
 		
 		$output=['result'=>$result];

@@ -11,7 +11,7 @@ class PDF
 		$this->connect=$c->db;
 	}
 	
-	public function CreatePDF($idOrder)
+	public function CreatePDF($idOrder,$type='W')
 	{
 		$order=new Order();
 		$r=$order->getOrderData($idOrder);
@@ -177,9 +177,27 @@ class PDF
 		imagedestroy($img);
 
 		$pdf->Image($namePlantilla);
-
-		//$pdf->Output('Pedido_'.$noPedido.'.pdf', 'I');
-		$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
+	
+		if($type=='W')
+		{
+			$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
+		}
+		else if($type=='L')
+		{
+			$rute=$_SERVER["REDIRECT_PATH_CONFIG"]."orders/pdf/";
+			
+			if(!file_exists($rute))
+			{
+				mkdir($rute,0775,true);
+			}
+			
+			$pdf->Output($rute.'Pedido_'.$noPedido.'.pdf', 'F');
+		}
+		else
+		{
+			$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
+		}
+		
 
 		unlink($namePlantilla);
 	}

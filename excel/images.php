@@ -56,6 +56,11 @@ $('#fileU').on('change', function(event)
     $('#result').html('');
 });
 
+$('#input-id').on('fileselect', function(event, numFiles, label)
+{
+	$('#result').html('');
+});
+
 $('#fileU').on('filebatchuploadsuccess', function(event, data, previewId, index)
 {
     var form = data.form, files = data.files, extra = data.extra,

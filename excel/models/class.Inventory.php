@@ -575,10 +575,20 @@ class Inventory
 		$s=explode('_',$nameImage);
 		$color="";
 		$result="";
-		$skuParent=$s[0];
+		$banderaGallery=false;
+		$msj="";
+		
+		$g=explode('@',$s[0]);
+		
+		if(count($g)>1)
+		{
+			$banderaGallery=true;
+		}
+		
+		$skuParent=$g[0];
 		$IDParent=$this->getSku($skuParent);
 		
-		if(count($s)==4)
+		if(count($s)>1)
 		{
 			$color=$s[1];
 			$result=$this->GetChildrensbyColor($IDParent,$color);
@@ -652,10 +662,10 @@ class Inventory
 			
 			if(!$color)
 			{
-				if($this->getThumbnail($IDParent))
+				if($banderaGallery)
 				{
 					$gallery=$this->getGallery($IDParent);
-					
+						
 					if($gallery)
 					{
 						$gallery.=','.$ID;
@@ -664,16 +674,41 @@ class Inventory
 					{
 						$gallery=$ID;
 					}
-					
+						
 					$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
+					
+					$msj="Imagen Insertada en Galeria SKU ".$skuParent;
 				}
 				else
 				{
-					$this->InsertPostMeta($IDParent,'_thumbnail_id',$ID);
+				
+					if($this->getThumbnail($IDParent))
+					{
+						$gallery=$this->getGallery($IDParent);
+						
+						if($gallery)
+						{
+							$gallery.=','.$ID;
+						}
+						else
+						{
+							$gallery=$ID;
+						}
+						
+						$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
+						
+						$msj="Imagen Insertada en Galeria SKU ".$skuParent;
+					}
+					else
+					{
+						$this->InsertPostMeta($IDParent,'_thumbnail_id',$ID);
+						
+						$msj="Imagen Insertada en Thumbnail SKU ".$skuParent;
+					}
 				}
 			}
 			else
-			{				
+			{	
 				foreach($result as $r)
 				{
 					$IDChildren=$r['ID'];
@@ -698,15 +733,16 @@ class Inventory
 						$this->InsertPostMeta($IDChildren,'_thumbnail_id',$ID);
 					}
 				}
+				
+				$msj="Imagen Insertada en Hijo ".$color." SKU ".$skuParent;
 			}
-			
-			return "Imagen Insertada ".$skuParent;
-			
 		}
 		else
 		{
-			return "No existe SKU Padre";
+			$msj="No existe SKU Padre";
 		}
+		
+		return $msj;
 	}
 	
 	public function InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$price,$trademark,$typeProduct,$lineProduct,$genderProduct)

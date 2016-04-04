@@ -130,7 +130,7 @@ else
 				
 				if(!$ID)
 				{
-					if(!$skuSenior)
+					if(!$skuSenior || ($skuSenior==$sku))
 					{
 						$inventory->InsertProductRoot($sku,$product,$description,$descriptionShort,$categories,$stock,$priceWIVA,$trademark,$type,$line,$gender);
 						$result.='<th>'.'Nuevo Producto'.'</th>';
