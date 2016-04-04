@@ -113,7 +113,7 @@ else
 					$parent=0;
 				}
 						
-				$prefix=$inventory->getPrefix($skuPrefix,$color,$trademark,$product,$parent);
+				$prefix=$inventory->getPrefix($skuPrefix,$color,$parent);
 				
 				$result.='<tr>';
 				$result.='<th>'.$skuSenior.'</th>';

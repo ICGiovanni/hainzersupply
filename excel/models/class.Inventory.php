@@ -1067,7 +1067,7 @@ class Inventory
 		$statement->execute();
 	}
 	
-	public function getPrefix($sku,$color,$trademark,$product,$parent)
+	public function getPrefix($sku,$color,$parent)
 	{
 		$general=new General();
 		
@@ -1101,9 +1101,7 @@ class Inventory
 		{
 			$prefix.=$sku;
 		}
-		
-		$prefix.='_'.$trademark.'_'.$product;
-		
+				
 		return $prefix;
 	}
 		
