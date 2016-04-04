@@ -14,6 +14,7 @@
             $_SESSION['login_user']['nombre']=$infoDistribuidor['nombre'];
             $_SESSION['login_user']['representante']=$infoDistribuidor['representante'];
             $_SESSION['login_user']['idNivel']=$infoDistribuidor['idNivel'];
+            $_SESSION['login_user']['correoElectronico']=$infoDistribuidor['correoElectronico'];
             header('location: '.$raizProy.'distribuidores/detalle.php');
         }
     }
