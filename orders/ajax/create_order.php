@@ -119,7 +119,7 @@ if(isset($_SESSION['login_user'])){
 			
 			if(file_exists($fileA))
 			{
-				unlink($fileA);
+				//unlink($fileA);
 			}
 			
 			/*Uriel*/
