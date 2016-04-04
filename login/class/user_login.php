@@ -246,7 +246,7 @@ class user_login{
 	
     public function getUserDistribuidor($idUser){
 
-        $sql = "select ud.idDistribuidor, nombre, representante, idNivel from inv_user_distribuidor ud
+        $sql = "select ud.idDistribuidor, nombre, representante, idNivel, di.correoElectronico from inv_user_distribuidor ud
                 inner join inv_distribuidores di on ud.idDistribuidor = di.idDistribuidor
                 where ud.login_id = ".$idUser;
 
