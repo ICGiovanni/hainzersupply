@@ -40,7 +40,6 @@
 
         .fixed-table-container {
             padding-bottom: 0px;
-            height: 21100px;
         }
 	</style>
 <?php
@@ -48,13 +47,13 @@
 ?>
 <div id="wrapper">
     <!-- Sidebar -->
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" style="height: 710px !important;">
 		
 		
-		<ul class="sidebar-nav">			
-                <li class="sidebar-brand"  style="font-size:13px; color:#999">				                    
+		<ul class="sidebar-nav">
+                <li class="sidebar-brand"  style="font-size:13px; color:#FFF">
         <h2 style="color:#337AB7; margin-left:8px;"><span class="glyphicon glyphicon-eye-open"></span> Detalle</h2>
-		<table class="table table-sm" >
+		<table class="table table-sm" style="color: #F7F7F7">
 			<tr>
 				<td>Productos s/promoción</td>
 				<td align="right"><span id="span_prod_s_prom"  style="color:#DF0404">$0.00</span></td>
@@ -94,7 +93,12 @@
 				</button>
 				</div>
 				<div align="left" style="margin-right:25px;">
-					<br><br><br><br><b>ICONOGRAFIA</b><br>
+					<br />
+					+ gastos de envío. El costo se calcula en base al volumen de compra
+					<br />
+				</div>
+				<div align="left" style="margin-right:25px;">
+					<br><b>ICONOGRAFIA</b><br>
 					<br> <span class="glyphicon glyphicon-shopping-cart" ></span> Agregar al carrito
 					<br> <span class="glyphicon glyphicon-pencil"></span> Editar Compra
 					<br> <span class="glyphicon glyphicon-tags"></span> Producto con Remate
@@ -112,7 +116,7 @@
 		
 		<div id="page-content-wrapper">
             <div class="container-fluid">
-                <div class="row" style="max-width: 82%!important;">
+                <div class="row" style="max-width: 80%!important;">
                 <div class="col-md-12">
 				<h3 class="page_title">Nueva Solicitud de Compra
                     <!--<button style="float:right;" onclick="changeStyleSpanDetailOrder();" class="btn btn-sm btn-primary" id="menu-toggle"><span id="span_btn_detail_order" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Detalle de solicitud</button>-->

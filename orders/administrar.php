@@ -129,14 +129,23 @@ while(list(,$product)=each($productos)){
 
                         </table>
                     </div>
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="progress" style="display: none">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                <span class="sr-only">Actualizando</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="AccionEnvio">Guardar</button>
+                    <button type="button" class="btn btn-primary" onclick="guardarVarios()">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
+
+
 		
 
 </body>
@@ -213,11 +222,57 @@ while(list(,$product)=each($productos)){
 
                     $("#nombreModal").val($(row + " .Name").html());
                     $("#existenciaModal").val($(row + " .Stock").html());
-                    $("#precioModal").val($(row + " .Precio").html());
+                    $("#precioModal").val($(row + " .Precio").html().replace("$", ""));
                     elem = 1
                 }
-
             });
+        }
+
+        function guardarVarios(){
+            $(".progress").show();
+            $.each($(".checkbox"), function (){
+                if($(this).prop('checked') ){
+
+                    var sku = $(this).val();
+                    var row = "#row_prod_"+sku;
+
+                    var name = $("#nombreModal").val();
+                    var stock = $("#existenciaModal").val();
+                    var precio = $("#precioModal").val();
+
+                    $(row).html(
+                        "<td><input type='checkbox' class='checkbox' value='"+sku+"'></td>"+
+                        "<td class='Sku'>"+$(row + " .Sku").html()+"</td>" +
+                        "<td class='Name'>"+name+"</td>" +
+                        "<td class='Trademark'>"+$(row + " .Trademark").html()+"</td>" +
+                        "<td class='Color'>"+$(row + " .Color").html()+"</td>" +
+                        "<td class='Size'>"+$(row + " .Size").html()+"</td>" +
+                        "<td class='Stock'>"+stock+"</td>" +
+                        "<td class='Precio'>$"+precio+"</td>" +
+                        "<td><button class='btn btn-primary' onclick=\"editarProducto('"+sku+"')\"><span class='glyphicon glyphicon-pencil'></span></button></td>"
+                    );
+
+                    var json='{"Sku":"'+sku+'","Name":"'+name+'","Stock":"'+stock+'","Price":"'+precio+'"}';
+                    $.ajax({
+                        method: "POST",
+                        url: '<?php echo $raizProy?>excel/updateProducts.php',
+                        data: { json: json}
+                    }).done(function( msg ){
+                        $('#result').html(msg);
+                    });
+                }
+            }).promise().done(function () {
+                setTimeout(function(){
+                    $.get("<?php echo $raizProy?>orders/create_json.php", function( data ) {
+                        console.log(data);
+                        $(function () {
+                            $(".progress").hide();
+                            $('#myModal').modal('toggle');
+                        });
+                    });
+                }, 3000);
+            });
+
         }
 
     </script>
