@@ -579,12 +579,7 @@ class Inventory
 		$msj="";
 		
 		$g=explode('@',$s[0]);
-		
-		if(count($g)>1)
-		{
-			$banderaGallery=true;
-		}
-		
+			
 		$skuParent=$g[0];
 		$IDParent=$this->getSku($skuParent);
 		
@@ -662,10 +657,10 @@ class Inventory
 			
 			if(!$color)
 			{
-				if($banderaGallery)
+				if($this->getThumbnail($IDParent))
 				{
 					$gallery=$this->getGallery($IDParent);
-						
+					
 					if($gallery)
 					{
 						$gallery.=','.$ID;
@@ -674,37 +669,16 @@ class Inventory
 					{
 						$gallery=$ID;
 					}
-						
+					
 					$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
 					
 					$msj="Imagen Insertada en Galeria SKU ".$skuParent;
 				}
 				else
 				{
-				
-					if($this->getThumbnail($IDParent))
-					{
-						$gallery=$this->getGallery($IDParent);
-						
-						if($gallery)
-						{
-							$gallery.=','.$ID;
-						}
-						else
-						{
-							$gallery=$ID;
-						}
-						
-						$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
-						
-						$msj="Imagen Insertada en Galeria SKU ".$skuParent;
-					}
-					else
-					{
-						$this->InsertPostMeta($IDParent,'_thumbnail_id',$ID);
-						
-						$msj="Imagen Insertada en Thumbnail SKU ".$skuParent;
-					}
+					$this->InsertPostMeta($IDParent,'_thumbnail_id',$ID);
+					
+					$msj="Imagen Insertada en Thumbnail SKU ".$skuParent;
 				}
 			}
 			else
