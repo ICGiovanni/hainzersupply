@@ -112,6 +112,11 @@ else
 					$skuPrefix=$sku;
 					$parent=0;
 				}
+				
+				if($skuSenior==$sku)
+				{
+					$color="";
+				}
 						
 				$prefix=$inventory->getPrefix($skuPrefix,$color,$parent);
 				
