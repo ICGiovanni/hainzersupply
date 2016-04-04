@@ -19,6 +19,7 @@ while(list(,$product)=each($productos)){
 	}
 	$count++;
 	$rows.='<tr id="row_prod_'.$product["Sku"].'">
+	            <td><input type="checkbox" id="checkItem" class="checkbox" value="'.$product["Sku"].'"></td>
                 <td class="Sku">'.$product["Sku"].'</td>
                 <td class="Name">'.$product["Name"].'</td>
                 <td class="Trademark">'.$product["Trademark"].'</td>
@@ -72,14 +73,14 @@ while(list(,$product)=each($productos)){
     <?php include $_SERVER['REDIRECT_PATH_CONFIG'].'menu.php';?>
     <div class="container">
         <!-- Page Content -->
-        <div id="page-content-wrapper" >
+        <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
 				<h3 class="page_title">Actualizar inventario</h3>
-				
 				<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 					<thead>
 						<tr>
+                            <th onclick="editCheck()" data-toggle="modal" data-target="#myModal">Editar <br />varios</th>
 							<th>SKU</th>
 							<th>Nombre</th>
 							<th>Marca</th>
@@ -98,6 +99,43 @@ while(list(,$product)=each($productos)){
 				</div>
 			</div>
 		</div>
+    </div>
+
+    <!-- Modal actualizar varios-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Actualizar varios productos</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Nombre</td>
+                                    <td>Existencias</td>
+                                    <td>Precio</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" id="nombreModal" value=""></td>
+                                    <td><input type="text" id="existenciaModal" value=""></td>
+                                    <td><input type="text" id="precioModal" value=""></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="AccionEnvio">Guardar</button>
+                </div>
+            </div>
+        </div>
     </div>
 		
 
@@ -118,7 +156,8 @@ while(list(,$product)=each($productos)){
         function editarProducto(sku){
 
             var row = "#row_prod_"+sku;
-            $(row).html("<td class='Sku'>"+$(row + " .Sku").html()+"</td>" +
+            $(row).html("<td>&nbsp;</td>"+
+                        "<td class='Sku'>"+$(row + " .Sku").html()+"</td>" +
                         "<td><input type='text' id='"+sku+"_inputName' value='"+$(row + " .Name").html()+"' /></td>" +
                         "<td class='Trademark'>"+$(row + " .Trademark").html()+"</td>" +
                         "<td class='Color'>"+$(row + " .Color").html()+"</td>" +
@@ -135,7 +174,9 @@ while(list(,$product)=each($productos)){
             var nombre = $("#"+sku+"_inputName").val();
             var stock = $("#"+sku+"_inputStock").val();
             var precio = $("#"+sku+"_inputPrecio").val();
-            $(row).html("<td class='Sku'>"+$(row + " .Sku").html()+"</td>" +
+            $(row).html(
+                "<td><input type='checkbox' class='checkbox' value='"+sku+"'></td>"+
+                "<td class='Sku'>"+$(row + " .Sku").html()+"</td>" +
                 "<td class='Name'>"+nombre+"</td>" +
                 "<td class='Trademark'>"+$(row + " .Trademark").html()+"</td>" +
                 "<td class='Color'>"+$(row + " .Color").html()+"</td>" +
@@ -153,8 +194,31 @@ while(list(,$product)=each($productos)){
                 data: { json: json}
             }).done(function( msg ){
                 $('#result').html(msg);
+
+                $.get("<?php echo $raizProy?>orders/create_json.php", function( data ) {
+                    console.log(data);
+                });
+
             });
 
         }
+
+        function editCheck(){
+            var elem = 0;
+            $.each($(".checkbox"), function (){
+                if($(this).prop('checked') && elem==0){
+
+                    var sku = $(this).val();
+                    var row = "#row_prod_"+sku;
+
+                    $("#nombreModal").val($(row + " .Name").html());
+                    $("#existenciaModal").val($(row + " .Stock").html());
+                    $("#precioModal").val($(row + " .Precio").html());
+                    elem = 1
+                }
+
+            });
+        }
+
     </script>
 </html>
