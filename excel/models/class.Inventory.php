@@ -1047,9 +1047,6 @@ class Inventory
 		
 		$prefix="";
 		
-		$trademark=$general->NameToURL($trademark);
-		$product=$general->NameToURL($product);
-		
 		if($parent)
 		{	
 			$p=explode('-',$product);
