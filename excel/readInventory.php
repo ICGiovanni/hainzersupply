@@ -250,13 +250,13 @@ else
 if($banderaNew)
 {
 	$status='Nuevo';
+	$log->InsertLogInventory($file,$status,$productsUpdate);
 }
 else if($banderaUpdate)
 {
 	$status='Actualizacion';
+	$log->InsertLogInventory($file,$status,$productsUpdate);
 }
-
-$log->InsertLogInventory($file,$status,$productsUpdate);
 
 echo json_encode($output);
 ?>
