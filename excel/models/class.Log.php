@@ -247,7 +247,8 @@ class Log
 				il.date
 				FROM inv_log il
 				INNER JOIN inv_login ilo USING(login_id)
-				$where";
+				$where
+				ORDER BY il.date";
 		
 		$statement=$this->connect->prepare($sql);
 		$statement->execute();
