@@ -1046,24 +1046,7 @@ class Inventory
 		$general=new General();
 		
 		$prefix="";
-		
-		if($parent)
-		{	
-			$p=explode('-',$product);
-			
-			for($i=0;$i<count($p)-1;$i++)
-			{
-				if($i==0)
-				{
-					$product=$p[$i];
-				}
-				else
-				{
-					$product.='-'.$p[$i];
-				}
-			}
-		}
-		
+				
 		if($color)
 		{
 			$prefix.=$sku.'_'.$general->CleanName($color);
