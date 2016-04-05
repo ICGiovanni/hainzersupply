@@ -44,7 +44,15 @@ class Log
 	
 	public function sendMailLog()
 	{
-		$nombre=$_SESSION['login_user']['nombre'];
+		if(isset($_SESSION['login_user']['nombre']))
+		{
+			$nombre=$_SESSION['login_user']['nombre'];
+		}
+		else
+		{
+			$nombre="Prueba";
+		}
+		
 		$date=date('d/m/Y H:m:s');
 		
 		$to = 'info@hainzersupply.com';
