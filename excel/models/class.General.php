@@ -43,7 +43,7 @@ class General
 		$arr_busca = array('/',' ');
 		$arr_susti = array('-','-');
 	
-		$result=str_replace(' ','',$nombre);
+		$result=str_replace($arr_busca,$arr_susti,$nombre);
 	
 		return $result;
 	
