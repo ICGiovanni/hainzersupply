@@ -10,6 +10,7 @@ $ext=explode('.',$_FILES['fileUpload']['name']);
 $ext=$ext[count($ext)-1];
 $upload=new Upload();
 $inventory=new Inventory();
+$general=new General();
 $log=new Log();
 $result="";
 $banderaNew=false;
