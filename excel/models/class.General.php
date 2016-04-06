@@ -39,6 +39,7 @@ class General
 	
 	function QuitBlankSpace($nombre)
 	{
+		$nombre=trim($nombre);
 		$arr_busca = array('/',' ');
 		$arr_susti = array('&','-');
 	
