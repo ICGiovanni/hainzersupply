@@ -76,8 +76,8 @@ else
 		
 		for($row=2;$row<=$highestRow;++$row)
 		{
-			$skuSenior=trim($objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue());
-			$sku=trim($objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue());
+			$skuSenior=$general->QuitBlankSpace($objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue());
+			$sku=$general->QuitBlankSpace($objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue());
 			$product=trim($objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue());
 			$description=trim($objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue());
 			$descriptionShort=trim($objWorksheet->getCellByColumnAndRow(4,$row)->getCalculatedValue());
