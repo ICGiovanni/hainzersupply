@@ -41,7 +41,7 @@ class General
 	{
 		$nombre=trim($nombre);
 		$arr_busca = array('/',' ');
-		$arr_susti = array('&','-');
+		$arr_susti = array('-','-');
 	
 		$result=str_replace(' ','',$nombre);
 	
