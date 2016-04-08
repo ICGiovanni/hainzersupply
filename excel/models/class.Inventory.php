@@ -91,7 +91,7 @@ class Inventory
 	public function GetNextTerm()
 	{
 		$sql="SELECT MAX(term_id)+1 AS term_id
-				FROM wp_terms";
+				FROM wp_term_taxonomy";
 				
 		$statement=$this->connect->prepare($sql);
 		$statement->execute();
@@ -282,7 +282,7 @@ class Inventory
 		
 		if(!$termId)
 		{
-			$termId=$this->GetNextID('term_id','wp_terms');
+			$termId=$this->GetNextTerm();
 			$attribute=mb_convert_case($attribute, MB_CASE_TITLE, "UTF-8");
 			$slug=$general->NameToURL($attribute);
 			
