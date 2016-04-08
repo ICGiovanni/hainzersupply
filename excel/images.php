@@ -56,7 +56,7 @@ $('#fileU').on('change', function(event)
     $('#result').html('');
 });
 
-$('#input-id').on('fileselect', function(event, numFiles, label)
+$('#fileU').on('fileselect', function(event, numFiles, label)
 {
 	$('#result').html('');
 });
