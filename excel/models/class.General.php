@@ -40,8 +40,8 @@ class General
 	function QuitBlankSpace($nombre)
 	{
 		$nombre=trim($nombre);
-		$arr_busca = array('/',' ');
-		$arr_susti = array('-','-');
+		$arr_busca = array('/',' ','.');
+		$arr_susti = array('-','-','-');
 	
 		$result=str_replace($arr_busca,$arr_susti,$nombre);
 	
