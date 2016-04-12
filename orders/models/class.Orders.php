@@ -381,7 +381,7 @@ LIMIT 0,1)!=0,
 ((SELECT ROUND(meta_value)
 FROM wp_postmeta wpm
 WHERE meta_key='_stock' AND post_id=wp.ID
-LIMIT 0,1)),15) AS Stock,
+LIMIT 0,1)),0) AS Stock,
 (SELECT ROUND(meta_value)
 FROM wp_postmeta wpm
 WHERE meta_key='_price' AND post_id=wp.ID
