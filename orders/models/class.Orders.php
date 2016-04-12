@@ -456,7 +456,11 @@ LIMIT 0,1)!=0
 		AND (SELECT meta_value
 FROM wp_postmeta wpm
 WHERE meta_key='_sku' AND post_id=wp.ID
-LIMIT 0,1)!=''";
+LIMIT 0,1)!=''
+AND wp.ID NOT IN(SELECT DISTINCT(post_parent)
+FROM wp_posts wp2
+WHERE post_parent IS NOT NULL
+AND post_type IN('product_variation','product'))";
 
 		$statement=$this->connect->prepare($sql);
 		$statement->execute();
