@@ -50,7 +50,7 @@ LIMIT 0,1)!=0,
 ((SELECT ROUND(meta_value)
 FROM wp_postmeta wpm
 WHERE meta_key='_stock' AND post_id=wp.ID
-LIMIT 0,1)),15) AS Stock,
+LIMIT 0,1)),0AS Stock,
 (SELECT ROUND(meta_value)
 FROM wp_postmeta wpm
 WHERE meta_key='_price' AND post_id=wp.ID
@@ -347,34 +347,38 @@ LIMIT 0,1)!=0;";
 		$sql="SELECT wp.ID,(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE meta_key='_sku' AND post_id=wp.ID
-LIMIT 0,1) AS Sku,wp.post_title AS Name,
+LIMIT 0,1) AS Sku,
+IF(post_title!='',post_title,
+(SELECT post_title
+FROM wp_posts
+WHERE ID=wp.post_parent) AS Name,
 IF((SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='attribute_pa_colores'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)!='',
 (SELECT name
 FROM wp_terms
 WHERE slug=(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='attribute_pa_colores'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)
 LIMIT 0,1),'') AS Color,
 IF((SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='attribute_pa_tallas'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)!='',
 (SELECT name
 FROM wp_terms
 WHERE slug=(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='attribute_pa_tallas'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)
 LIMIT 0,1),'') AS Size,
-IF((SELECT ROUND(meta_value)
+IF((SELECT meta_value
 FROM wp_postmeta wpm
 WHERE meta_key='_stock' AND post_id=wp.ID
 LIMIT 0,1)!=0,
@@ -392,74 +396,74 @@ FROM wp_term_relationships wtr
 INNER JOIN wp_term_taxonomy wtt ON wtt.term_id=wtr.term_taxonomy_id
 INNER JOIN wp_terms wt ON wt.term_id=wtt.term_id
 WHERE object_id=wp.ID
-		AND wtt.taxonomy='product_cat'),
+AND wtt.taxonomy='product_cat'),
 (SELECT GROUP_CONCAT(name SEPARATOR ',')
 FROM wp_term_relationships wtr
 INNER JOIN wp_term_taxonomy wtt ON wtt.term_id=wtr.term_taxonomy_id
 INNER JOIN wp_terms wt ON wt.term_id=wtt.term_id
 WHERE object_id=wp.post_parent
-		AND wtt.taxonomy='product_cat')) AS Category,
+AND wtt.taxonomy='product_cat')) AS Category,
 IF((SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='_trademark'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)!='',(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='_trademark'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1),'') AS Trademark,
 IF((SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='type_product'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)!='',(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='type_product'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1),'') AS Type,
 IF((SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='line_product'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)!='',(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='line_product'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1),'') AS Line,
 IF((SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='gender_product'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)!='',(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='gender_product'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1),'') AS Gender,
 IF((SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='_thumbnail_id'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)!=0,
 (SELECT guid
 FROM wp_posts
 WHERE ID=(SELECT meta_value
 FROM wp_postmeta wpm
 WHERE wpm.meta_key='_thumbnail_id'
-		AND wpm.post_id=wp.ID
+AND wpm.post_id=wp.ID
 LIMIT 0,1)),'') AS Img
 FROM wp_posts wp
 WHERE post_type IN('product_variation','product')
-		AND (SELECT ROUND(meta_value)
+AND (SELECT ROUND(meta_value)
 FROM wp_postmeta wpm
 WHERE meta_key='_price' AND post_id=wp.ID
 LIMIT 0,1)!=0
-		AND (SELECT meta_value
+AND (SELECT meta_value
 FROM wp_postmeta wpm
 WHERE meta_key='_sku' AND post_id=wp.ID
 LIMIT 0,1)!=''
 AND wp.ID NOT IN(SELECT DISTINCT(post_parent)
 FROM wp_posts wp2
-WHERE post_parent IS NOT NULL
+WHERE post_parent!=''
 AND post_type IN('product_variation','product'))";
 
 		$statement=$this->connect->prepare($sql);
