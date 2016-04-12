@@ -259,5 +259,10 @@ else if($banderaUpdate)
 	$log->InsertLogInventory($file,$status,$productsUpdate);
 }
 
+include_once $_SERVER['REDIRECT_PATH_CONFIG'].'config.php';
+$handler = curl_init($ruta."orders/create_json.php");
+$response = curl_exec ($handler);
+curl_close($handler);
+
 echo json_encode($output);
 ?>
