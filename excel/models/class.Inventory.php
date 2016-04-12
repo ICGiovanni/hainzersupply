@@ -520,7 +520,7 @@ class Inventory
 		$this->InsertPostMeta($ID,'_stock',$stock);
 		
 		//_stock_status
-		$stockStatus='instock';
+		$stockStatus='outofstock';
 		$this->InsertPostMeta($ID,'_stock_status',$stockStatus);
 		
 		//_thumbnail_id
@@ -899,7 +899,7 @@ class Inventory
 		$this->InsertPostMeta($ID,'_stock',$stock);
 		
 		//_stock_status
-		$stockStatus='instock';
+		$stockStatus='outofstock';
 		$this->InsertPostMeta($ID,'_stock_status',$stockStatus);
 		
 		//_upsell_ids
