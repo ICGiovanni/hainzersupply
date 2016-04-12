@@ -140,7 +140,7 @@ class Inventory
 	{
 		$sql="SELECT *
 				FROM wp_posts
-				WHERE ID=':ID'";
+				WHERE ID=:ID";
 				
 		$statement=$this->connect->prepare($sql);
 		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
