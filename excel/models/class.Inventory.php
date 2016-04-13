@@ -520,7 +520,14 @@ class Inventory
 		$this->InsertPostMeta($ID,'_stock',$stock);
 		
 		//_stock_status
-		$stockStatus='outofstock';
+		if($stock)
+		{
+			$stockStatus='instock';
+		}
+		else
+		{
+			$stockStatus='outofstock';
+		}
 		$this->InsertPostMeta($ID,'_stock_status',$stockStatus);
 		
 		//_thumbnail_id
@@ -899,7 +906,14 @@ class Inventory
 		$this->InsertPostMeta($ID,'_stock',$stock);
 		
 		//_stock_status
-		$stockStatus='outofstock';
+		if($stock)
+		{
+			$stockStatus='instock';
+		}
+		else
+		{
+			$stockStatus='outofstock';
+		}
 		$this->InsertPostMeta($ID,'_stock_status',$stockStatus);
 		
 		//_upsell_ids
@@ -1079,6 +1093,31 @@ class Inventory
 		
 		return "Datos Actualizados";
 	}
+	
+	public function UpdateStatusStock()
+	{
+		$sql="SELECT post_id
+              FROM wp_postmeta
+              WHERE meta_key='_stock'
+              AND meta_value!=0";
+		
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		foreach($result as $r)
+		{
+			echo $ID."<br>";
+			$ID=$r['post_id'];
+			//_stock_status
+			$stockStatus='outofstock';
+			$this->UpdatePostMeta($ID,'_stock_status',$stockStatus);
+			
+			$backorders='notify';
+			$this->UpdatePostMeta($ID,'_backorders',$backorders);
+		}
+	}
+	
 }
 
 ?>
