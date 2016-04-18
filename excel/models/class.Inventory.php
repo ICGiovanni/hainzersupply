@@ -97,7 +97,14 @@ class Inventory
 		$statement->execute();
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		
-		return $result[0]['term_id'];
+		if(isset($result[0]['term_id']))
+        {
+        	return $result[0]['term_id'];
+        }
+        else
+        {
+        	return 1;
+        }
 	}
 	
 	public function InsertCategory($category)
@@ -119,6 +126,27 @@ class Inventory
 		$statement->execute();
 		
 		return $categoryId;
+	}
+	
+	public function CheckCategoryProduct($productId,$categoryId)
+	{
+		$sql="SELECT object_id
+		FROM wp_term_relationships
+		WHERE object_id='$productId'
+		AND term_taxonomy_id='$categoryId'";
+	
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		if(isset($result[0]['object_id']))
+		{
+			return $result[0]['object_id'];
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public function InsertCategoryProduct($productId,$categoryId)
@@ -171,13 +199,13 @@ class Inventory
 	
 	public function GetNextID($field,$table)
 	{
-		$sql="SELECT MAX($field)+1 AS ID
+		$sql="SELECT MAX($field) AS ID
 				FROM $table";
 				
 		$statement=$this->connect->prepare($sql);
 		$statement->execute();
         $result=$statement->fetchAll(PDO::FETCH_ASSOC);
-		$ID=$result[0]['ID'];
+		$ID=$result[0]['ID']+1;
 		
 		return $ID;
 	}
@@ -329,12 +357,35 @@ class Inventory
 		$sql="SELECT post_id
 				FROM wp_postmeta wpm
 				WHERE wpm.post_id='$ID'
-				AND wpm.meta_key='_thumbnail_id'";
+				AND wpm.meta_key='_thumbnail_id'
+				AND wpm.meta_value!=''
+				AND wpm.meta_value!=0";
 		
 		$statement=$this->connect->prepare($sql);
 		$statement->execute();
 		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
 		
+		if(isset($result[0]['post_id']))
+		{
+			return $result[0]['post_id'];
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function GetPropertyMeta($ID,$property)
+	{
+		$sql="SELECT post_id
+		FROM wp_postmeta wpm
+		WHERE wpm.post_id='$ID'
+		AND wpm.meta_key='$property'";
+	
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+	
 		if(isset($result[0]['post_id']))
 		{
 			return $result[0]['post_id'];
@@ -391,7 +442,7 @@ class Inventory
 		}
 	}
 	
-	public function InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color1,$size,$trademark,$typeProduct,$lineProduct,$genderProduct)
+	public function InsertProductVariable($sku,$IDParent,$product,$stock,$price,$color,$size,$trademark,$typeProduct,$lineProduct,$genderProduct)
 	{
 		$general=new General();
 				
@@ -401,7 +452,7 @@ class Inventory
 		
 		$IDVariation=$this->GetNextChildren($IDParent);
 		
-		$color=$general->ReplaceSlash($color1);
+		$color=$general->ReplaceSlash($color);
 		
 		$postAuthor=2;
 		$postDate=date('Y-m-d H:i:s');
@@ -476,7 +527,7 @@ class Inventory
 		}
 		
 		//_backorders
-		$backorders='no';
+		$backorders='notify';
 		$this->InsertPostMeta($ID,'_backorders',$backorders);
 		
 		//_downloadable
@@ -520,19 +571,12 @@ class Inventory
 		$this->InsertPostMeta($ID,'_stock',$stock);
 		
 		//_stock_status
-		if($stock)
-		{
-			$stockStatus='instock';
-		}
-		else
-		{
-			$stockStatus='outofstock';
-		}
+		$stockStatus='instock';
 		$this->InsertPostMeta($ID,'_stock_status',$stockStatus);
 		
 		//_thumbnail_id
-		$thumbnailId='0';
-		$this->InsertPostMeta($ID,'_upsell_ids',$thumbnailId);
+		$thumbnailId='';
+		$this->InsertPostMeta($ID,'_thumbnail_id',$thumbnailId);
 		
 		//_variation_description
 		$variationDescription='0';
@@ -575,7 +619,7 @@ class Inventory
 	{
 		$general=new General();
 		$upload=new Upload();
-		
+	
 		$ID=$this->GetID();
 		$n=explode('.',$image);
 		$nameImage=$n[0];
@@ -584,27 +628,29 @@ class Inventory
 		$result="";
 		$banderaGallery=false;
 		$msj="";
-		
+	
 		$g=explode('@',$s[0]);
 			
 		$skuParent=$g[0];
 		$IDParent=$this->getSku($skuParent);
-		
+	
 		if(count($s)>1)
 		{
 			$color=$s[1];
 			$result=$this->GetChildrensbyColor($IDParent,$color);
-			
+				
 			if(!count($result))
 			{
 				return "No existe Producto Hijo ".$color;
 			}
 		}
-		
+	
 		if($IDParent)
 		{
-			$upload->UploadFile($tmpImage,$routeF);
-			
+			$image=$general->NameToURL($nameImage).'.'.$n[1];
+			$route='inventory/'.$image;
+			$upload->UploadFile($tmpImage,$_SERVER["REDIRECT_UPLOAD_FILE"].'uploads/'.$route);
+	
 			$postAuthor=2;
 			$postDate=date('Y-m-d H:i:s');
 			$postDateGMT=$postDate;
@@ -615,7 +661,7 @@ class Inventory
 			$commentStatus='open';
 			$pingStatus='closed';
 			$postPassword='';
-			$postName=$general->NameToURL($nameImage);
+			$postName=$image;
 			$toPing='';
 			$pinged='';
 			$postModified=$postDate;
@@ -623,16 +669,15 @@ class Inventory
 			$postContentFiltered='';
 			$postParent=0;
 			$guid=$this->getHosts().'/wp-content/uploads/'.$route;
-		
 			$menuOrder=0;
 			$postType='attachment';
 			$postMimeType='image/jpeg';
 			$commentCount=0;
-			
+				
 			$sql = "INSERT INTO wp_posts VALUES(:ID,:postAuthor,:postDate,:postDateGMT,:postContent,:postTitle,:postExcert,:postStatus,:commentStatus,:pingStatus,:postPassword,:postName,:toPing,:pinged,:postModified,:postModifiedGMT,:postContentFiltered,:postParent,:guid,:menuOrder,:postType,:postMimeType,:commentCount)";
-			
+				
 			$statement=$this->connect->prepare($sql);
-			
+				
 			$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
 			$statement->bindParam(':postAuthor',$postAuthor,PDO::PARAM_STR);
 			$statement->bindParam(':postDate',$postDate,PDO::PARAM_STR);
@@ -656,18 +701,25 @@ class Inventory
 			$statement->bindParam(':postType',$postType,PDO::PARAM_STR);
 			$statement->bindParam(':postMimeType',$postMimeType,PDO::PARAM_STR);
 			$statement->bindParam(':commentCount',$commentCount,PDO::PARAM_STR);
-			
+				
 			$statement->execute();
-			
+				
 			//_wp_attached_file
 			$this->InsertPostMeta($ID,'_wp_attached_file',$route);
-			
+				
+			//_wp_attached_file
+			$charFile=strlen($route);
+			$charName=strlen($image);
+			$metadata='a:5:{s:5:"width";i:1000;s:6:"height";i:1000;s:4:"file";s:'.$charFile.':"'.$route.'";s:5:"sizes";a:6:{s:9:"thumbnail";a:4:{s:4:"file";s:'.$charName.':"'.$image.'";s:5:"width";i:340;s:6:"height";i:340;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:'.$charName.':"'.$image.'";s:5:"width";i:800;s:6:"height";i:800;s:9:"mime-type";s:10:"image/jpeg";}s:12:"medium_large";a:4:{s:4:"file";s:'.$charName.':"'.$image.'";s:5:"width";i:768;s:6:"height";i:768;s:9:"mime-type";s:10:"image/jpeg";}s:14:"shop_thumbnail";a:4:{s:4:"file";s:'.$charName.':"'.$image.'";s:5:"width";i:180;s:6:"height";i:180;s:9:"mime-type";s:10:"image/jpeg";}s:12:"shop_catalog";a:4:{s:4:"file";s:'.$charName.':"'.$image.'";s:5:"width";i:300;s:6:"height";i:300;s:9:"mime-type";s:10:"image/jpeg";}s:11:"shop_single";a:4:{s:4:"file";s:'.$charName.':"'.$image.'";s:5:"width";i:500;s:6:"height";i:500;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";s:11:"orientation";s:1:"1";s:8:"keywords";a:0:{}}}';
+			$this->InsertPostMeta($ID,'_wp_attachment_metadata',trim($metadata));
+				
+				
 			if(!$color)
 			{
 				if($this->getThumbnail($IDParent))
 				{
 					$gallery=$this->getGallery($IDParent);
-					
+						
 					if($gallery)
 					{
 						$gallery.=','.$ID;
@@ -676,53 +728,50 @@ class Inventory
 					{
 						$gallery=$ID;
 					}
-					
+						
 					$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
-					
-					$msj="Imagen Insertada en Galeria SKU ".$skuParent;
+						
+					$msj="$ID Imagen Insertada en Galeria SKU ".$skuParent;
 				}
 				else
 				{
-					$this->InsertPostMeta($IDParent,'_thumbnail_id',$ID);
-					
-					$msj="Imagen Insertada en Thumbnail SKU ".$skuParent;
+					if($this->GetPropertyMeta($IDParent,'_thumbnail_id'))
+					{
+						$this->UpdatePostMeta($IDParent,'_thumbnail_id',$ID);
+						$msj="$ID Imagen Insertada en Thumbnail SKU ".$skuParent;
+					}
+					else
+					{
+						$this->InsertPostMeta($IDParent,'_thumbnail_id',$ID);
+							
+						$msj="$ID Imagen Insertada en Thumbnail SKU ".$skuParent;
+					}
 				}
 			}
 			else
-			{	
+			{
 				foreach($result as $r)
 				{
 					$IDChildren=$r['ID'];
-					
-					if($this->getThumbnail($IDChildren))
+						
+					if($this->GetPropertyMeta($IDChildren,'_thumbnail_id'))
 					{
-						$gallery=$this->getGallery($IDParent);
-							
-						if($gallery)
-						{
-							$gallery.=','.$ID;
-						}
-						else
-						{
-							$gallery=$ID;
-						}
-							
-						$this->UpdatePostMeta($IDParent,'_product_image_gallery',$gallery);
+						$this->UpdatePostMeta($IDChildren,'_thumbnail_id',$ID);
+						$msj="Imagen Insertada en Hijo ".$color." SKU ".$skuParent;
 					}
-					else 
+					else
 					{
 						$this->InsertPostMeta($IDChildren,'_thumbnail_id',$ID);
+						$msj="Imagen Insertada en Hijo ".$color." SKU ".$skuParent;
 					}
 				}
-				
-				$msj="Imagen Insertada en Hijo ".$color." SKU ".$skuParent;
 			}
 		}
 		else
 		{
 			$msj="No existe SKU Padre";
 		}
-		
+	
 		return $msj;
 	}
 	
@@ -731,6 +780,11 @@ class Inventory
 		$general=new General();
 				
 		$ID=$this->GetID();
+		
+		if(!$stock)
+		{
+			$stock=0;
+		}
 		
 		$postAuthor=2;
 		$postDate=date('Y-m-d H:i:s');
@@ -742,7 +796,7 @@ class Inventory
 		$commentStatus='open';
 		$pingStatus='closed';
 		$postPassword='';
-		$postName=$general->NameToURL($postTitle);
+		$postName=$general->NameToURL($sku.'-'.$postTitle);
 		$toPing='';
 		$pinged='';
 		$postModified=$postDate;
@@ -801,7 +855,10 @@ class Inventory
 			
 			if($categoryId)
 			{
-				$this->InsertCategoryProduct($ID,$categoryId);
+				if(!$this->CheckCategoryProduct($ID,$categoryId))
+				{
+					$this->InsertCategoryProduct($ID,$categoryId);
+				}
 			}
 			else
 			{
@@ -811,22 +868,76 @@ class Inventory
 			
 		}
 		
-		//_trademark
+	//_trademark
 		$trademark=ucwords(strtolower(trim($trademark)));
 		$categoryId=$this->GetCategory($trademark);
 			
 		if($categoryId)
 		{
-			$this->InsertCategoryProduct($ID,$categoryId);
+			if(!$this->CheckCategoryProduct($ID,$categoryId))
+			{
+				$this->InsertCategoryProduct($ID,$categoryId);
+			}
 		}
 		else
 		{
 			$categoryId=$this->InsertCategory($trademark);
 			$this->InsertCategoryProduct($ID,$categoryId);
 		}
+		
+		//type_product
+		$typeProduct=ucwords(strtolower(trim($typeProduct)));
+		$categoryId=$this->GetCategory($typeProduct);
+			
+		if($categoryId)
+		{
+			if(!$this->CheckCategoryProduct($ID,$categoryId))
+			{
+				$this->InsertCategoryProduct($ID,$categoryId);
+			}
+		}
+		else
+		{
+			$categoryId=$this->InsertCategory($typeProduct);
+			$this->InsertCategoryProduct($ID,$categoryId);
+		}
+		
+		//lineProduct
+		$lineProduct=ucwords(strtolower(trim($lineProduct)));
+		$categoryId=$this->GetCategory($lineProduct);
+			
+		if($categoryId)
+		{
+			if(!$this->CheckCategoryProduct($ID,$categoryId))
+			{
+				$this->InsertCategoryProduct($ID,$categoryId);
+			}
+		}
+		else
+		{
+			$categoryId=$this->InsertCategory($lineProduct);
+			$this->InsertCategoryProduct($ID,$categoryId);
+		}
+		
+		//genderProduct
+		$genderProduct=ucwords(strtolower(trim($genderProduct)));
+		$categoryId=$this->GetCategory($genderProduct);
+			
+		if($categoryId)
+		{
+			if(!$this->CheckCategoryProduct($productId,$categoryId))
+			{
+				$this->InsertCategoryProduct($ID,$categoryId);
+			}
+		}
+		else
+		{
+			$categoryId=$this->InsertCategory($genderProduct);
+			$this->InsertCategoryProduct($ID,$categoryId);
+		}
 						
 		//_backorders
-		$backorders='no';
+		$backorders='notify';
 		$this->InsertPostMeta($ID,'_backorders',$backorders);
 		
 		//_crosssell_ids
@@ -906,14 +1017,7 @@ class Inventory
 		$this->InsertPostMeta($ID,'_stock',$stock);
 		
 		//_stock_status
-		if($stock)
-		{
-			$stockStatus='instock';
-		}
-		else
-		{
-			$stockStatus='outofstock';
-		}
+		$stockStatus='instock';
 		$this->InsertPostMeta($ID,'_stock_status',$stockStatus);
 		
 		//_upsell_ids
@@ -940,6 +1044,9 @@ class Inventory
 		$totalSales=0;
 		$this->InsertPostMeta($ID,'total_sales',$totalSales);
 				
+		//_trademark
+		$this->InsertPostMeta($ID,'_trademark',$trademark);
+		
 		//type_product
 		$this->InsertPostMeta($ID,'type_product',ucwords(strtolower($typeProduct)));
 		
@@ -1075,10 +1182,23 @@ class Inventory
 		
 	public function UpdateDataProduct($ID,$name,$stock,$price)
 	{
+		$r=$this->GetDataProduct($ID);
+		
+		$postParent=$r[0]['post_parent'];
+		
+		if($postParent)
+		{
+			$postId=$postParent;
+		}
+		else
+		{
+			$postId=$ID;
+		}
+		
 		$sql="UPDATE wp_posts SET post_title=:name WHERE ID=:ID";
 		
 		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
+		$statement->bindParam(':ID',$postId,PDO::PARAM_STR);
 		$statement->bindParam(':name',$name,PDO::PARAM_STR);
 		$statement->execute();
 		
@@ -1107,7 +1227,6 @@ class Inventory
 		
 		foreach($result as $r)
 		{
-			echo $ID."<br>";
 			$ID=$r['post_id'];
 			//_stock_status
 			$stockStatus='outofstock';
@@ -1115,6 +1234,39 @@ class Inventory
 			
 			$backorders='notify';
 			$this->UpdatePostMeta($ID,'_backorders',$backorders);
+		}
+	}
+	
+	public function UpdateCategories()
+	{
+		$sql="SELECT post_id,meta_value
+				FROM wp_postmeta
+				WHERE meta_key IN('type_product','line_product','gender_product')";
+	
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		foreach($result as $r)
+		{
+			$ID=$r['post_id'];
+			$type=$r['meta_value'];
+				
+			$type=ucwords(strtolower(trim($type)));
+			$categoryId=$this->GetCategory($type);
+	
+			if($categoryId)
+			{
+				//$this->InsertCategoryProduct($ID,$categoryId);
+			}
+			else
+			{
+				$categoryId=$this->InsertCategory($type);
+				$this->InsertCategoryProduct($ID,$categoryId);
+			}
+				
+			echo $ID." ".$type."<br>";
+				
 		}
 	}
 	

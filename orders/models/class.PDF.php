@@ -28,20 +28,6 @@ class PDF
 		
 		$productos=json_decode($r[0]['inv_orden_compra_productos']);
 		
-		$pdf=new TCPDF('P','mm','A4', true, 'UTF-8', false);
-
-		$pdf->SetCreator('HAINZER');
-		$pdf->SetAuthor('HAINZER SUPPLY');
-		$pdf->SetTitle('Orden');
-
-		$pdf->SetDefaultMonospacedFont('courier');
-		$pdf->SetMargins(0,0,0);
-		//$pdf->SetAutoPageBreak(TRUE,25);
-		//$pdf->setImageScale(2);
-
-		$pdf->AddPage();
-		$pdf->setJPEGQuality(100);
-
 		$img=imagecreatefromjpeg($_SERVER["REDIRECT_PATH_CONFIG"].'orders/plantillas/plantilla.jpg');
 		$negro = imagecolorallocate($img, 0, 0, 0);
 		$fuente=$_SERVER["REDIRECT_PATH_CONFIG"].'orders/css/arial.ttf';
@@ -175,9 +161,22 @@ class PDF
 		imagejpeg($img,$namePlantilla);
 
 		imagedestroy($img);
+		
+		$pdf=new TCPDF('P','mm','A4', true, 'UTF-8', false);
 
+		$pdf->SetCreator('HAINZER');
+		$pdf->SetAuthor('HAINZER SUPPLY');
+		$pdf->SetTitle('Orden');
+
+		$pdf->SetDefaultMonospacedFont('courier');
+		$pdf->SetMargins(0,0,0);
+		//$pdf->SetAutoPageBreak(TRUE,25);
+		//$pdf->setImageScale(2);
+
+		$pdf->AddPage();
+		$pdf->setJPEGQuality(100);
 		$pdf->Image($namePlantilla);
-	
+		ob_start();
 		if($type=='W')
 		{
 			$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
@@ -197,7 +196,7 @@ class PDF
 		{
 			$pdf->Output('pedido_'.$noPedido.'.pdf', 'D');
 		}
-		
+		ob_end_flush();
 
 		unlink($namePlantilla);
 	}

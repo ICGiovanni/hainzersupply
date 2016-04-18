@@ -141,6 +141,15 @@ class Log
 		
 		$nameFile=$name.'_'.'wp_term_relationships.sql';
 		$this->GetDataTable('wp_term_relationships',$nameFile);
+		
+		$nameFile=$name.'_'.'wp_terms.sql';
+		$this->GetDataTable('wp_terms',$nameFile);
+		
+		$nameFile=$name.'_'.'wp_term_taxonomy.sql';
+		$this->GetDataTable('wp_term_taxonomy',$nameFile);
+		
+		$nameFile=$name.'_'.'wp_woocommerce_termmeta.sql';
+		$this->GetDataTable('wp_woocommerce_termmeta',$nameFile);
 		/*
 		$nameFile=$name.'_'.'wp_posts.sql';
 		$file=$_SERVER["REDIRECT_PATH_CONFIG"].'/excel/sql/'.$nameFile;
@@ -203,6 +212,15 @@ class Log
 		
 		$nameFile=$name.'_'.'wp_term_relationships.sql';
 		$this->RestoreDataTable('wp_term_relationships',$nameFile);
+		
+		$nameFile=$name.'_'.'wp_terms.sql';
+		$this->RestoreDataTable('wp_terms',$nameFile);
+		
+		$nameFile=$name.'_'.'wp_term_taxonomy.sql';
+		$this->RestoreDataTable('wp_term_taxonomy',$nameFile);
+		
+		$nameFile=$name.'_'.'wp_woocommerce_termmeta.sql';
+		$this->RestoreDataTable('wp_woocommerce_termmeta',$nameFile);
 		
 		/*$sql="DELETE FROM wp_posts";
 		$statement=$this->connect->prepare($sql);

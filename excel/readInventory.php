@@ -27,10 +27,6 @@ if(!is_uploaded_file($_FILES['fileUpload']['tmp_name']))
 {
 	$output=['error'=>'No se pudo leer el archivo.'];
 }
-else if($ext!='xls' && $ext!='xlsx')
-{
-	$output=['error'=>'La extensi�n del Archivo no es valida('.$ext.').'];
-}
 else
 {
 	$nameFile=date('YmdHis').'.'.$ext;

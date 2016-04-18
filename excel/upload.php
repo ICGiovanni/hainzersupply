@@ -39,7 +39,7 @@ for($i=0;$i<$images;$i++)
 		$output=['result'=>$result];
 	}
 }
-
+$output=['result'=>$result];
 
 echo json_encode($output);
 
