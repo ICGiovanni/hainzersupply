@@ -209,7 +209,7 @@ else
 		
 		for($row=2;$row<=$highestRow;++$row)
 		{
-			$sku=trim($objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue());
+			$sku=$general->QuitBlankSpace($objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue());
 			$product=trim($objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue());
 			$stock=$objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue();
 			$priceWIVA=round($objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue(),2);
