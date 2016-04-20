@@ -45,7 +45,7 @@ else
 
 	$highestColumnIndex=PHPExcel_Cell::columnIndexFromString($highestColumn);
 	
-	if($highestColumn=='R' || $highestColumn=='N')
+	if($highestColumn=='R' || $highestColumn=='O')
 	{	
 		$result1='<table class="table">';
 		$result2='<table class="table" border=1>';
