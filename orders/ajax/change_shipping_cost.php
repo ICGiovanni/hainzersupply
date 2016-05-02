@@ -8,6 +8,11 @@ if(!empty($_POST)){
 	require_once('../models/class.Orders.php');
 	$order = new Order();
 
-	echo $order->changeShippingCost($idOrder, $costoEnvio);
+	$result = $order->changeShippingCost($idOrder, $costoEnvio);
+	if($result == "success update"){
+		$order->sendEmailOrder($idOrder,2);
+		echo $result;
+	}
+	
 }
 ?>
