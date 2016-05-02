@@ -181,6 +181,10 @@ class PDF
 		{
 			$pdf->Output('Pedido_'.$noPedido.'.pdf', 'D');
 		}
+		else if($type=='I')
+		{
+			$pdf->Output('Pedido_'.$noPedido.'.pdf', 'I');
+		}
 		else if($type=='L')
 		{
 			$rute=$_SERVER["REDIRECT_PATH_CONFIG"]."orders/pdf/";

@@ -94,8 +94,11 @@ else
 			$color=trim($objWorksheet->getCellByColumnAndRow(10,$row)->getCalculatedValue());
 			$size=trim($objWorksheet->getCellByColumnAndRow(11,$row)->getCalculatedValue());
 			$stock=$objWorksheet->getCellByColumnAndRow(12,$row)->getCalculatedValue();
-			$priceWIVA=round($objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue(),2);
-			$priceWIVA=round($priceWIVA+($priceWIVA*0.16),2);
+			$priceWIVA=round($objWorksheet->getCellByColumnAndRow(13,$row)->getCalculatedValue());
+			$priceWIVA=round($priceWIVA+($priceWIVA*0.16));
+			
+			$color=strtoupper($color);
+			$color=str_replace('&','CON',$color);
 			
 			if($sku!="")
 			{	
@@ -202,7 +205,7 @@ else
 		fwrite($fileReport,$html);
 		fclose($fileReport);
 	}
-	else if($highestColumn=='D')
+	else if($highestColumn=='D' || ($col>=4 && $col<=14))
 	{
 		$result='<table class="table">';
 		$result.='<thead>';
@@ -220,7 +223,7 @@ else
 			$sku=$general->QuitBlankSpace($objWorksheet->getCellByColumnAndRow(0,$row)->getCalculatedValue());
 			$product=trim($objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue());
 			$stock=$objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue();
-			$priceWIVA=round($objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue(),2);
+			$priceWIVA=round($objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue());
 			
 			$ID=$inventory->getSku($sku);
 			
@@ -228,7 +231,7 @@ else
 			$result.='<th>'.$sku.'</th>';
 			$result.='<th>'.$product.'</th>';
 			$result.='<th>'.$stock.'</th>';
-			$result.='<th>$'.($priceWIVA+($priceWIVA*0.16)).'</th>';
+			$result.='<th>$'.round(($priceWIVA+($priceWIVA*0.16))).'</th>';
 			
 			if($ID)
 			{
@@ -237,12 +240,21 @@ else
 				$result.='</tr>';
 				$banderaUpdate=true;
 				$productsUpdate++;
+				
+				$IDParent=$inventory->GetIDParent($ID);
+				
+				array_push($cache,$IDParent);
 			}
 			else
 			{
 				$result.='<th>'.'Producto Inexistente'.'</th>';
 				$result.='</tr>';
 			}
+		}
+		
+		foreach($cache as $ID)
+		{
+			$inventory->DeleteCacheUpdate($ID);
 		}
 	}
 	

@@ -1150,7 +1150,7 @@ class Inventory
 		
 		//Price
 		$price=$price+($price*0.16);
-		$this->UpdatePostMeta($ID,'_price',$price);
+		$this->UpdatePostMeta($ID,'_price',round($price));
 	}
 	
 	public function InsertProductTerms($ID,$term)
@@ -1267,6 +1267,46 @@ class Inventory
 				
 			echo $ID." ".$type."<br>";
 				
+		}
+	}
+	
+	public function GetIDParent($ID)
+	{
+		$sql="SELECT post_parent
+		FROM wp_posts
+		WHERE ID='$ID'";
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+	
+	
+		if(isset($result[0]['post_parent']))
+		{
+			return $result[0]['post_parent'];
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function DeleteCacheUpdate($ID)
+	{
+		$sql="SELECT *
+		FROM wp_options
+		WHERE option_name IN('_transient_timeout_wc_var_prices_$ID','_transient_wc_var_prices_$ID')";
+		$statement=$this->connect->prepare($sql);
+		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+	
+		foreach($result as $r)
+		{
+			$option_name=$r['option_name'];
+			$option_id=$r['option_id'];
+				
+			$sql="DELETE FROM wp_options WHERE option_id='$option_id'";
+			$statement=$this->connect->prepare($sql);
+			$statement->execute();
 		}
 	}
 	
