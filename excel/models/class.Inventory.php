@@ -151,17 +151,29 @@ class Inventory
 	
 	public function InsertCategoryProduct($productId,$categoryId)
 	{
-		$sql = "INSERT INTO wp_term_relationships VALUES(:productId,:categoryId,0)";
-		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':productId',$productId,PDO::PARAM_STR);
-		$statement->bindParam(':categoryId',$categoryId,PDO::PARAM_STR);
-		$statement->execute();
-		
-		$sql="UPDATE wp_term_taxonomy SET count=count+1 WHERE term_taxonomy_id=:categoryId";
+		$sql="SELECT *
+				FROM wp_term_relationships
+				WHERE object_id=$productId AND term_taxonomy_id=$categoryId";
 		
 		$statement=$this->connect->prepare($sql);
-		$statement->bindParam(':categoryId',$categoryId,PDO::PARAM_STR);
+		$statement->bindParam(':ID',$ID,PDO::PARAM_STR);
 		$statement->execute();
+		$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		if(count($result)==0)
+		{
+			$sql = "INSERT INTO wp_term_relationships VALUES(:productId,:categoryId,0)";
+			$statement=$this->connect->prepare($sql);
+			$statement->bindParam(':productId',$productId,PDO::PARAM_STR);
+			$statement->bindParam(':categoryId',$categoryId,PDO::PARAM_STR);
+			$statement->execute();
+			
+			$sql="UPDATE wp_term_taxonomy SET count=count+1 WHERE term_taxonomy_id=:categoryId";
+			
+			$statement=$this->connect->prepare($sql);
+			$statement->bindParam(':categoryId',$categoryId,PDO::PARAM_STR);
+			$statement->execute();
+		}
 	}
 	
 	public function GetDataProduct($ID)
