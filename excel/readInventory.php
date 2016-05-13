@@ -205,7 +205,7 @@ else
 		fwrite($fileReport,$html);
 		fclose($fileReport);
 	}
-	else if($highestColumn=='D' || ($col>=4 && $col<=14))
+	else if($highestColumn=='E' || $highestColumn=='D' || ($col>=4 && $col<=14))
 	{
 		$result='<table class="table">';
 		$result.='<thead>';
@@ -224,6 +224,8 @@ else
 			$product=trim($objWorksheet->getCellByColumnAndRow(1,$row)->getCalculatedValue());
 			$stock=$objWorksheet->getCellByColumnAndRow(2,$row)->getCalculatedValue();
 			$priceWIVA=round($objWorksheet->getCellByColumnAndRow(3,$row)->getCalculatedValue());
+			$priceOffer=round($objWorksheet->getCellByColumnAndRow(4,$row)->getCalculatedValue());
+			$priceOffer=round($priceOffer+($priceOffer*0.16));
 			
 			$ID=$inventory->getSku($sku);
 			
@@ -235,7 +237,7 @@ else
 			
 			if($ID)
 			{
-				$inventory->UpdateProduct($ID,$stock,$priceWIVA);
+				$inventory->UpdateProduct($ID,$stock,$priceWIVA,$priceOffer);
 				$result.='<th>'.'Producto Actualizado'.'</th>';
 				$result.='</tr>';
 				$banderaUpdate=true;

@@ -1143,14 +1143,27 @@ class Inventory
 		}
 	}
 	
-	public function UpdateProduct($ID,$stock,$price)
+	public function UpdateProduct($ID,$stock,$price,$priceOffer)
 	{
 		//Stock
 		$this->UpdatePostMeta($ID,'_stock',$stock);
+				
+		if($priceOffer!=0)
+		{
+			//_sale_price
+			$this->UpdatePostMeta($ID,'_sale_price',$priceOffer);
 		
-		//Price
-		$price=$price+($price*0.16);
-		$this->UpdatePostMeta($ID,'_price',round($price));
+			//Price
+			$this->UpdatePostMeta($ID,'_price',$priceOffer);
+		}
+		else
+		{
+			//_sale_price
+			$this->UpdatePostMeta($ID,'_sale_price',$price);
+		
+			//Price
+			$this->UpdatePostMeta($ID,'_price',$price);
+		}
 	}
 	
 	public function InsertProductTerms($ID,$term)
